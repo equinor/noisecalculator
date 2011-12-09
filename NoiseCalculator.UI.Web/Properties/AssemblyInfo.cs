@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NoiseCalculator")]
+[assembly: AssemblyTitle("NoiseCalculator.UI.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Statoil")]
-[assembly: AssemblyProduct("NoiseCalculator")]
+[assembly: AssemblyProduct("NoiseCalculator.UI.Web")]
 [assembly: AssemblyCopyright("Copyright © Statoil 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
