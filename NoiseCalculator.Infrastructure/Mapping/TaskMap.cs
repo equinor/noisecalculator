@@ -14,10 +14,10 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Id(x => x.Id);
 
             Map(x => x.Title);
+            Map(x => x.NoiseLevel);
 
             References(x => x.Role);
             References(x => x.NoiseProtection);
-            References(x => x.NoiseLevel);
         }
     }
 }

@@ -7,7 +7,7 @@ using NoiseCalculator.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
 {
-    public class HelicopterWorkIntervalMap : ClassMap<HelicopterNoiseProtection>
+    public class HelicopterWorkIntervalMap : ClassMap<HelicopterWorkInterval>
     {
         public HelicopterWorkIntervalMap()
         {
