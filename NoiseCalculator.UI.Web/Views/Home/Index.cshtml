@@ -2,7 +2,150 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+<h2>My Tasks - Total noise dosage close to the allowed limit</h2>
+
+<style>
+    .task
+    {
+        margin: 3px; 
+        background-color: #333; 
+        border: 3px solid white; 
+        padding: 5px; 
+        display: inline-block;
+    }
+
+    .taskGrouping
+    {
+        float: left; 
+        color: White; 
+        margin-left: 30px;
+    }
+
+    p
+    {
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+    
+    .label-small40
+    {
+        width: 40px; 
+        display: inline-block;
+    }
+    
+    .label-normal120
+    {
+        width: 120px; 
+        display: inline-block;
+    }
+
+    .emulatedTaskButton
+    {
+        float: left;
+        margin-left: 10px;
+    }
+
+    .emulatedTaskButton:hover
+    {
+        cursor: pointer;
+    }
+
+    .emulatedAddButton
+    {
+        background-color: #333; 
+        border: 3px solid white; 
+        padding: 2px; 
+        padding-left: 5px; 
+        padding-right: 10px; 
+    }
+
+    .emulatedAddButton:hover
+    {
+        cursor: pointer;
+    }
+
+    .taskIcon
+    {
+        width: 24px; 
+        height: 24px; 
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    @*<p style="color: #f8ed37">Hoover style</p>
+    <p style="color: #ff26a4">Pink border color</p>*@
+    
+</style>
+
+<div style="display: inline-block;">
+
+    <div class="task">
+        <div class="emulatedTaskButton">
+            <img src="../../Content/page_edit.png" class="taskIcon" />
+            <span style="color: White; font-weight: bold;">Edit</span>
+        </div>
+
+        <div class="taskGrouping">
+            <p>
+                <label for="Task" class="label-small40">Task</label>
+                <span id="Task" style="font-weight: bold;">: Angle grinding</span>
+            </p>
+        
+            <p>
+                <label for="Role" class="label-small40">Role</label>
+                <span id="Role" style="font-weight: bold;">: Operator</span>
+            </p>
+        </div>
+
+        <div class="taskGrouping">
+            <p>
+                <label for="NoiseProtection" class="label-normal120">Noise Protection</label>
+                <span id="NoiseProtection" style="font-weight: bold;">: Double</span>
+            </p>
+        
+            <p>
+                <label for="NoiseLevel" class="label-normal120">Noise Level</label>
+                <span id="NoiseLevel" style="font-weight: bold;">: 109 dBA</span>
+            </p>
+        </div>
+
+        <div class="taskGrouping">
+            <p>
+                <label for="WorkTime" class="label-normal120">Work Time</label>
+                <span id="WorkTime" style="font-weight: bold;">: 2t 40min</span>
+            </p>
+        
+            <p>
+                <label for="PercentDailyDosage" class="label-normal120">% Daily Dosage</label>
+                <span id="PercentDailyDosage" style="font-weight: bold;">: 40%</span>
+            </p>
+        </div>
+
+        <div class="emulatedTaskButton">
+            <img src="../../Content/cancel.png" class="taskIcon" />
+            <span style="color: White; font-weight: bold;">Remove</span>
+        </div>
+    </div>
+
+    <br clear="all" />
+
+    @*FAKE ADD BUTTON*@
+    <div style="margin: 5px;">
+        <div class="emulatedAddButton" style="float: left;">
+            <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
+            <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
+            <br clear="all" />
+        </div>
+
+        <div style="float: right; border: 3px solid white; background-color: greenyellow; padding: 5px;">
+            <span style="font-weight: Bold;">Total Daily Dosage: </span>
+            <span style="margin-left: 5px; font-size: 2em; font-weight: bold;" >40%</span>
+        </div>
+    
+        <br clear="all" />
+
+    </div>
+
+</div>
