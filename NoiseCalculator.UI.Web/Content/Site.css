@@ -249,3 +249,79 @@ div#title {
     width: 6em;
 }
 */
+
+
+
+
+/* ----------------------------------------------------------*/
+.task
+{
+    margin: 3px; 
+    background-color: #333; 
+    border: 3px solid white; 
+    padding: 5px; 
+    display: inline-block;
+}
+
+.taskGrouping
+{
+    float: left; 
+    color: White; 
+    margin-left: 30px;
+}
+
+p
+{
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+    
+.label-small40
+{
+    width: 40px; 
+    display: inline-block;
+}
+    
+.label-normal120
+{
+    width: 120px; 
+    display: inline-block;
+}
+
+.emulatedTaskButton
+{
+    float: left;
+    margin-left: 10px;
+}
+
+.emulatedTaskButton:hover
+{
+    cursor: pointer;
+}
+
+.emulatedAddButton
+{
+    background-color: #333; 
+    border: 3px solid white; 
+    padding: 2px; 
+    padding-left: 5px; 
+    padding-right: 10px; 
+}
+
+.emulatedAddButton:hover
+{
+    cursor: pointer;
+}
+
+.taskIcon
+{
+    width: 24px; 
+    height: 24px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+    
+    /*<p style="color: #f8ed37">Hoover style</p>
+    <p style="color: #ff26a4">Pink border color</p>*/
