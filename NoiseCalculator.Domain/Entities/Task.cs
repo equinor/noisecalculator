@@ -14,7 +14,7 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int ActualExposure { get; set; }
 
 
-        public decimal CalculateDailyDosagePercentage()
+        public virtual decimal CalculateDailyDosagePercentage()
         {
             decimal adjustmentFactorForMeassuredNoise = 1;
 

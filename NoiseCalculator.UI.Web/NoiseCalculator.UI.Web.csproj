@@ -184,12 +184,22 @@
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <None Include="readme.txt" />
+    <Content Include="Views\Home\_SelectedTask.cshtml" />
+    <Content Include="Views\Home\_TaskForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
+      <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>
+      <Name>NoiseCalculator.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NoiseCalculator.Infrastructure\NoiseCalculator.Infrastructure.csproj">
+      <Project>{C505DC7D-895E-4393-A43E-33B7CCC97D73}</Project>
+      <Name>NoiseCalculator.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NoiseCalculator.NinjectBootstrapper\NoiseCalculator.NinjectBootstrapper.csproj">
       <Project>{4DD6DF68-FBD2-480B-9EB5-063F9DEBADD2}</Project>
       <Name>NoiseCalculator.NinjectBootstrapper</Name>

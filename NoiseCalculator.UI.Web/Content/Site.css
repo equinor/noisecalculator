@@ -251,8 +251,6 @@ div#title {
 */
 
 
-
-
 /* ----------------------------------------------------------*/
 .task
 {
@@ -287,6 +285,13 @@ p
 {
     width: 120px; 
     display: inline-block;
+}
+
+.label-130px
+{
+    width: 130px; 
+    display: inline-block;
+    /*text-align: right;*/
 }
 
 .emulatedTaskButton

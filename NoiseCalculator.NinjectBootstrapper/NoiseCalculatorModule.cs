@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NHibernate;
 using Ninject.Modules;
+using NoiseCalculator.Infrastructure.DataAccess.Implementations;
+using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.NHibernate;
 
 namespace NoiseCalculator.NinjectBootstrapper
@@ -15,6 +17,8 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<ISessionFactoryManager>().To<SessionFactoryManager>().InSingletonScope();
             Bind<ISession>().ToProvider<SessionProvider>().InRequestScope();
             Bind<IStatelessSession>().ToProvider<StatelessSessionProvider>().InRequestScope();
+
+            Bind(typeof (IDAO<,>)).To(typeof (GenericDAO<,>));
         }
     }
 }
