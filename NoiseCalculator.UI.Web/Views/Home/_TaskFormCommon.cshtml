@@ -1,0 +1,58 @@
+﻿@using NoiseCalculator.Domain.Entities
+@model IEnumerable<Task>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#taskFormCloseButton").click(function () {
+            var theDiv = $(this).closest("div");
+            theDiv.dialog('close');
+        });
+
+        $("#useTask").click(function (event) {
+            event.preventDefault();
+
+            /*var selectedTask = $('#taskSelect option:selected').text();*/
+            var selectedTask = $('#taskSelect option:selected').val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddTask")",
+                data: "{'selectedTask': '" + selectedTask + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                complete: function (xhr, status) {
+                    /*alert(xhr.responseText);*/
+                    $('#taskForm').empty();
+                    $('#taskForm').html(xhr.responseText);
+                }
+                /*success: function(result) {
+                    alert(result);
+                }*/
+            });
+        });
+        
+
+    });
+    
+    /*function AjaxSucceeded(result) {
+        $('#taskForm').empty();
+
+        alert(result);
+        
+        if (result.d.length > 0) {
+            $('#taskForm').html(result);
+        }
+    }*/
+</script>
+
+<span style="font-size: larger; font-weight: bold;">Add Task</span>
+
+<select id="taskSelect" size="8">
+    @foreach (Task task in Model)
+    {
+        <option value="@task.Id">@task.Title, (@task.Role.Title)</option>
+    }
+</select>
+
+<input type="button" id="useTask" value="Use" />
+    
+<div id="taskForm"></div>

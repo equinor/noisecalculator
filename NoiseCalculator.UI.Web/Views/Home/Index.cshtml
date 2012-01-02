@@ -7,12 +7,39 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#addButton")
+        $("#addButtonRegular")
             .click(function() {
                 $("#taskPopup")
-                    .load("@Url.Action("AddTask")")
-                    .dialog({ modal: true, resizable: false, width: 400 });
+                    .empty()
+                    .load("@Url.Action("AddTaskRegular")")
+                    .dialog({ modal: true, resizable: false, width: 'auto', position: [250,80] });
         });
+        
+        $("#addButtonHelicopter")
+            .click(function() {
+                $("#taskPopup")
+                    .empty()
+                    .load("@Url.Action("AddTaskHelideck")")
+                    .dialog({ modal: true, resizable: false, width: 'auto', position: [250,80] });
+        });
+        
+        $("#addButtonRotation")
+            .click(function() {
+                $("#taskPopup")
+                    .empty()
+                    .load("@Url.Action("AddTaskRotation")")
+                    .dialog({ modal: true, resizable: false, width: 'auto', position: [250,80] });
+        });
+        
+
+        $("#addButtonTest")
+            .click(function() {
+                $("#taskPopup")
+                    .empty()
+                    .load("@Url.Action("AddTask")")
+                    .dialog({ modal: true, resizable: false, width: 'auto', position: [250,80] });
+        });
+        
     });
 </script>
 
@@ -26,9 +53,9 @@
 
     @*FAKE ADD BUTTON*@
     <div style="margin: 5px;">
-        <div id="addButton" class="emulatedAddButton" style="float: left;">
+        <div id="addButtonRegular" class="emulatedAddButton" style="float: left;">
             <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
-            <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
+            <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task: Regular</span>
             <br clear="all" />
         </div>
 
@@ -40,6 +67,25 @@
         <br clear="all" />
 
     </div>
+    
+    <div id="addButtonHelicopter" class="emulatedAddButton" style="width: 200px;">
+        <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
+        <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task: Helicopter</span>
+        <br clear="all" />
+    </div>
+        
+    <div id="addButtonRotation" class="emulatedAddButton" style="width: 200px;">
+        <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
+        <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task: Rotation </span>
+        <br clear="all" />
+    </div>
+    
+    <div id="addButtonTest" class="emulatedAddButton" style="width: 200px;">
+        <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
+        <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task: TEST TEST </span>
+        <br clear="all" />
+    </div>
+
 </div>
 
 <div id="taskPopup" style="display: none"></div>
