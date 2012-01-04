@@ -15,7 +15,7 @@
             var selectedTask = $('#taskSelect option:selected').val();
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("AddTask")",
+                url: "@Url.Action("GetTaskForm")",
                 data: "{'selectedTask': '" + selectedTask + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

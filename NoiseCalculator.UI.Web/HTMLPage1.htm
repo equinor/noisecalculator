@@ -1,129 +1,61 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
-    <link href="Content/Site.css" rel="stylesheet" type="text/css" />
+    <title>Test</title>
+    <script src="Scripts/jquery-1.7.1.js" type="text/javascript"></script>
 </head>
 <body>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#addButton').click(function (event) {
+                    event.preventDefault();
+
+                    var myEditForm = $('#editForm');
+
+                    $.ajax({
+                        url: myEditForm.attr('action'),
+                        type: "POST",
+                        /*data: myEditForm.serialize(),*/
+                        data: JSON.stringify(myEditForm, null, 2),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"/*,
+                    success: submitFinished*/
+                    });
+                });
+            });
+    </script>
+
+    <form action="~/Index/AddTaskHelideck" id="editForm">
+        <!--<input type="hidden" id="TaskId" value="@Model.Id" name="TaskId" />-->
     
-    <div id="editForm" style="border: 1px solid grey; margin-top: 20px; padding: 5px;">
         <p>
             <label for="Title" class="label-130px">Task</label>
-            <span id="Title">: Angle grinding</span>
+            <span id="Title">: Title</span>
         </p>
         
         <p>
             <label for="Role" class="label-130px">Role</label>
-            <span id="Role">: Operator</span>
+            <span id="Role">: Role</span>
         </p>
         
+        <p style="margin-top: 15px;">
+            <label for="HelicopterIdSelected" class="label-130px">Helicopter</label>
+            :
+            <select id="HelicopterIdSelected" name="HelicopterIdSelected" class="helicopterDropDown">
+                <option value="1" selected="selected">EC225</option>
+                <option value="2">Helicopter 2</option>
+                <option value="3">Helicopter 3</option>
+            </select>
+        </p>
         
-        <!--<p>
-            <label class="label-130px" style="vertical-align: top; ">Noise Measured</label>
-            
-            <span style="vertical-align: top;">:</span>
-            
-            <span style="display: inline-block;">
-                <input type="radio" name="group1" value="false" checked="true" id="noiseMeasuredNo" />
-                <label for="noiseMeasuredNo">No</label>
-                <br />
-                <span style="height: 30px;">109 dDB</span>
-            </span>
-            
-            <span style="display: inline-block; margin-left: 10px;">
-                <input type="radio" name="group1" value="true" id="noiseMeasuredYes" />
-                <label for="noiseMeasuredYes">Yes</label>    
-                <br />
-                <span style="height: 30px;">
-                    <input type="text" style="width: 20px; height: 13px;" />
-                    dBA
-                </span>
-            </span>
+        <div id="addButton" class="emulatedAddButton" style="float: left;">
+            <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
+            <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
             <br clear="all" />
-        </p>-->
-        
-        <p style="margin-bottom: 2px; margin-top: 20px;">
-            <label class="label-130px">Noise Measured</label>
-            :
-            <span style="display: inline-block; width: 80px;">
-                <input type="radio" name="group1" value="false" checked="true" id="noiseMeasuredNo" />
-                <label for="noiseMeasuredNo">No</label>
-            </span>
-            
-            <span style="display:inline-block; width: 80px;">
-                <input type="radio" name="group1" value="true" id="noiseMeasuredYes" />
-                <label for="noiseMeasuredYes">Yes</label>
-            </span>
-        </p>
-        
-        <p>
-            <label class="label-130px"></label>
-            
-            <span style="display: inline-block; width: 80px; margin-left: 8px;">109 dDB</span>
-            
-            <span style="display: inline-block; width: 80px;">
-                <input type="text" style="width: 20px; height: 13px;" />
-                dBA
-            </span>
-        </p>
-        
-         <!--======================================-->
-        
-        <p style="margin-top: 10px;">
-            <label class="label-130px">Amount</label>
-            :
-            <span style="display: inline-block; width: 120px;">
-                <input type="radio" name="group2" value="worktime" checked="true" id="workTimeRadio" />
-                <label for="workTimeRadio">Work Time</label>
-            </span>
-            
-            <span style="display: inline-block; width: 120px;">
-                <input type="radio" name="group2" value="percent" id="percentRadio" />
-                <label for="percentRadio">Percent</label>
-            </span>
-        </p>
+        </div>
 
-        <p>
-            <label class="label-130px"></label>
-            <span style="display: inline-block; width: 120px; margin-left: 8px;">
-                <input type="text" style="width: 20px; height: 13px;" />
-                t
-                <input type="text" style="width: 20px; height: 13px;" />
-                min
-            </span>
-            
-            <span style="display: inline-block; width: 120px;">
-                <input type="text" style="width: 20px; height: 13px;" />
-                %
-            </span>
-        </p>
+    </form>
 
-
-        <!--<p>
-            <label class="label-130px">Amount</label>
-            :
-            <input type="radio" name="group2" value="worktime" checked="true" id="workTimeRadio" />
-            <label for="workTimeRadio">Work Time</label>
-            <input type="radio" name="group2" value="percent" id="percentRadio" />
-            <label for="percentRadio">Percent</label>
-        </p>
-
-        <p>
-            <label class="label-130px"></label>
-            <span>
-                <input type="text" style="width: 20px;" />
-                t
-                <input type="text" style="width: 20px;" />
-                min
-            </span>
-            
-            <span>
-                <input type="text" style="width: 20px;" />
-                %
-            </span>
-        </p>-->
-
-    </div>
 
 </body>
 </html>

@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="../../Scripts/jquery-ui-1.8.16.min.js" type="text/javascript"></script>
+<link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addTask")
+            .click(function() {
+                $("#taskPopup")
+                    .empty()
+                    .load("@Url.Action("AddTask")")
+                    .dialog({ modal: true, resizable: false, width: 'auto', position: [250,80] });
+        });
+    });
+</script>
+
+<h2>My Tasks - Total noise dosage close to the allowed limit</h2>
+
+<div style="display: inline-block;">
+    <div id="taskList">
+        @*@Html.Partial("_SelectedTask")
+        @Html.Partial("_SelectedTask")
+        @Html.Partial("_SelectedTask")
+        @Html.Partial("_SelectedTask")*@
+    </div>
+    
+    @*FAKE ADD BUTTON*@
+    <div style="margin: 5px;">
+        <div id="addTask" class="emulatedAddButton" style="float: left;">
+            <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
+            <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
+            <br clear="all" />
+        </div>
+
+        <div style="float: right; border: 3px solid white; background-color: greenyellow; padding: 5px;">
+            <span style="font-weight: Bold;">Total Daily Dosage: </span>
+            <span style="margin-left: 5px; font-size: 2em; font-weight: bold;" >40%</span>
+        </div>
+    
+        <br clear="all" />
+
+    </div>
+
+</div>
+
+<div id="taskPopup" style="display: none"></div>

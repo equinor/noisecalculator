@@ -80,15 +80,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SelectedTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HelideckViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\add.png" />
     <Content Include="Content\cancel.png" />
+    <Content Include="Content\gb.gif" />
+    <Content Include="Content\gb.png" />
+    <Content Include="Content\no.gif" />
+    <Content Include="Content\no.png" />
     <Content Include="Content\page_edit.png" />
     <Content Include="Content\Statoil_logo.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -178,22 +184,20 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <None Include="readme.txt" />
-    <Content Include="Views\Home\_SelectedTask.cshtml" />
-    <Content Include="Views\Home\_TaskFormRegular.cshtml" />
-    <Content Include="Views\Home\_TaskFormHelideck.cshtml" />
-    <Content Include="Views\Home\_TaskFormRotation.cshtml" />
-    <Content Include="Views\Home\_TaskFormCommon.cshtml" />
+    <Content Include="Views\Task\_SelectedTask.cshtml" />
+    <Content Include="Views\Task\_TaskFormRegular.cshtml" />
+    <Content Include="Views\Task\_TaskFormHelideck.cshtml" />
+    <Content Include="Views\Task\_TaskFormRotation.cshtml" />
+    <Content Include="Views\Task\_TaskFormCommon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">

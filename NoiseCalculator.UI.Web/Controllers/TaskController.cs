@@ -3,20 +3,23 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Models;
+using NoiseCalculator.UI.Web.ViewModels;
 
 
 namespace NoiseCalculator.Controllers
 {
+    // Can we replace this with a selectedTask int field in the relevant controller?????
     public class TaskFormRequestModel
     {
         public int selectedTask { get; set; }
     }
 
-    public class HomeController : Controller
+    public class TaskController : Controller
     {
         private readonly IDAO<Task, int> _taskDAO;
 
-        public HomeController(IDAO<Task,int> taskDAO)
+        public TaskController(IDAO<Task, int> taskDAO)
         {
             _taskDAO = taskDAO;
         }
@@ -35,7 +38,8 @@ namespace NoiseCalculator.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult AddTask(TaskFormRequestModel taskFormRequestModel)
+        //public PartialViewResult GetTaskForm(TaskFormRequestModel taskFormRequestModel)
+        public ActionResult GetTaskForm(TaskFormRequestModel taskFormRequestModel)
         {
             Task task = _taskDAO.Get(taskFormRequestModel.selectedTask);
 
@@ -59,7 +63,6 @@ namespace NoiseCalculator.Controllers
             }
         }
         
-        
         // ------------------------------------------------
         public PartialViewResult AddTaskRegular(Task task)
         {
@@ -71,14 +74,22 @@ namespace NoiseCalculator.Controllers
             return PartialView("_TaskFormHelideck", task);
         }
 
+        [HttpPost]
+        public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
+        {
+            if(viewModel.HelicopterIdSelected > 1)
+            {
+                Response.StatusCode = 500;
+                return Json("EN FEIL HAR OPPSTÅTT");
+            }
+
+            return PartialView("_SelectedTask");
+        }
+
+
         public PartialViewResult AddTaskRotation(Task task)
         {
             return PartialView("_TaskFormRotation");
-        }
-
-        public ActionResult About()
-        {
-            return View();
         }
     }
 }

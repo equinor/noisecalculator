@@ -58,11 +58,9 @@ page width. Or, you can specify an exact pixel width. */
     margin-right: auto;*/
 }
 
-header, #header {
-    /*position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;*/
+.header {
+    background-color: #333; 
+    border-bottom: 2px solid black;
 }
 
 header h1, #header h1 {
@@ -254,7 +252,8 @@ div#title {
 /* ----------------------------------------------------------*/
 .task
 {
-    margin: 3px; 
+    margin-left: 3px;
+    margin-bottom: 10px;
     background-color: #333; 
     border: 3px solid white; 
     padding: 5px; 
@@ -362,5 +361,10 @@ p
     display: block;
 }
 
-    /*<p style="color: #f8ed37">Hoover style</p>
-    <p style="color: #ff26a4">Pink border color</p>*/
+.helicopterDropDown 
+{
+    width: 150px;
+}
+
+/*<p style="color: #f8ed37">Hoover style</p>
+<p style="color: #ff26a4">Pink border color</p>*/
