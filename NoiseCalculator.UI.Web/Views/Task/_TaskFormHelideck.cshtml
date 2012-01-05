@@ -1,45 +1,6 @@
 ﻿@using NoiseCalculator.Domain.Entities
 @model Task
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#taskFormCloseButton").click(function () {
-            var theDiv = $(this).closest("div");
-            theDiv.dialog('close');
-        });
-
-        $('#addButton').click(function (event) {
-            event.preventDefault();
-
-            var myEditForm = $('#editForm');
-            var formData = {
-                TaskId: $("#TaskId").val(),
-                HelicopterIdSelected: $("#HelicopterIdSelected").val(),
-                NoiseProtectionIdSelected: $("#NoiseProtectionIdSelected").val(),
-                WorkIntervalIdSelected: $("#WorkIntervalIdSelected").val()
-            };
-
-            $.ajax({
-                url: myEditForm.attr('action'),
-                type: myEditForm.attr('method'),
-                data: JSON.stringify(formData),
-                contentType: "application/json",
-                dataType: "html",
-                /*error: function (jqXHR) {
-                alert(jqXHR.statusText);
-                alert(jqXHR.responseText);
-                },*/
-                success: function (jqXHR) {
-                    /*var div = $("<div>").hide().html(jqXHR);*/
-                    var div = $("<div>").replaceWith(jqXHR).hide();
-                    $("#taskList").append(div);
-                    div.fadeIn('slow');
-                }
-            });
-        });
-    });
-</script>
-
 <form method="POST" action="@Url.Action("AddTaskHelideck")" id="editForm">
     <input type="hidden" id="TaskId" value="@Model.Id" name="TaskId" />
     
