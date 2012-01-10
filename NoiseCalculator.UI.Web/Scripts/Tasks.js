@@ -8,7 +8,10 @@
             .dialog({
                 modal: true,
                 resizable: false,
+                hide: { effect: 'fade', duration: 1000 },
                 width: 'auto',
+                /*width: 450,*/
+                /*height: 540,*/
                 position: [250, 80]
             });
 
@@ -19,13 +22,12 @@ function addTaskFormEvents() {
     $("#useTask").click(function (event) {
         event.preventDefault();
 
-        var selectedTask = $('#taskSelect option:selected').val();
+        var taskId = $('#taskSelect option:selected').val();
         $.ajax({
-            type: "POST",
-            url: getTaskFormUrl,
-            data: "{'selectedTask': '" + selectedTask + "'}",
-            contentType: "application/json; charset=utf-8",
+            type: "GET",
+            url: getTaskFormUrl + "/" + taskId,
             dataType: "html",
+            cache: false,
             success: function (result) {
                 $('#taskForm').empty();
                 $('#taskForm').html(result);
@@ -35,12 +37,12 @@ function addTaskFormEvents() {
     });
 }
 
+function closeTaskPopup() {
+    $("#taskPopup").dialog('close');
+}
 
 function addEventsToHelideckForm() {
-    $("#taskFormCloseButton").click(function () {
-        var popupDiv = $("#taskPopup");
-        popupDiv.dialog('close');
-    });
+    $("#taskFormCloseButton").click(closeTaskPopup);
 
     $('#addButton').click(function (event) {
         event.preventDefault();
@@ -48,9 +50,9 @@ function addEventsToHelideckForm() {
         var myEditForm = $('#editForm');
         var formData = {
             TaskId: $("#TaskId").val(),
-            HelicopterIdSelected: $("#HelicopterIdSelected").val(),
-            NoiseProtectionIdSelected: $("#NoiseProtectionIdSelected").val(),
-            WorkIntervalIdSelected: $("#WorkIntervalIdSelected").val()
+            HelicopterId: $("#HelicopterId").val(),
+            NoiseProtectionId: $("#NoiseProtectionId").val(),
+            WorkIntervalId: $("#WorkIntervalId").val()
         };
 
         $.ajax({
@@ -67,6 +69,7 @@ function addEventsToHelideckForm() {
                 var div = $("<div>").replaceWith(result).hide();
                 $("#taskList").append(div);
                 div.fadeIn('slow');
+                closeTaskPopup();
             }
         });
     });

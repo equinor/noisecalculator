@@ -4,9 +4,13 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    /**/
+    font-size: 14px; 
+    background-color: lightgray;
     padding: 0px; 
     margin: 0px;
+    font-family: "Lucida Sans",
+                 "Lucida Grande",
+                  sans-serif;
 }
 
 a:link {
@@ -80,6 +84,8 @@ header h1, #header h1 {
     border-radius: 4px 0 0 0;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;*/
+    display: inline-block;
+    margin-left: 5px;
 }
 
 footer, 
@@ -135,25 +141,6 @@ input[type="submit"] {
     padding: 5px;
 }
 
-/* TABLE
-----------------------------------------------------------*/
-
-/*'table {
-    border: solid 1px #e8eef4;
-    border-collapse: collapse;
-}
-
-table td {
-    padding: 5px;
-    border: solid 1px #e8eef4;
-}
-
-table th {
-    padding: 6px 5px;
-    text-align: left;
-    background-color: #e8eef4;
-    border: solid 1px #e8eef4;
-}*/
 
 /* MISC  
 ----------------------------------------------------------*/
@@ -260,6 +247,12 @@ div#title {
     display: inline-block;
 }
 
+.tasklistHeading 
+{
+    font-size: 20px;
+    margin-left: 5px;
+}
+
 .taskGrouping
 {
     float: left; 
@@ -290,14 +283,12 @@ p
 {
     width: 130px; 
     display: inline-block;
-    /*text-align: right;*/
 }
 
 .label-140px
 {
     width: 140px; 
     display: inline-block;
-    /*text-align: right;*/
 }
 
 .emulatedTaskButton
@@ -313,6 +304,7 @@ p
 
 .emulatedAddButton
 {
+    float: left;
     background-color: #333; 
     border: 3px solid white; 
     padding: 2px; 
@@ -348,22 +340,89 @@ p
 
 #editForm 
 {
-    border: 1px solid grey; 
-    margin-top: 20px; 
+    border: 1px solid lightgray; 
+    margin-top: 10px; 
     padding: 5px; 
     font-size: 14px;
 }
 
 #taskSelect
 {
-    width: 300px; 
+    width: 450px; 
     height: 200px; 
     display: block;
+    border: 1px solid lightgray;
+}
+
+#useTask 
+{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#editFormButtons
+{
+    margin-top: 10px;
 }
 
 .helicopterDropDown 
 {
-    width: 150px;
+    width: 250px;
+}
+
+#applicationTitle
+{
+    float: left;
+    color: lightgray; 
+    margin-top: 29px; 
+    margin-left: 30px; 
+    font-size: 26px;
+}
+
+#totalDailyPercentageDiv 
+{
+    float: right; 
+    border: 3px solid white; 
+    background-color: greenyellow; 
+    padding: 5px;
+}
+
+.buttonIcon 
+{
+    width: 20px; 
+    height: 20px; 
+    display: inline; 
+    vertical-align: middle;
+}
+
+.buttonText 
+{
+    margin-left: 5px; 
+    font-weight: bold; 
+    color: White;
+}
+
+#totalDailyText 
+{
+    font-weight: bold;
+}
+
+#totalDailyPercentage 
+{
+    margin-left: 5px; 
+    font-size: 2em; 
+    font-weight: bold;
+}
+
+.separatorDiv 
+{
+    height: 2px; 
+    width: 95%; 
+    background-color: grey; 
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-bottom: 10px;
 }
 
 /*<p style="color: #f8ed37">Hoover style</p>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NoiseCalculator.Domain.Entities;
@@ -18,18 +19,29 @@ namespace NoiseCalculator.Controllers
     public class TaskController : Controller
     {
         private readonly IDAO<Task, int> _taskDAO;
+        private IList<Task> _taskList;
 
         public TaskController(IDAO<Task, int> taskDAO)
         {
             _taskDAO = taskDAO;
+
+            //if(Session["taskList"] == null)
+            //{
+            //    Session["taskList"] = new List<Task>();
+            //}
+
+            //_taskList = (IList<Task>) Session["taskList"];
         }
         
+
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
 
+            //return View(_taskList);
             return View();
         }
+
 
         public PartialViewResult AddTask()
         {
@@ -37,54 +49,87 @@ namespace NoiseCalculator.Controllers
             return PartialView("_TaskFormCommon", tasks);
         }
 
-        [HttpPost]
-        //public PartialViewResult GetTaskForm(TaskFormRequestModel taskFormRequestModel)
-        public ActionResult GetTaskForm(TaskFormRequestModel taskFormRequestModel)
+
+        public ActionResult GetFormForTask(int id)
         {
-            Task task = _taskDAO.Get(taskFormRequestModel.selectedTask);
+            Task task = _taskDAO.Get(id);
 
             switch (task.Role.Title)
             {
                 case "Helideck":
-                    {
                         return AddTaskHelideck(task);
-                        break;
-                    }
                 case "Rotation":
-                    {
                         return AddTaskRotation(task);
-                        break;
-                    }
                 default:
-                    {
                         return AddTaskRegular(task);
-                        break;
-                    }
             }
         }
         
+
         // ------------------------------------------------
         public PartialViewResult AddTaskRegular(Task task)
+        {
+            TimeSpan workTimeSpan = new TimeSpan(0, 0, task.ActualExposure, 0);
+            RegularViewModel viewModel = new RegularViewModel
+                    {
+                    TaskId = task.Id,
+                    Title = task.Title,
+                    Role = task.Role.Title,
+                    IsNoiseMeassured = (task.ActualExposure > 0),
+                    NoiseLevelMeassured = (task.NoiseLevelMeasured > 0 ? task.NoiseLevelMeasured.ToString() : string.Empty),
+                    IsWorkSpecifiedAsTime = (task.ActualExposure > 0),
+                    Hours = workTimeSpan.Hours.ToString(),
+                    Minutes = workTimeSpan.Minutes.ToString(),
+                    IsWorkSpecifiedAsPercentage = false,
+                    Percentage = string.Empty
+                    };
+
+            return PartialView("_TaskFormRegular", viewModel);
+        }
+
+        [HttpPost]
+        public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
             return PartialView("_TaskFormRegular");
         }
 
+
+
         public PartialViewResult AddTaskHelideck(Task task)
         {
-            return PartialView("_TaskFormHelideck", task);
+            HelideckViewModel viewModel = new HelideckViewModel
+                                              {
+                                                  TaskId = task.Id,
+                                                  Title = task.Title,
+                                                  Role = task.Role.Title
+                                              };
+
+            return PartialView("_TaskFormHelideck", viewModel);
         }
 
+
         [HttpPost]
-        public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
+        public ActionResult AddTaskHelideck(HelideckViewModel viewModelHelideck)
         {
-            if(viewModel.HelicopterIdSelected > 1)
+            if(string.IsNullOrEmpty(viewModelHelideck.HelicopterId) || int.Parse(viewModelHelideck.HelicopterId) < 1)
             {
                 Response.StatusCode = 500;
                 return Json("EN FEIL HAR OPPSTÅTT");
             }
 
-            return PartialView("_SelectedTask");
+
+            Task task = _taskDAO.Get(viewModelHelideck.TaskId);
+
+            SelectedTaskViewModel viewModelSelectedTask = new SelectedTaskViewModel();
+            viewModelSelectedTask.Title = string.Format("Helikoptermottak: <Helikopter>");
+            viewModelSelectedTask.Role = task.Role.Title;
+            //viewModelSelectedTask.NoiseProtection = 
+            //viewModelSelectedTask.Hours = viewModelHelideck.
+
+            return PartialView("_SelectedTask", viewModelSelectedTask);
         }
+
+
 
 
         public PartialViewResult AddTaskRotation(Task task)

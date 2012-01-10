@@ -1,8 +1,7 @@
-﻿@using NoiseCalculator.Domain.Entities
-@model Task
+﻿@model NoiseCalculator.UI.Web.ViewModels.HelideckViewModel
 
 <form method="POST" action="@Url.Action("AddTaskHelideck")" id="editForm">
-    <input type="hidden" id="TaskId" value="@Model.Id" name="TaskId" />
+    <input type="hidden" id="TaskId" value="@Model.TaskId" name="TaskId" />
     
     <p>
         <label for="Title" class="label-130px">Task</label>
@@ -15,9 +14,9 @@
     </p>
         
     <p style="margin-top: 15px;">
-        <label for="HelicopterIdSelected" class="label-130px">Helicopter</label>
+        <label for="HelicopterId" class="label-130px">Helicopter</label>
         :
-        <select id="HelicopterIdSelected" name="HelicopterIdSelected" class="helicopterDropDown">
+        <select id="HelicopterId" class="helicopterDropDown">
             <option value="1" selected="selected">EC225</option>
             <option value="2">Helicopter 2</option>
             <option value="3">Helicopter 3</option>
@@ -25,24 +24,27 @@
     </p>
         
     <p>
-        <label for="NoiseProtectionIdSelected" class="label-130px">Noise Protection</label>
+        <label for="NoiseProtectionId" class="label-130px">Noise Protection</label>
         :
-        <select id="NoiseProtectionIdSelected" name="NoiseProtectionIdSelected" class="helicopterDropDown">
+        <select id="NoiseProtectionId" class="helicopterDropDown">
             <option value="1" selected="selected">QuietPro</option>
             <option value="2">Double</option>
         </select>
     </p>
         
     <p>
-        <label for="WorkIntervalIdSelected" class="label-130px">Work Interval</label>
+        <label for="WorkIntervalId" class="label-130px">Work Interval</label>
         :
-        <select id="WorkIntervalIdSelected" name="WorkIntervalIdSelected" class="helicopterDropDown">
+        <select id="WorkIntervalId" class="helicopterDropDown">
             <option value="1" selected="selected">4-6 min</option>
             <option value="2">7-9 min</option>
             <option value="3">10-16 min</option>
         </select>
     </p>
 
+</form>
+
+<div id="editFormButtons">
     <div id="addButton" class="emulatedAddButton" style="float: left;">
         <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
         <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
@@ -50,5 +52,4 @@
     </div>
 
     <input id="taskFormCloseButton" type="button" value="Close" style="margin-left: 100px;" />
-
-</form>
+</div>
