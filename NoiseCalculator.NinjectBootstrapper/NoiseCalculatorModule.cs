@@ -19,6 +19,7 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<IStatelessSession>().ToProvider<StatelessSessionProvider>().InRequestScope();
 
             Bind(typeof (IDAO<,>)).To(typeof (GenericDAO<,>));
+            Bind<ITaskDAO>().To<TaskDAO>();
         }
     }
 }

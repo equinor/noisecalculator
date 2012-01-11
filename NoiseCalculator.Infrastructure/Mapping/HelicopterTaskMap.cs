@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
 {
-    public class HelicopterNoiseDosageMap : ClassMap<HelicopterNoiseDosage>
+    public class HelicopterTaskMap : ClassMap<HelicopterTask>
     {
-        public HelicopterNoiseDosageMap()
+        public HelicopterTaskMap()
         {
             Id(x => x.Id);
 
-            Map(x => x.NoiseLevel);
+            Map(x => x.Percentage);
 
             References(x => x.HelicopterType);
             References(x => x.HelicopterNoiseProtection);

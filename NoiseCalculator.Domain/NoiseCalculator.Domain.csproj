@@ -46,12 +46,13 @@
   <ItemGroup>
     <Compile Include="DomainServices\ITaskCalculator.cs" />
     <Compile Include="DomainServices\TaskCalculator.cs" />
-    <Compile Include="Entities\HelicopterNoiseDosage.cs" />
+    <Compile Include="Entities\HelicopterTask.cs" />
     <Compile Include="Entities\HelicopterNoiseProtection.cs" />
     <Compile Include="Entities\HelicopterType.cs" />
     <Compile Include="Entities\HelicopterWorkInterval.cs" />
     <Compile Include="Entities\NoiseProtection.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\SelectedTask.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

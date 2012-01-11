@@ -18,34 +18,31 @@ namespace NoiseCalculator.Controllers
 
     public class TaskController : Controller
     {
-        private readonly IDAO<Task, int> _taskDAO;
-        private IList<Task> _taskList;
+        private readonly ITaskDAO _taskDAO;
 
-        public TaskController(IDAO<Task, int> taskDAO)
+        public TaskController(ITaskDAO taskDAO)
         {
             _taskDAO = taskDAO;
 
-            //if(Session["taskList"] == null)
-            //{
-            //    Session["taskList"] = new List<Task>();
-            //}
-
-            //_taskList = (IList<Task>) Session["taskList"];
+            if (Session["taskList"] == null)
+            {
+                Session["taskList"] = new List<SelectedTask>();
+            }
         }
         
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            IList<SelectedTask> _taskList = Session["taskList"] as IList<SelectedTask>;
 
-            //return View(_taskList);
-            return View();
+
+            return View(_taskList);
         }
 
 
         public PartialViewResult AddTask()
         {
-            IEnumerable<Task> tasks = _taskDAO.GetAll();
+            IEnumerable<Task> tasks = _taskDAO.GetAllOrdered();
             return PartialView("_TaskFormCommon", tasks);
         }
 

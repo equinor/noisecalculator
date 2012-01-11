@@ -60,13 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\Implementations\GenericDAO.cs" />
+    <Compile Include="DataAccess\Implementations\TaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\IDAO.cs" />
-    <Compile Include="Mapping\HelicopterNoiseDosageMap.cs" />
+    <Compile Include="DataAccess\Interfaces\ITaskDAO.cs" />
+    <Compile Include="Mapping\HelicopterTaskMap.cs" />
     <Compile Include="Mapping\HelicopterNoiseProtectionMap.cs" />
     <Compile Include="Mapping\HelicopterTypeMap.cs" />
     <Compile Include="Mapping\HelicopterWorkIntervalMap.cs" />
     <Compile Include="Mapping\NoiseProtectionMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\SelectedTaskMap.cs" />
     <Compile Include="Mapping\TaskMap.cs" />
     <Compile Include="NHibernate\ISessionFactoryManager.cs" />
     <Compile Include="NHibernate\SessionFactoryManager.cs" />
