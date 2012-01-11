@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NHibernate;
+﻿using NHibernate;
 using Ninject.Modules;
 using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -20,6 +16,7 @@ namespace NoiseCalculator.NinjectBootstrapper
 
             Bind(typeof (IDAO<,>)).To(typeof (GenericDAO<,>));
             Bind<ITaskDAO>().To<TaskDAO>();
+            Bind<ISelectedTaskDAO>().To<SelectedTaskDAO>();
         }
     }
 }

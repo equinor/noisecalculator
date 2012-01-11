@@ -60,8 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\Implementations\GenericDAO.cs" />
+    <Compile Include="DataAccess\Implementations\SelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Implementations\TaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\IDAO.cs" />
+    <Compile Include="DataAccess\Interfaces\ISelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ITaskDAO.cs" />
     <Compile Include="Mapping\HelicopterTaskMap.cs" />
     <Compile Include="Mapping\HelicopterNoiseProtectionMap.cs" />

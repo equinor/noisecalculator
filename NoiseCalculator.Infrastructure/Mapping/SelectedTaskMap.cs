@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
@@ -20,6 +16,8 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.Hours);
             Map(x => x.Minutes);
             Map(x => x.Percentage);
+            Map(x => x.CreatedBy).Not.Nullable();
+            Map(x => x.CreatedDate).Not.Nullable();
 
             Map(x => x.TaskId);
             Map(x => x.HelicopterTaskId);

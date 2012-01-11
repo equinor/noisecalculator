@@ -1,42 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Routing;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
-using NoiseCalculator.UI.Web.Models;
 using NoiseCalculator.UI.Web.ViewModels;
 
-
-namespace NoiseCalculator.Controllers
+namespace NoiseCalculator.UI.Web.Controllers
 {
-    // Can we replace this with a selectedTask int field in the relevant controller?????
-    public class TaskFormRequestModel
-    {
-        public int selectedTask { get; set; }
-    }
-
     public class TaskController : Controller
     {
         private readonly ITaskDAO _taskDAO;
+        private readonly ISelectedTaskDAO _selectedTaskDAO;
+        
 
-        public TaskController(ITaskDAO taskDAO)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO)
         {
             _taskDAO = taskDAO;
-
-            if (Session["taskList"] == null)
-            {
-                Session["taskList"] = new List<SelectedTask>();
-            }
+            _selectedTaskDAO = selectedTaskDAO;
         }
         
 
         public ActionResult Index()
         {
-            IList<SelectedTask> _taskList = Session["taskList"] as IList<SelectedTask>;
+            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
 
-
-            return View(_taskList);
+            return View(selectedTasks);
         }
 
 
@@ -117,13 +105,21 @@ namespace NoiseCalculator.Controllers
 
             Task task = _taskDAO.Get(viewModelHelideck.TaskId);
 
-            SelectedTaskViewModel viewModelSelectedTask = new SelectedTaskViewModel();
-            viewModelSelectedTask.Title = string.Format("Helikoptermottak: <Helikopter>");
-            viewModelSelectedTask.Role = task.Role.Title;
-            //viewModelSelectedTask.NoiseProtection = 
-            //viewModelSelectedTask.Hours = viewModelHelideck.
+            //SelectedTaskViewModel viewModelSelectedTask = new SelectedTaskViewModel();
+            //viewModelSelectedTask.Title = string.Format("Helikoptermottak: <Helikopter>");
+            //viewModelSelectedTask.Role = task.Role.Title;
 
-            return PartialView("_SelectedTask", viewModelSelectedTask);
+            SelectedTask selectedTask = new SelectedTask();
+            selectedTask.Title = task.Title;
+            selectedTask.Role = task.Role.Title;
+            selectedTask.Hours = 13;
+            selectedTask.Minutes = 66;
+            selectedTask.CreatedBy = User.Identity.Name;
+            selectedTask.CreatedDate = DateTime.Now.Date;
+
+            _selectedTaskDAO.Store(selectedTask);
+
+            return PartialView("_SelectedTask", selectedTask);
         }
 
 

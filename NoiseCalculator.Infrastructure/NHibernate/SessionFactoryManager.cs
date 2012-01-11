@@ -14,7 +14,7 @@ namespace NoiseCalculator.Infrastructure.NHibernate
         // Data Source=myServerAddress;Initial Catalog=myDataBase;User Id=myUsername;Password=myPassword;
         // Data Source=myServerAddress;Initial Catalog=myDataBase;Integrated Security=SSPI;
         //private const string ConnectionString = "Data Source=localhost;Initial Catalog=NoiseCalculator;Integrated Security=SSPI;";
-        private const string ConnectionString = "Data Source=st-tw466\\TM614;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=t391H_ie75;";
+        private const string ConnectionString = @"Data Source=st-tw466\TM614;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=t391H_ie75;";
 
         private readonly Configuration _configuration;
         private readonly ISessionFactory _sessionFactory;

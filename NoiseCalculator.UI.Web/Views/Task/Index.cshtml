@@ -1,4 +1,6 @@
-﻿@{
+﻿@using NoiseCalculator.Domain.Entities
+@model IEnumerable<NoiseCalculator.Domain.Entities.SelectedTask> 
+@{
     ViewBag.Title = "My Tasks";
 }
 
@@ -17,10 +19,10 @@
 <div class="separatorDiv"></div>
 
 <div id="taskList" style="min-height: 40px;">
-    @*@Html.Partial("_SelectedTask")
-    @Html.Partial("_SelectedTask")
-    @Html.Partial("_SelectedTask")
-    @Html.Partial("_SelectedTask")*@
+    @foreach (SelectedTask selectedTask in Model)
+    {
+        @Html.Partial("_SelectedTask", selectedTask);
+    }
 </div>
     
 <div class="separatorDiv"></div>
