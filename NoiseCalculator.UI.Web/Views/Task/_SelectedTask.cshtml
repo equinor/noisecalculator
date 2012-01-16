@@ -1,7 +1,7 @@
 ﻿@*@model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel*@
 @model NoiseCalculator.Domain.Entities.SelectedTask
 
-<div class="task">
+<div id="@Model.Id" class="task">
     <div class="emulatedTaskButton">
         <img src="../../Content/page_edit.png" class="taskIcon" />
         <span style="color: White; font-weight: bold;">Edit</span>
@@ -43,59 +43,10 @@
             <span id="PercentDailyDosage" style="font-weight: bold;">: @Model.Percentage%</span>
         </p>
     </div>
-
-    <div class="emulatedTaskButton">
+    
+    <div class="emulatedRemoveButton" id = "@Model.Title">
         <img src="../../Content/cancel.png" class="taskIcon" />
         <span style="color: White; font-weight: bold;">Remove</span>
     </div>
     <br clear="all" />
 </div>
-
-@*<div class="task">
-    <div class="emulatedTaskButton">
-        <img src="../../Content/page_edit.png" class="taskIcon" />
-        <span style="color: White; font-weight: bold;">Edit</span>
-    </div>
-
-    <div class="taskGrouping">
-        <p>
-            <label for="Task" class="label-small40">Task</label>
-            <span id="Task" style="font-weight: bold;">: Angle grinding</span>
-        </p>
-        
-        <p>
-            <label for="Role" class="label-small40">Role</label>
-            <span id="Role" style="font-weight: bold;">: Operator</span>
-        </p>
-    </div>
-
-    <div class="taskGrouping">
-        <p>
-            <label for="NoiseProtection" class="label-normal120">Noise Protection</label>
-            <span id="NoiseProtection" style="font-weight: bold;">: Double</span>
-        </p>
-        
-        <p>
-            <label for="NoiseLevel" class="label-normal120">Noise Level</label>
-            <span id="NoiseLevel" style="font-weight: bold;">: 109 dBA</span>
-        </p>
-    </div>
-
-    <div class="taskGrouping">
-        <p>
-            <label for="WorkTime" class="label-normal120">Work Time</label>
-            <span id="WorkTime" style="font-weight: bold;">: 2t 40min</span>
-        </p>
-        
-        <p>
-            <label for="PercentDailyDosage" class="label-normal120">% Daily Dosage</label>
-            <span id="PercentDailyDosage" style="font-weight: bold;">: 40%</span>
-        </p>
-    </div>
-
-    <div class="emulatedTaskButton">
-        <img src="../../Content/cancel.png" class="taskIcon" />
-        <span style="color: White; font-weight: bold;">Remove</span>
-    </div>
-    <br clear="all" />
-</div>*@

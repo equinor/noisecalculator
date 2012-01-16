@@ -10,12 +10,36 @@
                 resizable: false,
                 hide: { effect: 'fade', duration: 1000 },
                 width: 'auto',
-                /*width: 450,*/
-                /*height: 540,*/
                 position: [250, 80]
             });
 
     });
+
+    $(".emulatedRemoveButton").click(function (event) {
+        event.preventDefault();
+
+        var taskDiv = $(this).closest(".task");
+        var selectedTaskId = taskDiv.attr("id");
+
+        $.ajax({
+            type: "POST",
+            url: removeTaskUrl + "/" + selectedTaskId,
+            dataType: "json",
+            cache: false,
+            success: function () {
+                /* UPDATE TOTAL PERCENTAGE */
+                taskDiv.remove();
+            },
+            error: function (jqXHR) {
+                alert("Unable to remove: " + jqXHR.responseText);
+                /*alert(jqXHR.statusText);
+                alert(jqXHR.responseText);*/
+            }
+        });
+
+        /*alert("Remove button clicked! " + selectedTaskId);*/
+    });
+
 });
 
 function addTaskFormEvents() {
@@ -70,6 +94,14 @@ function addEventsToHelideckForm() {
                 $("#taskList").append(div);
                 div.fadeIn('slow');
                 closeTaskPopup();
+
+                /* Add Remove event handler */
+                var selectedTaskId = div.attr("id");
+                var removeDiv = div.children(".emulatedRemoveButton");
+                
+                removeDiv.click(function () {
+                    alert("Remove clicked for Div with ID: " + selectedTaskId);
+                });
             }
         });
     });

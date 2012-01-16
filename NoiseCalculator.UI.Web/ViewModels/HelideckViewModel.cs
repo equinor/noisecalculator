@@ -11,9 +11,9 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public int TaskId { get; set; }
         public string Title { get; set; }
         public string Role { get; set; }
-        public string HelicopterId { get; set; }
-        public string NoiseProtectionId { get; set; }
-        public string WorkIntervalId { get; set; }
+        public int HelicopterId { get; set; }
+        public int NoiseProtectionId { get; set; }
+        public int WorkIntervalId { get; set; }
 
         public SelectList Helicopters { get; set; }
         public SelectList NoiseProtection { get; set; }

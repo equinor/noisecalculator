@@ -11,12 +11,14 @@ namespace NoiseCalculator.UI.Web.Controllers
     {
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
+        private readonly IHelicopterTaskDAO _helicopterTaskDAO;
         
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IHelicopterTaskDAO helicopterTaskDAO)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
+            _helicopterTaskDAO = helicopterTaskDAO;
         }
         
 
@@ -94,28 +96,32 @@ namespace NoiseCalculator.UI.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult AddTaskHelideck(HelideckViewModel viewModelHelideck)
+        public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
         {
-            if(string.IsNullOrEmpty(viewModelHelideck.HelicopterId) || int.Parse(viewModelHelideck.HelicopterId) < 1)
+            if(viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
             {
                 Response.StatusCode = 500;
-                return Json("EN FEIL HAR OPPSTÅTT");
+                return Json("Helicopter data is missing"); // TRANSLATION MUST BE ADDED
             }
 
+            Task task = _taskDAO.Get(viewModel.TaskId);
+            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
 
-            Task task = _taskDAO.Get(viewModelHelideck.TaskId);
+            char[] splitters = new char[] {' ', '-'};
+            string[] minuteElements = helicopterTask.HelicopterWorkInterval.Title.Split(splitters);
 
-            //SelectedTaskViewModel viewModelSelectedTask = new SelectedTaskViewModel();
-            //viewModelSelectedTask.Title = string.Format("Helikoptermottak: <Helikopter>");
-            //viewModelSelectedTask.Role = task.Role.Title;
-
-            SelectedTask selectedTask = new SelectedTask();
-            selectedTask.Title = task.Title;
-            selectedTask.Role = task.Role.Title;
-            selectedTask.Hours = 13;
-            selectedTask.Minutes = 66;
-            selectedTask.CreatedBy = User.Identity.Name;
-            selectedTask.CreatedDate = DateTime.Now.Date;
+            SelectedTask selectedTask = new SelectedTask
+                                            {
+                                                Title = string.Format("{0} - {1}", task.Title, helicopterTask.HelicopterType.Title),
+                                                Role = task.Role.Title,
+                                                NoiseProtection = helicopterTask.HelicopterNoiseProtection.Title,
+                                                Percentage = helicopterTask.Percentage,
+                                                Minutes = int.Parse(minuteElements[1]),
+                                                TaskId = task.Id,
+                                                HelicopterTaskId = helicopterTask.Id,
+                                                CreatedBy = User.Identity.Name,
+                                                CreatedDate = DateTime.Now.Date
+                                            };
 
             _selectedTaskDAO.Store(selectedTask);
 
@@ -123,11 +129,23 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-
-
         public PartialViewResult AddTaskRotation(Task task)
         {
             return PartialView("_TaskFormRotation");
+        }
+
+        public ActionResult RemoveTask(int id)
+        {
+            try
+            {
+                _selectedTaskDAO.Delete(_selectedTaskDAO.Load(id));
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Json(ex.ToString());
+            }
         }
     }
 }

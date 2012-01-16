@@ -19,6 +19,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
 
             References(x => x.Role);
             References(x => x.NoiseProtection);
+            References(x => x.HelicopterTask);
         }
     }
 }

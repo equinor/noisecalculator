@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace NoiseCalculator.Domain.Entities
 {
     public class Task
@@ -8,6 +10,7 @@ namespace NoiseCalculator.Domain.Entities
         public virtual NoiseProtection NoiseProtection { get; set; }
         public virtual int NoiseLevelGuideline { get; set; }
         public virtual int AllowedExposure { get; set; }
+        public virtual HelicopterTask HelicopterTask { get; set; }
 
         // Non persisted property
         public virtual int NoiseLevelMeasured { get; set; }
