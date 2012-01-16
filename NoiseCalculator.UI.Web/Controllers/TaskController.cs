@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ViewModels;
 
@@ -12,7 +13,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IHelicopterTaskDAO _helicopterTaskDAO;
-        
+        // INSERT Helicopter DAOs
 
         public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IHelicopterTaskDAO helicopterTaskDAO)
         {
@@ -109,6 +110,8 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             char[] splitters = new char[] {' ', '-'};
             string[] minuteElements = helicopterTask.HelicopterWorkInterval.Title.Split(splitters);
+
+
 
             SelectedTask selectedTask = new SelectedTask
                                             {
