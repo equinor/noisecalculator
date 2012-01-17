@@ -12,7 +12,6 @@
                 width: 'auto',
                 position: [250, 80]
             });
-
     });
 
     $(".emulatedRemoveButton").click(function (event) {
@@ -27,19 +26,18 @@
             dataType: "json",
             cache: false,
             success: function () {
-                /* UPDATE TOTAL PERCENTAGE */
-                taskDiv.remove();
+                taskDiv.fadeOut("normal", function () {
+                    taskDiv.remove();
+                    updateTotalPercentage();
+                });
             },
             error: function (jqXHR) {
                 alert("Unable to remove: " + jqXHR.responseText);
-                /*alert(jqXHR.statusText);
-                alert(jqXHR.responseText);*/
             }
         });
-
-        /*alert("Remove button clicked! " + selectedTaskId);*/
     });
 
+    updateTotalPercentage();
 });
 
 function addTaskFormEvents() {
@@ -102,7 +100,24 @@ function addEventsToHelideckForm() {
                 removeDiv.click(function () {
                     alert("Remove clicked for Div with ID: " + selectedTaskId);
                 });
+
+                updateTotalPercentage();
             }
         });
+    });
+}
+
+
+function updateTotalPercentage() {
+    $.ajax({
+        type: "GET",
+        url: getTotalPercentageUrl,
+        dataType: "json",
+        cache: false,
+        success: function (result) {
+            $("#totalDailyPercentage").text(result.Percentage + "%");
+            $("#statusText").text(result.StatusText);
+            $("#totalDailyPercentageDiv").removeClass().addClass(result.CssClass);
+        }
     });
 }

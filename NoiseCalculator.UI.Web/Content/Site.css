@@ -196,7 +196,7 @@ div#title {
     padding: 5px; 
 }
 
-.tasklistHeading 
+#tasklistHeading 
 {
     font-size: 20px;
     margin-left: 5px;
@@ -350,8 +350,22 @@ p
 {
     float: right; 
     border: 3px solid white; 
-    background-color: greenyellow; 
     padding: 5px;
+}
+
+.noiseLevelNormal 
+{
+    background-color: greenyellow;
+}
+
+.noiseLevelWarning
+{
+    background-color: yellow; 
+}
+
+.noiseLevelCritical
+{
+    background-color: red; 
 }
 
 .buttonIcon 

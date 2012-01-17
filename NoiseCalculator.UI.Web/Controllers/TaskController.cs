@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Implementations;
@@ -149,6 +150,32 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Response.StatusCode = 500;
                 return Json(ex.ToString());
             }
+        }
+
+        public JsonResult GetTotalPercentage()
+        {
+            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);            
+            
+            TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
+            totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
+            
+            if(totalNoiseDosage.Percentage < 75)
+            {
+                totalNoiseDosage.StatusText = "Noise level is considered safe";
+                totalNoiseDosage.CssClass = "noiseLevelNormal";
+            }
+            else if(totalNoiseDosage.Percentage >= 75 && totalNoiseDosage.Percentage < 100)
+            {
+                totalNoiseDosage.StatusText = "Noise level is approaching allowed limits";
+                totalNoiseDosage.CssClass = "noiseLevelWarning";
+            }
+            else if (totalNoiseDosage.Percentage >= 100)
+            {
+                totalNoiseDosage.StatusText = "Unsafe daily noise dosage";
+                totalNoiseDosage.CssClass = "noiseLevelCritical";
+            }
+
+            return Json(totalNoiseDosage, JsonRequestBehavior.AllowGet);
         }
     }
 }

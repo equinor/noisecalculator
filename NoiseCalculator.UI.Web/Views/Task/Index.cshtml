@@ -11,11 +11,13 @@
     var addTaskUrl = "@Url.Action("AddTask")";
     var getTaskFormUrl = "@Url.Action("GetFormForTask")";
     var removeTaskUrl = "@Url.Action("RemoveTask")";
+    var getTotalPercentageUrl = "@Url.Action("GetTotalPercentage")";
 </script>
 
 <script src="../../Scripts/Tasks.js" type="text/javascript"></script>
 
-<h2 class="tasklistHeading">My Tasks - Total noise dosage close to the allowed limit</h2>
+@*<h2 id="tasklistHeading">My Tasks - Total noise dosage close to the allowed limit</h2>*@
+<h2 id="tasklistHeading">My Tasks - <span id="statusText"></span></h2>
 
 <div class="separatorDiv"></div>
 
@@ -36,7 +38,8 @@
 
 <div id="totalDailyPercentageDiv">
     <span id="totalDailyText">Total Daily Dosage: </span>
-    <span id="totalDailyPercentage">40%</span>
+    @*<span id="totalDailyPercentage">40%</span>*@
+    <span id="totalDailyPercentage"></span>
 </div>
     
 <br clear="all" />
