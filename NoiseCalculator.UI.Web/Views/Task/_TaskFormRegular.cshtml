@@ -1,6 +1,8 @@
 ﻿@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
 
-<form method="POST" action="@Url.Action("Index")" id="editForm">
+<form method="POST" action="@Url.Action("AddTaskRegular")" id="editForm">
+    <input type="hidden" value="@Model.TaskId" id="taskId" />
+    
     <p>
         <label for="Title" class="label-130px">Task</label>
         <span id="Title">: @Model.Title</span>
@@ -29,7 +31,7 @@
         <label class="label-130px"></label>
         <span class="span80" style="margin-left: 8px;">@Model.NoiseLevelGuideline</span>
         <span  class="span80">
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.NoiseLevelMeassured" />
+            <input type="text" style="width: 20px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
             dBA
         </span>
     </p>
@@ -51,14 +53,14 @@
     <p>
         <label class="label-130px"></label>
         <span class="span120" style="margin-left: 8px;">
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" />
+            <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" id="hours" />
             h
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.Minutes" />
+            <input type="text" style="width: 20px; height: 13px;" value="@Model.Minutes" id="minutes" />
             min
         </span>
             
         <span class="span120">
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.Percentage" />
+            <input type="text" style="width: 20px; height: 13px;" value="@Model.Percentage" id="percentage" />
             %
         </span>
     </p>

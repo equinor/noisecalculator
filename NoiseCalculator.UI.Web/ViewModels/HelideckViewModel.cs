@@ -15,8 +15,16 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public int NoiseProtectionId { get; set; }
         public int WorkIntervalId { get; set; }
 
-        public SelectList Helicopters { get; set; }
-        public SelectList NoiseProtection { get; set; }
-        public SelectList WorkIntervals { get; set; }
+        public IList<SelectListItem> Helicopters { get; set; }
+        public IList<SelectListItem> NoiseProtection { get; set; }
+        public IList<SelectListItem> WorkIntervals { get; set; }
+
+
+        public HelideckViewModel()
+        {
+            Helicopters = new List<SelectListItem>();
+            NoiseProtection = new List<SelectListItem>();
+            WorkIntervals = new List<SelectListItem>();
+        }
     }
 }

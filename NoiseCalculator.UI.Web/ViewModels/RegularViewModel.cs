@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace NoiseCalculator.UI.Web.ViewModels
+﻿namespace NoiseCalculator.UI.Web.ViewModels
 {
     public class RegularViewModel
     {
@@ -19,5 +14,18 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public string Hours { get; set; }
         public string Minutes { get; set; }
         public string Percentage { get; set; }
+
+        public RegularViewModel()
+        {
+            NoiseLevelGuideline = string.Empty;
+            NoiseLevelMeassured = string.Empty;
+            Hours = string.Empty;
+            Minutes = string.Empty;
+            Percentage = string.Empty;
+
+            //IsNoiseMeassured = string.Empty;
+            //IsWorkSpecifiedAsTime { get; set; }
+            //IsWorkSpecifiedAsPercentage { get; set; }
+        }
     }
 }

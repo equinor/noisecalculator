@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace NoiseCalculator.Domain.Entities
@@ -9,21 +10,25 @@ namespace NoiseCalculator.Domain.Entities
         public virtual Role Role { get; set; }
         public virtual NoiseProtection NoiseProtection { get; set; }
         public virtual int NoiseLevelGuideline { get; set; }
-        public virtual int AllowedExposure { get; set; }
+        public virtual int AllowedExposureMinutes { get; set; }
         public virtual HelicopterTask HelicopterTask { get; set; }
 
         // Non persisted property
-        public virtual int NoiseLevelMeasured { get; set; }
-        public virtual int ActualExposure { get; set; }
+        // public virtual int NoiseLevelMeasured { get; set; }
+        //public virtual int ActualExposure { get; set; }
 
 
-        public virtual decimal CalculateDailyDosagePercentage()
+        //public virtual decimal CalculateDailyDosagePercentage(int noiseLevelMeasured)
+        //public virtual decimal CalculateDailyDosagePercentage(int actualNoiseLevel)
+        public virtual decimal CalculateDailyDosagePercentage(int actualNoiseLevel, TimeSpan actualExposure )
         {
             decimal adjustmentFactorForMeassuredNoise = 1;
 
-            if(NoiseLevelMeasured > NoiseLevelGuideline)
+            //if(NoiseLevelMeasured > NoiseLevelGuideline)
+            if (actualNoiseLevel > NoiseLevelGuideline)
             {
-                int difference = (NoiseLevelMeasured - NoiseLevelGuideline);
+                //int difference = (NoiseLevelMeasured - NoiseLevelGuideline);
+                int difference = (actualNoiseLevel - NoiseLevelGuideline);
 
                 switch (difference)
                 {
@@ -50,7 +55,8 @@ namespace NoiseCalculator.Domain.Entities
                 }
             }
 
-            decimal calculatedPercentage = (ActualExposure * 100) / (AllowedExposure * adjustmentFactorForMeassuredNoise);
+            //decimal calculatedPercentage = (ActualExposure * 100) / (AllowedExposureMinutes * adjustmentFactorForMeassuredNoise);
+            decimal calculatedPercentage = (actualExposure.Minutes * 100) / (AllowedExposureMinutes * adjustmentFactorForMeassuredNoise);
             
             return calculatedPercentage;
         }

@@ -3,7 +3,7 @@
         $("#taskPopup")
             .empty()
             .load(addTaskUrl, function () {
-                addTaskFormEvents();
+                bindTaskDialogEvents();
             })
             .dialog({
                 modal: true,
@@ -16,31 +16,14 @@
 
     $(".emulatedRemoveButton").click(function (event) {
         event.preventDefault();
-
         var taskDiv = $(this).closest(".task");
-        var selectedTaskId = taskDiv.attr("id");
-
-        $.ajax({
-            type: "POST",
-            url: removeTaskUrl + "/" + selectedTaskId,
-            dataType: "json",
-            cache: false,
-            success: function () {
-                taskDiv.fadeOut("normal", function () {
-                    taskDiv.remove();
-                    updateTotalPercentage();
-                });
-            },
-            error: function (jqXHR) {
-                alert("Unable to remove: " + jqXHR.responseText);
-            }
-        });
+        removeTask(taskDiv);
     });
 
     updateTotalPercentage();
 });
 
-function addTaskFormEvents() {
+function bindTaskDialogEvents() {
     $("#useTask").click(function (event) {
         event.preventDefault();
 
@@ -53,17 +36,58 @@ function addTaskFormEvents() {
             success: function (result) {
                 $('#taskForm').empty();
                 $('#taskForm').html(result);
-                addEventsToHelideckForm();
+                /*bindHelideckEvents();*/
+                bindRegularEvents();
             }
         });
     });
 }
 
+
 function closeTaskPopup() {
     $("#taskPopup").dialog('close');
 }
 
-function addEventsToHelideckForm() {
+
+/*noiseMeasuredNo
+noiseMeasuredYes
+workTimeRadio
+percentRadio*/
+
+/* IsNoiseMeassured: "",
+IsWorkSpecifiedAsTime: "",
+IsWorkSpecifiedAsPercentage: "",*/
+
+function bindRegularEvents() {
+    $("#taskFormCloseButton").click(closeTaskPopup);
+
+    $('#addButton').click(function (event) {
+        event.preventDefault();
+
+        var myEditForm = $("#editForm");
+        var formData = {
+            TaskId: $("#taskId").val(),
+            NoiseLevelMeassured: $("#noiseLevelMeassured").val(),
+            Hours: $("#hours").val(),
+            Minutes: $("#minutes").val(),
+            Percentage: $("#percentage").val()
+        };
+
+        $.ajax({
+            url: myEditForm.attr('action'),
+            type: myEditForm.attr('method'),
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            dataType: "html",
+            success: function (result) {
+                addResultToTaskList(result);
+            }
+        });
+    });
+}
+
+
+function bindHelideckEvents() {
     $("#taskFormCloseButton").click(closeTaskPopup);
 
     $('#addButton').click(function (event) {
@@ -77,34 +101,43 @@ function addEventsToHelideckForm() {
             WorkIntervalId: $("#WorkIntervalId").val()
         };
 
+        if (formData.HelicopterId == 0 || formData.NoiseProtectionId == 0 || formData.WorkIntervalId == 0) {
+            /* This message should be generated as a div when the form itself is generated. */
+            alert("Helicopter, noise protection and work interval must be selected to add the task.");
+            return;
+        }
+
         $.ajax({
             url: myEditForm.attr('action'),
             type: myEditForm.attr('method'),
             data: JSON.stringify(formData),
             contentType: "application/json",
             dataType: "html",
+            success: function (result) {
+                addResultToTaskList(result);
+            }
             /*error: function (jqXHR) {
             alert(jqXHR.statusText);
             alert(jqXHR.responseText);
             },*/
-            success: function (result) {
-                var div = $("<div>").replaceWith(result).hide();
-                $("#taskList").append(div);
-                div.fadeIn('slow');
-                closeTaskPopup();
-
-                /* Add Remove event handler */
-                var selectedTaskId = div.attr("id");
-                var removeDiv = div.children(".emulatedRemoveButton");
-                
-                removeDiv.click(function () {
-                    alert("Remove clicked for Div with ID: " + selectedTaskId);
-                });
-
-                updateTotalPercentage();
-            }
         });
     });
+}
+
+function addResultToTaskList(newTaskDiv) {
+    
+    /* Add task from result, with effect */
+    var taskDiv = $("<div>").replaceWith(newTaskDiv).hide();
+    $("#taskList").append(taskDiv);
+    taskDiv.fadeIn('slow');
+    closeTaskPopup();
+
+    /* Add remove button event */
+    taskDiv.children(".emulatedRemoveButton").click(function () {
+        removeTask(taskDiv);
+    });
+
+    updateTotalPercentage();
 }
 
 
@@ -118,6 +151,27 @@ function updateTotalPercentage() {
             $("#totalDailyPercentage").text(result.Percentage + "%");
             $("#statusText").text(result.StatusText);
             $("#totalDailyPercentageDiv").removeClass().addClass(result.CssClass);
+        }
+    });
+}
+
+
+function removeTask(taskDiv) {
+    var selectedTaskId = taskDiv.attr("id");
+
+    $.ajax({
+        type: "POST",
+        url: removeTaskUrl + "/" + selectedTaskId,
+        dataType: "json",
+        cache: false,
+        success: function () {
+            taskDiv.fadeOut("normal", function () {
+                taskDiv.remove();
+                updateTotalPercentage();
+            });
+        },
+        error: function (jqXHR) {
+            alert("Unable to remove: " + jqXHR.responseText);
         }
     });
 }

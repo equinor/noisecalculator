@@ -17,9 +17,10 @@
         <label for="HelicopterId" class="label-130px">Helicopter</label>
         :
         <select id="HelicopterId" class="helicopterDropDown">
-            <option value="1" selected="selected">EC225</option>
-            <option value="2">Helicopter 2</option>
-            <option value="3">Helicopter 3</option>
+        @foreach (SelectListItem item in Model.Helicopters)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
         </select>
     </p>
         
@@ -27,8 +28,10 @@
         <label for="NoiseProtectionId" class="label-130px">Noise Protection</label>
         :
         <select id="NoiseProtectionId" class="helicopterDropDown">
-            <option value="1" selected="selected">QuietPro</option>
-            <option value="2">Double</option>
+        @foreach (SelectListItem item in Model.NoiseProtection)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
         </select>
     </p>
         
@@ -36,9 +39,10 @@
         <label for="WorkIntervalId" class="label-130px">Work Interval</label>
         :
         <select id="WorkIntervalId" class="helicopterDropDown">
-            <option value="1" selected="selected">4-6 min</option>
-            <option value="2">7-9 min</option>
-            <option value="3">10-16 min</option>
+        @foreach (SelectListItem item in Model.WorkIntervals)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
         </select>
     </p>
 

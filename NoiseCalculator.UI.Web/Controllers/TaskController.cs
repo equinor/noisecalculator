@@ -14,13 +14,24 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IHelicopterTaskDAO _helicopterTaskDAO;
-        // INSERT Helicopter DAOs
+        private readonly IDAO<HelicopterType, int> _helicopterTypeDAO;
+        private readonly IDAO<HelicopterNoiseProtection, int> _helicopterNoiseProtectionDAO;
+        private readonly IDAO<HelicopterWorkInterval, int> _helicopterWorkIntervalDAO;
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IHelicopterTaskDAO helicopterTaskDAO)
+        public TaskController(ITaskDAO taskDAO, 
+                                ISelectedTaskDAO selectedTaskDAO, 
+                                IHelicopterTaskDAO helicopterTaskDAO,
+                                IDAO<HelicopterType, int> helicopterTypeDAO,
+                                IDAO<HelicopterNoiseProtection, int> helicopterNoiseProtectionDAO,
+                                IDAO<HelicopterWorkInterval, int> helicopterWorkIntervalDAO)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
             _helicopterTaskDAO = helicopterTaskDAO;
+
+            _helicopterTypeDAO = helicopterTypeDAO;
+            _helicopterNoiseProtectionDAO = helicopterNoiseProtectionDAO;
+            _helicopterWorkIntervalDAO = helicopterWorkIntervalDAO;
         }
         
 
@@ -35,7 +46,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTask()
         {
             IEnumerable<Task> tasks = _taskDAO.GetAllOrdered();
-            return PartialView("_TaskFormCommon", tasks);
+            return PartialView("_TaskDialog", tasks);
         }
 
 
@@ -58,19 +69,21 @@ namespace NoiseCalculator.UI.Web.Controllers
         // ------------------------------------------------
         public PartialViewResult AddTaskRegular(Task task)
         {
-            TimeSpan workTimeSpan = new TimeSpan(0, 0, task.ActualExposure, 0);
+            //TimeSpan workTimeSpan = new TimeSpan(0, 0, task.ActualExposure, 0);
             RegularViewModel viewModel = new RegularViewModel
                     {
                     TaskId = task.Id,
                     Title = task.Title,
                     Role = task.Role.Title,
+                    NoiseLevelGuideline = task.NoiseLevelGuideline.ToString()
+                    /*, 
                     IsNoiseMeassured = (task.ActualExposure > 0),
                     NoiseLevelMeassured = (task.NoiseLevelMeasured > 0 ? task.NoiseLevelMeasured.ToString() : string.Empty),
                     IsWorkSpecifiedAsTime = (task.ActualExposure > 0),
                     Hours = workTimeSpan.Hours.ToString(),
                     Minutes = workTimeSpan.Minutes.ToString(),
                     IsWorkSpecifiedAsPercentage = false,
-                    Percentage = string.Empty
+                    Percentage = string.Empty*/
                     };
 
             return PartialView("_TaskFormRegular", viewModel);
@@ -79,7 +92,25 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
-            return PartialView("_TaskFormRegular");
+            Task task = _taskDAO.Get(viewModel.TaskId);
+
+            SelectedTask selectedTask = new SelectedTask
+            {
+                Title = task.Title,
+                Role = task.Role.Title,
+                NoiseProtection = task.NoiseProtection.Title,
+                NoiseLevel = task.NoiseLevelGuideline,
+                Percentage = (int) Math.Round(task.CalculateDailyDosagePercentage(int.Parse(viewModel.NoiseLevelMeassured))),
+                Hours = int.Parse(viewModel.Hours),
+                Minutes = int.Parse(viewModel.Minutes),
+                TaskId = task.Id,
+                CreatedBy = User.Identity.Name,
+                CreatedDate = DateTime.Now.Date
+            };
+
+            _selectedTaskDAO.Store(selectedTask);
+
+            return PartialView("_SelectedTask", selectedTask);
         }
 
 
@@ -90,8 +121,26 @@ namespace NoiseCalculator.UI.Web.Controllers
                                               {
                                                   TaskId = task.Id,
                                                   Title = task.Title,
-                                                  Role = task.Role.Title
+                                                  Role = task.Role.Title,
                                               };
+
+            viewModel.Helicopters.Add(new SelectListItem{Text = "-- Select One --", Value = "0"} );
+            foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
+            {
+                viewModel.Helicopters.Add(new SelectListItem { Text = type.Title, Value = type.Id.ToString() });
+            }
+
+            viewModel.NoiseProtection.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            foreach (HelicopterNoiseProtection noiseProtection in _helicopterNoiseProtectionDAO.GetAll())
+            {
+                viewModel.NoiseProtection.Add(new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() });
+            }
+
+            viewModel.WorkIntervals.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            foreach (HelicopterWorkInterval workInterval in _helicopterWorkIntervalDAO.GetAll())
+            {
+                viewModel.WorkIntervals.Add(new SelectListItem { Text = workInterval.Title, Value = workInterval.Id.ToString() });
+            }
 
             return PartialView("_TaskFormHelideck", viewModel);
         }
