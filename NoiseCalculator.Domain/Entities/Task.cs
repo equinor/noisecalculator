@@ -13,24 +13,16 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int AllowedExposureMinutes { get; set; }
         public virtual HelicopterTask HelicopterTask { get; set; }
 
-        // Non persisted property
-        // public virtual int NoiseLevelMeasured { get; set; }
-        //public virtual int ActualExposure { get; set; }
-
-
-        //public virtual decimal CalculateDailyDosagePercentage(int noiseLevelMeasured)
-        //public virtual decimal CalculateDailyDosagePercentage(int actualNoiseLevel)
+        
         public virtual decimal CalculateDailyDosagePercentage(int actualNoiseLevel, TimeSpan actualExposure )
         {
             decimal adjustmentFactorForMeassuredNoise = 1;
-
-            //if(NoiseLevelMeasured > NoiseLevelGuideline)
+            
             if (actualNoiseLevel > NoiseLevelGuideline)
             {
-                //int difference = (NoiseLevelMeasured - NoiseLevelGuideline);
-                int difference = (actualNoiseLevel - NoiseLevelGuideline);
+                int noiseLevelDelta = (actualNoiseLevel - NoiseLevelGuideline);
 
-                switch (difference)
+                switch (noiseLevelDelta)
                 {
                     case 3:
                         {
@@ -55,8 +47,7 @@ namespace NoiseCalculator.Domain.Entities
                 }
             }
 
-            //decimal calculatedPercentage = (ActualExposure * 100) / (AllowedExposureMinutes * adjustmentFactorForMeassuredNoise);
-            decimal calculatedPercentage = (actualExposure.Minutes * 100) / (AllowedExposureMinutes * adjustmentFactorForMeassuredNoise);
+            decimal calculatedPercentage = ((int)actualExposure.TotalMinutes * 100) / (AllowedExposureMinutes * adjustmentFactorForMeassuredNoise);
             
             return calculatedPercentage;
         }

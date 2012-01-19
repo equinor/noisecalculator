@@ -17,21 +17,21 @@
         <label class="label-130px">Noise Measured</label>
         :
         <span class="span80">
-            <input type="radio" name="group1" value="false" checked="@(!Model.IsNoiseMeassured)" id="noiseMeasuredNo" />
+            <input type="radio" name="group1" value="false" id="noiseMeasuredNo" @Model.RadioNoiseMeassuredNoCheckedAttr />
             <label for="noiseMeasuredNo">No</label>
         </span>
             
         <span class="span80">
-            <input type="radio" name="group1" value="@Model.IsNoiseMeassured" id="noiseMeasuredYes" />
+            <input type="radio" name="group1" id="noiseMeasuredYes" @Model.RadioNoiseMeassuredYesCheckedAttr />
             <label for="noiseMeasuredYes">Yes</label>
         </span>
     </p>
         
     <p>
         <label class="label-130px"></label>
-        <span class="span80" style="margin-left: 8px;">@Model.NoiseLevelGuideline</span>
-        <span  class="span80">
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
+        <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;">@Model.NoiseLevelGuideline dBA</span>
+        <span class="span80" id="noiseLevelMeassuredSpan">
+            <input type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
             dBA
         </span>
     </p>
@@ -40,27 +40,27 @@
         <label class="label-130px">Work specified as</label>
         :
         <span class="span120">
-            <input type="radio" name="group2" value="worktime" checked="@Model.IsWorkSpecifiedAsTime" id="workTimeRadio" />
+            <input type="radio" name="group2" value="worktime" id="workTimeRadio" @Model.RadioTimeCheckedAttr @Model. />
             <label for="workTimeRadio">Time</label>
         </span>
             
         <span class="span120">
-            <input type="radio" name="group2" value="percent" checked="@Model.IsWorkSpecifiedAsPercentage" id="percentRadio" />
+            <input type="radio" name="group2" value="percent" id="percentRadio" @Model.RadioPercentageCheckedAttr />
             <label for="percentRadio">Percent</label>
         </span>
     </p>
 
     <p>
         <label class="label-130px"></label>
-        <span class="span120" style="margin-left: 8px;">
+        <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
             <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" id="hours" />
             h
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.Minutes" id="minutes" />
+            <input type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" id="minutes" />
             min
         </span>
             
-        <span class="span120">
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.Percentage" id="percentage" />
+        <span class="span120" id="percentageSpan">
+            <input type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" id="percentage" />
             %
         </span>
     </p>

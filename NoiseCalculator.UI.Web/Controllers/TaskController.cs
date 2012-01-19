@@ -11,6 +11,8 @@ namespace NoiseCalculator.UI.Web.Controllers
 {
     public class TaskController : Controller
     {
+        private const string InputChecked = "checked=\"checked\"";
+        
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IHelicopterTaskDAO _helicopterTaskDAO;
@@ -64,26 +66,18 @@ namespace NoiseCalculator.UI.Web.Controllers
                         return AddTaskRegular(task);
             }
         }
-        
 
         // ------------------------------------------------
         public PartialViewResult AddTaskRegular(Task task)
         {
-            //TimeSpan workTimeSpan = new TimeSpan(0, 0, task.ActualExposure, 0);
             RegularViewModel viewModel = new RegularViewModel
                     {
                     TaskId = task.Id,
                     Title = task.Title,
                     Role = task.Role.Title,
-                    NoiseLevelGuideline = task.NoiseLevelGuideline.ToString()
-                    /*, 
-                    IsNoiseMeassured = (task.ActualExposure > 0),
-                    NoiseLevelMeassured = (task.NoiseLevelMeasured > 0 ? task.NoiseLevelMeasured.ToString() : string.Empty),
-                    IsWorkSpecifiedAsTime = (task.ActualExposure > 0),
-                    Hours = workTimeSpan.Hours.ToString(),
-                    Minutes = workTimeSpan.Minutes.ToString(),
-                    IsWorkSpecifiedAsPercentage = false,
-                    Percentage = string.Empty*/
+                    NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(),
+                    RadioNoiseMeassuredNoCheckedAttr = InputChecked,
+                    RadioTimeCheckedAttr = InputChecked
                     };
 
             return PartialView("_TaskFormRegular", viewModel);
@@ -93,6 +87,8 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
             Task task = _taskDAO.Get(viewModel.TaskId);
+            TimeSpan actualExposure = new TimeSpan(0, int.Parse(viewModel.Hours), int.Parse(viewModel.Minutes), 0);
+            decimal tempPercentage = task.CalculateDailyDosagePercentage(int.Parse(viewModel.NoiseLevelMeassured), actualExposure);
 
             SelectedTask selectedTask = new SelectedTask
             {
@@ -100,9 +96,9 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
                 NoiseLevel = task.NoiseLevelGuideline,
-                Percentage = (int) Math.Round(task.CalculateDailyDosagePercentage(int.Parse(viewModel.NoiseLevelMeassured))),
-                Hours = int.Parse(viewModel.Hours),
-                Minutes = int.Parse(viewModel.Minutes),
+                Percentage = (int) Math.Round(tempPercentage),
+                Hours = actualExposure.Hours,
+                Minutes = actualExposure.Minutes,
                 TaskId = task.Id,
                 CreatedBy = User.Identity.Name,
                 CreatedDate = DateTime.Now.Date

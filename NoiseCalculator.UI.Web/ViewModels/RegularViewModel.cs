@@ -6,11 +6,17 @@
         public string Title { get; set; }
         public string Role { get; set; }
         public string NoiseLevelGuideline { get; set; }
-        public bool IsNoiseMeassured { get; set; }
+        //public bool IsNoiseMeassured { get; set; }
+        public string RadioNoiseMeassuredNoCheckedAttr { get; set; }
+        public string RadioNoiseMeassuredYesCheckedAttr { get; set; }
+        
         public string NoiseLevelMeassured { get; set; }
 
-        public bool IsWorkSpecifiedAsTime { get; set; }
-        public bool IsWorkSpecifiedAsPercentage { get; set; }
+        //public bool IsWorkSpecifiedAsTime { get; set; }
+        //public bool IsWorkSpecifiedAsPercentage { get; set; }
+        public string RadioTimeCheckedAttr { get; set; }
+        public string RadioPercentageCheckedAttr { get; set; }
+        
         public string Hours { get; set; }
         public string Minutes { get; set; }
         public string Percentage { get; set; }
@@ -22,6 +28,10 @@
             Hours = string.Empty;
             Minutes = string.Empty;
             Percentage = string.Empty;
+            RadioNoiseMeassuredNoCheckedAttr = string.Empty;
+            RadioNoiseMeassuredYesCheckedAttr = string.Empty;
+            RadioTimeCheckedAttr = string.Empty;
+            RadioPercentageCheckedAttr = string.Empty;
 
             //IsNoiseMeassured = string.Empty;
             //IsWorkSpecifiedAsTime { get; set; }

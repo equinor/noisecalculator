@@ -44,21 +44,31 @@ function bindTaskDialogEvents() {
 }
 
 
-function closeTaskPopup() {
-    $("#taskPopup").dialog('close');
-}
-
-
-/*noiseMeasuredNo
-noiseMeasuredYes
-workTimeRadio
-percentRadio*/
-
-/* IsNoiseMeassured: "",
-IsWorkSpecifiedAsTime: "",
-IsWorkSpecifiedAsPercentage: "",*/
-
 function bindRegularEvents() {
+
+    /* Set disabled state of task time */
+    if ($('#percentRadio').is(':checked')) {
+        /*$("#hours").attr("disabled", true);
+        $("#minutes").attr("disabled", true);*/
+        enablePercentageInput();
+    } else {
+        /*$("#percentage").attr("disabled", true);*/
+        enableWorkTimeInput();
+    }
+    
+    /* Set disabled state of noise level measured */
+    if($("#noiseMeasuredNo").is(":checked")) {
+        /*$("#noiseLevelMeassured").attr("disabled", true);*/
+        disableNoiseMeasuredInput();
+    } else {
+        /*$("#noiseLevelMeassured").attr("disabled", false);*/
+        enableNoiseMeasuredInput();
+    }
+
+    $("#noiseMeasuredYes").click(enableNoiseMeasuredInput);
+    $("#noiseMeasuredNo").click(disableNoiseMeasuredInput);
+    $("#percentRadio").click(enablePercentageInput);
+    $("#workTimeRadio").click(enableWorkTimeInput);
     $("#taskFormCloseButton").click(closeTaskPopup);
 
     $('#addButton').click(function (event) {
@@ -116,10 +126,6 @@ function bindHelideckEvents() {
             success: function (result) {
                 addResultToTaskList(result);
             }
-            /*error: function (jqXHR) {
-            alert(jqXHR.statusText);
-            alert(jqXHR.responseText);
-            },*/
         });
     });
 }
@@ -174,4 +180,40 @@ function removeTask(taskDiv) {
             alert("Unable to remove: " + jqXHR.responseText);
         }
     });
+}
+
+
+function closeTaskPopup() {
+    $("#taskPopup").dialog('close');
+}
+
+function enableNoiseMeasuredInput() {
+    $("#noiseLevelMeassured").attr("disabled", false);
+    $("#noiseLevelGuidline").attr("disabled", true);
+    $("#noiseLevelMeassuredSpan").attr("disabled", false);
+}
+
+function disableNoiseMeasuredInput() {
+    $("#noiseLevelMeassured").attr("disabled", true).val("");
+    $("#noiseLevelGuidline").attr("disabled", false);
+    $("#noiseLevelMeassuredSpan").attr("disabled", true);
+}
+
+function enablePercentageInput() {
+    $("#percentage").attr("disabled", false);
+    $("#percentageSpan").attr("disabled", false);
+
+    $("#hours").attr("disabled", true).val("");
+    $("#minutes").attr("disabled", true).val("");
+    $("#workTimeSpan").attr("disabled", true);
+    
+}
+
+function enableWorkTimeInput() {
+    $("#hours").attr("disabled", false);
+    $("#minutes").attr("disabled", false);
+    $("#workTimeSpan").attr("disabled", false);
+
+    $("#percentage").attr("disabled", true).val("");
+    $("#percentageSpan").attr("disabled", true);
 }

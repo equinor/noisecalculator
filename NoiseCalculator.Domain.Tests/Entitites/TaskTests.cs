@@ -14,7 +14,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
         {
             // Arrange
             Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
-            TimeSpan actualExposure = new TimeSpan(0, 0, 90);
+            TimeSpan actualExposure = new TimeSpan(0, 0, 90, 0);
             
             // Act
             decimal calculatedPercentage = task.CalculateDailyDosagePercentage(task.NoiseLevelGuideline, actualExposure);
@@ -27,11 +27,12 @@ namespace NoiseCalculator.Domain.Tests.Entitites
         public void CalculateDailyDosagePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs112_50Percent()
         {
             // Arrange
-            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109, ActualExposure = 90 };
+            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
+            TimeSpan actualExposure = new TimeSpan(0, 0, 90, 0);
             const int actualNoiseLevel = 112;
 
             // Act
-            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel);
+            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel, actualExposure);
 
             // Assert
             Assert.AreEqual(50, calculatedPercentage);
@@ -41,11 +42,12 @@ namespace NoiseCalculator.Domain.Tests.Entitites
         public void CalculateDailyDosagePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs113_62point5Percent()
         {
             // Arrange
-            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109, ActualExposure = 90 };
+            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
+            TimeSpan actualExposure = new TimeSpan(0, 0, 90, 0);
             const int actualNoiseLevel = 113;
 
             // Act
-            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel);
+            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel, actualExposure);
 
             // Assert
             Assert.AreEqual(62.5, calculatedPercentage);
@@ -55,11 +57,12 @@ namespace NoiseCalculator.Domain.Tests.Entitites
         public void CalculateDailyDosagePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs114_83point3Percent()
         {
             // Arrange
-            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109, ActualExposure = 90 };
+            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
+            TimeSpan actualExposure = new TimeSpan(0, 0, 90, 0);
             const int actualNoiseLevel = 114;
 
             // Act
-            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel);
+            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel, actualExposure);
 
             // Assert
             Assert.AreEqual(83.3, Math.Round(calculatedPercentage, 1));
@@ -69,11 +72,12 @@ namespace NoiseCalculator.Domain.Tests.Entitites
         public void CalculateDailyDosagePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs115_100Percent()
         {
             // Arrange
-            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109, ActualExposure = 90 };
+            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
+            TimeSpan actualExposure = new TimeSpan(0, 0, 90, 0);
             const int actualNoiseLevel = 115;
 
             // Act
-            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel);
+            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(actualNoiseLevel, actualExposure);
 
             // Assert
             Assert.AreEqual(100, calculatedPercentage);
@@ -83,10 +87,11 @@ namespace NoiseCalculator.Domain.Tests.Entitites
         public void CalculateDailyDosagePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime180_50Percent()
         {
             // Arrange
-            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109, ActualExposure = 180 };
+            Task task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
+            TimeSpan actualExposure = new TimeSpan(0, 0, 180, 0);
 
             // Act
-            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(task.NoiseLevelGuideline);
+            decimal calculatedPercentage = task.CalculateDailyDosagePercentage(task.NoiseLevelGuideline, actualExposure);
 
             // Assert
             Assert.AreEqual(50, calculatedPercentage);
