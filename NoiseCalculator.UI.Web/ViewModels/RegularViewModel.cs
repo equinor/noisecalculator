@@ -6,14 +6,10 @@
         public string Title { get; set; }
         public string Role { get; set; }
         public string NoiseLevelGuideline { get; set; }
-        //public bool IsNoiseMeassured { get; set; }
         public string RadioNoiseMeassuredNoCheckedAttr { get; set; }
         public string RadioNoiseMeassuredYesCheckedAttr { get; set; }
         
         public string NoiseLevelMeassured { get; set; }
-
-        //public bool IsWorkSpecifiedAsTime { get; set; }
-        //public bool IsWorkSpecifiedAsPercentage { get; set; }
         public string RadioTimeCheckedAttr { get; set; }
         public string RadioPercentageCheckedAttr { get; set; }
         
