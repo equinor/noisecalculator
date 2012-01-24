@@ -52,6 +52,7 @@
     <Compile Include="Entities\HelicopterWorkInterval.cs" />
     <Compile Include="Entities\NoiseProtection.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="RoleTypeEnum.cs" />
     <Compile Include="Entities\SelectedTask.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

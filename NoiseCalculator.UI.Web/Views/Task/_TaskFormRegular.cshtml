@@ -1,7 +1,8 @@
 ﻿@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
 
-<form method="POST" action="@Url.Action("AddTaskRegular")" id="editForm">
+<form method="POST" action="@Url.Action("AddTaskRegular")" id="editForm" >
     <input type="hidden" value="@Model.TaskId" id="taskId" />
+    <input type="hidden" value="@Model.RoleType" id="roleType" />
     
     <p>
         <label for="Title" class="label-130px">Task</label>
@@ -29,7 +30,7 @@
         
     <p>
         <label class="label-130px"></label>
-        <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;">@Model.NoiseLevelGuideline dBA</span>
+        <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.NoiseLevelGuideline</span> dBA</span>
         <span class="span80" id="noiseLevelMeassuredSpan">
             <input type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
             dBA
@@ -40,7 +41,7 @@
         <label class="label-130px">Work specified as</label>
         :
         <span class="span120">
-            <input type="radio" name="group2" value="worktime" id="workTimeRadio" @Model.RadioTimeCheckedAttr @Model. />
+            <input type="radio" name="group2" value="worktime" id="workTimeRadio" @Model.RadioTimeCheckedAttr />
             <label for="workTimeRadio">Time</label>
         </span>
             
@@ -67,11 +68,17 @@
 </form>
 
 <div id="editFormButtons">
-    <div id="addButton" class="emulatedAddButton" style="float: left;">
+    @*<div id="addButton" class="emulatedAddButton" style="float: left;">
         <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
         <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
         <br clear="all" />
-    </div>
-
+    </div>*@
+    <input id="addButton" type="button" value="Add Task" class="clear" />
     <input id="taskFormCloseButton" type="button" value="Close" style="margin-left: 100px;" />
 </div>
+
+@*<div id="errorNoiseLevelMeasured" style="display: none; border: 2px solid red;">
+    <p>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</p>
+    <p>The task can therefore not be added with its current values.</p>
+    <input type="button" id="closeErrorDialog" value="Close" style="margin-top: 10px;" />
+</div>*@

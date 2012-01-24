@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
@@ -14,6 +10,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Id(x => x.Id);
 
             Map(x => x.Title);
+            Map(x => x.RoleType);
         }
     }
 }

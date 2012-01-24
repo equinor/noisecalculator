@@ -1,4 +1,4 @@
-/**
+﻿/**
  * jQuery Validation Plugin 1.9.0
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
@@ -367,7 +367,7 @@ $.extend($.validator, {
 			return result;
 		},
 
-		// http://docs.jquery.com/Plugins/Validation/Validator/showErrors
+		// http://docs.jquery.com/Plugins/Validation/Validator/showValidationErrors
 		showErrors: function(errors) {
 			if(errors) {
 				// add items to error list and map

@@ -3,6 +3,8 @@
 
 <span style="font-size: larger; font-weight: bold;">Add Task</span>
 
+<input type="hidden" id="formType" />
+
 <select id="taskSelect" size="8">
     @foreach (Task task in Model)
     {
@@ -10,11 +12,11 @@
     }
 </select>
 
-@*<input type="button" id="useTask" value="Use" />*@
-<div id="useTask" class="emulatedAddButton">
+<input type="button" id="useTask" value="Use Task" />
+@*<div id="useTask" class="emulatedAddButton">
     <img src="@Url.Content("~/Content/arrow_down.png")" class="buttonIcon" />
     <span class="buttonText">Use</span>
-</div>
+</div>*@
 
 <br clear="all" />
     

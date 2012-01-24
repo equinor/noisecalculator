@@ -2,6 +2,7 @@
 
 <form method="POST" action="@Url.Action("AddTaskHelideck")" id="editForm">
     <input type="hidden" id="TaskId" value="@Model.TaskId" name="TaskId" />
+    <input type="hidden" value="@Model.RoleType" id="roleType" />
     
     <p>
         <label for="Title" class="label-130px">Task</label>

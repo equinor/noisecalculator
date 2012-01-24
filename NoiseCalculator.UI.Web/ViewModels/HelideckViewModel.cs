@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace NoiseCalculator.UI.Web.ViewModels
@@ -11,6 +8,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public int TaskId { get; set; }
         public string Title { get; set; }
         public string Role { get; set; }
+        public string RoleType { get; set; } // Its Value is derived from the RoleTypeEnum
         public int HelicopterId { get; set; }
         public int NoiseProtectionId { get; set; }
         public int WorkIntervalId { get; set; }

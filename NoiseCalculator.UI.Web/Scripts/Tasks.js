@@ -36,8 +36,17 @@ function bindTaskDialogEvents() {
             success: function (result) {
                 $('#taskForm').empty();
                 $('#taskForm').html(result);
-                /*bindHelideckEvents();*/
-                bindRegularEvents();
+
+                switch ($("#roleType").val()) {
+                    case "Helideck":
+                        bindHelideckEvents();
+                        break;
+                    case "Rotation":
+                        alert("Rotation task!");
+                        break;
+                    default:
+                        bindRegularEvents();
+                }
             }
         });
     });
@@ -48,20 +57,15 @@ function bindRegularEvents() {
 
     /* Set disabled state of task time */
     if ($('#percentRadio').is(':checked')) {
-        /*$("#hours").attr("disabled", true);
-        $("#minutes").attr("disabled", true);*/
         enablePercentageInput();
     } else {
-        /*$("#percentage").attr("disabled", true);*/
         enableWorkTimeInput();
     }
     
     /* Set disabled state of noise level measured */
     if($("#noiseMeasuredNo").is(":checked")) {
-        /*$("#noiseLevelMeassured").attr("disabled", true);*/
         disableNoiseMeasuredInput();
     } else {
-        /*$("#noiseLevelMeassured").attr("disabled", false);*/
         enableNoiseMeasuredInput();
     }
 
@@ -91,11 +95,13 @@ function bindRegularEvents() {
             dataType: "html",
             success: function (result) {
                 addResultToTaskList(result);
+            },
+            error: function (jqXHR) {
+                showValidationError(jqXHR);
             }
         });
     });
 }
-
 
 function bindHelideckEvents() {
     $("#taskFormCloseButton").click(closeTaskPopup);
@@ -111,12 +117,6 @@ function bindHelideckEvents() {
             WorkIntervalId: $("#WorkIntervalId").val()
         };
 
-        if (formData.HelicopterId == 0 || formData.NoiseProtectionId == 0 || formData.WorkIntervalId == 0) {
-            /* This message should be generated as a div when the form itself is generated. */
-            alert("Helicopter, noise protection and work interval must be selected to add the task.");
-            return;
-        }
-
         $.ajax({
             url: myEditForm.attr('action'),
             type: myEditForm.attr('method'),
@@ -125,6 +125,9 @@ function bindHelideckEvents() {
             dataType: "html",
             success: function (result) {
                 addResultToTaskList(result);
+            },
+            error: function (jqXHR) {
+                showValidationError(jqXHR);
             }
         });
     });
@@ -216,4 +219,24 @@ function enableWorkTimeInput() {
 
     $("#percentage").attr("disabled", true).val("");
     $("#percentageSpan").attr("disabled", true);
+}
+
+function showValidationError(jqXHR) {
+    var errorDiv = $("<div>").replaceWith(jqXHR.responseText).hide();
+
+    $("#editForm").append(errorDiv);
+
+    $("#closeErrorDialog").click(function () {
+        errorDiv.dialog("close");
+    });
+
+    errorDiv.dialog({
+        modal: true,
+        resizable: false,
+        show: { effect: 'fade', duration: 500 },
+        width: 600,
+        title: '"Validation errors exists in the submitted data',
+        position: [200, 80],
+        cache: false
+    });
 }

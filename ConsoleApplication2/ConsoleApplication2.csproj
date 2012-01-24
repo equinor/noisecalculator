@@ -54,6 +54,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
@@ -70,6 +71,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
+      <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>
+      <Name>NoiseCalculator.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NoiseCalculator.Infrastructure\NoiseCalculator.Infrastructure.csproj">
       <Project>{C505DC7D-895E-4393-A43E-33B7CCC97D73}</Project>
       <Name>NoiseCalculator.Infrastructure</Name>

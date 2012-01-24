@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ViewModels;
 
@@ -75,6 +75,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                     TaskId = task.Id,
                     Title = task.Title,
                     Role = task.Role.Title,
+                    RoleType = RoleTypeEnum.Regular.ToString(),
                     NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(),
                     RadioNoiseMeassuredNoCheckedAttr = InputChecked,
                     RadioTimeCheckedAttr = InputChecked
@@ -83,26 +84,95 @@ namespace NoiseCalculator.UI.Web.Controllers
             return PartialView("_TaskFormRegular", viewModel);
         }
 
+
+
+        private ValidationErrorSummaryViewModel ValidateInput(HelideckViewModel viewModel, Task task)
+        {
+            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+            
+            if(viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
+            {
+                errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
+            }
+
+            return errorSummaryViewModel;
+        }
+
+
+
+        private ValidationErrorSummaryViewModel ValidateInput(RegularViewModel viewModel, Task task)
+        {
+            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+            
+            if(!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - task.NoiseLevelGuideline > 6)
+            {
+                errorSummaryViewModel.ValidationErrors.Add("Calculation is invalid for noise levels that are 7 dBA or more above the guideline.");
+            }
+
+            if( string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage) )
+            {
+                errorSummaryViewModel.ValidationErrors.Add("Task work time must be specified, either as hours/minutes or percentage of daily dosage");
+            }
+
+            return errorSummaryViewModel;
+        }
+
+
         [HttpPost]
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
             Task task = _taskDAO.Get(viewModel.TaskId);
-            TimeSpan actualExposure = new TimeSpan(0, int.Parse(viewModel.Hours), int.Parse(viewModel.Minutes), 0);
-            decimal tempPercentage = task.CalculateDailyDosagePercentage(int.Parse(viewModel.NoiseLevelMeassured), actualExposure);
-
+            
+            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
+            if(validationViewModel.ValidationErrors.Count > 0)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", validationViewModel);
+            }
+            
             SelectedTask selectedTask = new SelectedTask
             {
                 Title = task.Title,
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
-                NoiseLevel = task.NoiseLevelGuideline,
-                Percentage = (int) Math.Round(tempPercentage),
-                Hours = actualExposure.Hours,
-                Minutes = actualExposure.Minutes,
                 TaskId = task.Id,
                 CreatedBy = User.Identity.Name,
                 CreatedDate = DateTime.Now.Date
             };
+
+            int noiseLevelMeasured = (string.IsNullOrEmpty(viewModel.NoiseLevelMeassured)) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
+            if( noiseLevelMeasured > task.NoiseLevelGuideline)
+            {
+                selectedTask.NoiseLevel = noiseLevelMeasured;
+            }
+            else
+            {
+                selectedTask.NoiseLevel = task.NoiseLevelGuideline;
+            }
+
+            if (string.IsNullOrEmpty(viewModel.Percentage))
+            {
+                // Calculate percentage from time
+                int hours = (string.IsNullOrEmpty(viewModel.Hours)) ? 0 : int.Parse(viewModel.Hours);
+                int minutes = (string.IsNullOrEmpty(viewModel.Minutes)) ? 0 : int.Parse(viewModel.Minutes);;
+                
+                TimeSpan actualExposure = new TimeSpan(0, hours, minutes, 0);
+                decimal tempPercentage = task.CalculatePercentage(noiseLevelMeasured, actualExposure);
+                
+                selectedTask.Percentage = (int) Math.Round(tempPercentage);
+                selectedTask.Hours = hours;
+                selectedTask.Minutes = minutes;
+            }
+            else
+            {
+                // Calculate time from percentage
+                int percentage = (string.IsNullOrEmpty(viewModel.Percentage)) ? 0 : int.Parse(viewModel.Percentage);
+                TimeSpan actualExposure = task.CalculateTimeSpan(noiseLevelMeasured, percentage);
+
+                selectedTask.Percentage = percentage;
+                selectedTask.Hours = actualExposure.Hours;
+                selectedTask.Minutes = actualExposure.Minutes;
+            }
 
             _selectedTaskDAO.Store(selectedTask);
 
@@ -118,6 +188,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                                                   TaskId = task.Id,
                                                   Title = task.Title,
                                                   Role = task.Role.Title,
+                                                  RoleType = RoleTypeEnum.Helideck.ToString(),
                                               };
 
             viewModel.Helicopters.Add(new SelectListItem{Text = "-- Select One --", Value = "0"} );
@@ -145,18 +216,26 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
         {
-            if(viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
+            Task task = _taskDAO.Get(viewModel.TaskId);
+            
+            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
+            if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
-                return Json("Helicopter data is missing"); // TRANSLATION MUST BE ADDED
+                return PartialView("_ValidationErrorSummary", validationViewModel);
             }
+            
+            //if(viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
+            //{
+            //    Response.StatusCode = 500;
+            //    return Json("Helicopter data is missing"); // TRANSLATION MUST BE ADDED
+            //}
 
-            Task task = _taskDAO.Get(viewModel.TaskId);
+            
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
 
             char[] splitters = new char[] {' ', '-'};
             string[] minuteElements = helicopterTask.HelicopterWorkInterval.Title.Split(splitters);
-
 
 
             SelectedTask selectedTask = new SelectedTask

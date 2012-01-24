@@ -9,7 +9,7 @@
 //    {
 //        public int CalculateTotalDailyNoiseDosage(IEnumerable<Task> tasks)
 //        {
-//            decimal totalPercentage = tasks.Sum(x => x.CalculateDailyDosagePercentage());
+//            decimal totalPercentage = tasks.Sum(x => x.CalculatePercentage());
 
 //            return Convert.ToInt32(totalPercentage);
 //        }

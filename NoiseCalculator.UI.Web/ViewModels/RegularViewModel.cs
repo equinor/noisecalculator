@@ -5,6 +5,7 @@
         public int TaskId { get; set; }
         public string Title { get; set; }
         public string Role { get; set; }
+        public string RoleType { get; set; } // Its Value is derived from the RoleTypeEnum
         public string NoiseLevelGuideline { get; set; }
         public string RadioNoiseMeassuredNoCheckedAttr { get; set; }
         public string RadioNoiseMeassuredYesCheckedAttr { get; set; }
@@ -16,6 +17,7 @@
         public string Hours { get; set; }
         public string Minutes { get; set; }
         public string Percentage { get; set; }
+
 
         public RegularViewModel()
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
@@ -19,7 +15,6 @@ namespace NoiseCalculator.Infrastructure.Mapping
 
             References(x => x.Role);
             References(x => x.NoiseProtection);
-            References(x => x.HelicopterTask);
         }
     }
 }
