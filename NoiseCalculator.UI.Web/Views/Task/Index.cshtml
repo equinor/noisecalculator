@@ -1,5 +1,5 @@
-﻿@using NoiseCalculator.Domain.Entities
-@model IEnumerable<NoiseCalculator.Domain.Entities.SelectedTask> 
+﻿@using NoiseCalculator.UI.Web.ViewModels
+@model IEnumerable<SelectedTaskViewModel> 
 @{
     ViewBag.Title = "My Tasks";
 }
@@ -22,7 +22,7 @@
 <div class="separatorDiv"></div>
 
 <div id="taskList" style="min-height: 40px;">
-    @foreach (SelectedTask selectedTask in Model)
+    @foreach (SelectedTaskViewModel selectedTask in Model)
     {
         @Html.Partial("_SelectedTask", selectedTask);
     }

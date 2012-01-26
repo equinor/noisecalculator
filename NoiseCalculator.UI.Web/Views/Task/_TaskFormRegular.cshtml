@@ -1,71 +1,69 @@
 ﻿@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
 
-<form method="POST" action="@Url.Action("AddTaskRegular")" id="editForm" >
-    <input type="hidden" value="@Model.TaskId" id="taskId" />
-    <input type="hidden" value="@Model.RoleType" id="roleType" />
+<input type="hidden" value="@Model.TaskId" id="taskId" />
+<input type="hidden" value="@Model.RoleType" id="roleType" />
     
-    <p>
-        <label for="Title" class="label-130px">Task</label>
-        <span id="Title">: @Model.Title</span>
-    </p>
+<p>
+    <label for="Title" class="label-130px">Task</label>
+    <span id="Title">: @Model.Title</span>
+</p>
         
-    <p>
-        <label for="Role" class="label-130px">Role</label>
-        <span id="Role">: @Model.Role</span>
-    </p>
+<p>
+    <label for="Role" class="label-130px">Role</label>
+    <span id="Role">: @Model.Role</span>
+</p>
         
-    <p style="margin-bottom: 2px; margin-top: 15px;">
-        <label class="label-130px">Noise Measured</label>
-        :
-        <span class="span80">
-            <input type="radio" name="group1" value="false" id="noiseMeasuredNo" @Model.RadioNoiseMeassuredNoCheckedAttr />
-            <label for="noiseMeasuredNo">No</label>
-        </span>
+<p style="margin-bottom: 2px; margin-top: 15px;">
+    <label class="label-130px">Noise Measured</label>
+    :
+    <span class="span80">
+        <input type="radio" name="group1" value="false" id="noiseMeasuredNo" @Model.RadioNoiseMeassuredNoCheckedAttr />
+        <label for="noiseMeasuredNo">No</label>
+    </span>
             
-        <span class="span80">
-            <input type="radio" name="group1" id="noiseMeasuredYes" @Model.RadioNoiseMeassuredYesCheckedAttr />
-            <label for="noiseMeasuredYes">Yes</label>
-        </span>
-    </p>
+    <span class="span80">
+        <input type="radio" name="group1" id="noiseMeasuredYes" @Model.RadioNoiseMeassuredYesCheckedAttr />
+        <label for="noiseMeasuredYes">Yes</label>
+    </span>
+</p>
         
-    <p>
-        <label class="label-130px"></label>
-        <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.NoiseLevelGuideline</span> dBA</span>
-        <span class="span80" id="noiseLevelMeassuredSpan">
-            <input type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
-            dBA
-        </span>
-    </p>
+<p>
+    <label class="label-130px"></label>
+    <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.NoiseLevelGuideline</span> dBA</span>
+    <span class="span80" id="noiseLevelMeassuredSpan">
+        <input type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
+        dBA
+    </span>
+</p>
         
-    <p style="margin-top: 10px;">
-        <label class="label-130px">Work specified as</label>
-        :
-        <span class="span120">
-            <input type="radio" name="group2" value="worktime" id="workTimeRadio" @Model.RadioTimeCheckedAttr />
-            <label for="workTimeRadio">Time</label>
-        </span>
+<p style="margin-top: 10px;">
+    <label class="label-130px">Work specified as</label>
+    :
+    <span class="span120">
+        <input type="radio" name="group2" value="worktime" id="workTimeRadio" @Model.RadioTimeCheckedAttr />
+        <label for="workTimeRadio">Time</label>
+    </span>
             
-        <span class="span120">
-            <input type="radio" name="group2" value="percent" id="percentRadio" @Model.RadioPercentageCheckedAttr />
-            <label for="percentRadio">Percent</label>
-        </span>
-    </p>
+    <span class="span120">
+        <input type="radio" name="group2" value="percent" id="percentRadio" @Model.RadioPercentageCheckedAttr />
+        <label for="percentRadio">Percent</label>
+    </span>
+</p>
 
-    <p>
-        <label class="label-130px"></label>
-        <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
-            <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" id="hours" />
-            h
-            <input type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" id="minutes" />
-            min
-        </span>
+<p>
+    <label class="label-130px"></label>
+    <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
+        <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" id="hours" />
+        h
+        <input type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" id="minutes" />
+        min
+    </span>
             
-        <span class="span120" id="percentageSpan">
-            <input type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" id="percentage" />
-            %
-        </span>
-    </p>
-</form>
+    <span class="span120" id="percentageSpan">
+        <input type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" id="percentage" />
+        %
+    </span>
+</p>
 
 <div id="editFormButtons">
     @*<div id="addButton" class="emulatedAddButton" style="float: left;">

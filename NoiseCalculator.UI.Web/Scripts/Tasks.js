@@ -31,7 +31,29 @@
             dataType: "html",
             cache: false,
             success: function (result) {
-                var lol = "lol";
+                /*var lol = "lol";*/
+                var $taskPopup = $('#taskPopup');
+                $taskPopup.empty();
+                $taskPopup.html(result);
+
+                switch ($("#roleType").val()) {
+                    case "Helideck":
+                        bindHelideckEvents();
+                        break;
+                    case "Rotation":
+                        alert("Rotation task!");
+                        break;
+                    default:
+                        bindRegularEvents();
+                }
+
+                $taskPopup.dialog({
+                        modal: true,
+                        resizable: false,
+                        hide: { effect: 'fade', duration: 1000 },
+                        width: 'auto',
+                        position: [250, 80]
+                    });
             }
         });
     });

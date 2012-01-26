@@ -1,7 +1,10 @@
-﻿namespace NoiseCalculator.UI.Web.ViewModels
+﻿using System;
+
+namespace NoiseCalculator.UI.Web.ViewModels
 {
     public class SelectedTaskViewModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Role { get; set; }
         public string NoiseProtection { get; set; }
@@ -12,8 +15,7 @@
 
         public int TaskId { get; set; }
         public int HelicopterTaskId { get; set; }
-
-
+    
         public SelectedTaskViewModel()
         {
             Title = string.Empty;

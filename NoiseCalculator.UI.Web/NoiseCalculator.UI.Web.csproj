@@ -205,6 +205,8 @@
     <Content Include="Views\Task\_SelectedTask.cshtml" />
     <Content Include="Views\Task\_TaskFormHelideck.cshtml" />
     <Content Include="Views\Shared\_ValidationErrorSummary.cshtml" />
+    <Content Include="Views\Task\_EditRegularTask.cshtml" />
+    <Content Include="Views\Task\_CreateRegularTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
