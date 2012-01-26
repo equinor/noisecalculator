@@ -171,6 +171,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
     <Content Include="Scripts\Tasks.js" />
+    <Content Include="ViewModels\HelloObjectWorld.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

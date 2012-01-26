@@ -20,6 +20,22 @@
         removeTask(taskDiv);
     });
 
+    $(".emulatedEditButton").click(function (event) {
+        event.preventDefault();
+        var taskDiv = $(this).closest(".task");
+
+        /* Edit Dialog Task */
+        $.ajax({
+            type: "GET",
+            url: getEditTaskFormUrl + "/" + taskDiv.attr("id"),
+            dataType: "html",
+            cache: false,
+            success: function (result) {
+                var lol = "lol";
+            }
+        });
+    });
+
     updateTotalPercentage();
 });
 
@@ -30,7 +46,7 @@ function bindTaskDialogEvents() {
         var taskId = $('#taskSelect option:selected').val();
         $.ajax({
             type: "GET",
-            url: getTaskFormUrl + "/" + taskId,
+            url: getCreateTaskFormUrl + "/" + taskId,
             dataType: "html",
             cache: false,
             success: function (result) {

@@ -243,6 +243,18 @@ p
 /* ------------- */
 
 
+.emulatedEditButton
+{
+    float: left;
+    margin-left: 10px;
+}
+
+.emulatedEditButton:hover
+{
+    cursor: pointer;
+}
+
+
 .emulatedRemoveButton
 {
     float: left;
@@ -253,6 +265,7 @@ p
 {
     cursor: pointer;
 }
+
  /* TEST ABOVE */
 
 

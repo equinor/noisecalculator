@@ -52,7 +52,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        public ActionResult GetFormForTask(int id)
+        public ActionResult GetCreateFormForTask(int id)
         {
             Task task = _taskDAO.Get(id);
 
@@ -64,6 +64,24 @@ namespace NoiseCalculator.UI.Web.Controllers
                         return AddTaskRotation(task);
                 default:
                         return AddTaskRegular(task);
+            }
+        }
+
+        public ActionResult GetEditFormForSelectedTask(int id)
+        {
+            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+            Task task = _taskDAO.Get(selectedTask.TaskId);
+
+            switch (task.Role.Title)
+            {
+                case "Helideck":
+                    //return EditTaskHelideck(selectedTask);
+                    //break;
+                case "Rotation":
+                    //    return AddTaskRotation(selectedTask);
+                    //break;
+                default:
+                    return EditTaskRegular(selectedTask);
             }
         }
 
@@ -85,8 +103,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-
-        private ValidationErrorSummaryViewModel ValidateInput(HelideckViewModel viewModel, Task task)
+        private ValidationErrorSummaryViewModel ValidateInput(HelideckViewModel viewModel)
         {
             ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
             
@@ -141,7 +158,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             };
 
             int noiseLevelMeasured = (string.IsNullOrEmpty(viewModel.NoiseLevelMeassured)) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
-            if( noiseLevelMeasured > task.NoiseLevelGuideline)
+            if (noiseLevelMeasured > task.NoiseLevelGuideline)
             {
                 selectedTask.NoiseLevel = noiseLevelMeasured;
             }
@@ -178,6 +195,46 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             return PartialView("_SelectedTask", selectedTask);
         }
+
+
+        //[HttpPost]
+        //public PartialViewResult EditTaskRegular(RegularViewModel viewModel)
+        //public PartialViewResult EditTaskRegular(int selectedTaskId, RegularViewModel viewModel)
+        //public PartialViewResult EditTaskRegular(int selectedTaskId)
+        public PartialViewResult EditTaskRegular(SelectedTask selectedTask)
+        {
+            Task task = _taskDAO.Get(selectedTask.TaskId);
+
+            SelectedTaskViewModel viewModel = new SelectedTaskViewModel
+                                                  {
+                                                      TaskId = selectedTask.TaskId,
+                                                      Title = selectedTask.Title,
+                                                      Role = selectedTask.Role,
+                                                      Hours = selectedTask.Hours.ToString(),
+                                                      Minutes = selectedTask.Minutes.ToString(),
+                                                      Percentage = selectedTask.Percentage.ToString(),
+                                                      NoiseLevel = selectedTask.NoiseLevel.ToString(),
+                                                      NoiseProtection = selectedTask.NoiseProtection
+                                                  };
+
+
+            _selectedTaskDAO.Store(selectedTask);
+
+            return PartialView("_SelectedTask", selectedTask);
+        }
+
+
+        //[HttpPost]
+        //public PartialViewResult EditTaskRegular(RegularViewModel viewModel)
+        //public PartialViewResult EditTaskRegular(int selectedTaskId, RegularViewModel viewModel)
+        //{
+        //ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
+        //if (validationViewModel.ValidationErrors.Count > 0)
+        //{
+        //    Response.StatusCode = 500;
+        //    return PartialView("_ValidationErrorSummary", validationViewModel);
+        //}
+        //}
 
 
 
@@ -218,25 +275,17 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             Task task = _taskDAO.Get(viewModel.TaskId);
             
-            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
+            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
             
-            //if(viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
-            //{
-            //    Response.StatusCode = 500;
-            //    return Json("Helicopter data is missing"); // TRANSLATION MUST BE ADDED
-            //}
-
-            
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
 
             char[] splitters = new char[] {' ', '-'};
             string[] minuteElements = helicopterTask.HelicopterWorkInterval.Title.Split(splitters);
-
 
             SelectedTask selectedTask = new SelectedTask
                                             {

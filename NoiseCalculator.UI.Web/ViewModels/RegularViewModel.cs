@@ -3,6 +3,7 @@
     public class RegularViewModel
     {
         public int TaskId { get; set; }
+        public int SelectedTaskId { get; set; }
         public string Title { get; set; }
         public string Role { get; set; }
         public string RoleType { get; set; } // Its Value is derived from the RoleTypeEnum

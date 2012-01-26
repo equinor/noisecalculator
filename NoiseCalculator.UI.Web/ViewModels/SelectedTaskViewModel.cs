@@ -11,7 +11,7 @@
         public string Percentage { get; set; }
 
         public int TaskId { get; set; }
-        public int HelicopterNoiseDosageId { get; set; }
+        public int HelicopterTaskId { get; set; }
 
 
         public SelectedTaskViewModel()
