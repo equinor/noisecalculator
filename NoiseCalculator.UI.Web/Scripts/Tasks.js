@@ -258,9 +258,9 @@ function closeTaskPopup() {
 }
 
 function enableNoiseMeasuredInput() {
-    $("#noiseLevelMeassured").attr("disabled", false);
     $("#noiseLevelGuidline").attr("disabled", true);
     $("#noiseLevelMeassuredSpan").attr("disabled", false);
+    $("#noiseLevelMeassured").attr("disabled", false).focus();
 }
 
 function disableNoiseMeasuredInput() {
@@ -270,19 +270,18 @@ function disableNoiseMeasuredInput() {
 }
 
 function enablePercentageInput() {
-    $("#percentage").attr("disabled", false);
     $("#percentageSpan").attr("disabled", false);
+    $("#percentage").attr("disabled", false).focus();
 
     $("#hours").attr("disabled", true).val("");
     $("#minutes").attr("disabled", true).val("");
     $("#workTimeSpan").attr("disabled", true);
-    
 }
 
 function enableWorkTimeInput() {
-    $("#hours").attr("disabled", false);
-    $("#minutes").attr("disabled", false);
     $("#workTimeSpan").attr("disabled", false);
+    $("#hours").attr("disabled", false).focus();
+    $("#minutes").attr("disabled", false);
 
     $("#percentage").attr("disabled", true).val("");
     $("#percentageSpan").attr("disabled", true);
