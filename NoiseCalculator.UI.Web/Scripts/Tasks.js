@@ -302,7 +302,6 @@ function showValidationError(jqXHR) {
         resizable: false,
         show: { effect: 'fade', duration: 500 },
         width: 600,
-        /*title: '"Validation errors exists in the submitted data',*/
         title: $("#validationDialogTitle").text(),
         position: [200, 80],
         cache: false
