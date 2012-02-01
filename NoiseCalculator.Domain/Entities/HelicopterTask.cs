@@ -7,5 +7,16 @@ namespace NoiseCalculator.Domain.Entities
         public virtual HelicopterNoiseProtection HelicopterNoiseProtection { get; set; }
         public virtual HelicopterWorkInterval HelicopterWorkInterval { get; set; }
         public virtual int Percentage { get; set; }
+
+        public virtual int GetMaximumAllowedMinutes()
+        {
+            char[] splitters = new char[] { ' ', '-' };
+            string[] minuteElements = HelicopterWorkInterval.Title.Split(splitters);
+            int minutes = int.Parse(minuteElements[1]);
+            
+            return minutes;
+        }
+        
+        
     }
 }

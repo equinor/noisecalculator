@@ -1,55 +1,52 @@
 ﻿@model NoiseCalculator.UI.Web.ViewModels.HelideckViewModel
 
-<form method="POST" action="@Url.Action("AddTaskHelideck")" id="editForm">
-    <input type="hidden" id="TaskId" value="@Model.TaskId" name="TaskId" />
-    <input type="hidden" value="@Model.RoleType" id="roleType" />
+<input type="hidden" id="TaskId" value="@Model.TaskId" name="TaskId" />
+<input type="hidden" value="@Model.RoleType" id="roleType" />
     
-    <p>
-        <label for="Title" class="label-130px">Task</label>
-        <span id="Title">: @Model.Title</span>
-    </p>
+<p>
+    <label for="Title" class="label-130px">Task</label>
+    <span id="Title">: @Model.Title</span>
+</p>
         
-    <p>
-        <label for="Role" class="label-130px">Role</label>
-        <span id="Role">: @Model.Role</span>
-    </p>
+<p>
+    <label for="Role" class="label-130px">Role</label>
+    <span id="Role">: @Model.Role</span>
+</p>
         
-    <p style="margin-top: 15px;">
-        <label for="HelicopterId" class="label-130px">Helicopter</label>
-        :
-        <select id="HelicopterId" class="helicopterDropDown">
-        @foreach (SelectListItem item in Model.Helicopters)
-        {
-            <option value="@item.Value">@item.Text</option>
-        }
-        </select>
-    </p>
+<p style="margin-top: 15px;">
+    <label for="HelicopterId" class="label-130px">Helicopter</label>
+    :
+    <select id="HelicopterId" class="helicopterDropDown">
+    @foreach (SelectListItem item in Model.Helicopters)
+    {
+        <option value="@item.Value" @(item.Selected ? "SELECTED" : string.Empty)>@item.Text</option>
+    }
+    </select>
+</p>
         
-    <p>
-        <label for="NoiseProtectionId" class="label-130px">Noise Protection</label>
-        :
-        <select id="NoiseProtectionId" class="helicopterDropDown">
-        @foreach (SelectListItem item in Model.NoiseProtection)
-        {
-            <option value="@item.Value">@item.Text</option>
-        }
-        </select>
-    </p>
-        
-    <p>
-        <label for="WorkIntervalId" class="label-130px">Work Interval</label>
-        :
-        <select id="WorkIntervalId" class="helicopterDropDown">
-        @foreach (SelectListItem item in Model.WorkIntervals)
-        {
-            <option value="@item.Value">@item.Text</option>
-        }
-        </select>
-    </p>
+<p>
+    <label for="HelicopterNoiseProtectionId" class="label-130px">Noise Protection</label>
+    :
+    <select id="NoiseProtectionId" class="helicopterDropDown">
+    @foreach (SelectListItem item in Model.NoiseProtection)
+    {
+        <option value="@item.Value" @(item.Selected ? "SELECTED" : string.Empty)>@item.Text</option>
+    }
+    </select>
+</p>
 
-</form>
+<p>
+    <label for="WorkIntervalId" class="label-130px">Work Interval</label>
+    :
+    <select id="WorkIntervalId" class="helicopterDropDown" >
+    @foreach (SelectListItem item in Model.WorkIntervals)
+    {
+        <option value="@item.Value" @(item.Selected ? "SELECTED" : string.Empty)>@item.Text</option>
+    }
+    </select>
+</p>
 
-<div id="editFormButtons">
+@*<div id="editFormButtons">
     <div id="addButton" class="emulatedAddButton" style="float: left;">
         <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
         <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
@@ -57,4 +54,4 @@
     </div>
 
     <input id="taskFormCloseButton" type="button" value="Close" style="margin-left: 100px;" />
-</div>
+</div>*@

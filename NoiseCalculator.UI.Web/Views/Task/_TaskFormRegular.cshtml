@@ -2,6 +2,7 @@
 
 <input type="hidden" value="@Model.TaskId" id="taskId" />
 <input type="hidden" value="@Model.RoleType" id="roleType" />
+<input type="hidden" value="@Model.SelectedTaskId" class="selectedTaskId" />
     
 <p>
     <label for="Title" class="label-130px">Task</label>
@@ -64,16 +65,6 @@
         %
     </span>
 </p>
-
-<div id="editFormButtons">
-    @*<div id="addButton" class="emulatedAddButton" style="float: left;">
-        <img src="../../Content/add.png" style="width: 20px; height: 20px; float: left;" />
-        <span style="margin-left: 10px; font-weight: bold; color: White;">Add Task</span>
-        <br clear="all" />
-    </div>*@
-    <input id="addButton" type="button" value="Add Task" class="clear" />
-    <input id="taskFormCloseButton" type="button" value="Close" style="margin-left: 100px;" />
-</div>
 
 @*<div id="errorNoiseLevelMeasured" style="display: none; border: 2px solid red;">
     <p>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</p>

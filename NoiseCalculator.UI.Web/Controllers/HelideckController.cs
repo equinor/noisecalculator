@@ -79,18 +79,13 @@ namespace NoiseCalculator.UI.Web.Controllers
             Task task = _taskDAO.Get(viewModel.TaskId);
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
 
-            char[] splitters = new char[] { ' ', '-' };
-            string[] minuteElements = helicopterTask.HelicopterWorkInterval.Title.Split(splitters);
-
-
-
             SelectedTask selectedTask = new SelectedTask
             {
                 Title = string.Format("{0} - {1}", task.Title, helicopterTask.HelicopterType.Title),
                 Role = task.Role.Title,
                 NoiseProtection = helicopterTask.HelicopterNoiseProtection.Title,
                 Percentage = helicopterTask.Percentage,
-                Minutes = int.Parse(minuteElements[1]),
+                Minutes = helicopterTask.GetMaximumAllowedMinutes(),
                 TaskId = task.Id,
                 HelicopterTaskId = helicopterTask.Id,
                 CreatedBy = User.Identity.Name,

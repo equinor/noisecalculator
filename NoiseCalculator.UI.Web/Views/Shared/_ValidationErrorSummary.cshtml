@@ -2,7 +2,7 @@
 @model ValidationErrorSummaryViewModel
 
 <div>
-    <h2>ValidationErrors existed in submitted data</h2>
+    <span id="validationDialogTitle" style="display: none;">Errors found in submitted data</span>
 
     <ul>
         @foreach(string validationError in Model.ValidationErrors)
