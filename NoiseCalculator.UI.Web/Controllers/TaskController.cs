@@ -164,7 +164,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 CreatedDate = DateTime.Now.Date
             };
 
-            int noiseLevelMeasured = (string.IsNullOrEmpty(viewModel.NoiseLevelMeassured)) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
+            int noiseLevelMeasured = string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
             if (noiseLevelMeasured > task.NoiseLevelGuideline)
             {
                 selectedTask.NoiseLevel = noiseLevelMeasured;
@@ -176,12 +176,16 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (string.IsNullOrEmpty(viewModel.Percentage))
             {
-                selectedTask.Hours = (string.IsNullOrEmpty(viewModel.Hours)) ? 0 : int.Parse(viewModel.Hours);
-                selectedTask.Minutes = (string.IsNullOrEmpty(viewModel.Minutes)) ? 0 : int.Parse(viewModel.Minutes);
+                selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
+                selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                selectedTask.Percentage = (int) task.CalculatePercentage(noiseLevelMeasured, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
             }
             else
             {
-                selectedTask.Percentage = (string.IsNullOrEmpty(viewModel.Percentage)) ? 0 : int.Parse(viewModel.Percentage);
+                selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
+                TimeSpan timeSpan = task.CalculateTimeSpan(noiseLevelMeasured, selectedTask.Percentage);
+                selectedTask.Hours = timeSpan.Hours;
+                selectedTask.Minutes = timeSpan.Minutes;
             }
 
             _selectedTaskDAO.Store(selectedTask);
@@ -234,20 +238,29 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
-            selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
-            selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
-            selectedTask.NoiseLevel = string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
+            int noiseLevel = string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
 
+            selectedTask.NoiseLevel = noiseLevel;
+            if(string.IsNullOrEmpty(viewModel.Hours ) && string.IsNullOrEmpty(viewModel.Minutes))
+            {
+                selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
+                TimeSpan timeSpan = task.CalculateTimeSpan(noiseLevel, selectedTask.Percentage);
+                selectedTask.Hours = timeSpan.Hours;
+                selectedTask.Minutes = timeSpan.Minutes;
+            }
+            else
+            {
+                selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
+                selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevel, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
+            }
+            
             _selectedTaskDAO.Store(selectedTask);
 
             SelectedTaskViewModel selectedTaskViewModel = CreateViewModel(selectedTask);
 
             return PartialView("_SelectedTask", selectedTaskViewModel);
         }
-
-
-
 
         public PartialViewResult EditTaskHelideck(SelectedTask selectedTask)
         {
@@ -382,20 +395,8 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
 
-            //int totalPercent = 0;
-            //foreach (SelectedTask selectedTask in selectedTasks)
-            //{
-            //    // VERY INEFFICIENT!! Fix ASAP. Move calculate to SelectedTask
-            //    if(selectedTask.Percentage == 0)
-            //    {
-            //        Task task = _taskDAO.Get(selectedTask.TaskId);
-            //        totalPercent += (int) Math.Round(task.CalculatePercentage(selectedTask.NoiseLevel, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0)));
-            //    }
-            //}
-            
             TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
             totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
-            //totalNoiseDosage.Percentage = totalPercent;
             
             if(totalNoiseDosage.Percentage < 75)
             {
@@ -435,25 +436,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             
             if(task.Role.RoleType == RoleTypeEnum.Regular)
             {
-                if (selectedTask.Percentage == 0)
-                {
-                    // Calculate percentage from time
-                    TimeSpan actualExposure = new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0);
-                    decimal tempPercentage = task.CalculatePercentage(selectedTask.NoiseLevel, actualExposure);
-
-                    viewModel.Percentage = string.Format("{0}", (int)Math.Round(tempPercentage));
-                    viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
-                    viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    // Calculate time from percentage
-                    TimeSpan actualExposure = task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
-
-                    viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                    viewModel.Hours = actualExposure.Hours.ToString(CultureInfo.InvariantCulture);
-                    viewModel.Minutes = actualExposure.Minutes.ToString(CultureInfo.InvariantCulture);
-                }
+                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
+                viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
+                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
             }
             else
             {
