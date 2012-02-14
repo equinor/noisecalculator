@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.Mvc;
+using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ViewModels;
@@ -33,7 +35,6 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        //public PartialViewResult AddTaskHelideck(Task task)
         public PartialViewResult AddTaskHelideck(int taskId)
         {
             Task task = _taskDAO.Get(taskId);
@@ -43,40 +44,26 @@ namespace NoiseCalculator.UI.Web.Controllers
                 TaskId = task.Id,
                 Title = task.Title,
                 Role = task.Role.Title,
+                RoleType = RoleTypeEnum.Helideck.ToString()
             };
 
-            viewModel.Helicopters.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
-            foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
-            {
-                viewModel.Helicopters.Add(new SelectListItem { Text = type.Title, Value = type.Id.ToString() });
-            }
+            AppendHelideckMasterData(viewModel);
 
-            viewModel.NoiseProtection.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
-            foreach (HelicopterNoiseProtection noiseProtection in _helicopterNoiseProtectionDAO.GetAll())
-            {
-                viewModel.NoiseProtection.Add(new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() });
-            }
-
-            viewModel.WorkIntervals.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
-            foreach (HelicopterWorkInterval workInterval in _helicopterWorkIntervalDAO.GetAll())
-            {
-                viewModel.WorkIntervals.Add(new SelectListItem { Text = workInterval.Title, Value = workInterval.Id.ToString() });
-            }
-
-            return PartialView("_TaskFormHelideck", viewModel);
+            return PartialView("_CreateHelideckTask", viewModel);
         }
-
 
         [HttpPost]
         public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
         {
-            if (viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
+            Task task = _taskDAO.Get(viewModel.TaskId);
+
+            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
+            if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
-                return Json("Helicopter data is missing"); // TRANSLATION MUST BE ADDED
+                return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            Task task = _taskDAO.Get(viewModel.TaskId);
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
 
             SelectedTask selectedTask = new SelectedTask
@@ -94,8 +81,153 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             _selectedTaskDAO.Store(selectedTask);
 
-            return PartialView("_SelectedTask", selectedTask);
+            SelectedTaskViewModel selectedTaskViewModel = CreateViewModel(selectedTask);
+
+            return PartialView("_SelectedTask", selectedTaskViewModel);
         }
 
+        public PartialViewResult EditTaskHelideck(int selectedTaskId)
+        {
+            SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
+
+            Task task = _taskDAO.Get(selectedTask.TaskId);
+            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
+
+            HelideckViewModel viewModel = new HelideckViewModel
+            {
+                TaskId = task.Id,
+                SelectedTaskId = selectedTask.Id,
+                Title = task.Title,
+                Role = task.Role.Title,
+                RoleType = RoleTypeEnum.Helideck.ToString(),
+                HelicopterId = helicopterTask.HelicopterType.Id,
+                NoiseProtectionId = helicopterTask.HelicopterNoiseProtection.Id,
+                WorkIntervalId = helicopterTask.HelicopterWorkInterval.Id
+            };
+
+            AppendHelideckMasterData(viewModel);
+
+            return PartialView("_EditHelideckTask", viewModel);
+        }
+
+        [HttpPost]
+        public PartialViewResult EditTaskHelideck(int id, HelideckViewModel viewModel)
+        {
+            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
+
+            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
+            if (validationViewModel.ValidationErrors.Count > 0)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", validationViewModel);
+            }
+
+            bool taskValuesHaveBeenChanged = (viewModel.HelicopterId != helicopterTask.HelicopterType.Id
+                                                || viewModel.NoiseProtectionId != helicopterTask.HelicopterNoiseProtection.Id
+                                                || viewModel.WorkIntervalId != helicopterTask.HelicopterWorkInterval.Id);
+
+            if (taskValuesHaveBeenChanged)
+            {
+                Task task = _taskDAO.Get(selectedTask.TaskId);
+                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
+
+                selectedTask.Title = string.Format("{0} - {1}", task.Title, newHelicopterTask.HelicopterType.Title);
+                selectedTask.NoiseProtection = newHelicopterTask.HelicopterNoiseProtection.Title;
+                selectedTask.Percentage = newHelicopterTask.Percentage;
+                selectedTask.Minutes = newHelicopterTask.GetMaximumAllowedMinutes();
+                selectedTask.HelicopterTaskId = newHelicopterTask.Id;
+
+                _selectedTaskDAO.Store(selectedTask);
+            }
+
+            SelectedTaskViewModel selectedTaskViewModel = CreateViewModel(selectedTask);
+
+            return PartialView("_SelectedTask", selectedTaskViewModel);
+        }
+
+
+        private ValidationErrorSummaryViewModel ValidateInput(HelideckViewModel viewModel)
+        {
+            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+
+            if (viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
+            {
+                errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
+            }
+
+            return errorSummaryViewModel;
+        }
+
+
+        public SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
+        {
+            SelectedTaskViewModel viewModel = new SelectedTaskViewModel
+            {
+                Id = selectedTask.Id,
+                Title = selectedTask.Title,
+                Role = selectedTask.Role,
+                NoiseProtection = selectedTask.NoiseProtection,
+                NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
+                TaskId = selectedTask.TaskId,
+                HelicopterTaskId = selectedTask.HelicopterTaskId
+            };
+
+
+            Task task = _taskDAO.Get(selectedTask.TaskId);
+
+            if (task.Role.RoleType == RoleTypeEnum.Regular)
+            {
+                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
+                viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
+                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                // HELIDECK
+                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
+                viewModel.Hours = "0";
+                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
+            }
+
+
+            return viewModel;
+        }
+
+        private void AppendHelideckMasterData(HelideckViewModel viewModel)
+        {
+            viewModel.Helicopters.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
+            {
+                SelectListItem selectListItem = new SelectListItem { Text = type.Title, Value = type.Id.ToString() };
+                if (viewModel.HelicopterId == type.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.Helicopters.Add(selectListItem);
+            }
+
+            viewModel.NoiseProtection.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            foreach (HelicopterNoiseProtection noiseProtection in _helicopterNoiseProtectionDAO.GetAll())
+            {
+                SelectListItem selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                if (viewModel.NoiseProtectionId == noiseProtection.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.NoiseProtection.Add(selectListItem);
+            }
+
+            viewModel.WorkIntervals.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            foreach (HelicopterWorkInterval workInterval in _helicopterWorkIntervalDAO.GetAll())
+            {
+                SelectListItem selectListItem = new SelectListItem { Text = workInterval.Title, Value = workInterval.Id.ToString() };
+                if (viewModel.WorkIntervalId == workInterval.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.WorkIntervals.Add(selectListItem);
+            }
+        }
     }
 }

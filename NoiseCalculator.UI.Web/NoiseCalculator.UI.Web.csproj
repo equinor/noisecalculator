@@ -80,15 +80,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
-    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SelectedTasksRotationViewModel.cs" />
-    <Compile Include="ViewModels\RotationViewModel.cs" />
     <Compile Include="ViewModels\HelideckViewModel.cs" />
     <Compile Include="ViewModels\RegularViewModel.cs" />
     <Compile Include="ViewModels\SelectedTaskViewModel.cs" />
@@ -200,17 +199,17 @@
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <None Include="readme.txt" />
-    <Content Include="Views\Task\_TaskFormRegular.cshtml" />
+    <Content Include="Views\Regular\_TaskFormRegular.cshtml" />
     <Content Include="Views\Task\_TaskDialog.cshtml" />
-    <Content Include="Views\Task\_SelectedTask.cshtml" />
-    <Content Include="Views\Task\_TaskFormHelideck.cshtml" />
+    <Content Include="Views\Shared\_SelectedTask.cshtml" />
     <Content Include="Views\Shared\_ValidationErrorSummary.cshtml" />
-    <Content Include="Views\Task\_EditRegularTask.cshtml" />
-    <Content Include="Views\Task\_CreateRegularTask.cshtml" />
-    <Content Include="Views\Task\_CreateHelideckTask.cshtml" />
-    <Content Include="Views\Task\_EditHelideckTask.cshtml" />
-    <Content Include="Views\Task\_CreateRotationTask.cshtml" />
-    <Content Include="Views\Task\_SelectedTasksRotation.cshtml" />
+    <Content Include="Views\Regular\_EditRegularTask.cshtml" />
+    <Content Include="Views\Regular\_CreateRegularTask.cshtml" />
+    <Content Include="Views\Regular\_CreateRotationTask.cshtml" />
+    <Content Include="Views\Regular\_SelectedTasksRotation.cshtml" />
+    <Content Include="Views\Helideck\_CreateHelideckTask.cshtml" />
+    <Content Include="Views\Helideck\_EditHelideckTask.cshtml" />
+    <Content Include="Views\Helideck\_TaskFormHelideck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

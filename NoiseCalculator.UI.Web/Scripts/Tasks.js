@@ -1,51 +1,60 @@
 ﻿$(document).ready(function () {
     $("#addTask").click(function () {
-        $("#taskPopup")
-            .empty()
-            .load(addTaskUrl, function () {
-                bindTaskDialogEvents();
-            })
-            .dialog({
+        openTaskDialog();
+    });
+
+    updateTotalPercentage();
+});
+
+
+function openTaskDialog() {
+    $("#taskDialog")
+        .empty()
+        .load(addTaskUrl, function () {
+            bindTaskDialogEvents();
+            $(this).dialog({
                 modal: true,
                 resizable: false,
                 hide: { effect: 'fade', duration: 1000 },
                 width: 'auto',
                 position: [250, 80]
             });
-    });
+        });
+}
 
-    updateTotalPercentage();
-});
 
 function bindTaskDialogEvents() {
     $("#useTask").click(function (event) {
         event.preventDefault();
+        getCreateTaskForm();
+    });
+}
 
-        var taskId = $('#taskSelect option:selected').val();
-        $.ajax({
-            type: "GET",
-            url: getCreateTaskFormUrl + "/" + taskId,
-            dataType: "html",
-            cache: false,
-            success: function (result) {
-                $('#taskForm').empty();
-                $('#taskForm').html(result);
 
-                switch ($("#roleType").val()) {
-                    case "Helideck":
-                        bindHelideckEvents();
-                        break;
-                    default:
-                        bindRegularEvents();
-                }
+function getCreateTaskForm() {
+    var taskId = $('#taskSelect option:selected').val();
+    $.ajax({
+        type: "GET",
+        url: getCreateTaskFormUrl + "/" + taskId,
+        dataType: "html",
+        cache: false,
+        success: function (result) {
+            $('#taskForm').empty();
+            $('#taskForm').html(result);
+
+            switch ($("#roleType").val()) {
+                case "Helideck":
+                    bindHelideckEvents();
+                    break;
+                default:
+                    bindRegularEvents();
             }
-        });
+        }
     });
 }
 
 
 function bindRegularEvents() {
-
     /* Set disabled state of task time */
     if ($('#percentRadio').is(':checked')) {
         enablePercentageInput();
@@ -64,90 +73,39 @@ function bindRegularEvents() {
     $("#noiseMeasuredNo").click(disableNoiseMeasuredInput);
     $("#percentRadio").click(enablePercentageInput);
     $("#workTimeRadio").click(enableWorkTimeInput);
-    $("#taskFormCloseButton").click(closeTaskPopup);
-
-    /* --------------- */
-    if ($("#roleType").val() == "Rotation") {
-        $("#hours").keyup(function (event) {
-            $("#hoursAssistant").text($("#hours").val());
-        });
-
-        $("#minutes").keyup(function () {
-            $("#minutesAssistant").text($("#minutes").val());
-        });
-
-        $("#percentage").keyup(function () {
-            $("#percentageAssistant").text($("#percentage").val());
-        });
-    }
-
+    
+    $("#taskFormCloseButton").click(closeTaskDialog);
     $('#submitButton').click(function (event) {
         event.preventDefault();
-
-        var myEditForm = $("#editForm");
-        var formData = {
-            TaskId: $("#taskId").val(),
-            NoiseLevelMeassured: $("#noiseLevelMeassured").val(),
-            Hours: $("#hours").val(),
-            Minutes: $("#minutes").val(),
-            Percentage: $("#percentage").val()
-        };
-
-        $.ajax({
-            url: myEditForm.attr('action'),
-            type: myEditForm.attr('method'),
-            data: JSON.stringify(formData),
-            contentType: "application/json",
-            dataType: "html",
-            success: function (result) {
-                var $taskDiv = $("<div>").append(result);
-
-                if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
-                    replaceTaskInTaskList(result);
-                } else {
-                    addResultToTaskList($taskDiv);
-                }
-            },
-            error: function (jqXHR) {
-                showValidationError(jqXHR);
-            }
-        });
+        submitRegularForm();
     });
+
+    /* For Rotation tasks, work time / percentage should be mirrored as assistant time */
+    if ($("#roleType").val() == "Rotation") {
+        bindRotationEvents();
+    }
 }
 
 function bindHelideckEvents() {
-    $("#taskFormCloseButton").click(closeTaskPopup);
+    $("#taskFormCloseButton").click(closeTaskDialog);
 
     $('#submitButton').click(function (event) {
         event.preventDefault();
+        submitHelideckForm();
+    });
+}
 
-        var myEditForm = $('#editForm');
-        var formData = {
-            TaskId: $("#TaskId").val(),
-            HelicopterId: $("#HelicopterId").val(),
-            NoiseProtectionId: $("#NoiseProtectionId").val(),
-            WorkIntervalId: $("#WorkIntervalId").val()
-        };
+function bindRotationEvents() {
+    $("#hours").keyup(function () {
+        $("#hoursAssistant").text($("#hours").val());
+    });
 
-        $.ajax({
-            url: myEditForm.attr('action'),
-            type: myEditForm.attr('method'),
-            data: JSON.stringify(formData),
-            contentType: "application/json",
-            dataType: "html",
-            success: function (result) {
-                var $taskDiv = $("<div>").append(result);
+    $("#minutes").keyup(function () {
+        $("#minutesAssistant").text($("#minutes").val());
+    });
 
-                if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
-                    replaceTaskInTaskList(result);
-                } else {
-                    addResultToTaskList($taskDiv);
-                }
-            },
-            error: function (jqXHR) {
-                showValidationError(jqXHR);
-            }
-        });
+    $("#percentage").keyup(function () {
+        $("#percentageAssistant").text($("#percentage").val());
     });
 }
 
@@ -155,7 +113,7 @@ function addResultToTaskList($taskDiv) {
     $("#taskList").append($taskDiv);
     $taskDiv.fadeIn('slow');
     
-    closeTaskPopup();
+    closeTaskDialog();
     updateTotalPercentage();
 }
 
@@ -163,7 +121,7 @@ function replaceTaskInTaskList(result) {
     var idOfResultDiv = $(result).attr("id");
     $("#" + idOfResultDiv).replaceWith(result);
     
-    closeTaskPopup();
+    closeTaskDialog();
     updateTotalPercentage();
 }
 
@@ -235,9 +193,9 @@ function editTask(taskDiv) {
         dataType: "html",
         cache: false,
         success: function (result) {
-            var $taskPopup = $('#taskPopup');
-            $taskPopup.empty();
-            $taskPopup.html(result);
+            var $taskDialog = $('#taskDialog');
+            $taskDialog.empty();
+            $taskDialog.html(result);
 
             switch ($("#roleType").val()) {
                 case "Helideck":
@@ -250,7 +208,7 @@ function editTask(taskDiv) {
                     bindRegularEvents();
             }
 
-            $taskPopup.dialog({
+            $taskDialog.dialog({
                 modal: true,
                 resizable: false,
                 hide: { effect: 'fade', duration: 1000 },
@@ -262,8 +220,8 @@ function editTask(taskDiv) {
 }
 
 
-function closeTaskPopup() {
-    $("#taskPopup").dialog('close');
+function closeTaskDialog() {
+    $("#taskDialog").dialog('close');
 }
 
 function enableNoiseMeasuredInput() {
@@ -298,6 +256,69 @@ function enableWorkTimeInput() {
     $("#percentageAssistant").text("");
     $("#percentageSpan").attr("disabled", true);
 }
+
+function submitRegularForm() {
+    var myEditForm = $("#editForm");
+    var formData = {
+        TaskId: $("#taskId").val(),
+        NoiseLevelMeassured: $("#noiseLevelMeassured").val(),
+        Hours: $("#hours").val(),
+        Minutes: $("#minutes").val(),
+        Percentage: $("#percentage").val()
+    };
+
+    $.ajax({
+        url: myEditForm.attr('action'),
+        type: myEditForm.attr('method'),
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "html",
+        success: function (result) {
+            var $taskDiv = $("<div>").append(result);
+
+            if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
+                replaceTaskInTaskList(result);
+            } else {
+                addResultToTaskList($taskDiv);
+            }
+        },
+        error: function (jqXHR) {
+            showValidationError(jqXHR);
+        }
+    });
+}
+
+
+function submitHelideckForm() {
+    var myEditForm = $('#editForm');
+    var formData = {
+        TaskId: $("#TaskId").val(),
+        HelicopterId: $("#HelicopterId").val(),
+        NoiseProtectionId: $("#NoiseProtectionId").val(),
+        WorkIntervalId: $("#WorkIntervalId").val()
+    };
+
+    $.ajax({
+        url: myEditForm.attr('action'),
+        type: myEditForm.attr('method'),
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "html",
+        success: function (result) {
+            var $taskDiv = $("<div>").append(result);
+
+            if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
+                replaceTaskInTaskList(result);
+            } else {
+                addResultToTaskList($taskDiv);
+            }
+        },
+        error: function (jqXHR) {
+            showValidationError(jqXHR);
+        }
+    });
+}
+
 
 function showValidationError(jqXHR) {
     var errorDiv = $("<div>").replaceWith(jqXHR.responseText).hide();
