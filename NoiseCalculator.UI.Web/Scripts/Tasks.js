@@ -35,9 +35,6 @@ function bindTaskDialogEvents() {
                     case "Helideck":
                         bindHelideckEvents();
                         break;
-                    case "Rotation":
-                        alert("Rotation task!");
-                        break;
                     default:
                         bindRegularEvents();
                 }
@@ -68,6 +65,21 @@ function bindRegularEvents() {
     $("#percentRadio").click(enablePercentageInput);
     $("#workTimeRadio").click(enableWorkTimeInput);
     $("#taskFormCloseButton").click(closeTaskPopup);
+
+    /* --------------- */
+    if ($("#roleType").val() == "Rotation") {
+        $("#hours").keyup(function (event) {
+            $("#hoursAssistant").text($("#hours").val());
+        });
+
+        $("#minutes").keyup(function () {
+            $("#minutesAssistant").text($("#minutes").val());
+        });
+
+        $("#percentage").keyup(function () {
+            $("#percentageAssistant").text($("#percentage").val());
+        });
+    }
 
     $('#submitButton').click(function (event) {
         event.preventDefault();
@@ -124,11 +136,9 @@ function bindHelideckEvents() {
             contentType: "application/json",
             dataType: "html",
             success: function (result) {
-                /*addResultToTaskList($(result));*/
                 var $taskDiv = $("<div>").append(result);
 
                 if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
-                    /*replaceTaskInTaskList($taskDiv);*/
                     replaceTaskInTaskList(result);
                 } else {
                     addResultToTaskList($taskDiv);
@@ -149,7 +159,6 @@ function addResultToTaskList($taskDiv) {
     updateTotalPercentage();
 }
 
-/*function replaceTaskInTaskList($taskDiv) {*/
 function replaceTaskInTaskList(result) {
     var idOfResultDiv = $(result).attr("id");
     $("#" + idOfResultDiv).replaceWith(result);
@@ -275,6 +284,8 @@ function enablePercentageInput() {
 
     $("#hours").attr("disabled", true).val("");
     $("#minutes").attr("disabled", true).val("");
+    $("#hoursAssistant").text("");
+    $("#minutesAssistant").text("");
     $("#workTimeSpan").attr("disabled", true);
 }
 
@@ -284,6 +295,7 @@ function enableWorkTimeInput() {
     $("#minutes").attr("disabled", false);
 
     $("#percentage").attr("disabled", true).val("");
+    $("#percentageAssistant").text("");
     $("#percentageSpan").attr("disabled", true);
 }
 

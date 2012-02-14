@@ -11,6 +11,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
 
             Map(x => x.Title);
             Map(x => x.RoleType);
+            Map(x => x.SystemTitle);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NoiseCalculator.UI.Web.ViewModels
 {
-    public class RegularViewModel
+    public class RotationViewModel
     {
         public int TaskId { get; set; }
         public int SelectedTaskId { get; set; }
@@ -19,10 +19,12 @@
         public string Minutes { get; set; }
         public string Percentage { get; set; }
 
-        public string RotationDiplayStyle { get; set; }
+        public string HoursAssisant { get; set; }
+        public string MinutesAssisant { get; set; }
+        public string PercentageAssisant { get; set; }
 
 
-        public RegularViewModel()
+        public RotationViewModel()
         {
             NoiseLevelGuideline = string.Empty;
             NoiseLevelMeassured = string.Empty;
@@ -33,7 +35,10 @@
             RadioNoiseMeassuredYesCheckedAttr = string.Empty;
             RadioTimeCheckedAttr = string.Empty;
             RadioPercentageCheckedAttr = string.Empty;
-            RotationDiplayStyle = "style=\"display: none;\"";
+
+            HoursAssisant = string.Empty;
+            MinutesAssisant = string.Empty;
+            PercentageAssisant = string.Empty;
 
             //IsNoiseMeassured = string.Empty;
             //IsWorkSpecifiedAsTime { get; set; }

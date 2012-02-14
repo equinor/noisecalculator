@@ -18,6 +18,7 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<ITaskDAO>().To<TaskDAO>();
             Bind<ISelectedTaskDAO>().To<SelectedTaskDAO>();
             Bind<IHelicopterTaskDAO>().To<HelicopterTaskDAO>();
+            Bind<IRoleDAO>().To<RoleDAO>();
         }
     }
 }

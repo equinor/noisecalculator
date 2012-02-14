@@ -52,7 +52,9 @@
 </p>
 
 <p>
-    <label class="label-130px"></label>
+    <label class="label-130px"><span @Html.Raw(Model.RotationDiplayStyle)>Operator</span></label>
+    <span @Html.Raw(Model.RotationDiplayStyle)>:</span>
+
     <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
         <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" id="hours" />
         h
@@ -62,6 +64,23 @@
             
     <span class="span120" id="percentageSpan">
         <input type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" id="percentage" />
+        %
+    </span>
+</p>
+
+<p @Html.Raw(Model.RotationDiplayStyle) >
+    <label class="label-130px">Assistant</label>
+    <span @Html.Raw(Model.RotationDiplayStyle)>:</span>
+
+    <span class="span120" style="margin-left: 8px;" >
+        <span id="hoursAssistant" style="margin-left: 3px; margin-right: 3px; width: 20px; height: 13px; display: inline-block;"></span>
+        h
+        <span id="minutesAssistant" style="margin-left: 3px; margin-right: 3px; width: 26px; height: 13px; display: inline-block;"></span>
+        min
+    </span>
+            
+    <span class="span120">
+        <span id="percentageAssistant" style="margin-left: 3px; margin-right: 3px; width: 26px; height: 13px; display: inline-block;"></span>
         %
     </span>
 </p>

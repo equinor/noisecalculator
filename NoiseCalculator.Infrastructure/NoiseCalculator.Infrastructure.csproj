@@ -61,8 +61,10 @@
   <ItemGroup>
     <Compile Include="DataAccess\Implementations\GenericDAO.cs" />
     <Compile Include="DataAccess\Implementations\HelicopterTaskDAO.cs" />
+    <Compile Include="DataAccess\Implementations\RoleDAO.cs" />
     <Compile Include="DataAccess\Implementations\SelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Implementations\TaskDAO.cs" />
+    <Compile Include="DataAccess\Interfaces\IRoleDAO.cs" />
     <Compile Include="DataAccess\Interfaces\IDAO.cs" />
     <Compile Include="DataAccess\Interfaces\IHelicopterTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ISelectedTaskDAO.cs" />
