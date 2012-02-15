@@ -5,10 +5,11 @@
 
 <input type="hidden" id="formType" />
 
-<select id="taskSelect" size="8">
+<select id="taskSelect" size="8" style="width: 500px;">
     @foreach (Task task in Model)
     {
-        <option value="@task.Id">@task.Title, (@task.Role.Title)</option>
+        @*<option value="@task.Id">@task.Title, (@task.Role.Title)</option>*@
+        <option value="@task.Id">@task.Title</option>
     }
 </select>
 
