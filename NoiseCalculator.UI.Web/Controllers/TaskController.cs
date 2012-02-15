@@ -91,17 +91,20 @@ namespace NoiseCalculator.UI.Web.Controllers
             
             if(totalNoiseDosage.Percentage < 75)
             {
-                totalNoiseDosage.StatusText = "Noise level is considered safe";
+                //totalNoiseDosage.StatusText = "Noise level is considered safe";
+                totalNoiseDosage.StatusText = "Støynivå er under øvre grense og regnes som trygt";
                 totalNoiseDosage.CssClass = "noiseLevelNormal";
             }
             else if(totalNoiseDosage.Percentage >= 75 && totalNoiseDosage.Percentage < 100)
             {
-                totalNoiseDosage.StatusText = "Noise level is approaching allowed limits";
+                //totalNoiseDosage.StatusText = "Noise level is approaching allowed limits";
+                totalNoiseDosage.StatusText = "Støynivå nærmer seg øvre grense";
                 totalNoiseDosage.CssClass = "noiseLevelWarning";
             }
             else if (totalNoiseDosage.Percentage >= 100)
             {
-                totalNoiseDosage.StatusText = "Unsafe daily noise dosage";
+                //totalNoiseDosage.StatusText = "Unsafe daily noise dosage";
+                totalNoiseDosage.StatusText = "Arbeid ved beregnet støyeksponering er ikke tillatt!";
                 totalNoiseDosage.CssClass = "noiseLevelCritical";
             }
 

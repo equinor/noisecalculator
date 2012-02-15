@@ -131,8 +131,12 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
             else
             {
-                selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
-                selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                int hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
+                int minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                TimeSpan timeSpan = new TimeSpan(0, hours, minutes, 0);
+
+                selectedTask.Hours = timeSpan.Hours;
+                selectedTask.Minutes = timeSpan.Minutes;
                 selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevel, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
             }
 
@@ -229,12 +233,14 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - task.NoiseLevelGuideline > 6)
             {
-                errorSummaryViewModel.ValidationErrors.Add("Calculation is invalid for noise levels that are 7 dBA or more above the guideline.");
+                //errorSummaryViewModel.ValidationErrors.Add("Calculation is invalid for noise levels that are 7 dBA or more above the guideline.");
+                errorSummaryViewModel.ValidationErrors.Add("Kalkulasjonen er ugyldig for støynivå 7 dBA eller mer over Guidline.");
             }
 
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
             {
-                errorSummaryViewModel.ValidationErrors.Add("Task work time must be specified, either as hours/minutes or percentage of daily dosage");
+                //errorSummaryViewModel.ValidationErrors.Add("Task work time must be specified, either as hours/minutes or percentage of daily dosage");
+                errorSummaryViewModel.ValidationErrors.Add("Oppgavens arbeidstid må oppgis, enten som timer/minutter eller prosent av daglig dose.");
             }
 
             return errorSummaryViewModel;
@@ -265,8 +271,12 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (string.IsNullOrEmpty(viewModel.Percentage))
             {
-                selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
-                selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                int hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
+                int minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                TimeSpan timeSpan = new TimeSpan(0, hours, minutes, 0);
+                
+                selectedTask.Hours = timeSpan.Hours;
+                selectedTask.Minutes = timeSpan.Minutes;
                 selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevelMeasured, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
             }
             else

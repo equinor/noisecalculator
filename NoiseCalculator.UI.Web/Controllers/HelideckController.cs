@@ -151,9 +151,22 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
 
-            if (viewModel.HelicopterId == 0 || viewModel.NoiseProtectionId == 0 || viewModel.WorkIntervalId == 0)
+            if (viewModel.HelicopterId == 0)
             {
-                errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
+                //errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
+                errorSummaryViewModel.ValidationErrors.Add("Helikopter må være valgt.");
+            }
+
+            if (viewModel.NoiseProtectionId == 0)
+            {
+                //errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
+                errorSummaryViewModel.ValidationErrors.Add("Høselsvern må være valgt.");
+            }
+
+            if (viewModel.WorkIntervalId == 0)
+            {
+                //errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
+                errorSummaryViewModel.ValidationErrors.Add("Arbeidstid må være valgt.");
             }
 
             return errorSummaryViewModel;
