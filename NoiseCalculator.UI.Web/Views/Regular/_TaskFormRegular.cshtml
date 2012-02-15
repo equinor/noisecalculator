@@ -3,17 +3,17 @@
 <input type="hidden" value="@Model.TaskId" id="taskId" />
 <input type="hidden" value="@Model.RoleType" id="roleType" />
 <input type="hidden" value="@Model.SelectedTaskId" class="selectedTaskId" />
-    
+
 <p>
     <label for="Title" class="label-130px">Task</label>
     <span id="Title">: @Model.Title</span>
 </p>
-        
+
 <p>
     <label for="Role" class="label-130px">Role</label>
     <span id="Role">: @Model.Role</span>
 </p>
-        
+
 <p style="margin-bottom: 2px; margin-top: 15px;">
     <label class="label-130px">Noise Measured</label>
     :
@@ -27,7 +27,7 @@
         <label for="noiseMeasuredYes">Yes</label>
     </span>
 </p>
-        
+
 <p>
     <label class="label-130px"></label>
     <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.NoiseLevelGuideline</span> dBA</span>
@@ -36,7 +36,7 @@
         dBA
     </span>
 </p>
-        
+
 <p style="margin-top: 10px;">
     <label class="label-130px">Work specified as</label>
     :
@@ -84,9 +84,3 @@
         %
     </span>
 </p>
-
-@*<div id="errorNoiseLevelMeasured" style="display: none; border: 2px solid red;">
-    <p>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</p>
-    <p>The task can therefore not be added with its current values.</p>
-    <input type="button" id="closeErrorDialog" value="Close" style="margin-top: 10px;" />
-</div>*@

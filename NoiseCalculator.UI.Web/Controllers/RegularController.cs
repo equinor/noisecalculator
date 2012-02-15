@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
@@ -28,7 +27,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             _roleDAO = roleDAO;
         }
 
-        //public PartialViewResult AddTaskRegular(Task task)
         public PartialViewResult AddTaskRegular(int taskId)
         {
             Task task = _taskDAO.Get(taskId);
@@ -56,63 +54,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             return PartialView("_CreateRegularTask", viewModel);
         }
 
-
-        private ValidationErrorSummaryViewModel ValidateInput(RegularViewModel viewModel, Task task)
-        {
-            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
-
-            if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - task.NoiseLevelGuideline > 6)
-            {
-                errorSummaryViewModel.ValidationErrors.Add("Calculation is invalid for noise levels that are 7 dBA or more above the guideline.");
-            }
-
-            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
-            {
-                errorSummaryViewModel.ValidationErrors.Add("Task work time must be specified, either as hours/minutes or percentage of daily dosage");
-            }
-
-            return errorSummaryViewModel;
-        }
-
-        private SelectedTask CreateSelectedTaskRegular(RegularViewModel viewModel, Task task)
-        {
-            SelectedTask selectedTask = new SelectedTask
-            {
-                Title = task.Title,
-                Role = task.Role.Title,
-                NoiseProtection = task.NoiseProtection.Title,
-                TaskId = task.Id,
-                CreatedBy = User.Identity.Name,
-                CreatedDate = DateTime.Now.Date
-            };
-
-            int noiseLevelMeasured = string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
-            if (noiseLevelMeasured > task.NoiseLevelGuideline)
-            {
-                selectedTask.NoiseLevel = noiseLevelMeasured;
-            }
-            else
-            {
-                selectedTask.NoiseLevel = task.NoiseLevelGuideline;
-            }
-
-            if (string.IsNullOrEmpty(viewModel.Percentage))
-            {
-                selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
-                selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
-                selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevelMeasured, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
-            }
-            else
-            {
-                selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
-                TimeSpan timeSpan = task.CalculateTimeSpan(noiseLevelMeasured, selectedTask.Percentage);
-                selectedTask.Hours = timeSpan.Hours;
-                selectedTask.Minutes = timeSpan.Minutes;
-            }
-
-            return selectedTask;
-        }
-
         [HttpPost]
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
@@ -133,7 +74,6 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        //public PartialViewResult EditTaskRegular(SelectedTask selectedTask)
         public PartialViewResult EditTaskRegular(int selectedTaskId)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
@@ -159,6 +99,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Minutes = selectedTask.Minutes.ToString(),
                 Percentage = selectedTask.Percentage.ToString()
             };
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_EditRegularTask", viewModel);
         }
@@ -247,33 +189,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
         }
 
-        public JsonResult GetTotalPercentage()
-        {
-            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
-
-            TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
-            totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
-
-            if (totalNoiseDosage.Percentage < 75)
-            {
-                totalNoiseDosage.StatusText = "Noise level is considered safe";
-                totalNoiseDosage.CssClass = "noiseLevelNormal";
-            }
-            else if (totalNoiseDosage.Percentage >= 75 && totalNoiseDosage.Percentage < 100)
-            {
-                totalNoiseDosage.StatusText = "Noise level is approaching allowed limits";
-                totalNoiseDosage.CssClass = "noiseLevelWarning";
-            }
-            else if (totalNoiseDosage.Percentage >= 100)
-            {
-                totalNoiseDosage.StatusText = "Unsafe daily noise dosage";
-                totalNoiseDosage.CssClass = "noiseLevelCritical";
-            }
-
-            return Json(totalNoiseDosage, JsonRequestBehavior.AllowGet);
-        }
-
-
+        
         public SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
         {
             SelectedTaskViewModel viewModel = new SelectedTaskViewModel
@@ -305,6 +221,63 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             return viewModel;
+        }
+
+        private ValidationErrorSummaryViewModel ValidateInput(RegularViewModel viewModel, Task task)
+        {
+            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+
+            if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - task.NoiseLevelGuideline > 6)
+            {
+                errorSummaryViewModel.ValidationErrors.Add("Calculation is invalid for noise levels that are 7 dBA or more above the guideline.");
+            }
+
+            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
+            {
+                errorSummaryViewModel.ValidationErrors.Add("Task work time must be specified, either as hours/minutes or percentage of daily dosage");
+            }
+
+            return errorSummaryViewModel;
+        }
+
+
+        private SelectedTask CreateSelectedTaskRegular(RegularViewModel viewModel, Task task)
+        {
+            SelectedTask selectedTask = new SelectedTask
+            {
+                Title = task.Title,
+                Role = task.Role.Title,
+                NoiseProtection = task.NoiseProtection.Title,
+                TaskId = task.Id,
+                CreatedBy = User.Identity.Name,
+                CreatedDate = DateTime.Now.Date
+            };
+
+            int noiseLevelMeasured = string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) ? 0 : int.Parse(viewModel.NoiseLevelMeassured);
+            if (noiseLevelMeasured > task.NoiseLevelGuideline)
+            {
+                selectedTask.NoiseLevel = noiseLevelMeasured;
+            }
+            else
+            {
+                selectedTask.NoiseLevel = task.NoiseLevelGuideline;
+            }
+
+            if (string.IsNullOrEmpty(viewModel.Percentage))
+            {
+                selectedTask.Hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
+                selectedTask.Minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
+                selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevelMeasured, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
+            }
+            else
+            {
+                selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
+                TimeSpan timeSpan = task.CalculateTimeSpan(noiseLevelMeasured, selectedTask.Percentage);
+                selectedTask.Hours = timeSpan.Hours;
+                selectedTask.Minutes = timeSpan.Minutes;
+            }
+
+            return selectedTask;
         }
     }
 }

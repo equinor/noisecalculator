@@ -108,7 +108,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             return Json(totalNoiseDosage, JsonRequestBehavior.AllowGet);
         }
 
-
         public SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
         {
             SelectedTaskViewModel viewModel = new SelectedTaskViewModel
