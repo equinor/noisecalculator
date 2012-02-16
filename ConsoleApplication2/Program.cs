@@ -38,21 +38,9 @@ namespace ConsoleApplication2
             report.TextFields.Title = "Products Report";
             report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
             report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
-//            report.TextFields.Header = string.Format(@"
-//    Report Generated: {0}
-//    Total Products: {1}
-//    Total Orders: {2}
-//    Total Sales: {3:c}", DateTime.Now, totalProducts, totalOrders, totalProducts * totalOrders);
-
 
             // Render hints allow you to pass additional hints to the reports as they are being rendered
             report.RenderHints.BooleanCheckboxes = true;
-
-
-            // Customize the data fields
-            //report.DataFields["Id"].Hidden = true;
-            //report.DataFields["Price"].DataFormatString = "{0:c}";
-            //report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
 
             var writer = new DoddleReport.iTextSharp.PdfReportWriter();
             writer.WriteReport(report, new FileStream(@"C:\test\testing.pdf", FileMode.Create));
