@@ -210,7 +210,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             Task task = _taskDAO.Get(selectedTask.TaskId);
 
-            if (task.Role.RoleType == RoleTypeEnum.Regular)
+            if (task.Role.RoleType == RoleTypeEnum.Regular || task.Role.RoleType == RoleTypeEnum.Rotation)
             {
                 viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
                 viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
@@ -277,7 +277,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
-                selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevelMeasured, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
+                selectedTask.Percentage = (int)task.CalculatePercentage(noiseLevelMeasured, timeSpan);
             }
             else
             {
