@@ -41,6 +41,14 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Gios Pdf.NET, Version=1.0.4434.30260, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Gios Pdf.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.6.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -52,6 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +88,8 @@
     <Compile Include="Mapping\TaskMap.cs" />
     <Compile Include="NHibernate\ISessionFactoryManager.cs" />
     <Compile Include="NHibernate\SessionFactoryManager.cs" />
+    <Compile Include="Pdf\IPdfExporter.cs" />
+    <Compile Include="Pdf\PdfExporterGios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +101,12 @@
       <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>
       <Name>NoiseCalculator.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\Gios Pdf.NET.dll" />
+    <Content Include="Libs\Gios Pdf.NET.pdb" />
+    <Content Include="Libs\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Pdf\Gios PDF Generator.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
