@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoiseCalculator.Domain.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{AE00E107-8EAF-4AFC-AA8E-C24AB4B7694C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfReportGenerator", "..\..\..\..\..\..\appl\ASP_MVC3_PDF_Reporting_src\PdfReportGenerator\PdfReportGenerator.csproj", "{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
@@ -107,6 +109,16 @@ Global
 		{AE00E107-8EAF-4AFC-AA8E-C24AB4B7694C}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AE00E107-8EAF-4AFC-AA8E-C24AB4B7694C}.Release|x86.ActiveCfg = Release|x86
 		{AE00E107-8EAF-4AFC-AA8E-C24AB4B7694C}.Release|x86.Build.0 = Release|x86
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.Infrastructure.Pdf;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Controllers
@@ -14,11 +17,13 @@ namespace NoiseCalculator.UI.Web.Controllers
     {
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
+        private readonly IPdfExporter _pdfExporter;
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
+            _pdfExporter = pdfExporter;
         }
         
 
@@ -31,6 +36,17 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             return View(selectedTasks);
+        }
+
+
+        public FileStreamResult PdfReport()
+        {
+            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
+            Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks);
+
+            HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
+            
+            return new FileStreamResult(memoryStream, "application/pdf");
         }
 
 

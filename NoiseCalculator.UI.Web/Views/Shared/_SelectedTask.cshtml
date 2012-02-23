@@ -1,5 +1,4 @@
-﻿@*@model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel*@
-@model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
+﻿@model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
 
 <div id="@Model.Id" class="task">
     <div class="emulatedEditButton">
@@ -7,7 +6,7 @@
         <span style="color: White; font-weight: bold;">Edit</span>
     </div>
 
-    <div class="taskGrouping">
+    <div class="taskGrouping" style="width: 440px; max-width: 440px;">
         <p>
             <label for="Task" class="label-small40">Task</label>
             <span id="Task" style="font-weight: bold;">: @Model.Title</span>
@@ -19,7 +18,7 @@
         </p>
     </div>
 
-    <div class="taskGrouping">
+    <div class="taskGrouping" style="width: 320px; max-width: 320px;">
         <p>
             <label for="HelicopterNoiseProtection" class="label-normal120">Noise Protection</label>
             <span id="NoiseProtection" style="font-weight: bold;">: @Model.NoiseProtection</span>
@@ -28,7 +27,6 @@
         <p>
             <label for="NoiseLevel" class="label-normal120">Noise Level</label>
             <span id="NoiseLevel" style="font-weight: bold;">: @Model.NoiseLevel dBA</span>
-            @*UPDATE WITH VIEW MODEL WITH ONLY ONE NOISE LEVEL, the one in use*@
         </p>
     </div>
 
@@ -44,7 +42,7 @@
         </p>
     </div>
     
-    <div class="emulatedRemoveButton" id = "@Model.Title">
+    <div class="emulatedRemoveButton">
         <img src="../../Content/cancel.png" class="taskIcon" />
         <span style="color: White; font-weight: bold;">Remove</span>
     </div>

@@ -8,19 +8,12 @@
 <select id="taskSelect" size="8" style="width: 500px;">
     @foreach (Task task in Model)
     {
-        @*<option value="@task.Id">@task.Title, (@task.Role.Title)</option>*@
         <option value="@task.Id">@task.Title</option>
     }
 </select>
 
 <input type="button" id="useTask" value="Use Task" />
-@*<div id="useTask" class="emulatedAddButton">
-    <img src="@Url.Content("~/Content/arrow_down.png")" class="buttonIcon" />
-    <span class="buttonText">Use</span>
-</div>*@
 
 <br clear="all" />
     
-<div id="taskForm">
-    <h2>Select a task</h2>
-</div>
+<div id="taskForm"></div>

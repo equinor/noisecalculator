@@ -3,6 +3,7 @@ using Ninject.Modules;
 using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.NHibernate;
+using NoiseCalculator.Infrastructure.Pdf;
 
 namespace NoiseCalculator.NinjectBootstrapper
 {
@@ -19,6 +20,8 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<ISelectedTaskDAO>().To<SelectedTaskDAO>();
             Bind<IHelicopterTaskDAO>().To<HelicopterTaskDAO>();
             Bind<IRoleDAO>().To<RoleDAO>();
+
+            Bind<IPdfExporter>().To<PdfExporterGios>();
         }
     }
 }

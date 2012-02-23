@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
@@ -106,6 +107,8 @@ namespace NoiseCalculator.UI.Web.Controllers
             };
 
             AppendHelideckMasterData(viewModel);
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_EditHelideckTask", viewModel);
         }
