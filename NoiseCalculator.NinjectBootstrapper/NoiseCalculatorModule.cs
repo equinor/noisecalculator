@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using Ninject.Modules;
+using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.NHibernate;
@@ -22,6 +23,8 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<IRoleDAO>().To<RoleDAO>();
 
             Bind<IPdfExporter>().To<PdfExporterGios>();
+
+            Bind<INoiseLevelService>().To<NoiseLevelService>();
         }
     }
 }

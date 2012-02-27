@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
+      <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>
+      <Name>NoiseCalculator.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NoiseCalculator.Infrastructure\NoiseCalculator.Infrastructure.csproj">
       <Project>{C505DC7D-895E-4393-A43E-33B7CCC97D73}</Project>
       <Name>NoiseCalculator.Infrastructure</Name>

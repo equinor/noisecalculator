@@ -6,15 +6,48 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using Gios.Pdf;
+using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Pdf
 {
     public class PdfExporterGios : IPdfExporter
     {
+        private INoiseLevelService _noiseLevelService;
+
+        public PdfExporterGios(INoiseLevelService noiseLevelService)
+        {
+            _noiseLevelService = noiseLevelService;
+        }
+
+        private Color GetColorForNoiseLevel(NoiseLevelEnum noiseLevelEnum)
+        {
+            switch (noiseLevelEnum)
+            {
+                case NoiseLevelEnum.Critical:
+                    {
+                        return Color.Red;
+                    }
+                case NoiseLevelEnum.Warning:
+                    {
+                        return Color.Yellow;
+                    }
+                default:
+                    {
+                        return Color.GreenYellow;
+                    }
+            }
+        }
+
         public Stream GenerateSelectedTasksPDF(IEnumerable<SelectedTask> selectedTasks)
         {
             DataTable dataTable = GenerateDataTable(selectedTasks);
+            
+            int totalNoiseDosage = selectedTasks.Sum(x => x.Percentage);
+            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage);
+            Color noiseLevelColor = GetColorForNoiseLevel(noiseLevelEnum);
+
+            
 
             // Starting instantiate the document.
 		    // Remember to set the Docuement Format. In this case, we specify width and height.
@@ -49,18 +82,27 @@ namespace NoiseCalculator.Infrastructure.Pdf
 			    PdfPage newPdfPage = myPdfDocument.NewPage();
 
                 // LAKHA
-                PdfArea pdfArea = new PdfArea(myPdfDocument, 48, 60, 750, 670);
+                PdfArea pdfArea = new PdfArea(myPdfDocument, 48, 65, 750, 670);
 
 			    PdfTablePage newPdfTablePage = myPdfTable.CreateTablePage(pdfArea);
 				
 			    // we also put a Label 
-                PdfTextArea pta = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Red
+                PdfTextArea pta = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
                     , new PdfArea(myPdfDocument, 48, 20, 595, 60), ContentAlignment.TopLeft, "Mine Oppgaver");
+
+                PdfRectangle summaryBackground = new PdfArea(myPdfDocument, 635, 10, 165, 45).ToRectangle(noiseLevelColor, noiseLevelColor);
+                
+                // LAKHA - Total prosent
+                PdfTextArea summary = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 650, 20, 595, 60), ContentAlignment.TopLeft, string.Format("Totalt: {0}%", totalNoiseDosage));
+
 				
 			    // nice thing: we can put all the objects in the following lines, so we can have
 			    // a great control of layer sequence... 
 			    newPdfPage.Add(newPdfTablePage);
 			    newPdfPage.Add(pta);
+                newPdfPage.Add(summaryBackground);
+                newPdfPage.Add(summary);
 			    
                 // we save each generated page before start rendering the next.
 			    newPdfPage.SaveToDocument();			
@@ -76,7 +118,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
 
 
-        private static DataTable GenerateDataTable(IEnumerable<SelectedTask> selectedTasks)
+        private DataTable GenerateDataTable(IEnumerable<SelectedTask> selectedTasks)
         {
             const string titleHeading = "Title";
             const string roleHeading = "Role";

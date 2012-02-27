@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
+using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.Pdf;
@@ -18,12 +19,14 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IPdfExporter _pdfExporter;
+        private readonly INoiseLevelService _noiseLevelService;
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter, INoiseLevelService noiseLevelService)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
             _pdfExporter = pdfExporter;
+            _noiseLevelService = noiseLevelService;
         }
         
 
@@ -104,20 +107,21 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
             totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
+            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage.Percentage);
             
-            if(totalNoiseDosage.Percentage < 75)
+            if(noiseLevelEnum == NoiseLevelEnum.Normal)
             {
                 //totalNoiseDosage.StatusText = "Noise level is considered safe";
                 totalNoiseDosage.StatusText = "Støynivå er under øvre grense og regnes som trygt";
                 totalNoiseDosage.CssClass = "noiseLevelNormal";
             }
-            else if(totalNoiseDosage.Percentage >= 75 && totalNoiseDosage.Percentage < 100)
+            else if(noiseLevelEnum == NoiseLevelEnum.Warning)
             {
                 //totalNoiseDosage.StatusText = "Noise level is approaching allowed limits";
                 totalNoiseDosage.StatusText = "Støynivå nærmer seg øvre grense";
                 totalNoiseDosage.CssClass = "noiseLevelWarning";
             }
-            else if (totalNoiseDosage.Percentage >= 100)
+            else if (noiseLevelEnum == NoiseLevelEnum.Critical)
             {
                 //totalNoiseDosage.StatusText = "Unsafe daily noise dosage";
                 totalNoiseDosage.StatusText = "Arbeid ved beregnet støyeksponering er ikke tillatt!";

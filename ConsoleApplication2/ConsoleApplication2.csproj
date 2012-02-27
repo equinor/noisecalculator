@@ -111,8 +111,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="libs\" />
+    <Content Include="libs\DoddleReport.dll" />
+    <Content Include="libs\DoddleReport.iTextSharp.dll" />
+    <Content Include="libs\DoddleReport.iTextSharp.pdb" />
+    <Content Include="libs\DoddleReport.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
