@@ -53,14 +53,11 @@ namespace NoiseCalculator.Infrastructure.Pdf
 		    // Remember to set the Docuement Format. In this case, we specify width and height.
             PdfDocument myPdfDocument = new PdfDocument(PdfDocumentFormat.A4_Horizontal);
 		    
-            // Now we create a Table of 100 lines, 6 columns and 4 points of Padding.
+            // Now we create a Table with lines likt the number of selected tasks, 6 columns and 4 points of Padding.
             PdfTable myPdfTable = myPdfDocument.NewTable(new Font("Verdana", 12), selectedTasks.Count(), 6, 4);
 
 		    // Importing datas from the datatables... (also column names for the headers!)
             myPdfTable.ImportDataTable(dataTable);
-
-		    // Sets the format for correct date-time representation
-		    //myPdfTable.Columns[2].SetContentFormat("{0:dd/MM/yyyy}");
 
 		    // Now we set our Graphic Design: Colors and Borders...
 		    myPdfTable.HeadersRow.SetColors(Color.White, Color.Navy);
@@ -69,11 +66,14 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
 		    // With just one method we can set the proportional width of the columns.
 		    // It's a "percentage like" assignment, but the sum can be different from 100.
-            myPdfTable.SetColumnsWidth(new int[] { 100, 20, 40, 20, 20, 10 });
+            myPdfTable.SetColumnsWidth(new int[] { 90, 25, 45, 20, 20, 10 });
 
 		    // Now we set some alignment... for the whole table and then, for a column.
 		    myPdfTable.SetContentAlignment(ContentAlignment.MiddleCenter);
-		    myPdfTable.Columns[1].SetContentAlignment(ContentAlignment.MiddleLeft);
+            foreach (PdfColumn pdfColumn in myPdfTable.Columns)
+            {
+                pdfColumn.SetContentAlignment(ContentAlignment.MiddleLeft);
+            }
 			
 		    // Here we start the loop to generate the table...
 		    while (!myPdfTable.AllTablePagesCreated)
