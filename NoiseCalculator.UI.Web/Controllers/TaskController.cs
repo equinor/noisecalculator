@@ -42,14 +42,18 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        public FileStreamResult PdfReport()
+        public ActionResult PdfReport()
         {
             IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
-            Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks);
-
-            HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
             
-            return new FileStreamResult(memoryStream, "application/pdf");
+            if(selectedTasks.Count() > 0)
+            {
+                Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks);
+                HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
+                return new FileStreamResult(memoryStream, "application/pdf");
+            }
+
+            return new EmptyResult();
         }
 
 

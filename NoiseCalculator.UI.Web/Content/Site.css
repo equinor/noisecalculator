@@ -246,27 +246,31 @@ p
 .dialogButton
 {
     float: left;
-    /*background-color: white;*/
-    background-color: lightgray;
+    /*background-color: white;
+    background-color: lightgray;*/
+    background-color: #333;
     border: 3px solid grey; 
     padding: 2px; 
     padding-left: 5px; 
     padding-right: 10px; 
+    font-weight: bold; 
+    color: White;
 }
 
 .dialogButton:hover
 {
     cursor: pointer;
-    color: black;
-    background-color: white;
+    /*color: black;
+    background-color: white;*/
+    color: #f8ed37
 }
 
-.dialogButtonText 
+/*.dialogButtonText 
 {
     margin-left: 5px; 
     font-weight: bold; 
     color: black;
-}
+}*/
 
 .buttonIcon 
 {
@@ -276,13 +280,6 @@ p
     vertical-align: middle;
     margin-right: 5px;
 }
-
-/*.buttonText 
-{
-    margin-left: 5px; 
-    font-weight: bold; 
-    color: White;
-}*/
 
 .emulatedAddButton
 {
