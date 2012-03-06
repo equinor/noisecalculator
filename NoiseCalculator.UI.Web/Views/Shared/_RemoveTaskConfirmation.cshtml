@@ -1,0 +1,29 @@
+﻿@model NoiseCalculator.UI.Web.ViewModels.RemoveConfirmationViewModel
+
+<input id="dialogTitleConfirmRemove" type="hidden" value="@Model.DialogTitle" />
+
+<div class="removeTaskConfirmDialog">
+    
+    <p>
+        <span class="label-small40">Title</span>
+        <strong>: @Model.Title</strong>
+    </p>
+    
+    <p>
+        <span class="label-small40">Role</span>
+        <strong>: @Model.Role</strong>
+    </p>
+
+    <p>
+        <div id="confirmRemove" class="dialogButton" style="margin-top: 10px; margin-left: 20px;" >
+            <img src="@Url.Content("~/Content/bin_closed.png")" class="buttonIcon" />
+            <span class="dialogButtonText">Remove</span>
+        </div>
+        
+        <div id="cancelRemove" class="dialogButton" style="margin-top: 10px; margin-left: 40px;" >
+            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+            <span class="dialogButtonText">Cancel</span>
+        </div>
+    </p>
+    
+</div>

@@ -1,4 +1,7 @@
-﻿$(document).ready(function () {
+﻿// Initialize event handlers
+setAllEvents();
+
+$(document).ready(function () {
     $("#addTask").click(function () {
         openTaskDialog();
     });
@@ -6,6 +9,42 @@
     updateTotalPercentage();
 });
 
+function setAllEvents() {
+    var $mainContainer = $("#taskList");
+
+    // Click remove task
+    $mainContainer.find(".emulatedRemoveButton").live("click", function () {
+        var $item = $(this).closest(".task");
+
+        $("#deleteConfirmDialog")
+            .empty()
+            .load(getRemoveTaskConfirmationUrl + "/" + $item.attr("id"), function () {
+
+                $("#confirmRemove").click(function () {
+                    removeTask($item);
+                    closeRemoveConfirmDialog();
+                });
+
+                $("#cancelRemove").click(function () {
+                    closeRemoveConfirmDialog();
+                });
+
+                $(this).dialog({
+                    title: $("#dialogTitleConfirmRemove").val(),
+                    modal: true,
+                    resizable: false,
+                    width: 'auto',
+                    position: [250, 80]
+                });
+            });
+    });
+
+    // Click edit task
+    $mainContainer.find(".emulatedEditButton").live("click", function () {
+        var $item = $(this).closest(".task");
+        editTask($item);
+    });
+}
 
 function openTaskDialog() {
     $("#taskDialog")
@@ -125,26 +164,6 @@ function replaceTaskInTaskList(result) {
     updateTotalPercentage();
 }
 
-
-function setAllEvents() {
-    var $mainContainer = $("#taskList");
-    
-    // Click remove task
-    $mainContainer.find(".emulatedRemoveButton").live("click", function () {
-        var $item = $(this).closest(".task");
-        removeTask($item);
-    });
-    
-    // Click edit task
-    $mainContainer.find(".emulatedEditButton").live("click", function () {
-        var $item = $(this).closest(".task");
-        editTask($item);
-    });
-}
-
-setAllEvents();
-
-
 function updateTotalPercentage() {
     $.ajax({
         type: "GET",
@@ -222,6 +241,10 @@ function editTask(taskDiv) {
 
 function closeTaskDialog() {
     $("#taskDialog").dialog('close');
+}
+
+function closeRemoveConfirmDialog() {
+    $("#deleteConfirmDialog").dialog('close');
 }
 
 function enableNoiseMeasuredInput() {
@@ -334,7 +357,7 @@ function showValidationError(jqXHR) {
         resizable: false,
         show: { effect: 'fade', duration: 500 },
         width: 600,
-        title: $("#validationDialogTitle").text(),
+        title: $("#validationDialogDialogTitle").text(),
         position: [200, 80],
         cache: false
     });

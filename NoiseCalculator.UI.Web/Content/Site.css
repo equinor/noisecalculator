@@ -13,44 +13,6 @@ body {
                   sans-serif;
 }
 
-a:link {
-    /**/
-}
-
-a:visited {
-    /**/
-}
-
-a:hover {
-    /**/
-}
-
-a:active {
-    /**/
-}
-
-p, ul {
-    /**/
-}
-
-/*header,
-footer,
-nav,
-section {
-    display: block;
-}*/
-
-/* HEADINGS   
-----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6 {
-    /**/
-}
-
-h1 {
-    /**/
-}
-
-
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
@@ -281,19 +243,63 @@ p
 }
 /* ------ */
 
-.emulatedAddButton
+.dialogButton
 {
     float: left;
-    background-color: #333; 
-    border: 3px solid white; 
+    /*background-color: white;*/
+    background-color: lightgray;
+    border: 3px solid grey; 
     padding: 2px; 
     padding-left: 5px; 
     padding-right: 10px; 
 }
 
+.dialogButton:hover
+{
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
+.dialogButtonText 
+{
+    margin-left: 5px; 
+    font-weight: bold; 
+    color: black;
+}
+
+.buttonIcon 
+{
+    width: 20px; 
+    height: 20px; 
+    display: inline; 
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/*.buttonText 
+{
+    margin-left: 5px; 
+    font-weight: bold; 
+    color: White;
+}*/
+
+.emulatedAddButton
+{
+    float: left;
+    background-color: #333;
+    border: 3px solid white; 
+    padding: 2px; 
+    padding-left: 5px; 
+    padding-right: 10px; 
+    font-weight: bold; 
+    color: White;
+}
+
 .emulatedAddButton:hover
 {
     cursor: pointer;
+    color: #f8ed37
 }
 
 .taskIcon
@@ -381,21 +387,6 @@ p
     background-color: red; 
 }
 
-.buttonIcon 
-{
-    width: 20px; 
-    height: 20px; 
-    display: inline; 
-    vertical-align: middle;
-}
-
-.buttonText 
-{
-    margin-left: 5px; 
-    font-weight: bold; 
-    color: White;
-}
-
 #totalDailyText 
 {
     font-weight: bold;
@@ -417,6 +408,8 @@ p
     margin-right: auto; 
     margin-bottom: 10px;
 }
+
+.removeTaskConfirmDialog
 
 /*<p style="color: #f8ed37">Hoover style</p>
 <p style="color: #ff26a4">Pink border color</p>*/

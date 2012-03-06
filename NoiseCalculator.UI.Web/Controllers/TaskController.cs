@@ -87,6 +87,22 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
         }
 
+        public ActionResult GetRemoveTaskConfirmationDialog(int id)
+        {
+            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+
+            RemoveConfirmationViewModel viewModel = new RemoveConfirmationViewModel
+                                                        {
+                                                            DialogTitle = "Remove Task?",
+                                                            Title = selectedTask.Title,
+                                                            Role = selectedTask.Role,
+                                                            SelectedTaskId = selectedTask.Id
+                                                        };
+
+            return PartialView("_RemoveTaskConfirmation", viewModel);
+        }
+
+        [HttpPost]
         public ActionResult RemoveTask(int id)
         {
             try
