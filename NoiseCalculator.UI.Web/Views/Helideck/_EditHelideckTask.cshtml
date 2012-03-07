@@ -1,10 +1,11 @@
-﻿@model NoiseCalculator.UI.Web.ViewModels.HelideckViewModel
+﻿@using NoiseCalculator.UI.Web.Resources
+@model NoiseCalculator.UI.Web.ViewModels.HelideckViewModel
 
 <form method="POST" action="@Url.Action("EditTaskHelideck", new { Id = Model.SelectedTaskId })" id="editForm">
     @Html.Partial("_TaskFormHelideck", Model)
     
     <div id="editFormButtons">
-        <input id="submitButton" type="button" value="Save Changes" class="clear" />
-        <input id="taskFormCloseButton" type="button" value="Cancel" style="margin-left: 100px;" />
+        <input id="submitButton" type="button" value="@TaskResources.TaskFormButtonSubmitEdit" class="clear" />
+        <input id="taskFormCloseButton" type="button" value="@TaskResources.TaskFormButtonClose" style="margin-left: 100px;" />
     </div>
 </form>

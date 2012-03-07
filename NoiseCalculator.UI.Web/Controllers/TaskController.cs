@@ -10,6 +10,7 @@ using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.Pdf;
+using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Controllers
@@ -97,7 +98,6 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             RemoveConfirmationViewModel viewModel = new RemoveConfirmationViewModel
                                                         {
-                                                            DialogTitle = "Remove Task?",
                                                             Title = selectedTask.Title,
                                                             Role = selectedTask.Role,
                                                             SelectedTaskId = selectedTask.Id
@@ -128,24 +128,21 @@ namespace NoiseCalculator.UI.Web.Controllers
             TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
             totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
             NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage.Percentage);
-            
-            if(noiseLevelEnum == NoiseLevelEnum.Normal)
+
+            switch (noiseLevelEnum)
             {
-                //totalNoiseDosage.StatusText = "Noise level is considered safe";
-                totalNoiseDosage.StatusText = "Støynivå er under øvre grense og regnes som trygt";
-                totalNoiseDosage.CssClass = "noiseLevelNormal";
-            }
-            else if(noiseLevelEnum == NoiseLevelEnum.Warning)
-            {
-                //totalNoiseDosage.StatusText = "Noise level is approaching allowed limits";
-                totalNoiseDosage.StatusText = "Støynivå nærmer seg øvre grense";
-                totalNoiseDosage.CssClass = "noiseLevelWarning";
-            }
-            else if (noiseLevelEnum == NoiseLevelEnum.Critical)
-            {
-                //totalNoiseDosage.StatusText = "Unsafe daily noise dosage";
-                totalNoiseDosage.StatusText = "Arbeid ved beregnet støyeksponering er ikke tillatt!";
-                totalNoiseDosage.CssClass = "noiseLevelCritical";
+                case NoiseLevelEnum.Normal:
+                    totalNoiseDosage.StatusText = TaskResources.NoiseLevelStatusTextNormal;
+                    totalNoiseDosage.CssClass = "noiseLevelNormal";
+                    break;
+                case NoiseLevelEnum.Warning:
+                    totalNoiseDosage.StatusText = TaskResources.NoiseLevelStatusTextWarning;
+                    totalNoiseDosage.CssClass = "noiseLevelWarning";
+                    break;
+                case NoiseLevelEnum.Critical:
+                    totalNoiseDosage.StatusText = TaskResources.NoiseLevelStatusTextCritical;
+                    totalNoiseDosage.CssClass = "noiseLevelCritical";
+                    break;
             }
 
             return Json(totalNoiseDosage, JsonRequestBehavior.AllowGet);

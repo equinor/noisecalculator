@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
 
@@ -156,20 +157,20 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (viewModel.HelicopterId == 0)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
-                errorSummaryViewModel.ValidationErrors.Add("Helikopter må være valgt.");
+                //errorSummaryViewModel.ValidationErrors.Add("Helikopter må være valgt.");
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterTypeRequired);
             }
 
             if (viewModel.NoiseProtectionId == 0)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
-                errorSummaryViewModel.ValidationErrors.Add("Høselsvern må være valgt.");
+                //errorSummaryViewModel.ValidationErrors.Add("Høselsvern må være valgt.");
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterNoiseLevelRequired);
             }
 
             if (viewModel.WorkIntervalId == 0)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Helicopter, noise protection and work interval must be selected to add the task.");
-                errorSummaryViewModel.ValidationErrors.Add("Arbeidstid må være valgt.");
+                //errorSummaryViewModel.ValidationErrors.Add("Arbeidstid må være valgt.");
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterWorkIntervalRequired);
             }
 
             return errorSummaryViewModel;
@@ -186,33 +187,18 @@ namespace NoiseCalculator.UI.Web.Controllers
                 NoiseProtection = selectedTask.NoiseProtection,
                 NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
                 TaskId = selectedTask.TaskId,
-                HelicopterTaskId = selectedTask.HelicopterTaskId
+                HelicopterTaskId = selectedTask.HelicopterTaskId,
+                Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture),
+                Hours = "0",
+                Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
-
-
-            Task task = _taskDAO.Get(selectedTask.TaskId);
-
-            if (task.Role.RoleType == RoleTypeEnum.Regular)
-            {
-                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
-                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                // HELIDECK
-                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                viewModel.Hours = "0";
-                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-            }
-
 
             return viewModel;
         }
 
         private void AppendHelideckMasterData(HelideckViewModel viewModel)
         {
-            viewModel.Helicopters.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            viewModel.Helicopters.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
             foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
             {
                 SelectListItem selectListItem = new SelectListItem { Text = type.Title, Value = type.Id.ToString() };
@@ -223,7 +209,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 viewModel.Helicopters.Add(selectListItem);
             }
 
-            viewModel.NoiseProtection.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
             foreach (HelicopterNoiseProtection noiseProtection in _helicopterNoiseProtectionDAO.GetAll())
             {
                 SelectListItem selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
@@ -234,7 +220,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 viewModel.NoiseProtection.Add(selectListItem);
             }
 
-            viewModel.WorkIntervals.Add(new SelectListItem { Text = "-- Select One --", Value = "0" });
+            viewModel.WorkIntervals.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
             foreach (HelicopterWorkInterval workInterval in _helicopterWorkIntervalDAO.GetAll())
             {
                 SelectListItem selectListItem = new SelectListItem { Text = workInterval.Title, Value = workInterval.Id.ToString() };

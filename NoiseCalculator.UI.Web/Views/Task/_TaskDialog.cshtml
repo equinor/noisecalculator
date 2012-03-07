@@ -1,7 +1,8 @@
 ﻿@using NoiseCalculator.Domain.Entities
+@using NoiseCalculator.UI.Web.Resources
 @model IEnumerable<Task>
 
-<span style="font-size: larger; font-weight: bold;">Add Task</span>
+<span style="font-size: larger; font-weight: bold;">@TaskResources.TaskDialogTitle</span>
 
 <input type="hidden" id="formType" />
 
@@ -12,7 +13,7 @@
     }
 </select>
 
-<input type="button" id="useTask" value="Use Task" />
+<input type="button" id="useTask" value="@TaskResources.TaskDialogButtonUseTask" />
 
 <br clear="all" />
     

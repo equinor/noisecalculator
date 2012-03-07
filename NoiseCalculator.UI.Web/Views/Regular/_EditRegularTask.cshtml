@@ -1,10 +1,11 @@
-﻿@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
+﻿@using NoiseCalculator.UI.Web.Resources
+@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
 
 <form method="POST" action="@Url.Action("EditTaskRegular", new { Id = Model.SelectedTaskId})" id="editForm" >
     @Html.Partial("_TaskFormRegular", Model)
     
     <div id="editFormButtons">
-        <input id="submitButton" type="button" value="Save Changes" class="clear" />
-        <input id="taskFormCloseButton" type="button" value="Cancel" style="margin-left: 100px;" />
+        <input id="submitButton" type="button" value="@TaskResources.TaskFormButtonSubmitEdit" class="clear" />
+        <input id="taskFormCloseButton" type="button" value="@TaskResources.TaskFormButtonClose" style="margin-left: 100px;" />
     </div>
 </form>

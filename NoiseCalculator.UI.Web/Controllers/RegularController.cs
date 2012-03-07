@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
 
@@ -204,25 +205,10 @@ namespace NoiseCalculator.UI.Web.Controllers
                 NoiseProtection = selectedTask.NoiseProtection,
                 NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
                 TaskId = selectedTask.TaskId,
-                HelicopterTaskId = selectedTask.HelicopterTaskId
+                Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture),
+                Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
+                Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
-
-
-            Task task = _taskDAO.Get(selectedTask.TaskId);
-
-            if (task.Role.RoleType == RoleTypeEnum.Regular || task.Role.RoleType == RoleTypeEnum.Rotation)
-            {
-                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
-                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                // HELIDECK
-                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                viewModel.Hours = "0";
-                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-            }
 
             return viewModel;
         }
@@ -233,14 +219,14 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - task.NoiseLevelGuideline > 6)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Calculation is invalid for noise levels that are 7 dBA or more above the guideline.");
-                errorSummaryViewModel.ValidationErrors.Add("Kalkulasjonen er ugyldig for støynivå 7 dBA eller mer over Guidline.");
+                //errorSummaryViewModel.ValidationErrors.Add("Kalkulasjonen er ugyldig for støynivå 7 dBA eller mer over Guidline.");
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidline);
             }
 
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Task work time must be specified, either as hours/minutes or percentage of daily dosage");
-                errorSummaryViewModel.ValidationErrors.Add("Oppgavens arbeidstid må oppgis, enten som timer/minutter eller prosent av daglig dose.");
+                //errorSummaryViewModel.ValidationErrors.Add("Oppgavens arbeidstid må oppgis, enten som timer/minutter eller prosent av daglig dose.");
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
             }
 
             return errorSummaryViewModel;

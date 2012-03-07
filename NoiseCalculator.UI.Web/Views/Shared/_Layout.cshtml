@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using NoiseCalculator.UI.Web.Resources
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -10,10 +11,10 @@
 <body>
     <div class="header">
         <img src="@Url.Content("~/Content/Statoil_logo.gif")" style="float: left;" />
-        <span id="applicationTitle">Noise Calculator</span>
+        <span id="applicationTitle">@TaskResources.ApplicationTitle</span>
             
         <div style="color: White; text-align: right; position: relative;" >
-            Welcome <strong>@User.Identity.Name</strong>!
+            @TaskResources.LayoutUserLabel: <strong>@User.Identity.Name</strong>!
             <br />
             <img src="@Url.Content("~/Content/no.png")" width="22" height="16" />
             <img src="@Url.Content("~/Content/gb.png")" width="22" height="16" />

@@ -1,30 +1,31 @@
-﻿@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
+﻿@using NoiseCalculator.UI.Web.Resources
+@model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
 
-<input type="hidden" value="@Model.TaskId" id="taskId" />
-<input type="hidden" value="@Model.RoleType" id="roleType" />
-<input type="hidden" value="@Model.SelectedTaskId" class="selectedTaskId" />
+<input id="taskId" type="hidden" value="@Model.TaskId" />
+<input id="roleType" type="hidden" value="@Model.RoleType" />
+<input class="selectedTaskId" type="hidden" value="@Model.SelectedTaskId" />
 
 <p>
-    <label for="DialogTitle" class="label-130px">Task</label>
+    <label for="Title" class="label-130px">@TaskResources.TaskTitleLabel</label>
     <span id="Title">: @Model.Title</span>
 </p>
 
 <p>
-    <label for="Role" class="label-130px">Role</label>
+    <label for="Role" class="label-130px">@TaskResources.TaskRoleLabel</label>
     <span id="Role">: @Model.Role</span>
 </p>
 
 <p style="margin-bottom: 2px; margin-top: 15px;">
-    <label class="label-130px">Noise Measured</label>
+    <label class="label-130px">@TaskResources.TaskFormRegularNoiseMeasuredLabel</label>
     :
     <span class="span80">
-        <input type="radio" name="group1" value="false" id="noiseMeasuredNo" @Model.RadioNoiseMeassuredNoCheckedAttr />
-        <label for="noiseMeasuredNo">No</label>
+        <input id="noiseMeasuredNo" type="radio" name="group1" value="false" @Model.RadioNoiseMeassuredNoCheckedAttr />
+        <label for="noiseMeasuredNo">@TaskResources.No</label>
     </span>
             
     <span class="span80">
-        <input type="radio" name="group1" id="noiseMeasuredYes" @Model.RadioNoiseMeassuredYesCheckedAttr />
-        <label for="noiseMeasuredYes">Yes</label>
+        <input id="noiseMeasuredYes" type="radio" name="group1" @Model.RadioNoiseMeassuredYesCheckedAttr />
+        <label for="noiseMeasuredYes">@TaskResources.Yes</label>
     </span>
 </p>
 
@@ -32,38 +33,38 @@
     <label class="label-130px"></label>
     <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.NoiseLevelGuideline</span> dBA</span>
     <span class="span80" id="noiseLevelMeassuredSpan">
-        <input type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" id="noiseLevelMeassured" />
+        <input id="noiseLevelMeassured" type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" />
         dBA
     </span>
 </p>
 
 <p style="margin-top: 10px;">
-    <label class="label-130px">Work specified as</label>
+    <label class="label-130px">@TaskResources.TaskFormRegularWorkAmountTypeLabel</label>
     :
     <span class="span120">
-        <input type="radio" name="group2" value="worktime" id="workTimeRadio" @Model.RadioTimeCheckedAttr />
-        <label for="workTimeRadio">Time</label>
+        <input id="workTimeRadio" type="radio" name="group2" value="worktime" @Model.RadioTimeCheckedAttr />
+        <label for="workTimeRadio">@TaskResources.TaskFormRegularWorkTimeLabel</label>
     </span>
             
     <span class="span120">
-        <input type="radio" name="group2" value="percent" id="percentRadio" @Model.RadioPercentageCheckedAttr />
-        <label for="percentRadio">Percent</label>
+        <input id="percentRadio" type="radio" name="group2" value="percent" @Model.RadioPercentageCheckedAttr />
+        <label for="percentRadio">@TaskResources.TaskFormRegularPercentageLabel</label>
     </span>
 </p>
 
 <p>
-    <label class="label-130px"><span @Html.Raw(Model.RotationDiplayStyle)>Operator</span></label>
+    <label class="label-130px"><span @Html.Raw(Model.RotationDiplayStyle)>@TaskResources.TaskFormRegularOperatorLabel</span></label>
     <span @Html.Raw(Model.RotationDiplayStyle)>:</span>
 
     <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
-        <input type="text" style="width: 20px; height: 13px;" value="@Model.Hours" id="hours" />
-        h
-        <input type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" id="minutes" />
-        min
+        <input id="hours" type="text" style="width: 20px; height: 13px;" value="@Model.Hours" />
+        @TaskResources.HoursUnit
+        <input id="minutes" type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" />
+        @TaskResources.MinutesUnit
     </span>
             
     <span class="span120" id="percentageSpan">
-        <input type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" id="percentage" />
+        <input id="percentage" type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" />
         %
     </span>
 </p>
@@ -74,9 +75,9 @@
 
     <span class="span120" style="margin-left: 8px;" >
         <span id="hoursAssistant" style="margin-left: 3px; margin-right: 3px; width: 20px; height: 13px; display: inline-block;"></span>
-        h
+        @TaskResources.HoursUnit
         <span id="minutesAssistant" style="margin-left: 3px; margin-right: 3px; width: 26px; height: 13px; display: inline-block;"></span>
-        min
+        @TaskResources.MinutesUnit
     </span>
             
     <span class="span120">

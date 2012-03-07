@@ -90,12 +90,22 @@
     <Compile Include="NHibernate\SessionFactoryManager.cs" />
     <Compile Include="Pdf\IPdfExporter.cs" />
     <Compile Include="Pdf\PdfExporterGios.cs" />
+    <Compile Include="Pdf\Resources\ReportResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Pdf\Resources\ReportResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
       <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>

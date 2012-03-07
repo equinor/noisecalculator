@@ -1,20 +1,21 @@
-﻿@model NoiseCalculator.UI.Web.ViewModels.HelideckViewModel
+﻿@using NoiseCalculator.UI.Web.Resources
+@model NoiseCalculator.UI.Web.ViewModels.HelideckViewModel
 
 <input type="hidden" id="TaskId" value="@Model.TaskId" name="TaskId" />
 <input type="hidden" value="@Model.RoleType" id="roleType" />
 
 <p>
-    <label for="DialogTitle" class="label-130px">Task</label>
+    <label for="Title" class="label-130px">@TaskResources.TaskTitleLabel</label>
     <span id="Title">: @Model.Title</span>
 </p>
         
 <p>
-    <label for="Role" class="label-130px">Role</label>
+    <label for="Role" class="label-130px">@TaskResources.TaskRoleLabel</label>
     <span id="Role">: @Model.Role</span>
 </p>
 
 <p style="margin-top: 15px;">
-    <label for="HelicopterId" class="label-130px">Helicopter</label>
+    <label for="HelicopterId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterTypeLabel</label>
     :
     <select id="HelicopterId" class="helicopterDropDown">
     @foreach (SelectListItem item in Model.Helicopters)
@@ -25,7 +26,7 @@
 </p>
 
 <p>
-    <label for="HelicopterNoiseProtectionId" class="label-130px">Noise Protection</label>
+    <label for="NoiseProtectionId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterNoiseProtectionLabel</label>
     :
     <select id="NoiseProtectionId" class="helicopterDropDown">
     @foreach (SelectListItem item in Model.NoiseProtection)
@@ -36,7 +37,7 @@
 </p>
 
 <p>
-    <label for="WorkIntervalId" class="label-130px">Work Interval</label>
+    <label for="WorkIntervalId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
     :
     <select id="WorkIntervalId" class="helicopterDropDown" >
     @foreach (SelectListItem item in Model.WorkIntervals)

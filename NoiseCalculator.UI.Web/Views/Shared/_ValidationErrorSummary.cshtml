@@ -1,8 +1,9 @@
+@using NoiseCalculator.UI.Web.Resources
 @using NoiseCalculator.UI.Web.ViewModels
 @model ValidationErrorSummaryViewModel
 
 <div>
-    <span id="validationDialogTitle" style="display: none;">Errors found in submitted data</span>
+    <input id="validationDialogTitle" type="hidden" value="@TaskResources.ValidationErrorSummaryTitle" />
 
     <ul>
         @foreach(string validationError in Model.ValidationErrors)
@@ -11,5 +12,5 @@
         }
     </ul>
 
-    <input type="button" id="closeErrorDialog" value="Close" style="margin-top: 10px;" />
+    <input type="button" id="closeErrorDialog" value="@TaskResources.ValidationErrorSummaryClose" style="margin-top: 10px;" />
 </div>

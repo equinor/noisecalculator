@@ -1,0 +1,51 @@
+﻿@using NoiseCalculator.UI.Web.Resources
+@model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
+
+<div id="@Model.Id" class="task">
+    <div class="emulatedEditButton">
+        <img src="@Url.Content("~/Content/page_edit.png")" class="taskIcon" />
+        <span style="color: White; font-weight: bold;">@TaskResources.SelectedTaskEditLabel</span>
+    </div>
+
+    <div class="taskGrouping" style="width: 440px; max-width: 440px;">
+        <p>
+            <label for="Task" class="label-small40">@TaskResources.TaskTitleLabel</label>
+            <span id="Task" style="font-weight: bold;">: @Model.Title</span>
+        </p>
+        
+        <p>
+            <label for="Role" class="label-small40">@TaskResources.TaskRoleLabel</label>
+            <span id="Role" style="font-weight: bold;">: @Model.Role</span>
+        </p>
+    </div>
+
+    <div class="taskGrouping" style="width: 320px; max-width: 320px;">
+        <p>
+            <label for="NoiseProtection" class="label-normal120">@TaskResources.SelectedTaskNoiseProtectionLabel</label>
+            <span id="NoiseProtection" style="font-weight: bold;">: @Model.NoiseProtection</span>
+        </p>
+        
+        <p>
+            <label for="NoiseLevel" class="label-normal120">@TaskResources.SelectedTaskNoiseLevelLabel</label>
+            <span id="NoiseLevel" style="font-weight: bold;">: @Model.NoiseLevel dBA</span>
+        </p>
+    </div>
+
+    <div class="taskGrouping">
+        <p>
+            <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
+            <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
+        </p>
+        
+        <p>
+            <label for="PercentDailyDosage" class="label-normal120">@TaskResources.SelectedTaskPercentageDailyDosageLabel</label>
+            <span id="PercentDailyDosage" style="font-weight: bold;">: @Model.Percentage%</span>
+        </p>
+    </div>
+    
+    <div class="emulatedRemoveButton">
+        <img src="../../Content/cancel.png" class="taskIcon" />
+        <span style="color: White; font-weight: bold;">@TaskResources.SelectedTaskRemoveLabel</span>
+    </div>
+    <br clear="all" />
+</div>

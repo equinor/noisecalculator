@@ -1,7 +1,8 @@
-﻿@using NoiseCalculator.UI.Web.ViewModels
+﻿@using NoiseCalculator.UI.Web.Resources
+@using NoiseCalculator.UI.Web.ViewModels
 @model IEnumerable<SelectedTaskViewModel> 
 @{
-    ViewBag.Title = "My Tasks";
+    ViewBag.Title = @TaskResources.IndexTitle;
 }
 
 <script src="../../Scripts/jquery-ui-1.8.16.min.js" type="text/javascript"></script>
@@ -18,7 +19,7 @@
 
 <script src="../../Scripts/Tasks.js" type="text/javascript"></script>
 
-<h2 id="tasklistHeading">My Tasks - <span id="statusText"></span></h2>
+<h2 id="tasklistHeading">@TaskResources.IndexTitle - <span id="statusText"></span></h2>
 
 <div class="separatorDiv"></div>
 
@@ -34,11 +35,11 @@
 @*ADD BUTTON*@
 <div id="addTask" class="emulatedAddButton">
     <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
-    Add Task
+    @TaskResources.IndexButtonAddTask
 </div>
 
 <div id="totalDailyPercentageDiv">
-    <span id="totalDailyText">Total Daily Dosage: </span>
+    <span id="totalDailyText">@TaskResources.IndexTotalDailyDosageLabel: </span>
     <span id="totalDailyPercentage"></span>
 </div>
 
@@ -48,7 +49,7 @@
 <a href="@Url.Action("PdfReport")" style="border: none;">
     <div id="printAsPdf" class="emulatedAddButton" style="margin-top: 10px; float: right;" >
         <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" style="border: none;" />
-        Skriv ut PDF
+        @TaskResources.IndexButtonCreatePdf
     </div>
 </a>
     

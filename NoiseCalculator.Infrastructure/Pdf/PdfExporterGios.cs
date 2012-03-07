@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -8,45 +6,25 @@ using System.Linq;
 using Gios.Pdf;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Infrastructure.Pdf.Resources;
+
 
 namespace NoiseCalculator.Infrastructure.Pdf
 {
     public class PdfExporterGios : IPdfExporter
     {
-        private INoiseLevelService _noiseLevelService;
+        private readonly INoiseLevelService _noiseLevelService;
 
         public PdfExporterGios(INoiseLevelService noiseLevelService)
         {
             _noiseLevelService = noiseLevelService;
         }
 
-        private Color GetColorForNoiseLevel(NoiseLevelEnum noiseLevelEnum)
-        {
-            switch (noiseLevelEnum)
-            {
-                case NoiseLevelEnum.Critical:
-                    {
-                        return Color.Red;
-                    }
-                case NoiseLevelEnum.Warning:
-                    {
-                        return Color.Yellow;
-                    }
-                default:
-                    {
-                        return Color.GreenYellow;
-                    }
-            }
-        }
-
         public Stream GenerateSelectedTasksPDF(IEnumerable<SelectedTask> selectedTasks)
         {
-            DataTable dataTable = GenerateDataTable(selectedTasks);
-            
             int totalNoiseDosage = selectedTasks.Sum(x => x.Percentage);
-            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage);
-            Color noiseLevelColor = GetColorForNoiseLevel(noiseLevelEnum);
-
+            Color noiseLevelColor = GetColorForNoiseLevel(totalNoiseDosage);
+            DataTable dataTable = GenerateDataTable(selectedTasks);
             
 
             // Starting instantiate the document.
@@ -88,13 +66,13 @@ namespace NoiseCalculator.Infrastructure.Pdf
 				
 			    // we also put a Label 
                 PdfTextArea pta = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
-                    , new PdfArea(myPdfDocument, 48, 20, 595, 60), ContentAlignment.TopLeft, "Mine Oppgaver");
+                    , new PdfArea(myPdfDocument, 48, 20, 595, 60), ContentAlignment.TopLeft, ReportResource.ReportTitle);
 
                 PdfRectangle summaryBackground = new PdfArea(myPdfDocument, 635, 10, 165, 45).ToRectangle(noiseLevelColor, noiseLevelColor);
                 
                 // LAKHA - Total prosent
                 PdfTextArea summary = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
-                    , new PdfArea(myPdfDocument, 650, 20, 595, 60), ContentAlignment.TopLeft, string.Format("Totalt: {0}%", totalNoiseDosage));
+                    , new PdfArea(myPdfDocument, 650, 20, 595, 60), ContentAlignment.TopLeft, string.Format(ReportResource.TotalPercentageFormatString, totalNoiseDosage));
 
 				
 			    // nice thing: we can put all the objects in the following lines, so we can have
@@ -116,27 +94,45 @@ namespace NoiseCalculator.Infrastructure.Pdf
             return memoryStream;
         }
 
+        private Color GetColorForNoiseLevel(int totalNoiseDosage)
+        {
+            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage);
 
+            switch (noiseLevelEnum)
+            {
+                case NoiseLevelEnum.Critical:
+                    {
+                        return Color.Red;
+                    }
+                case NoiseLevelEnum.Warning:
+                    {
+                        return Color.Yellow;
+                    }
+                default:
+                    {
+                        return Color.GreenYellow;
+                    }
+            }
+        }
 
         private DataTable GenerateDataTable(IEnumerable<SelectedTask> selectedTasks)
         {
-            const string titleHeading = "Title";
-            const string roleHeading = "Role";
-            const string noiseProtectionHeading = "Noise Protection";
-            const string noiseLevelHeading = "Noise Level";
-            const string workTimeHeading = "Work Time";
             const string percentageHeading = "%";
-            const string workTimeFormatString = "{0} t {1} min";
+
+            string titleHeading = ReportResource.HeadingTitle;
+            string roleHeading = ReportResource.HeadingRole;
+            string noiseProtectionHeading = ReportResource.HeadingNoiseProtection;
+            string noiseLevelHeading = ReportResource.HeadingNoiseLevel;
+            string workTimeHeading = ReportResource.HeadingWorkTime;
             
             DataTable dt = new DataTable();
             dt.Columns.Add(titleHeading);
             dt.Columns.Add(roleHeading);
             dt.Columns.Add(noiseProtectionHeading);
-            dt.Columns.Add(noiseLevelHeading, typeof(int));
+            dt.Columns.Add(noiseLevelHeading);
             dt.Columns.Add(workTimeHeading);
             dt.Columns.Add(percentageHeading);
 
-            //for (int x = 0; x <= 2000; x++)
             foreach (SelectedTask selectedTask in selectedTasks)
             {
                 DataRow dr = dt.NewRow();
@@ -144,68 +140,14 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 dr[titleHeading] = selectedTask.Title;
                 dr[roleHeading] = selectedTask.Role;
                 dr[noiseProtectionHeading] = selectedTask.NoiseProtection;
-                dr[noiseLevelHeading] = selectedTask.NoiseLevel;
-                dr[workTimeHeading] = string.Format(workTimeFormatString, selectedTask.Hours, selectedTask.Minutes);
+                dr[noiseLevelHeading] = string.Format("{0} dBA", selectedTask.NoiseLevel);
+                dr[workTimeHeading] = string.Format(ReportResource.WorkTimeFormatString, selectedTask.Hours, selectedTask.Minutes);
                 dr[percentageHeading] = selectedTask.Percentage;
 
                 dt.Rows.Add(dr);
             }
 
-
             return dt;
         }
-
-
-
-        static Random r = new Random();
-
-        static string GetAName
-	    {
-		    get
-		    {
-			    ArrayList al = new ArrayList();
-			    al.Add("John Doe");
-			    al.Add("Perry White");
-			    al.Add("Jackson");
-			    al.Add("Henry James Junior Ford");
-			    al.Add("Bill Norton");
-			    al.Add("Michal Johnathan Stewart ");
-			    al.Add("George Wilson");
-			    al.Add("Steven Edwards");
-			    
-                return al[r.Next(0,al.Count)].ToString();
-		    }
-	    }
-
-	    static DataTable Table
-	    {
-		    get
-		    {
-			    DataTable dt = new DataTable();
-			    dt.Columns.Add("ID");
-			    dt.Columns.Add("Name");
-			    dt.Columns.Add("Date of Birth",typeof(DateTime));
-			    dt.Columns.Add("Phone Number");
-			    dt.Columns.Add("Mobile Phone");
-			    dt.Columns.Add("Password");
-				
-			    for (int x=0; x <= 2000; x++)
-			    {
-				    DataRow dr = dt.NewRow();
-
-				    dr["ID"] = x.ToString();
-				    dr["Name"] = GetAName;
-				    dr["Date of Birth"] = new DateTime(r.Next(1940, 1984), r.Next(1, 12), r.Next(1, 28));
-				    dr["Phone Number"]="555-"+r.Next(100000, 999999).ToString();
-				    dr["Mobile Phone"]="444-"+r.Next(100000, 999999).ToString();
-				    dr["Password"]=r.Next(10000000, 99999999).ToString();
-				    
-                    dt.Rows.Add(dr);
-			    }
-
-			    return dt;
-		    }
-        }
-
 	}
 }

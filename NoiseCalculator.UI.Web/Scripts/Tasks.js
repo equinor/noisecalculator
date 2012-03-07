@@ -9,6 +9,7 @@ $(document).ready(function () {
     updateTotalPercentage();
 });
 
+
 function setAllEvents() {
     var $mainContainer = $("#taskList");
 
