@@ -90,6 +90,11 @@
     <Compile Include="NHibernate\SessionFactoryManager.cs" />
     <Compile Include="Pdf\IPdfExporter.cs" />
     <Compile Include="Pdf\PdfExporterGios.cs" />
+    <Compile Include="Pdf\Resources\ReportResource.nb-NO.Designer.cs">
+      <DependentUpon>ReportResource.nb-NO.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Pdf\Resources\ReportResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,6 +106,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Pdf\Resources\ReportResource.nb-NO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportResource.nb-NO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pdf\Resources\ReportResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ReportResource.Designer.cs</LastGenOutput>

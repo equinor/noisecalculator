@@ -219,13 +219,11 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - task.NoiseLevelGuideline > 6)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Kalkulasjonen er ugyldig for støynivå 7 dBA eller mer over Guidline.");
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidline);
             }
 
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Oppgavens arbeidstid må oppgis, enten som timer/minutter eller prosent av daglig dose.");
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
             }
 

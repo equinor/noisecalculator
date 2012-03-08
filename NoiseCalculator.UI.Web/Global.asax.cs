@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Globalization;
+using System.Threading;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace NoiseCalculator.UI.Web
@@ -20,8 +23,8 @@ namespace NoiseCalculator.UI.Web
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Task", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
+                new {controller = "Task", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+                );
 
         }
 
@@ -31,6 +34,15 @@ namespace NoiseCalculator.UI.Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+        }
+
+        protected void Application_BeginRequest(Object Sender, EventArgs e)
+        {
+            // en-US
+            // nb-NO
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("nb-NO");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("nb-NO");
         }
     }
 }

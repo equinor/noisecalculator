@@ -157,19 +157,16 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (viewModel.HelicopterId == 0)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Helikopter må være valgt.");
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterTypeRequired);
             }
 
             if (viewModel.NoiseProtectionId == 0)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Høselsvern må være valgt.");
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterNoiseLevelRequired);
             }
 
             if (viewModel.WorkIntervalId == 0)
             {
-                //errorSummaryViewModel.ValidationErrors.Add("Arbeidstid må være valgt.");
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterWorkIntervalRequired);
             }
 

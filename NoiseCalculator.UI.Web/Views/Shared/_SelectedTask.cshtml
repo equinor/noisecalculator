@@ -2,19 +2,19 @@
 @model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
 
 <div id="@Model.Id" class="task">
-    <div class="emulatedEditButton">
+    <div class="taskListButton">
         <img src="@Url.Content("~/Content/page_edit.png")" class="taskIcon" />
-        <span style="color: White; font-weight: bold;">@TaskResources.SelectedTaskEditLabel</span>
+        @TaskResources.SelectedTaskEditLabel
     </div>
 
     <div class="taskGrouping" style="width: 440px; max-width: 440px;">
         <p>
-            <label for="Task" class="label-small40">@TaskResources.TaskTitleLabel</label>
+            <label for="Task" class="label-small60">@TaskResources.TaskTitleLabel</label>
             <span id="Task" style="font-weight: bold;">: @Model.Title</span>
         </p>
         
         <p>
-            <label for="Role" class="label-small40">@TaskResources.TaskRoleLabel</label>
+            <label for="Role" class="label-small60">@TaskResources.TaskRoleLabel</label>
             <span id="Role" style="font-weight: bold;">: @Model.Role</span>
         </p>
     </div>
@@ -43,9 +43,9 @@
         </p>
     </div>
     
-    <div class="emulatedRemoveButton">
-        <img src="../../Content/cancel.png" class="taskIcon" />
-        <span style="color: White; font-weight: bold;">@TaskResources.SelectedTaskRemoveLabel</span>
+    <div class="taskListButton">
+        <img src="@Url.Content("~/Content/cancel.png")" class="taskIcon" />
+        @TaskResources.SelectedTaskRemoveLabel
     </div>
     <br clear="all" />
 </div>

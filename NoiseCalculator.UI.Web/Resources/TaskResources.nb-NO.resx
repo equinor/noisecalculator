@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Støykalkulator</value>
+    <comment>Noise Calculator</comment>
+  </data>
+  <data name="HoursUnit" xml:space="preserve">
+    <value>t</value>
+    <comment>h</comment>
+  </data>
+  <data name="IndexButtonAddTask" xml:space="preserve">
+    <value>Legg Til Oppgave</value>
+    <comment>Add Task</comment>
+  </data>
+  <data name="IndexButtonCreatePdf" xml:space="preserve">
+    <value>Skriv ut PDF</value>
+    <comment>Print PDF</comment>
+  </data>
+  <data name="IndexTitle" xml:space="preserve">
+    <value>Mine oppgaver</value>
+    <comment>My Tasks</comment>
+  </data>
+  <data name="IndexTotalDailyDosageLabel" xml:space="preserve">
+    <value>Total daglig dose</value>
+    <comment>Total Daily Dosage</comment>
+  </data>
+  <data name="LayoutUserLabel" xml:space="preserve">
+    <value>Bruker</value>
+    <comment>User</comment>
+  </data>
+  <data name="MinutesUnit" xml:space="preserve">
+    <value>min</value>
+    <comment>min</comment>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nei</value>
+    <comment>No</comment>
+  </data>
+  <data name="RemoveTaskConfirmationButtonClose" xml:space="preserve">
+    <value>Avbryt</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="RemoveTaskConfirmationButtonRemove" xml:space="preserve">
+    <value>Fjern</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="RemoveTaskConfirmationTitle" xml:space="preserve">
+    <value>Fjern Oppgave?</value>
+    <comment>Remove Task?</comment>
+  </data>
+  <data name="SelectedTaskEditLabel" xml:space="preserve">
+    <value>Rediger</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="SelectedTaskNoiseLevelLabel" xml:space="preserve">
+    <value>Støynivå</value>
+    <comment>Noise Level</comment>
+  </data>
+  <data name="SelectedTaskNoiseProtectionLabel" xml:space="preserve">
+    <value>Høreselvern</value>
+    <comment>Noise Protection</comment>
+  </data>
+  <data name="SelectedTaskPercentageDailyDosageLabel" xml:space="preserve">
+    <value>% Daglig dose</value>
+    <comment>% Daily Dosage</comment>
+  </data>
+  <data name="SelectedTaskRemoveLabel" xml:space="preserve">
+    <value>Fjern</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="SelectedTaskWorkTimeLabel" xml:space="preserve">
+    <value>Arbeidstid</value>
+    <comment>Work Time</comment>
+  </data>
+  <data name="SelectOne" xml:space="preserve">
+    <value>-- Velg --</value>
+    <comment>-- Select One --</comment>
+  </data>
+  <data name="TaskDialogButtonUseTask" xml:space="preserve">
+    <value>Bruk Oppgave</value>
+    <comment>Use Task</comment>
+  </data>
+  <data name="TaskDialogTitle" xml:space="preserve">
+    <value>Legg Til Oppgave</value>
+    <comment>Add Task</comment>
+  </data>
+  <data name="TaskFormButtonClose" xml:space="preserve">
+    <value>Avbryt</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="TaskFormButtonSubmitAdd" xml:space="preserve">
+    <value>Legg Til Oppgave</value>
+    <comment>Add Task</comment>
+  </data>
+  <data name="TaskFormButtonSubmitEdit" xml:space="preserve">
+    <value>Lagre Endringer</value>
+    <comment>Save Changes</comment>
+  </data>
+  <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
+    <value>Høreselvern</value>
+    <comment>Noise Protection</comment>
+  </data>
+  <data name="TaskFormHelideckHelicopterTypeLabel" xml:space="preserve">
+    <value>Helikopter</value>
+    <comment>Helicopter</comment>
+  </data>
+  <data name="TaskFormHelideckHelicopterWorkIntervalLabel" xml:space="preserve">
+    <value>Arbeidstid</value>
+    <comment>Work Interval</comment>
+  </data>
+  <data name="TaskFormRegularAssistantLabel" xml:space="preserve">
+    <value>Assistent</value>
+    <comment>Assistant</comment>
+  </data>
+  <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
+    <value>Feltmåling</value>
+    <comment>Noise Measured</comment>
+  </data>
+  <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
+    <value>Operatør</value>
+    <comment>Operator</comment>
+  </data>
+  <data name="TaskFormRegularPercentageLabel" xml:space="preserve">
+    <value>Prosent</value>
+    <comment>Percent</comment>
+  </data>
+  <data name="TaskFormRegularWorkAmountTypeLabel" xml:space="preserve">
+    <value>Arbeidstid i</value>
+    <comment>Work specified as</comment>
+  </data>
+  <data name="TaskFormRegularWorkTimeLabel" xml:space="preserve">
+    <value>Tid</value>
+    <comment>Time</comment>
+  </data>
+  <data name="TaskRoleLabel" xml:space="preserve">
+    <value>Rolle</value>
+    <comment>Role</comment>
+  </data>
+  <data name="TaskTitleLabel" xml:space="preserve">
+    <value>Oppgave</value>
+    <comment>Task</comment>
+  </data>
+  <data name="ValidationErrorSummaryClose" xml:space="preserve">
+    <value>Lukk</value>
+    <comment>Close</comment>
+  </data>
+  <data name="ValidationErrorSummaryTitle" xml:space="preserve">
+    <value>Feil funnet i informasjonen</value>
+    <comment>Errors found in submitted data</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+    <comment>Yes</comment>
+  </data>
+  <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
+    <value>Arbeid ved beregnet støyeksponering er ikke tillatt!</value>
+    <comment>Work under the calculated noise level is not allowed!</comment>
+  </data>
+  <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
+    <value>Støynivå er under øvre grense og regnes som trygt</value>
+    <comment>Noise level is below the upper limt and is considered safe</comment>
+  </data>
+  <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
+    <value>Støynivå nærmer seg øvre grense</value>
+    <comment>Noise level is approaching allowed limits</comment>
+  </data>
+  <data name="ValidationErrorHelicopterNoiseLevelRequired" xml:space="preserve">
+    <value>Hørselvern må være valgt.</value>
+    <comment>Noise protection must be selected.</comment>
+  </data>
+  <data name="ValidationErrorHelicopterTypeRequired" xml:space="preserve">
+    <value>Helikopter må være valgt.</value>
+    <comment>Helicopter must be selected.</comment>
+  </data>
+  <data name="ValidationErrorHelicopterWorkIntervalRequired" xml:space="preserve">
+    <value>Arbeidstid må være valgt.</value>
+    <comment>Work interval must be selected.</comment>
+  </data>
+  <data name="ValidationErrorNoiseLevelToHighAboveGuidline" xml:space="preserve">
+    <value>Kalkulasjonen er ugyldig for støynivå 7 dBA eller mer over Guidline.</value>
+    <comment>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</comment>
+  </data>
+  <data name="ValidationErrorWorkTimeRequired" xml:space="preserve">
+    <value>Oppgavens arbeidstid må oppgis, enten som timer/minutter eller prosent av daglig dose.</value>
+    <comment>Task work time must be specified, either as hours/minutes or percentage of daily dosage</comment>
+  </data>
+</root>

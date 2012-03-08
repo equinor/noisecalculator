@@ -88,7 +88,7 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to Task.
         /// </summary>
         internal static string HeadingTitle {
             get {
