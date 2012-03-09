@@ -14,19 +14,19 @@ function setAllEvents() {
     var $mainContainer = $("#taskList");
 
     // Click remove task
-    $mainContainer.find(".emulatedRemoveButton").live("click", function () {
+    $mainContainer.find(".emulatedRemoveButton").live("click", function() {
         var $item = $(this).closest(".task");
 
         $("#deleteConfirmDialog")
             .empty()
-            .load(getRemoveTaskConfirmationUrl + "/" + $item.attr("id"), function () {
+            .load(getRemoveTaskConfirmationUrl + "/" + $item.attr("id"), function() {
 
-                $("#confirmRemove").click(function () {
+                $("#confirmRemove").click(function() {
                     removeTask($item);
                     closeRemoveConfirmDialog();
                 });
 
-                $("#cancelRemove").click(function () {
+                $("#cancelRemove").click(function() {
                     closeRemoveConfirmDialog();
                 });
 
@@ -41,9 +41,19 @@ function setAllEvents() {
     });
 
     // Click edit task
-    $mainContainer.find(".emulatedEditButton").live("click", function () {
+    $mainContainer.find(".emulatedEditButton").live("click", function() {
         var $item = $(this).closest(".task");
         editTask($item);
+    });
+
+    $("#langNo").live("click", function () {
+        $.cookie("_culture", "nb-NO", { expires: 365, path: '/' });
+        window.location.reload(); // reload
+    });
+    
+    $("#langEn").live("click", function () {
+        $.cookie("_culture", "en-US", { expires: 365, path: '/' });
+        window.location.reload(); // reload
     });
 }
 

@@ -53,7 +53,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return new FileStreamResult(memoryStream, "application/pdf");
             }
 
-            return new EmptyResult();
+            // No tasks found - Redirect to main page
+            return RedirectToAction("Index");
         }
 
 
