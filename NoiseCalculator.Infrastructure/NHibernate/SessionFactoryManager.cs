@@ -1,6 +1,8 @@
 using System;
+using System.Threading;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using HibernatingRhinos.Profiler.Appender.NHibernate;
 using NHibernate;
 using NHibernate.ByteCode.Castle;
 using NHibernate.Cfg;
@@ -22,6 +24,8 @@ namespace NoiseCalculator.Infrastructure.NHibernate
 
         public SessionFactoryManager()
         {
+            NHibernateProfiler.Initialize();
+
             _configuration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionString))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<TaskMap>())
@@ -33,7 +37,9 @@ namespace NoiseCalculator.Infrastructure.NHibernate
 
         public ISession OpenSession()
         {
-            return _sessionFactory.OpenSession();
+            ISession session = _sessionFactory.OpenSession();
+            //session.EnableFilter("CultureNameFilter").SetParameter("cultureName", Thread.CurrentThread.CurrentCulture.Name);
+            return session;
         }
 
         public IStatelessSession OpenStatelessSession()

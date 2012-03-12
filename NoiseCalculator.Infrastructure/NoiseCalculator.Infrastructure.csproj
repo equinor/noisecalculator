@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Gios Pdf.NET.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\..\..\..\..\..\appl\NHibernate.Profiler-Build-918\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.6.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -78,6 +81,7 @@
     <Compile Include="DataAccess\Interfaces\IHelicopterTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ISelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ITaskDAO.cs" />
+    <Compile Include="Mapping\CultureNameFilterDefinition.cs" />
     <Compile Include="Mapping\HelicopterTaskMap.cs" />
     <Compile Include="Mapping\HelicopterNoiseProtectionMap.cs" />
     <Compile Include="Mapping\HelicopterTypeMap.cs" />
