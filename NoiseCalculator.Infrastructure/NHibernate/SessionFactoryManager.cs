@@ -38,7 +38,16 @@ namespace NoiseCalculator.Infrastructure.NHibernate
         public ISession OpenSession()
         {
             ISession session = _sessionFactory.OpenSession();
-            //session.EnableFilter("CultureNameFilter").SetParameter("cultureName", Thread.CurrentThread.CurrentCulture.Name);
+            session.EnableFilter("CultureNameFilter");
+            IFilter filter = session.GetEnabledFilter("CultureNameFilter");
+            filter.SetParameter("meatballs", Thread.CurrentThread.CurrentCulture.Name);
+
+            return session;
+        }
+
+        public ISession OpenSessionWithoutFilter()
+        {
+            ISession session = _sessionFactory.OpenSession();
             return session;
         }
 

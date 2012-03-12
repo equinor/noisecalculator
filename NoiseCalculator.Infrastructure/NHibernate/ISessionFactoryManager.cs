@@ -8,6 +8,7 @@ namespace NoiseCalculator.Infrastructure.NHibernate
     public interface ISessionFactoryManager
     {
         ISession OpenSession();
+        ISession OpenSessionWithoutFilter();
         IStatelessSession OpenStatelessSession();
         void ExportSchema();
     }

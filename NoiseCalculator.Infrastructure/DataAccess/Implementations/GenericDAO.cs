@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using NHibernate;
+using NHibernate.Criterion;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 
 namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
@@ -16,17 +18,31 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             _session = session;
         }
         
+        //public TEntity Get(TId id)
+        //{
+        //    TEntity entity = _session.Get<TEntity>(id);
+        //    return entity;
+        //}
         public TEntity Get(TId id)
         {
-            TEntity entity = _session.Get<TEntity>(id);
+            TEntity entity = _session.CreateCriteria<TEntity>().Add(Expression.Eq("Id", id)).UniqueResult<TEntity>();
             return entity;
         }
 
+
+        //public TEntity Load(TId id)
+        //{
+        //    TEntity entity = _session.Load<TEntity>(id);
+        //    return entity;
+        //}
+        
         public TEntity Load(TId id)
         {
             TEntity entity = _session.Load<TEntity>(id);
             return entity;
         }
+
+
 
         public IEnumerable<TEntity> GetAll()
         {

@@ -12,7 +12,6 @@ using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.NinjectBootstrapper;
 using NHibernate;
 using System.Threading;
-//using DoddleReport;
 
 namespace ConsoleApplication2
 {
@@ -26,13 +25,15 @@ namespace ConsoleApplication2
             //IEnumerable<SelectedTask> selectedTasks =
             //    selectedTaskDAO.GetAllChronologically(WindowsIdentity.GetCurrent().Name, DateTime.Now);
 
-            ISession session = kernel.Get<ISession>();
-            session.EnableFilter("CultureNameFilter");
-            IFilter filter = session.GetEnabledFilter("CultureNameFilter");
-            filter.SetParameter("meatballs", Thread.CurrentThread.CurrentCulture.Name);
-            
-            var list = session.QueryOver<Task>().List();
-            //var entity = session.Get<Task>(15);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+            //IDAO<Task, int> taskDAO = kernel.Get<IDAO<Task, int>>();
+            //var entity = taskDAO.Get(15);
+            //string lol = "lol";
+
+            ISelectedTaskDAO _selectedTaskDAO = kernel.Get<ISelectedTaskDAO>();
+            var list = _selectedTaskDAO.GetAllChronologically
+
         }
     }
 }
