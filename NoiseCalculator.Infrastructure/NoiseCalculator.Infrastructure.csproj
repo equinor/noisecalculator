@@ -81,7 +81,11 @@
     <Compile Include="DataAccess\Interfaces\IHelicopterTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ISelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ITaskDAO.cs" />
+    <Compile Include="Mapping\RoleDefinitionMap.cs" />
+    <Compile Include="Mapping\NoiseProtectionDefinitionMap.cs" />
+    <Compile Include="Mapping\TaskDefinitionMap.cs" />
     <Compile Include="Mapping\CultureNameFilterDefinition.cs" />
+    <Compile Include="Mapping\HelicopterNoiseProtectionDefinitionMap.cs" />
     <Compile Include="Mapping\HelicopterTaskMap.cs" />
     <Compile Include="Mapping\HelicopterNoiseProtectionMap.cs" />
     <Compile Include="Mapping\HelicopterTypeMap.cs" />

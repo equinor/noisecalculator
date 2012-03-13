@@ -1,5 +1,3 @@
-using System;
-using System.Threading;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
@@ -38,18 +36,18 @@ namespace NoiseCalculator.Infrastructure.NHibernate
         public ISession OpenSession()
         {
             ISession session = _sessionFactory.OpenSession();
-            session.EnableFilter("CultureNameFilter");
-            IFilter filter = session.GetEnabledFilter("CultureNameFilter");
-            filter.SetParameter("meatballs", Thread.CurrentThread.CurrentCulture.Name);
+            //session.EnableFilter("CultureNameFilter");
+            //IFilter filter = session.GetEnabledFilter("CultureNameFilter");
+            //filter.SetParameter("meatballs", Thread.CurrentThread.CurrentCulture.Name);
 
             return session;
         }
 
-        public ISession OpenSessionWithoutFilter()
-        {
-            ISession session = _sessionFactory.OpenSession();
-            return session;
-        }
+        //public ISession OpenSessionWithoutFilter()
+        //{
+        //    ISession session = _sessionFactory.OpenSession();
+        //    return session;
+        //}
 
         public IStatelessSession OpenStatelessSession()
         {

@@ -30,7 +30,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public PartialViewResult AddTaskRegular(int taskId)
         {
-            Task task = _taskDAO.Get(taskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(taskId);
 
             RegularViewModel viewModel = new RegularViewModel
             {
@@ -52,13 +52,15 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return PartialView("_CreateRotationTask", viewModel);
             }
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return PartialView("_CreateRegularTask", viewModel);
         }
 
         [HttpPost]
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
-            Task task = _taskDAO.Get(viewModel.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
 
             ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)
@@ -78,7 +80,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult EditTaskRegular(int selectedTaskId)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
-            Task task = _taskDAO.Get(selectedTask.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
 
             bool noiseLevelIsMeassured = (selectedTask.NoiseLevel != task.NoiseLevelGuideline);
             bool workIsEnteredAsTime = (selectedTask.Hours > 0 || selectedTask.Minutes > 0);
@@ -111,7 +113,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult EditTaskRegular(int id, RegularViewModel viewModel)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(id);
-            Task task = _taskDAO.Get(selectedTask.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
 
             ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)
@@ -152,7 +154,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public PartialViewResult AddTaskRotation(RegularViewModel viewModel)
         {
-            Task task = _taskDAO.Get(viewModel.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
 
             ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)

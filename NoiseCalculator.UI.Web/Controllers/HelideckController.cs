@@ -51,13 +51,15 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             AppendHelideckMasterData(viewModel);
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return PartialView("_CreateHelideckTask", viewModel);
         }
 
         [HttpPost]
         public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
         {
-            Task task = _taskDAO.Get(viewModel.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
 
             ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
             if (validationViewModel.ValidationErrors.Count > 0)
@@ -92,7 +94,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
 
-            Task task = _taskDAO.Get(selectedTask.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
 
             HelideckViewModel viewModel = new HelideckViewModel
@@ -133,7 +135,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (taskValuesHaveBeenChanged)
             {
-                Task task = _taskDAO.Get(selectedTask.TaskId);
+                Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
                 HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
 
                 selectedTask.Title = string.Format("{0} - {1}", task.Title, newHelicopterTask.HelicopterType.Title);
@@ -207,7 +209,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
-            foreach (HelicopterNoiseProtection noiseProtection in _helicopterNoiseProtectionDAO.GetAll())
+            foreach (HelicopterNoiseProtection noiseProtection in _helicopterNoiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
                 SelectListItem selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
                 if (viewModel.NoiseProtectionId == noiseProtection.Id)

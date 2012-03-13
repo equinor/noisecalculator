@@ -5,11 +5,13 @@ namespace NoiseCalculator.Domain.Entities
     public class Task
     {
         public virtual int Id { get; private set; }
+        public virtual TaskDefinition TaskDefinition { get; set; }
         public virtual string Title { get; set; }
         public virtual Role Role { get; set; }
         public virtual NoiseProtection NoiseProtection { get; set; }
         public virtual int NoiseLevelGuideline { get; set; }
         public virtual int AllowedExposureMinutes { get; set; }
+        public virtual string CultureName { get; set; }
 
         
         public virtual decimal CalculatePercentage(int actualNoiseLevel, TimeSpan actualExposure )

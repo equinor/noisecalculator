@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.DomainServices;
@@ -61,13 +62,16 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTask()
         {
             IEnumerable<Task> tasks = _taskDAO.GetAllOrdered();
+            
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            
             return PartialView("_TaskDialog", tasks);
         }
 
 
         public ActionResult GetCreateFormForTask(int id)
         {
-            Task task = _taskDAO.Get(id);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(id);
 
             switch (task.Role.Title)
             {
@@ -81,7 +85,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public ActionResult GetEditFormForSelectedTask(int id)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(id);
-            Task task = _taskDAO.Get(selectedTask.TaskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
 
             switch (task.Role.Title)
             {

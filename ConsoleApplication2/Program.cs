@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.IO;
-using System.Security.Principal;
-using Ninject;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+﻿using Ninject;
+using NoiseCalculator.Infrastructure.NHibernate;
 using NoiseCalculator.NinjectBootstrapper;
-using NHibernate;
-using System.Threading;
 
 namespace ConsoleApplication2
 {
@@ -20,31 +9,29 @@ namespace ConsoleApplication2
         private static void Main(string[] args)
         {
             IKernel kernel = new StandardKernel(new NoiseCalculatorModule());
+            //ISessionFactoryManager sessionFactoryManager = kernel.Get<ISessionFactoryManager>();
+            //sessionFactoryManager.ExportSchema();
 
-            //ISelectedTaskDAO selectedTaskDAO = kernel.Get<ISelectedTaskDAO>();
-            //IEnumerable<SelectedTask> selectedTasks =
-            //    selectedTaskDAO.GetAllChronologically(WindowsIdentity.GetCurrent().Name, DateTime.Now);
-
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("nb-NO");
 
             //IDAO<Task, int> taskDAO = kernel.Get<IDAO<Task, int>>();
             //var entity = taskDAO.Get(15);
-            //string lol = "lol";
+            //var list = _taskDAO.GetAllChronologically("STATOIL-NET\\LAKHA", DateTime.Now);
 
-            ISelectedTaskDAO _selectedTaskDAO = kernel.Get<ISelectedTaskDAO>();
-            var list = _selectedTaskDAO.GetAllChronologically
+
+            //ITaskDAO taskDAO = kernel.Get<ITaskDAO>();            
+            //var task = taskDAO.Get(15);
+
+            //IRoleDAO roleDAO = kernel.Get<IRoleDAO>();
+            //var role = roleDAO.Get(1);
+
+            //IDAO<NoiseProtection, int> noiseProtectionDAO = kernel.Get<IDAO<NoiseProtection, int>>();
+            //var noiseProtection = noiseProtectionDAO.Get(1);
+
+            //IDAO<HelicopterNoiseProtection, int> helicopterNoiseProtectionDAO = kernel.Get<IDAO<HelicopterNoiseProtection, int>>();
+            //var noiseProtection = helicopterNoiseProtectionDAO.Get(1);
 
         }
     }
-}
-
-
-class ReportItem
-{
-    public string Title { get; set; }
-    public string Role { get; set; }
-    public string NoiseProtection { get; set; }
-    public string NoiseLevel { get; set; }
-    public string WorkTime { get; set; }
-    public string Percentage { get; set; }
 }

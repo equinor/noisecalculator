@@ -10,14 +10,10 @@ namespace NoiseCalculator.Infrastructure.Mapping
         public CultureNameFilterDefinition()
         {
             WithName("CultureNameFilter")
-                .WithCondition("this_1_.CultureName = :meatballs")
-                //.WithCondition("Id > :meatballs")
+                .WithCondition("this.CultureName = :meatballs")
+                //.WithCondition("this_1_.CultureName = :meatballs")
+                //.WithCondition("CultureName = :meatballs")
                 .AddParameter("meatballs", NHibernateUtil.String);
-                //.AddParameter("meatballs", NHibernateUtil.Int32);
-
-            //WithName("CultureNameFilter").
-            //    WithCondition("Id > 1");
-            //.AddParameter("cultureName", NHibernateUtil.String);
         }
 
     }
