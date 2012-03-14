@@ -85,7 +85,8 @@ namespace NoiseCalculator.UI.Web.Controllers
         public ActionResult GetEditFormForSelectedTask(int id)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(id);
-            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
+            //Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
+            Task task = _taskDAO.Get(selectedTask.TaskId);
 
             switch (task.Role.Title)
             {

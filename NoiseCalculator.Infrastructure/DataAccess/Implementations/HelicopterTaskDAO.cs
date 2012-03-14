@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -11,13 +12,14 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
         }
 
-        public HelicopterTask Get(int helicopterTypeId, int helicopterNoiseProtectionId, int helicopterWorkIntervalId)
+        //public HelicopterTask Get(int helicopterTypeId, int helicopterNoiseProtectionId, int helicopterWorkIntervalId)
+        //public HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId, int workIntervalId)
+        public HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId)
         {
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
-                .Where(x => x.HelicopterType.Id == helicopterTypeId)
-                .And(x => x.HelicopterNoiseProtection.Id == helicopterNoiseProtectionId)
-                .And(x => x.HelicopterWorkInterval.Id == helicopterWorkIntervalId)
-                .Fetch(x => x.HelicopterNoiseProtection).Eager
+                .Where(x => x.HelicopterType.Id == helicopterId)
+                .And(x => x.HelicopterWorkInterval.Id == workIntervalId)
+                .And(x => x.HelicopterNoiseProtectionDefinition == noiseProtectionDefinition)
                 .Fetch(x => x.HelicopterType).Eager
                 .Fetch(x => x.HelicopterWorkInterval).Eager
                 .SingleOrDefault<HelicopterTask>();

@@ -12,7 +12,8 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.Percentage);
 
             References(x => x.HelicopterType);
-            References(x => x.HelicopterNoiseProtection);
+            //References(x => x.HelicopterNoiseProtection);
+            References(x => x.HelicopterNoiseProtectionDefinition);
             References(x => x.HelicopterWorkInterval);
         }
     }

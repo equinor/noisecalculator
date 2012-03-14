@@ -14,7 +14,7 @@ function setAllEvents() {
     var $mainContainer = $("#taskList");
 
     // Click remove task
-    $mainContainer.find(".emulatedRemoveButton").live("click", function() {
+    $mainContainer.find(".taskListRemove").live("click", function() {
         var $item = $(this).closest(".task");
 
         $("#deleteConfirmDialog")
@@ -41,7 +41,7 @@ function setAllEvents() {
     });
 
     // Click edit task
-    $mainContainer.find(".emulatedEditButton").live("click", function() {
+    $mainContainer.find(".taskListEdit").live("click", function() {
         var $item = $(this).closest(".task");
         editTask($item);
     });

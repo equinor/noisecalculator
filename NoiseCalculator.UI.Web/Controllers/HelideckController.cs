@@ -17,7 +17,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IHelicopterTaskDAO _helicopterTaskDAO;
         private readonly IDAO<HelicopterType, int> _helicopterTypeDAO;
-        private readonly IDAO<HelicopterNoiseProtection, int> _helicopterNoiseProtectionDAO;
+        private readonly IHelicopterNoiseProtectionDAO _helicopterNoiseProtectionDAO;
         private readonly IDAO<HelicopterWorkInterval, int> _helicopterWorkIntervalDAO;
 
         
@@ -25,7 +25,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                                 ISelectedTaskDAO selectedTaskDAO, 
                                 IHelicopterTaskDAO helicopterTaskDAO,
                                 IDAO<HelicopterType, int> helicopterTypeDAO,
-                                IDAO<HelicopterNoiseProtection, int> helicopterNoiseProtectionDAO,
+                                IHelicopterNoiseProtectionDAO helicopterNoiseProtectionDAO,
                                 IDAO<HelicopterWorkInterval, int> helicopterWorkIntervalDAO)
         {
             _taskDAO = taskDAO;
@@ -68,13 +68,14 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
+            HelicopterNoiseProtection helicopterNoiseProtection = _helicopterNoiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, helicopterNoiseProtection.HelicopterNoiseProtectionDefinition, viewModel.WorkIntervalId);
 
             SelectedTask selectedTask = new SelectedTask
             {
                 Title = string.Format("{0} - {1}", task.Title, helicopterTask.HelicopterType.Title),
                 Role = task.Role.Title,
-                NoiseProtection = helicopterTask.HelicopterNoiseProtection.Title,
+                NoiseProtection = helicopterNoiseProtection.Title,
                 Percentage = helicopterTask.Percentage,
                 Minutes = helicopterTask.GetMaximumAllowedMinutes(),
                 TaskId = task.Id,
@@ -94,8 +95,10 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
 
-            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
+            Task task = _taskDAO.Get(selectedTask.TaskId);
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
+            HelicopterNoiseProtection helicopterNoiseProtection = 
+                _helicopterNoiseProtectionDAO.GetByDefinitionAndCurrentCulture(helicopterTask.HelicopterNoiseProtectionDefinition);
 
             HelideckViewModel viewModel = new HelideckViewModel
             {
@@ -105,7 +108,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Role = task.Role.Title,
                 RoleType = RoleTypeEnum.Helideck.ToString(),
                 HelicopterId = helicopterTask.HelicopterType.Id,
-                NoiseProtectionId = helicopterTask.HelicopterNoiseProtection.Id,
+                NoiseProtectionId = helicopterNoiseProtection.Id,
                 WorkIntervalId = helicopterTask.HelicopterWorkInterval.Id
             };
 
@@ -129,17 +132,19 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
+            HelicopterNoiseProtection helicopterNoiseProtection = _helicopterNoiseProtectionDAO.GetByDefinitionAndCurrentCulture( helicopterTask.HelicopterNoiseProtectionDefinition);
+            
             bool taskValuesHaveBeenChanged = (viewModel.HelicopterId != helicopterTask.HelicopterType.Id
-                                                || viewModel.NoiseProtectionId != helicopterTask.HelicopterNoiseProtection.Id
+                                                || (viewModel.NoiseProtectionId != helicopterNoiseProtection.Id)
                                                 || viewModel.WorkIntervalId != helicopterTask.HelicopterWorkInterval.Id);
 
             if (taskValuesHaveBeenChanged)
             {
-                Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
-                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, viewModel.NoiseProtectionId, viewModel.WorkIntervalId);
+                Task task = _taskDAO.Get(selectedTask.TaskId);
+                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, helicopterNoiseProtection.HelicopterNoiseProtectionDefinition, viewModel.WorkIntervalId);
 
                 selectedTask.Title = string.Format("{0} - {1}", task.Title, newHelicopterTask.HelicopterType.Title);
-                selectedTask.NoiseProtection = newHelicopterTask.HelicopterNoiseProtection.Title;
+                selectedTask.NoiseProtection = helicopterNoiseProtection.Title;
                 selectedTask.Percentage = newHelicopterTask.Percentage;
                 selectedTask.Minutes = newHelicopterTask.GetMaximumAllowedMinutes();
                 selectedTask.HelicopterTaskId = newHelicopterTask.Id;

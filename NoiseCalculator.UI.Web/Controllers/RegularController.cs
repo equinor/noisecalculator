@@ -80,7 +80,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult EditTaskRegular(int selectedTaskId)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
-            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
+            Task task = _taskDAO.Get(selectedTask.TaskId);
 
             bool noiseLevelIsMeassured = (selectedTask.NoiseLevel != task.NoiseLevelGuideline);
             bool workIsEnteredAsTime = (selectedTask.Hours > 0 || selectedTask.Minutes > 0);
@@ -113,7 +113,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult EditTaskRegular(int id, RegularViewModel viewModel)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(id);
-            Task task = _taskDAO.GetFilteredByCurrentCulture(selectedTask.TaskId);
+            Task task = _taskDAO.Get(selectedTask.TaskId);
 
             ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)

@@ -20,6 +20,7 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<ITaskDAO>().To<TaskDAO>();
             Bind<ISelectedTaskDAO>().To<SelectedTaskDAO>();
             Bind<IHelicopterTaskDAO>().To<HelicopterTaskDAO>();
+            Bind<IHelicopterNoiseProtectionDAO>().To<HelicopterNoiseProtectionDAO>();
             Bind<IRoleDAO>().To<RoleDAO>();
 
             Bind<IPdfExporter>().To<PdfExporterGios>();
