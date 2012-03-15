@@ -12,8 +12,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
         }
 
-        //public HelicopterTask Get(int helicopterTypeId, int helicopterNoiseProtectionId, int helicopterWorkIntervalId)
-        //public HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId, int workIntervalId)
         public HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId)
         {
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()

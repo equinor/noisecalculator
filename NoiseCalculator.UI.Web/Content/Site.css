@@ -18,65 +18,24 @@ body {
 
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
-.page {
-    /*width: 90%;
-    margin-left: auto;
-    margin-right: auto;*/
-}
 
 .header {
     background-color: #333; 
     border-bottom: 2px solid black;
 }
 
-header h1, #header h1 {
-    /*font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-size: 32px !important;
-    text-shadow: 1px 1px 2px #111;*/
-}
+header h1, #header h1 { }
 
 #main {
-    /*padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    border-radius: 4px 0 0 0;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;*/
     display: inline-block;
     margin-left: 5px;
 }
 
 footer, 
-#footer {
-    /*background-color: #fff;
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0 0 30px 0;
-    font-size: .9em;
-    border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;*/
-}
+#footer { }
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-
-fieldset {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
-}
-
-legend {
-    font-size: 1.2em;
-    font-weight: bold;
-}
 
 textarea {
     min-height: 75px;
@@ -114,51 +73,17 @@ input[type="submit"] {
     color: Red;
 }
 
-nav, 
-#menucontainer {
-    /*margin-top: 40px;*/
-}
-
-div#title {
-    /*display: block;
-    float: left;
-    text-align: left;*/
-}
-
-#logindisplay {
-    /*font-size: 1.1em;
-    display: block;
-    text-align: right;
-    margin: 10px;
-    color: White;*/
-}
-
-#logindisplay a:link {
-    /*color: white;
-    text-decoration: underline;*/
-}
-
-#logindisplay a:visited {
-    /*color: white;
-    text-decoration: underline;*/
-}
-
-#logindisplay a:hover {
-    /*color: white;
-    text-decoration: none;*/
-}
-
-/* ----------------------------------------------------------*/
 .task
 {
     margin-left: 3px;
     margin-bottom: 10px;
     background-color: #333; 
     border: 3px solid white; 
-    padding: 5px; 
+    padding: 5px;
+    color: white;
 }
 
-#tasklistHeading 
+#tasklistHeading .test
 {
     font-size: 20px;
     margin-left: 5px;
@@ -202,14 +127,11 @@ p
     display: inline-block;
 }
 
-/* ------------- */
-
 
 .taskListButton
 {
     float: left;
     margin-left: 10px;
-    color: White; 
     font-weight: bold;
 }
 
@@ -219,24 +141,11 @@ p
     color: #f8ed37
 }
 
- 
-.emulatedTaskButton
-{
-    float: left;
-    margin-left: 10px;
-}
-
-.emulatedTaskButton:hover
-{
-    cursor: pointer;
-}
-/* ------ */
-
-.dialogButton
+.button
 {
     float: left;
     background-color: #333;
-    border: 3px solid grey; 
+    border: 3px solid gray; 
     padding: 2px; 
     padding-left: 5px; 
     padding-right: 10px; 
@@ -244,7 +153,7 @@ p
     color: White;
 }
 
-.dialogButton:hover
+.button:hover
 {
     cursor: pointer;
     color: #f8ed37
@@ -257,25 +166,9 @@ p
     display: inline; 
     vertical-align: middle;
     margin-right: 5px;
+    border: none;
 }
 
-.emulatedAddButton
-{
-    float: left;
-    background-color: #333;
-    border: 3px solid white; 
-    padding: 2px; 
-    padding-left: 5px; 
-    padding-right: 10px; 
-    font-weight: bold; 
-    color: White;
-}
-
-.emulatedAddButton:hover
-{
-    cursor: pointer;
-    color: #f8ed37
-}
 
 .taskIcon
 {
@@ -383,8 +276,3 @@ p
     margin-right: auto; 
     margin-bottom: 10px;
 }
-
-.removeTaskConfirmDialog
-
-/*<p style="color: #f8ed37">Hoover style</p>
-<p style="color: #ff26a4">Pink border color</p>*/

@@ -22,7 +22,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return entity;
         }
 
-
         public TEntity GetFilteredByCurrentCulture(TId id)
         {
             TEntity entity = _session.CreateCriteria<TEntity>()
@@ -33,20 +32,11 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return entity;
         }
 
-
-        //public TEntity Load(TId id)
-        //{
-        //    TEntity entity = _session.Load<TEntity>(id);
-        //    return entity;
-        //}
-        
         public TEntity Load(TId id)
         {
             TEntity entity = _session.Load<TEntity>(id);
             return entity;
         }
-
-
 
         public IEnumerable<TEntity> GetAll()
         {
@@ -61,7 +51,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                                                 .List<TEntity>();
             return entities;
         }
-
 
         public void Store(TEntity entity)
         {
