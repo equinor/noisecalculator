@@ -59,7 +59,8 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
         {
-            Task task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
+            //Task task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
+            Task task = _taskDAO.Get(viewModel.TaskId);
 
             ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
             if (validationViewModel.ValidationErrors.Count > 0)

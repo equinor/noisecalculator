@@ -120,9 +120,15 @@ function bindRegularEvents() {
     }
 
     $("#noiseMeasuredYes").click(enableNoiseMeasuredInput);
+    $("#noiseLevelMeassured").click(enableNoiseMeasuredInput);
     $("#noiseMeasuredNo").click(disableNoiseMeasuredInput);
+
     $("#percentRadio").click(enablePercentageInput);
+    $("#percentage").click(enablePercentageInput);
+
     $("#workTimeRadio").click(enableWorkTimeInput);
+    $("#hours").click(enableWorkTimeInput);
+    $("#minutes").click(enableWorkTimeInput);
     
     $("#taskFormCloseButton").click(closeTaskDialog);
     $('#submitButton').click(function (event) {
@@ -259,36 +265,42 @@ function closeRemoveConfirmDialog() {
 }
 
 function enableNoiseMeasuredInput() {
+    if ($("#noiseMeasuredYes").attr("checked") == undefined) {
+        $("#noiseMeasuredYes").attr("checked", "checked");
+        $("#noiseLevelMeassured").focus();
+    } 
+
+    $("#noiseLevelMeassured").focus();
     $("#noiseLevelGuidline").attr("disabled", true);
-    $("#noiseLevelMeassuredSpan").attr("disabled", false);
-    $("#noiseLevelMeassured").attr("disabled", false).focus();
 }
 
 function disableNoiseMeasuredInput() {
-    $("#noiseLevelMeassured").attr("disabled", true).val("");
-    $("#noiseLevelGuidline").attr("disabled", false);
-    $("#noiseLevelMeassuredSpan").attr("disabled", true);
+    $("#noiseLevelGuidline").removeAttr("disabled");
+    $("#noiseLevelMeassured").val("");
 }
 
 function enablePercentageInput() {
-    $("#percentageSpan").attr("disabled", false);
-    $("#percentage").attr("disabled", false).focus();
+    if ($("#percentRadio").attr("checked") == undefined) {
+        $("#percentRadio").attr("checked", "checked");
+    }
+    
+    $("#percentage").focus();
 
-    $("#hours").attr("disabled", true).val("");
-    $("#minutes").attr("disabled", true).val("");
+    $("#hours").val("");
+    $("#minutes").val("");
     $("#hoursAssistant").text("");
     $("#minutesAssistant").text("");
-    $("#workTimeSpan").attr("disabled", true);
 }
 
 function enableWorkTimeInput() {
-    $("#workTimeSpan").attr("disabled", false);
-    $("#hours").attr("disabled", false).focus();
-    $("#minutes").attr("disabled", false);
+    if ($("#workTimeRadio").attr("checked") == undefined) {
+        $("#workTimeRadio").attr("checked", "checked");
+    } else {
+        $("#hours").focus();
+    }
 
-    $("#percentage").attr("disabled", true).val("");
+    $("#percentage").val("");
     $("#percentageAssistant").text("");
-    $("#percentageSpan").attr("disabled", true);
 }
 
 function submitRegularForm() {

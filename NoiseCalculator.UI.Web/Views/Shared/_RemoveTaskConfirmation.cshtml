@@ -15,16 +15,18 @@
         <strong>: @Model.Role</strong>
     </p>
 
-    <p>
-        <div id="confirmRemove" class="button" style="margin-top: 10px; margin-left: 20px;" >
+    <p style="margin-top: 20px;">
+        <div id="confirmRemove" class="button">
             <img src="@Url.Content("~/Content/bin_closed.png")" class="buttonIcon" />
             @TaskResources.RemoveTaskConfirmationButtonRemove
         </div>
         
-        <div id="cancelRemove" class="button" style="margin-top: 10px; margin-left: 40px;" >
+        <div id="cancelRemove" class="button">
             <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
             @TaskResources.RemoveTaskConfirmationButtonClose
         </div>
     </p>
+
+    <br clear="all"/>
     
 </div>

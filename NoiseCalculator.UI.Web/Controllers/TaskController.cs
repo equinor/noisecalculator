@@ -107,6 +107,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                                                             SelectedTaskId = selectedTask.Id
                                                         };
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return PartialView("_RemoveTaskConfirmation", viewModel);
         }
 

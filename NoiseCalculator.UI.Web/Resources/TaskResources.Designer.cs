@@ -70,6 +70,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169..
+        /// </summary>
+        public static string FooterGL0169 {
+            get {
+                return ResourceManager.GetString("FooterGL0169", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to h.
         /// </summary>
         public static string HoursUnit {
@@ -93,6 +102,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string IndexButtonCreatePdf {
             get {
                 return ResourceManager.GetString("IndexButtonCreatePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add tasks to calculate your noise exposure.
+        /// </summary>
+        public static string IndexSubtitle {
+            get {
+                return ResourceManager.GetString("IndexSubtitle", resourceCulture);
             }
         }
         
@@ -142,7 +160,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work under the calculated noise level is not allowed!.
+        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as &quot;-----&quot;.
         /// </summary>
         public static string NoiseLevelStatusTextCritical {
             get {
@@ -151,7 +169,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Noise level is below the upper limt and is considered safe.
+        ///   Looks up a localized string similar to Calculated noise exposure is acceptable..
         /// </summary>
         public static string NoiseLevelStatusTextNormal {
             get {
@@ -160,7 +178,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Noise level is approaching allowed limits.
+        ///   Looks up a localized string similar to Calculated noise exposure is acceptable, but is approaching maximum allowed exposure..
         /// </summary>
         public static string NoiseLevelStatusTextWarning {
             get {

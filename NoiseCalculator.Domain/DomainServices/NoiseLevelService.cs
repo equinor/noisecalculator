@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NoiseCalculator.Domain.Entities;
+﻿using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Domain.DomainServices
 {
@@ -10,11 +6,11 @@ namespace NoiseCalculator.Domain.DomainServices
     {
         public NoiseLevelEnum CalculateNoiseLevelEnum(int percentageDailyDosage)
         {
-            if (percentageDailyDosage >= 100)
+            if (percentageDailyDosage > 100)
             {
                 return NoiseLevelEnum.Critical;
             }
-            if (percentageDailyDosage >= 75 && percentageDailyDosage < 100)
+            if (percentageDailyDosage >= 75 && percentageDailyDosage <= 100)
             {
                 return NoiseLevelEnum.Warning;
             }

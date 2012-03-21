@@ -4,8 +4,17 @@
 <form method="POST" action="@Url.Action("AddTaskHelideck")" id="editForm">
     @Html.Partial("_TaskFormHelideck", Model)
     
-    <div id="editFormButtons">
-        <input id="submitButton" type="button" value="@TaskResources.TaskFormButtonSubmitAdd" class="clear" />
-        <input id="taskFormCloseButton" type="button" value="@TaskResources.TaskFormButtonClose" style="margin-left: 100px;" />
-    </div>
+    <p id="editFormButtons">
+        <div id="submitButton" class="button">
+            <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
+            @TaskResources.TaskFormButtonSubmitAdd
+        </div>
+        
+        <div id="taskFormCloseButton" class="button">
+            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+            @TaskResources.TaskFormButtonClose
+        </div>
+        
+        <br clear="all" />
+    </p>
 </form>

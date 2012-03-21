@@ -232,13 +232,16 @@
     <value>Yes</value>
   </data>
   <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
-    <value>Work under the calculated noise level is not allowed!</value>
+    <value>Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as "-----"</value>
+    <comment>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</comment>
   </data>
   <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
-    <value>Noise level is below the upper limt and is considered safe</value>
+    <value>Calculated noise exposure is acceptable.</value>
+    <comment>Beregnet støyeksponering er akseptabel.</comment>
   </data>
   <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
-    <value>Noise level is approaching allowed limits</value>
+    <value>Calculated noise exposure is acceptable, but is approaching maximum allowed exposure.</value>
+    <comment>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</comment>
   </data>
   <data name="ValidationErrorHelicopterNoiseLevelRequired" xml:space="preserve">
     <value>Noise protection must be selected.</value>
@@ -254,5 +257,13 @@
   </data>
   <data name="ValidationErrorWorkTimeRequired" xml:space="preserve">
     <value>Task work time must be specified, either as hours/minutes or percentage of daily dosage</value>
+  </data>
+  <data name="FooterGL0169" xml:space="preserve">
+    <value>This tool is based upon noise guideline GL0169.</value>
+    <comment>Dette verktøyet bygger på GL0169: Støy - rettningslinjer for kartlegging og tiltak.</comment>
+  </data>
+  <data name="IndexSubtitle" xml:space="preserve">
+    <value>Add tasks to calculate your noise exposure</value>
+    <comment>Legg til arbeidsoppgaver for å beregne din støyeksponering</comment>
   </data>
 </root>

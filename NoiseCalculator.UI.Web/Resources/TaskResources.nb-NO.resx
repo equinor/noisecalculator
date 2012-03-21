@@ -270,15 +270,15 @@
     <comment>Yes</comment>
   </data>
   <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
-    <value>Arbeid ved beregnet støyeksponering er ikke tillatt!</value>
+    <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</value>
     <comment>Work under the calculated noise level is not allowed!</comment>
   </data>
   <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
-    <value>Støynivå er under øvre grense og regnes som trygt</value>
+    <value>Beregnet støyeksponering er akseptabel.</value>
     <comment>Noise level is below the upper limt and is considered safe</comment>
   </data>
   <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
-    <value>Støynivå nærmer seg øvre grense</value>
+    <value>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</value>
     <comment>Noise level is approaching allowed limits</comment>
   </data>
   <data name="ValidationErrorHelicopterNoiseLevelRequired" xml:space="preserve">
@@ -300,5 +300,11 @@
   <data name="ValidationErrorWorkTimeRequired" xml:space="preserve">
     <value>Oppgavens arbeidstid må oppgis, enten som timer/minutter eller prosent av daglig dose.</value>
     <comment>Task work time must be specified, either as hours/minutes or percentage of daily dosage</comment>
+  </data>
+  <data name="FooterGL0169" xml:space="preserve">
+    <value>Dette verktøyet bygger på GL0169: Støy - rettningslinjer for kartlegging og tiltak.</value>
+  </data>
+  <data name="IndexSubtitle" xml:space="preserve">
+    <value>Legg til arbeidsoppgaver for å beregne din støyeksponering</value>
   </data>
 </root>

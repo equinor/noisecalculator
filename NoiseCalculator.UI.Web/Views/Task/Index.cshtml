@@ -19,11 +19,12 @@
 
 <script src="../../Scripts/Tasks.js" type="text/javascript"></script>
 
-<h2 id="tasklistHeading">@TaskResources.IndexTitle - <span id="statusText"></span></h2>
+<h1 style="margin-bottom: 0px;" id="tasklistHeading">@TaskResources.IndexTitle</h1>
+<h3 style="margin-top: 5px; margin-bottom: 20px;">@TaskResources.IndexSubtitle</h3>
 
 <div class="separatorDiv"></div>
 
-<div id="taskList" style="min-height: 40px;">
+<div id="taskList">
     @foreach (SelectedTaskViewModel selectedTask in Model)
     {
         @Html.Partial("_SelectedTask", selectedTask);
@@ -37,9 +38,13 @@
     @TaskResources.IndexButtonAddTask
 </div>
 
-<div id="totalDailyPercentageDiv">
-    <span id="totalDailyText">@TaskResources.IndexTotalDailyDosageLabel: </span>
-    <span id="totalDailyPercentage"></span>
+<div style="float: right;">
+    <h3 id="statusText" style="margin-top: 0px; margin-bottom: 5px; max-width: 50em; text-align: right;"></h3>
+
+    <div id="totalDailyPercentageDiv">
+        <span id="totalDailyText">@TaskResources.IndexTotalDailyDosageLabel: </span>
+        <span id="totalDailyPercentage"></span>
+    </div>
 </div>
 
 <br clear="all" />

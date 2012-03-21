@@ -6,14 +6,17 @@
 
 <input type="hidden" id="formType" />
 
-<select id="taskSelect" size="8" style="width: 500px;">
+<select id="taskSelect" size="14">
     @foreach (Task task in Model)
     {
-        <option value="@task.Id">@task.Title</option>
+        <option value="@task.Id">@task.Title  (@task.Role.Title)</option>
     }
 </select>
 
-<input type="button" id="useTask" value="@TaskResources.TaskDialogButtonUseTask" />
+<div id="useTask" class="button">
+    <img src="@Url.Content("~/Content/arrow_down.png")" class="buttonIcon" />
+    @TaskResources.TaskDialogButtonUseTask
+</div>
 
 <br clear="all" />
     
