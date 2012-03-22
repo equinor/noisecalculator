@@ -18,6 +18,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.Percentage);
             Map(x => x.CreatedBy).Not.Nullable();
             Map(x => x.CreatedDate).Not.Nullable();
+            Map(x => x.IsNoiseMeassured).Not.Nullable();
 
             Map(x => x.TaskId);
             Map(x => x.HelicopterTaskId);

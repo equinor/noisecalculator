@@ -249,10 +249,12 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (noiseLevelMeasured > task.NoiseLevelGuideline)
             {
                 selectedTask.NoiseLevel = noiseLevelMeasured;
+                selectedTask.IsNoiseMeassured = true;
             }
             else
             {
                 selectedTask.NoiseLevel = task.NoiseLevelGuideline;
+                selectedTask.IsNoiseMeassured = false;
             }
 
             if (string.IsNullOrEmpty(viewModel.Percentage))

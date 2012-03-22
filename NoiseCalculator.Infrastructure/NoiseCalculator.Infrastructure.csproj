@@ -99,6 +99,7 @@
     <Compile Include="NHibernate\SessionFactoryManager.cs" />
     <Compile Include="Pdf\IPdfExporter.cs" />
     <Compile Include="Pdf\PdfExporterGios.cs" />
+    <Compile Include="Pdf\ReportInfo.cs" />
     <Compile Include="Pdf\Resources\ReportResource.nb-NO.Designer.cs">
       <DependentUpon>ReportResource.nb-NO.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -43,13 +43,18 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        public ActionResult PdfReport()
+        //public ActionResult PdfReport()
+        public ActionResult PdfReport(ReportInfo reportInfo)
         {
             IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
             
             if(selectedTasks.Count() > 0)
             {
-                Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks);
+                reportInfo.Footnotes.Add(TaskResources.FooterGL0169);
+                reportInfo.Footnotes.Add(TaskResources.Footer80dBA);
+                reportInfo.Footnotes.Add(TaskResources.FooterNoiseProtectionDefinition);
+
+                Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks, reportInfo);
                 HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
                 return new FileStreamResult(memoryStream, "application/pdf");
             }
@@ -130,23 +135,21 @@ namespace NoiseCalculator.UI.Web.Controllers
         public JsonResult GetTotalPercentage()
         {
             IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
-
+            
             TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
             totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
             NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage.Percentage);
-
+            totalNoiseDosage.StatusText = _noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum);
+            
             switch (noiseLevelEnum)
             {
                 case NoiseLevelEnum.Normal:
-                    totalNoiseDosage.StatusText = TaskResources.NoiseLevelStatusTextNormal;
                     totalNoiseDosage.CssClass = "noiseLevelNormal";
                     break;
                 case NoiseLevelEnum.Warning:
-                    totalNoiseDosage.StatusText = TaskResources.NoiseLevelStatusTextWarning;
                     totalNoiseDosage.CssClass = "noiseLevelWarning";
                     break;
                 case NoiseLevelEnum.Critical:
-                    totalNoiseDosage.StatusText = TaskResources.NoiseLevelStatusTextCritical;
                     totalNoiseDosage.CssClass = "noiseLevelCritical";
                     break;
             }

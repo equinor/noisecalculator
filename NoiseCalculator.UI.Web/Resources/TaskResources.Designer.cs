@@ -70,11 +70,29 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If calculated noise dosage is 100% the worker must stay in areas with a noise level less than 80dBA the rest of the day. The worker can also not perform any work with a noise level above 80 dBA..
+        /// </summary>
+        public static string Footer80dBA {
+            get {
+                return ResourceManager.GetString("Footer80dBA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169..
         /// </summary>
         public static string FooterGL0169 {
             get {
                 return ResourceManager.GetString("FooterGL0169", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs..
+        /// </summary>
+        public static string FooterNoiseProtectionDefinition {
+            get {
+                return ResourceManager.GetString("FooterNoiseProtectionDefinition", resourceCulture);
             }
         }
         
@@ -156,33 +174,6 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as &quot;-----&quot;.
-        /// </summary>
-        public static string NoiseLevelStatusTextCritical {
-            get {
-                return ResourceManager.GetString("NoiseLevelStatusTextCritical", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is acceptable..
-        /// </summary>
-        public static string NoiseLevelStatusTextNormal {
-            get {
-                return ResourceManager.GetString("NoiseLevelStatusTextNormal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is acceptable, but is approaching maximum allowed exposure..
-        /// </summary>
-        public static string NoiseLevelStatusTextWarning {
-            get {
-                return ResourceManager.GetString("NoiseLevelStatusTextWarning", resourceCulture);
             }
         }
         
@@ -448,7 +439,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculation is invalid for noise levels that are 7 dBA or more above the guideline..
+        ///   Looks up a localized string similar to The measured noise level is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high..
         /// </summary>
         public static string ValidationErrorNoiseLevelToHighAboveGuidline {
             get {

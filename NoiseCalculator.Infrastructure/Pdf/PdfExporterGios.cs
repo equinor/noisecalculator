@@ -20,10 +20,12 @@ namespace NoiseCalculator.Infrastructure.Pdf
             _noiseLevelService = noiseLevelService;
         }
 
-        public Stream GenerateSelectedTasksPDF(IEnumerable<SelectedTask> selectedTasks)
+        public Stream GenerateSelectedTasksPDF(IEnumerable<SelectedTask> selectedTasks, ReportInfo reportInfo)
         {
+            int countSelectedTasks = selectedTasks.Count();
             int totalNoiseDosage = selectedTasks.Sum(x => x.Percentage);
-            Color noiseLevelColor = GetColorForNoiseLevel(totalNoiseDosage);
+            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage);
+            Color noiseLevelColor = GetColorForNoiseLevel(noiseLevelEnum);
             DataTable dataTable = GenerateDataTable(selectedTasks);
             
 
@@ -32,7 +34,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
             PdfDocument myPdfDocument = new PdfDocument(PdfDocumentFormat.A4_Horizontal);
 		    
             // Now we create a Table with lines likt the number of selected tasks, 6 columns and 4 points of Padding.
-            PdfTable myPdfTable = myPdfDocument.NewTable(new Font("Verdana", 12), selectedTasks.Count(), 6, 4);
+            PdfTable myPdfTable = myPdfDocument.NewTable(new Font("Verdana", 12), countSelectedTasks, 6, 4);
 
 		    // Importing datas from the datatables... (also column names for the headers!)
             myPdfTable.ImportDataTable(dataTable);
@@ -62,25 +64,55 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 // LAKHA
                 PdfArea pdfArea = new PdfArea(myPdfDocument, 48, 65, 750, 670);
 
-			    PdfTablePage newPdfTablePage = myPdfTable.CreateTablePage(pdfArea);
+			    PdfTablePage taskTable = myPdfTable.CreateTablePage(pdfArea);
 				
 			    // we also put a Label 
-                PdfTextArea pta = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
+                PdfTextArea reportTitle = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
                     , new PdfArea(myPdfDocument, 48, 20, 595, 60), ContentAlignment.TopLeft, ReportResource.ReportTitle);
-
-                PdfRectangle summaryBackground = new PdfArea(myPdfDocument, 635, 10, 165, 45).ToRectangle(noiseLevelColor, noiseLevelColor);
                 
+                // LAKHA - Status
+                PdfTextArea statusText = new PdfTextArea(new Font("Verdana", 14, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 48, taskTable.CellArea(taskTable.LastRow, 6 - 1).BottomRightCornerY + 20, 595, 60), ContentAlignment.TopLeft,
+                    _noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum));
+   
                 // LAKHA - Total prosent
+                PdfRectangle summaryBackground = new PdfArea(myPdfDocument, 635, taskTable.CellArea(taskTable.LastRow, 6-1).BottomRightCornerY + 20, 165, 45).ToRectangle(noiseLevelColor, noiseLevelColor);
                 PdfTextArea summary = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
-                    , new PdfArea(myPdfDocument, 650, 20, 595, 60), ContentAlignment.TopLeft, string.Format(ReportResource.TotalPercentageFormatString, totalNoiseDosage));
-
+                    , new PdfArea(myPdfDocument, 640, taskTable.CellArea(taskTable.LastRow, 6-1).BottomRightCornerY + 30, 595, 60), ContentAlignment.TopLeft,
+                    string.Format(ReportResource.TotalPercentageFormatString, totalNoiseDosage));
 				
 			    // nice thing: we can put all the objects in the following lines, so we can have
 			    // a great control of layer sequence... 
-			    newPdfPage.Add(newPdfTablePage);
-			    newPdfPage.Add(pta);
+			    newPdfPage.Add(taskTable);
+			    newPdfPage.Add(reportTitle);
+                newPdfPage.Add(statusText);
                 newPdfPage.Add(summaryBackground);
                 newPdfPage.Add(summary);
+
+
+                // Info from report input window
+                PdfTextArea reportPlant = new PdfTextArea(new Font("Verdana", 12, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 48, 50, 595, 60), ContentAlignment.TopLeft, string.Format("Installasjon: {0}", reportInfo.Plant));
+                newPdfPage.Add(reportPlant);
+                
+                
+                
+                // LAKHA - Add footnotes...
+		        const int widthOfFootnote = 700;
+                const int heightOfFootnote = 30;
+                int offsetFromTop = 0;
+		        Font footnoteFont = new Font("Verdana", 11, FontStyle.Bold);
+                
+                foreach (string footNoteText in reportInfo.Footnotes)
+                {
+                    double PosY = statusText.PdfArea.BottomRightCornerY + 150 + offsetFromTop + 3;
+                    PdfArea pdfAreaForText = new PdfArea(myPdfDocument, 48, PosY, widthOfFootnote, heightOfFootnote);
+
+                    PdfTextArea footNote = new PdfTextArea(footnoteFont, Color.Black, pdfAreaForText, ContentAlignment.TopLeft, string.Format("* {0}", footNoteText));
+                    newPdfPage.Add(footNote);
+
+                    offsetFromTop += heightOfFootnote;
+                }
 			    
                 // we save each generated page before start rendering the next.
 			    newPdfPage.SaveToDocument();			
@@ -94,10 +126,8 @@ namespace NoiseCalculator.Infrastructure.Pdf
             return memoryStream;
         }
 
-        private Color GetColorForNoiseLevel(int totalNoiseDosage)
+        private Color GetColorForNoiseLevel(NoiseLevelEnum noiseLevelEnum)
         {
-            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage);
-
             switch (noiseLevelEnum)
             {
                 case NoiseLevelEnum.Critical:
@@ -140,7 +170,16 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 dr[titleHeading] = selectedTask.Title;
                 dr[roleHeading] = selectedTask.Role;
                 dr[noiseProtectionHeading] = selectedTask.NoiseProtection;
-                dr[noiseLevelHeading] = string.Format("{0} dBA", selectedTask.NoiseLevel);
+                
+                if(selectedTask.IsNoiseMeassured)
+                {
+                    dr[noiseLevelHeading] = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, ReportResource.NoiseMeassured);
+                }
+                else
+                {
+                    dr[noiseLevelHeading] = string.Format("{0} dBA", selectedTask.NoiseLevel);
+                }
+                
                 dr[workTimeHeading] = string.Format(ReportResource.WorkTimeFormatString, selectedTask.Hours, selectedTask.Minutes);
                 dr[percentageHeading] = selectedTask.Percentage;
 
@@ -149,5 +188,5 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
             return dt;
         }
-	}
+    }
 }

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HeadingNoiseLevel" xml:space="preserve">
-    <value>Støynivå</value>
+    <value>Støynivå (dBA)</value>
     <comment>Noise Level</comment>
   </data>
   <data name="HeadingNoiseProtection" xml:space="preserve">
@@ -137,8 +137,11 @@
     <value>Arbeidstid</value>
     <comment>Work Time</comment>
   </data>
+  <data name="NoiseMeassured" xml:space="preserve">
+    <value>feltmålt</value>
+  </data>
   <data name="ReportTitle" xml:space="preserve">
-    <value>Mine oppgaver</value>
+    <value>Beregnet støyeksponering</value>
     <comment>My Tasks</comment>
   </data>
   <data name="TotalPercentageFormatString" xml:space="preserve">

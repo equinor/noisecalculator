@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NoiseCalculator.Infrastructure.Pdf.Resources {
+namespace NoiseCalculator.Domain.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ReportResource {
+    internal class DomainResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ReportResource() {
+        internal DomainResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoiseCalculator.Infrastructure.Pdf.Resources.ReportResource", typeof(ReportResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NoiseCalculator.Domain.Resources.DomainResources", typeof(DomainResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,29 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Noise Level (dBA).
+        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as &quot;-----&quot;.
         /// </summary>
-        internal static string HeadingNoiseLevel {
+        internal static string NoiseLevelStatusTextCritical {
             get {
-                return ResourceManager.GetString("HeadingNoiseLevel", resourceCulture);
+                return ResourceManager.GetString("NoiseLevelStatusTextCritical", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Noise Protection.
+        ///   Looks up a localized string similar to Calculated noise exposure is acceptable..
         /// </summary>
-        internal static string HeadingNoiseProtection {
+        internal static string NoiseLevelStatusTextNormal {
             get {
-                return ResourceManager.GetString("HeadingNoiseProtection", resourceCulture);
+                return ResourceManager.GetString("NoiseLevelStatusTextNormal", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Role.
+        ///   Looks up a localized string similar to Calculated noise exposure is acceptable, but is approaching maximum allowed exposure..
         /// </summary>
-        internal static string HeadingRole {
+        internal static string NoiseLevelStatusTextWarning {
             get {
-                return ResourceManager.GetString("HeadingRole", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Task.
-        /// </summary>
-        internal static string HeadingTitle {
-            get {
-                return ResourceManager.GetString("HeadingTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Work Time.
-        /// </summary>
-        internal static string HeadingWorkTime {
-            get {
-                return ResourceManager.GetString("HeadingWorkTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to measured.
-        /// </summary>
-        internal static string NoiseMeassured {
-            get {
-                return ResourceManager.GetString("NoiseMeassured", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure.
-        /// </summary>
-        internal static string ReportTitle {
-            get {
-                return ResourceManager.GetString("ReportTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total: {0}%.
-        /// </summary>
-        internal static string TotalPercentageFormatString {
-            get {
-                return ResourceManager.GetString("TotalPercentageFormatString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} h {1} min.
-        /// </summary>
-        internal static string WorkTimeFormatString {
-            get {
-                return ResourceManager.GetString("WorkTimeFormatString", resourceCulture);
+                return ResourceManager.GetString("NoiseLevelStatusTextWarning", resourceCulture);
             }
         }
     }

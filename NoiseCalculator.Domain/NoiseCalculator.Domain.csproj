@@ -57,12 +57,24 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RoleDefinition.cs" />
     <Compile Include="Entities\TaskDefinition.cs" />
+    <Compile Include="Resources\DomainResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RoleTypeEnum.cs" />
     <Compile Include="Entities\SelectedTask.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DomainResources.nb-NO.resx" />
+    <EmbeddedResource Include="Resources\DomainResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

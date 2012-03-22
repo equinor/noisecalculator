@@ -34,7 +34,14 @@ header h1, #header h1 { }
 footer, 
 #footer {
     margin-top: 50px;
+    max-width: 1000px;
 }
+
+    #footer li
+    {
+
+        margin-bottom: 10px;
+    }
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/

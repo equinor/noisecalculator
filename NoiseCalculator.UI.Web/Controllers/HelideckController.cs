@@ -82,7 +82,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 TaskId = task.Id,
                 HelicopterTaskId = helicopterTask.Id,
                 CreatedBy = User.Identity.Name,
-                CreatedDate = DateTime.Now.Date
+                CreatedDate = DateTime.Now.Date,
+                IsNoiseMeassured = false
             };
 
             _selectedTaskDAO.Store(selectedTask);

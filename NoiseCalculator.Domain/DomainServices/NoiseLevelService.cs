@@ -1,4 +1,5 @@
 ﻿using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Resources;
 
 namespace NoiseCalculator.Domain.DomainServices
 {
@@ -16,6 +17,24 @@ namespace NoiseCalculator.Domain.DomainServices
             }
 
             return NoiseLevelEnum.Normal;
+        }
+
+        public string GetNoiseLevelStatusText(NoiseLevelEnum noiseLevelEnum)
+        {
+            switch (noiseLevelEnum)
+            {
+                case NoiseLevelEnum.Normal:
+                    return DomainResources.NoiseLevelStatusTextNormal;
+                    break;
+                case NoiseLevelEnum.Warning:
+                    return DomainResources.NoiseLevelStatusTextWarning;
+                    break;
+                case NoiseLevelEnum.Critical:
+                    return DomainResources.NoiseLevelStatusTextCritical;
+                    break;
+            }
+
+            return string.Empty;
         }
     }
 }

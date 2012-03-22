@@ -50,14 +50,47 @@
 <br clear="all" />
 
 
-<a href="@Url.Action("PdfReport")">
+@*<a href="@Url.Action("PdfReport")">*@
     <div id="printAsPdf" class="button" style="margin-top: 10px; float: right;" >
         <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
         @TaskResources.IndexButtonCreatePdf
     </div>
-</a>
+@*</a>*@
     
 <br clear="all" />
 
 <div id="taskDialog" style="display: none"></div>
 <div id="deleteConfirmDialog" style="display: none;"></div>
+
+<div id="reportInfo" style="display: none; background-color: white;">
+    <input id="pdfReportUrl" type="hidden" value="@Url.Action("PdfReport")"/>    
+
+    <p>
+        <label for="plant" class="label-normal120">Installasjon</label>
+        :         
+        <input id="plant" type="text" />
+    </p>
+    
+    <p>
+        <label for="group" class="label-normal120">Faggruppe</label>
+        :         
+        <input id="group" type="text" />
+    </p>
+
+    <p>
+        <label for="date" class="label-normal120">Dato</label>
+        :         
+        <input id="date" type="text" />
+    </p>
+
+    <p>
+        <label for="createdBy" class="label-normal120">Bruker</label>
+        :
+        <span id="createdBy">@User.Identity.Name</span>
+    </p>
+
+    <div id="printAsPdfPost" class="button">
+        <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
+        @TaskResources.IndexButtonCreatePdf
+    </div>
+</div>

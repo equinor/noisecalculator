@@ -6,6 +6,54 @@ $(document).ready(function () {
         openTaskDialog();
     });
 
+    $("#printAsPdfPost").click(function() {
+        //var formData = {
+        //    TaskId: $("#plant").val(),
+        //    NoiseLevelMeassured: $("#group").val(),
+        //    Hours: $("#date").val()
+        //};
+
+        var theUrl = $("#pdfReportUrl").val() + "?plant=" + $("#plant").val() + "&group=" + $("#group").val() + "&date=" + $("#date").val();
+
+        window.location = theUrl;
+
+        //$.ajax({
+        //    url: $("#pdfReportUrl") + "?plant=" + $("#plant").val(),
+        //    type: "GET",
+        //    /*data: JSON.stringify(formData),*/
+        //    contentType: "application/json",
+        //    dataType: "html"//,
+        //    //success: function (result) {
+        //        //var $taskDiv = $("<div>").append(result);
+
+        //        //if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
+        //        //    replaceTaskInTaskList(result);
+        //        //} else {
+        //        //    addResultToTaskList($taskDiv);
+        //        //}
+        //    //},
+        //    //error: function (jqXHR) {
+        //    //    showValidationError(jqXHR);
+        //    //}
+        //});
+
+        $("#reportInfo").dialog('close');
+    });
+
+    $("#printAsPdf").click(function () {
+        $("#plant").val('');
+        $("#group").val('');
+        $("#date").val('');
+        
+        $("#reportInfo").dialog({
+                modal: true,
+                resizable: false,
+                /*hide: { effect: 'fade', duration: 1000 },*/
+                width: 'auto',
+                position: [250, 80]
+            });
+        });
+
     updateTotalPercentage();
 });
 
@@ -295,7 +343,7 @@ function enablePercentageInput() {
 function enableWorkTimeInput() {
     if ($("#workTimeRadio").attr("checked") == undefined) {
         $("#workTimeRadio").attr("checked", "checked");
-    } else {
+    } else if($("#minutes").is(":focus") == false) {
         $("#hours").focus();
     }
 

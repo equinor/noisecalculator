@@ -269,18 +269,6 @@
     <value>Ja</value>
     <comment>Yes</comment>
   </data>
-  <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
-    <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</value>
-    <comment>Work under the calculated noise level is not allowed!</comment>
-  </data>
-  <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
-    <value>Beregnet støyeksponering er akseptabel.</value>
-    <comment>Noise level is below the upper limt and is considered safe</comment>
-  </data>
-  <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
-    <value>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</value>
-    <comment>Noise level is approaching allowed limits</comment>
-  </data>
   <data name="ValidationErrorHelicopterNoiseLevelRequired" xml:space="preserve">
     <value>Hørselvern må være valgt.</value>
     <comment>Noise protection must be selected.</comment>
@@ -294,7 +282,7 @@
     <comment>Work interval must be selected.</comment>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidline" xml:space="preserve">
-    <value>Kalkulasjonen er ugyldig for støynivå 7 dBA eller mer over Guidline.</value>
+    <value>Feltmåling er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
     <comment>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</comment>
   </data>
   <data name="ValidationErrorWorkTimeRequired" xml:space="preserve">
@@ -306,5 +294,11 @@
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Legg til arbeidsoppgaver for å beregne din støyeksponering</value>
+  </data>
+  <data name="Footer80dBA" xml:space="preserve">
+    <value>Dersom beregnet støydose er 100% skal arbeidstager oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstager kan heller ikke utføre arbeid som gir støy over 80 dBA.</value>
+  </data>
+  <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
+    <value>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselvern menes ørepropper og øreklokker brukt samtidig.</value>
   </data>
 </root>

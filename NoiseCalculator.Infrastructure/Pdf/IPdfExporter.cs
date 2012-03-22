@@ -6,6 +6,6 @@ namespace NoiseCalculator.Infrastructure.Pdf
 {
     public interface IPdfExporter
     {
-        Stream GenerateSelectedTasksPDF(IEnumerable<SelectedTask> selectedTasks);
+        Stream GenerateSelectedTasksPDF(IEnumerable<SelectedTask> selectedTasks, ReportInfo reportInfo);
     }
 }

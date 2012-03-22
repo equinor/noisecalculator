@@ -231,18 +231,6 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
-    <value>Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as "-----"</value>
-    <comment>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</comment>
-  </data>
-  <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
-    <value>Calculated noise exposure is acceptable.</value>
-    <comment>Beregnet støyeksponering er akseptabel.</comment>
-  </data>
-  <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
-    <value>Calculated noise exposure is acceptable, but is approaching maximum allowed exposure.</value>
-    <comment>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</comment>
-  </data>
   <data name="ValidationErrorHelicopterNoiseLevelRequired" xml:space="preserve">
     <value>Noise protection must be selected.</value>
   </data>
@@ -253,7 +241,10 @@
     <value>Work interval must be selected.</value>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidline" xml:space="preserve">
-    <value>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</value>
+    <value>The measured noise level is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high.</value>
+    <comment>Feltmåling er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. 
+Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. 
+Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   </data>
   <data name="ValidationErrorWorkTimeRequired" xml:space="preserve">
     <value>Task work time must be specified, either as hours/minutes or percentage of daily dosage</value>
@@ -265,5 +256,13 @@
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Add tasks to calculate your noise exposure</value>
     <comment>Legg til arbeidsoppgaver for å beregne din støyeksponering</comment>
+  </data>
+  <data name="Footer80dBA" xml:space="preserve">
+    <value>If calculated noise dosage is 100% the worker must stay in areas with a noise level less than 80dBA the rest of the day. The worker can also not perform any work with a noise level above 80 dBA.</value>
+    <comment>Dersom beregnet støydose er 100% skal arbeidstager oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstager kan heller ikke utføre arbeid som gir støy over 80 dBA.</comment>
+  </data>
+  <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
+    <value>By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs.</value>
+    <comment>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselvern menes ørepropper og øreklokker brukt samtidig.</comment>
   </data>
 </root>
