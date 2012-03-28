@@ -10,6 +10,7 @@ using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.Pdf;
+using NoiseCalculator.UI.Web.Models;
 using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
@@ -21,13 +22,15 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IPdfExporter _pdfExporter;
         private readonly INoiseLevelService _noiseLevelService;
+        private readonly IRoleDAO _roleDAO;
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter, INoiseLevelService noiseLevelService)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter, INoiseLevelService noiseLevelService, IRoleDAO roleDAO)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
             _pdfExporter = pdfExporter;
             _noiseLevelService = noiseLevelService;
+            _roleDAO = roleDAO;
         }
         
 
@@ -39,20 +42,26 @@ namespace NoiseCalculator.UI.Web.Controllers
                 selectedTasks.Add(CreateViewModel(selectedTask));
             }
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            
             return View(selectedTasks);
         }
 
 
-        //public ActionResult PdfReport()
         public ActionResult PdfReport(ReportInfo reportInfo)
         {
+            reportInfo.CreatedBy = UserHelper.GetUsernameWithoutDomain(User.Identity.Name);
             IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
-            
-            if(selectedTasks.Count() > 0)
+
+            if (selectedTasks.Count() > 0)
             {
                 reportInfo.Footnotes.Add(TaskResources.FooterGL0169);
                 reportInfo.Footnotes.Add(TaskResources.Footer80dBA);
                 reportInfo.Footnotes.Add(TaskResources.FooterNoiseProtectionDefinition);
+                foreach (string dynamicFootnote in GetDynamicFootnotes(selectedTasks))
+                {
+                    reportInfo.Footnotes.Add(dynamicFootnote);
+                }
 
                 Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks, reportInfo);
                 HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
@@ -67,9 +76,9 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTask()
         {
             IEnumerable<Task> tasks = _taskDAO.GetAllOrdered();
-            
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            
+
             return PartialView("_TaskDialog", tasks);
         }
 
@@ -81,9 +90,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             switch (task.Role.Title)
             {
                 case "Helideck":
-                    return RedirectToAction("AddTaskHelideck", "Helideck", new {TaskId = task.Id});
+                    return RedirectToAction("AddTaskHelideck", "Helideck", new { TaskId = task.Id });
                 default:
-                    return RedirectToAction("AddTaskRegular", "Regular", new {TaskId = task.Id});
+                    return RedirectToAction("AddTaskRegular", "Regular", new { TaskId = task.Id });
             }
         }
 
@@ -95,9 +104,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             switch (task.Role.Title)
             {
                 case "Helideck":
-                    return RedirectToAction("EditTaskHelideck", "Helideck", new {selectedTaskId = selectedTask.Id});
+                    return RedirectToAction("EditTaskHelideck", "Helideck", new { selectedTaskId = selectedTask.Id });
                 default:
-                    return RedirectToAction("EditTaskRegular", "Regular", new {selectedTaskId = selectedTask.Id});
+                    return RedirectToAction("EditTaskRegular", "Regular", new { selectedTaskId = selectedTask.Id });
             }
         }
 
@@ -132,15 +141,34 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult RemoveAllTasks()
+        {
+            try
+            {
+                // OPTIMIZE OPTIMIZE OPTIMIZE OPTIMIZE
+                foreach (SelectedTask selectedTask in _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now))
+                {
+                    _selectedTaskDAO.Delete(selectedTask);
+                }
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Json(ex.ToString());
+            }
+        }
+
         public JsonResult GetTotalPercentage()
         {
-            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
-            
+            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now).ToList();
+
             TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
             totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
             NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage.Percentage);
             totalNoiseDosage.StatusText = _noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum);
-            
+
             switch (noiseLevelEnum)
             {
                 case NoiseLevelEnum.Normal:
@@ -154,7 +182,39 @@ namespace NoiseCalculator.UI.Web.Controllers
                     break;
             }
 
+            //totalNoiseDosage.DynamicFootnotes.Add("Dynamic Footer 1");
+            //totalNoiseDosage.DynamicFootnotes.Add("Dynamic Footer 2");
+            totalNoiseDosage.DynamicFootnotes = GetDynamicFootnotes(selectedTasks);
+
             return Json(totalNoiseDosage, JsonRequestBehavior.AllowGet);
+        }
+
+        public IList<string> GetDynamicFootnotes(IEnumerable<SelectedTask> selectedTasks)
+        {
+            bool hasNoisyWork = false;
+            var roleIDs = _roleDAO.GetAreaNoiseRoleIds();
+            
+            foreach (SelectedTask selectedTask in selectedTasks)
+            {
+                if(hasNoisyWork == false)
+                {
+                    Task task = _taskDAO.Get(selectedTask.TaskId);
+                    if(roleIDs.Contains(task.Role.Id) == false)
+                    {
+                        hasNoisyWork = true;
+                    }
+                }
+            }
+
+            IList<string> dynamicFootnotes = new List<string>();
+            
+            if(hasNoisyWork)
+            {
+                dynamicFootnotes.Add(TaskResources.FooterDynamicNoiseProtection);
+                dynamicFootnotes.Add(TaskResources.FooterDynamicCorrectionForMeasuredNoiseLevel);
+            }
+
+            return dynamicFootnotes;
         }
 
         public SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
@@ -165,12 +225,22 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = selectedTask.Title,
                 Role = selectedTask.Role,
                 NoiseProtection = selectedTask.NoiseProtection,
-                NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
                 TaskId = selectedTask.TaskId,
                 HelicopterTaskId = selectedTask.HelicopterTaskId
             };
             
             Task task = _taskDAO.Get(selectedTask.TaskId);
+
+            if(selectedTask.IsNoiseMeassured)
+            {
+                viewModel.NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+            }
+            else
+            {
+                viewModel.NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture);
+            }
+            
+            
             
             if(task.Role.RoleType == RoleTypeEnum.Regular)
             {

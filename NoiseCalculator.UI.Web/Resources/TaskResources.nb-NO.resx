@@ -301,4 +301,29 @@
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselvern menes ørepropper og øreklokker brukt samtidig.</value>
   </data>
+  <data name="SelectedTaskNoiseMeasured" xml:space="preserve">
+    <value>(Feltmålt)</value>
+  </data>
+  <data name="FooterDynamicCorrectionForMeasuredNoiseLevel" xml:space="preserve">
+    <value>I beregning av støyeksponering er det tatt hensyn til pauser i deg støyende arbeider (forflyttning osv.) og gjort en korreksjon for målt støynivås andel av en normal arbeidssyklus. Oppgitt arbeidstid skal gjennspeile den totale tiden brukt til arbeidsoppgaven, inkludert ikke-støyende arbeid. Ved store endringer i normal arbeidssyklus ta kontakt med yrkeshygieniker.</value>
+  </data>
+  <data name="FooterDynamicNoiseProtection" xml:space="preserve">
+    <value>Følgende betingelser ang. hørselvernet gjelder. Høreselvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte propper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</value>
+  </data>
+  <data name="IndexButtonRemoveAll" xml:space="preserve">
+    <value>Fjern Alle</value>
+  </data>
+  <data name="RemoveAllConfirmationButtonClose" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="RemoveAllConfirmationButtonRemove" xml:space="preserve">
+    <value>Fjern Alle</value>
+  </data>
+  <data name="RemoveAllConfirmationDescription" xml:space="preserve">
+    <value>Fjerne alle oppgave i oppgavelisten?</value>
+    <comment>Remove all tasks in the tasklist?</comment>
+  </data>
+  <data name="RemoveAllConformationTitle" xml:space="preserve">
+    <value>Fjern Alle?</value>
+  </data>
 </root>

@@ -1,0 +1,21 @@
+﻿@using NoiseCalculator.UI.Web.Resources
+<div id="removeAllConfirmDialog" title="@TaskResources.RemoveAllConformationTitle" >
+    <p style="font-weight: bold;">
+        @TaskResources.RemoveAllConfirmationDescription
+    </p>
+    
+    <p style="margin-top: 20px;">
+        <div id="confirmRemoveAll" class="button">
+            <img src="@Url.Content("~/Content/bin_closed.png")" class="buttonIcon" />
+            @TaskResources.RemoveAllConfirmationButtonRemove
+        </div>
+        
+        <div id="cancelRemoveAll" class="button">
+            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+            @TaskResources.RemoveAllConfirmationButtonClose
+        </div>
+    </p>
+
+    <br clear="all"/>
+    
+</div>

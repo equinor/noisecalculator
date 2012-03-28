@@ -82,6 +82,14 @@ input[type="submit"] {
     color: Red;
 }
 
+.ui-datepicker-trigger
+{
+    margin-left: 3px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
 #taskList
 {
     min-height: 40px;
@@ -98,10 +106,12 @@ input[type="submit"] {
     color: white;
 }
 
-#tasklistHeading .test
+#tasklistHeading
 {
-    font-size: 20px;
-    margin-left: 5px;
+    font-size: 28px;
+    /*margin-left: 5px;*/
+    margin-bottom: 0px;
+    margin-top: 5px;
 }
 
 .taskGrouping
@@ -205,6 +215,18 @@ p
 {
     margin-left: 200px;
 }
+
+/* ----- */
+#confirmRemoveAll
+{    
+    margin-left: 15px;
+}
+
+#cancelRemoveAll
+{
+    margin-left: 30px;
+}
+/* ----- */
 
 .taskIcon
 {
@@ -310,4 +332,9 @@ p
     margin-left: auto; 
     margin-right: auto; 
     margin-bottom: 20px;
+}
+
+#removeAllConfirmDialog {
+    display: none;
+    background-color: white;
 }

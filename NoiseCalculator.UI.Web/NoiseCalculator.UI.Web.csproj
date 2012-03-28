@@ -100,6 +100,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\TaskResources.nb-NO.Designer.cs">
       <DependentUpon>TaskResources.nb-NO.resx</DependentUpon>
@@ -123,6 +124,7 @@
     <Content Include="Content\add.png" />
     <Content Include="Content\arrow_down.png" />
     <Content Include="Content\bin_closed.png" />
+    <Content Include="Content\calendar.png" />
     <Content Include="Content\cancel.png" />
     <Content Include="Content\disk.png" />
     <Content Include="Content\gb.gif" />
@@ -132,6 +134,7 @@
     <Content Include="Content\page_edit.png" />
     <Content Include="Content\printer.png" />
     <Content Include="Content\Statoil_logo.gif" />
+    <Content Include="Content\statoil_vertical_neg_80x40.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -236,10 +239,11 @@
     <Content Include="Views\Helideck\_EditHelideckTask.cshtml" />
     <Content Include="Views\Helideck\_TaskFormHelideck.cshtml" />
     <Content Include="Views\Shared\_RemoveTaskConfirmation.cshtml" />
+    <Content Include="Views\Task\_ReportInfo.cshtml" />
+    <Content Include="Views\Task\_RemoveAllConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
@@ -287,7 +291,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62301</DevelopmentServerPort>
+          <DevelopmentServerPort>8754</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

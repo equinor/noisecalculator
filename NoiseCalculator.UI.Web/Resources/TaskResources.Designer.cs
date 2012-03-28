@@ -79,6 +79,24 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the meassured noise levels share of a normal work cycle. The provided work time reflects the total time spent on the task, including the non noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygenist..
+        /// </summary>
+        public static string FooterDynamicCorrectionForMeasuredNoiseLevel {
+            get {
+                return ResourceManager.GetString("FooterDynamicCorrectionForMeasuredNoiseLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following conditions apply regarding noise protection. The noise protection should be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1..
+        /// </summary>
+        public static string FooterDynamicNoiseProtection {
+            get {
+                return ResourceManager.GetString("FooterDynamicNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169..
         /// </summary>
         public static string FooterGL0169 {
@@ -120,6 +138,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string IndexButtonCreatePdf {
             get {
                 return ResourceManager.GetString("IndexButtonCreatePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove All.
+        /// </summary>
+        public static string IndexButtonRemoveAll {
+            get {
+                return ResourceManager.GetString("IndexButtonRemoveAll", resourceCulture);
             }
         }
         
@@ -180,6 +207,42 @@ namespace NoiseCalculator.UI.Web.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        public static string RemoveAllConfirmationButtonClose {
+            get {
+                return ResourceManager.GetString("RemoveAllConfirmationButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove All.
+        /// </summary>
+        public static string RemoveAllConfirmationButtonRemove {
+            get {
+                return ResourceManager.GetString("RemoveAllConfirmationButtonRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all tasks in the tasklist?.
+        /// </summary>
+        public static string RemoveAllConfirmationDescription {
+            get {
+                return ResourceManager.GetString("RemoveAllConfirmationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove All?.
+        /// </summary>
+        public static string RemoveAllConformationTitle {
+            get {
+                return ResourceManager.GetString("RemoveAllConformationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         public static string RemoveTaskConfirmationButtonClose {
             get {
                 return ResourceManager.GetString("RemoveTaskConfirmationButtonClose", resourceCulture);
@@ -219,6 +282,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string SelectedTaskNoiseLevelLabel {
             get {
                 return ResourceManager.GetString("SelectedTaskNoiseLevelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Measured).
+        /// </summary>
+        public static string SelectedTaskNoiseMeasured {
+            get {
+                return ResourceManager.GetString("SelectedTaskNoiseMeasured", resourceCulture);
             }
         }
         

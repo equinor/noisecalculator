@@ -1,4 +1,5 @@
-﻿@using NoiseCalculator.UI.Web.Resources
+﻿@using NoiseCalculator.UI.Web.Models
+@using NoiseCalculator.UI.Web.Resources
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +15,12 @@
         <img src="@Url.Content("~/Content/Statoil_logo.gif")" style="float: left;" />
         <span id="applicationTitle">@TaskResources.ApplicationTitle</span>
             
-        <div style="color: White; text-align: right; position: relative;" >
-            @TaskResources.LayoutUserLabel: <strong>@User.Identity.Name</strong>!
+        <div style="color: White; text-align: right; position: relative; margin-right: 10px;" >
+            @TaskResources.LayoutUserLabel: <strong>@UserHelper.GetUsernameWithoutDomain(User.Identity.Name)</strong>
             <br />
             <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" />
             <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" />
+            <input id="currentLangTwoCharCode" type="hidden" value="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName" />
         </div>
         <br clear="all"/>
     </div>
@@ -32,6 +34,10 @@
             <li>@TaskResources.FooterNoiseProtectionDefinition</li>
             <li>@TaskResources.Footer80dBA</li>
         </ul>
+        <ul id="dynamicFootnotes">
+            @RenderSection("DynamicFooters", required : false)
+        </ul>
+
     </div>
     
 </body>

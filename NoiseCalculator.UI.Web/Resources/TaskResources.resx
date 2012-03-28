@@ -265,4 +265,30 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs.</value>
     <comment>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselvern menes ørepropper og øreklokker brukt samtidig.</comment>
   </data>
+  <data name="SelectedTaskNoiseMeasured" xml:space="preserve">
+    <value>(Measured)</value>
+  </data>
+  <data name="FooterDynamicCorrectionForMeasuredNoiseLevel" xml:space="preserve">
+    <value>The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the meassured noise levels share of a normal work cycle. The provided work time reflects the total time spent on the task, including the non noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygenist.</value>
+    <comment>I beregning av støyeksponering er det tatt hensyn til pauser i deg støyende arbeider (forflyttning osv.) og gjort en korreksjon for målt støynivås andel av en normal arbeidssyklus. Oppgitt arbeidstid skal gjennspeile den totale tiden brukt til arbeidsoppgaven, inkludert ikke-støyende arbeid. Ved store endringer i normal arbeidssyklus ta kontakt med yrkeshygieniker.</comment>
+  </data>
+  <data name="FooterDynamicNoiseProtection" xml:space="preserve">
+    <value>The following conditions apply regarding noise protection. The noise protection should be well maintained and used correctly. When using "universal ear plugs", individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1.</value>
+    <comment>Følgende betingelser ang. hørselvernet gjelder. Høreselvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte propper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</comment>
+  </data>
+  <data name="IndexButtonRemoveAll" xml:space="preserve">
+    <value>Remove All</value>
+  </data>
+  <data name="RemoveAllConfirmationButtonClose" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RemoveAllConfirmationButtonRemove" xml:space="preserve">
+    <value>Remove All</value>
+  </data>
+  <data name="RemoveAllConfirmationDescription" xml:space="preserve">
+    <value>Remove all tasks in the tasklist?</value>
+  </data>
+  <data name="RemoveAllConformationTitle" xml:space="preserve">
+    <value>Remove All?</value>
+  </data>
 </root>

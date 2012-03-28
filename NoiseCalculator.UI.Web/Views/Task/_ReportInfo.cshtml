@@ -1,0 +1,33 @@
+﻿@using NoiseCalculator.UI.Web.Resources
+<div id="reportInfo" style="display: none; background-color: white;" title="Valgfri informasjon til rapporten" >
+    <input id="pdfReportUrl" type="hidden" value="@Url.Action("PdfReport")"/>    
+
+    <p>
+        <label for="plant" class="label-normal120">Installasjon</label>
+        :         
+        <input id="plant" type="text" style="width: 200px;" />
+    </p>
+    
+    <p>
+        <label for="group" class="label-normal120">Faggruppe</label>
+        :         
+        <input id="group" type="text" style="width: 200px;" />
+    </p>
+
+    <p>
+        <label for="date" class="label-normal120">Dato</label>
+        :
+        <input id="date" type="text" style="width: 160px;" value="@DateTime.Now.Date.ToString("dd.MM.yyyy")" />
+    </p>
+
+    <p>
+        <label for="comment" class="label-normal120" style="vertical-align: top;">Kommentar</label>
+        <span style="vertical-align: top;">:</span>
+        <textarea id="comment" rows="2" style="width: 200px;"></textarea>
+    </p>
+
+    <div id="printAsPdfPost" class="button" style="margin-top: 20px; margin-left: 130px;">
+        <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
+        @TaskResources.IndexButtonCreatePdf
+    </div>
+</div>

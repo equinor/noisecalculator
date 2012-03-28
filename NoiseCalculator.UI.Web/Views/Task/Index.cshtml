@@ -1,4 +1,5 @@
-﻿@using NoiseCalculator.UI.Web.Resources
+﻿
+@using NoiseCalculator.UI.Web.Resources
 @using NoiseCalculator.UI.Web.ViewModels
 @model IEnumerable<SelectedTaskViewModel> 
 @{
@@ -15,20 +16,32 @@
     var removeTaskUrl = "@Url.Action("RemoveTask")";
     var getTotalPercentageUrl = "@Url.Action("GetTotalPercentage")";
     var getRemoveTaskConfirmationUrl = "@Url.Action("GetRemoveTaskConfirmationDialog")";
+    var removeAllUrl = "@Url.Action("RemoveAllTasks")";
 </script>
 
 <script src="../../Scripts/Tasks.js" type="text/javascript"></script>
 
-<h1 style="margin-bottom: 0px;" id="tasklistHeading">@TaskResources.IndexTitle</h1>
+<h1 id="tasklistHeading">@TaskResources.IndexTitle</h1>
 <h3 style="margin-top: 5px; margin-bottom: 20px;">@TaskResources.IndexSubtitle</h3>
 
 <div class="separatorDiv"></div>
 
-<div id="taskList">
-    @foreach (SelectedTaskViewModel selectedTask in Model)
-    {
-        @Html.Partial("_SelectedTask", selectedTask);
-    }
+<div id="taskListContainer">
+    <div id="taskList"> 
+        @foreach (SelectedTaskViewModel selectedTask in Model)
+        {
+            @Html.Partial("_SelectedTask", selectedTask);
+        }
+    </div>
+    
+    <div id="removeAllContainer" style="display: none; margin-bottom: 10px; margin-top: 10px;">
+        <div id="removeAllTasks" class="button" style=" float: right;">
+            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+            @TaskResources.IndexButtonRemoveAll
+        </div>
+    
+        <br clear="all" />
+    </div>
 </div>
     
 <div class="separatorDiv"></div>
@@ -49,48 +62,14 @@
 
 <br clear="all" />
 
-
-@*<a href="@Url.Action("PdfReport")">*@
-    <div id="printAsPdf" class="button" style="margin-top: 10px; float: right;" >
-        <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
-        @TaskResources.IndexButtonCreatePdf
-    </div>
-@*</a>*@
+<div id="printAsPdf" class="button" style="margin-top: 10px; float: right;" >
+    <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
+    @TaskResources.IndexButtonCreatePdf
+</div>
     
 <br clear="all" />
 
 <div id="taskDialog" style="display: none"></div>
 <div id="deleteConfirmDialog" style="display: none;"></div>
-
-<div id="reportInfo" style="display: none; background-color: white;">
-    <input id="pdfReportUrl" type="hidden" value="@Url.Action("PdfReport")"/>    
-
-    <p>
-        <label for="plant" class="label-normal120">Installasjon</label>
-        :         
-        <input id="plant" type="text" />
-    </p>
-    
-    <p>
-        <label for="group" class="label-normal120">Faggruppe</label>
-        :         
-        <input id="group" type="text" />
-    </p>
-
-    <p>
-        <label for="date" class="label-normal120">Dato</label>
-        :         
-        <input id="date" type="text" />
-    </p>
-
-    <p>
-        <label for="createdBy" class="label-normal120">Bruker</label>
-        :
-        <span id="createdBy">@User.Identity.Name</span>
-    </p>
-
-    <div id="printAsPdfPost" class="button">
-        <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
-        @TaskResources.IndexButtonCreatePdf
-    </div>
-</div>
+@Html.Partial("_ReportInfo")
+@Html.Partial("_RemoveAllConfirmation")

@@ -5,58 +5,58 @@ $(document).ready(function () {
     $("#addTask").click(function () {
         openTaskDialog();
     });
+        
+    $("#removeAllTasks").click(function () {
+        $("#removeAllConfirmDialog").dialog({
+                    title: $("#removeAllConfirmDialog").attr("title"),
+                    modal: true,
+                    resizable: false,
+                    width: 'auto',
+                    position: [250, 80]
+                });
+                
+                $("#confirmRemoveAll").click(function () {
+                    removeAllTasks();
+                });
 
-    $("#printAsPdfPost").click(function() {
-        //var formData = {
-        //    TaskId: $("#plant").val(),
-        //    NoiseLevelMeassured: $("#group").val(),
-        //    Hours: $("#date").val()
-        //};
+                $("#cancelRemoveAll").click(function () {
+                    $("#removeAllConfirmDialog").dialog('close');
+                });
+        
+            });
 
-        var theUrl = $("#pdfReportUrl").val() + "?plant=" + $("#plant").val() + "&group=" + $("#group").val() + "&date=" + $("#date").val();
+    /* Date picker in report info */
+    $("#date").datepicker({
+        showOn: "both",
+        dateFormat: 'dd.mm.yy',
+        buttonImage: "Content/calendar.png",
+        buttonImageOnly: true
+    });
 
+
+    $("#printAsPdfPost").click(function () {
+        // Convert date to "US" format to allow DateTime model binding.
+        var dateStringSplitted = $("#date").val().split('.');
+        var formatedDateString = dateStringSplitted[1] + "/" + dateStringSplitted[0] + "/" + dateStringSplitted[2];
+
+        var theUrl = $("#pdfReportUrl").val() + "?plant=" + $("#plant").val() + "&group=" + $("#group").val() + "&date=" + formatedDateString + "&comment=" + $("#comment").val();
         window.location = theUrl;
-
-        //$.ajax({
-        //    url: $("#pdfReportUrl") + "?plant=" + $("#plant").val(),
-        //    type: "GET",
-        //    /*data: JSON.stringify(formData),*/
-        //    contentType: "application/json",
-        //    dataType: "html"//,
-        //    //success: function (result) {
-        //        //var $taskDiv = $("<div>").append(result);
-
-        //        //if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
-        //        //    replaceTaskInTaskList(result);
-        //        //} else {
-        //        //    addResultToTaskList($taskDiv);
-        //        //}
-        //    //},
-        //    //error: function (jqXHR) {
-        //    //    showValidationError(jqXHR);
-        //    //}
-        //});
-
         $("#reportInfo").dialog('close');
     });
 
     $("#printAsPdf").click(function () {
-        $("#plant").val('');
-        $("#group").val('');
-        $("#date").val('');
-        
         $("#reportInfo").dialog({
-                modal: true,
-                resizable: false,
-                /*hide: { effect: 'fade', duration: 1000 },*/
-                width: 'auto',
-                position: [250, 80]
-            });
+            modal: true,
+            title: $("#reportInfo").attr("title"),
+            resizable: false,
+            width: 'auto',
+            position: [250, 80]
         });
+    });
 
     updateTotalPercentage();
+//    getDynamicFooters();
 });
-
 
 function setAllEvents() {
     var $mainContainer = $("#taskList");
@@ -239,6 +239,18 @@ function updateTotalPercentage() {
             $("#totalDailyPercentage").text(result.Percentage + "%");
             $("#statusText").text(result.StatusText);
             $("#totalDailyPercentageDiv").removeClass().addClass(result.CssClass);
+
+            if (result.Percentage > 0) {
+                $("#removeAllContainer").show();
+            } else {
+                $("#removeAllContainer").hide();
+            }
+
+            // Dynamic footnotes
+            $("#dynamicFootnotes").empty();
+            $.each(result.DynamicFootnotes, function () {
+                $("#dynamicFootnotes").append("<li>" + this + "</li>");
+            });
         },
         error: function (result) {
             alert(result);
@@ -263,6 +275,21 @@ function removeTask(taskDiv) {
         },
         error: function (jqXHR) {
             alert("Unable to remove: " + jqXHR.responseText);
+        }
+    });
+}
+
+function removeAllTasks() {
+    $.ajax({
+        type: "POST",
+        url: removeAllUrl,
+        dataType: "json",
+        cache: false,
+        success: function () {
+            window.location = window.location;
+        },
+        error: function (jqXHR) {
+            alert("Unable to remove all: " + jqXHR.responseText);
         }
     });
 }
