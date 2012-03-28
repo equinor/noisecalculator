@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace NoiseCalculator.Infrastructure.Pdf
@@ -6,8 +7,9 @@ namespace NoiseCalculator.Infrastructure.Pdf
     {
         public string Plant { get; set; }
         public string Group { get; set; }
-        public string Date { get; set; }
+        public DateTime? Date { get; set; }
         public string CreatedBy { get; set; }
+        public string Comment { get; set; }
         public IList<string> Footnotes { get; set; }
 
         public ReportInfo()

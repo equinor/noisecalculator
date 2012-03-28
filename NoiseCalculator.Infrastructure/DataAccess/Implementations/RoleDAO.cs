@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
@@ -17,6 +18,13 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .Where(x => x.SystemTitle == systemTitle)
                 .And(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
                 .SingleOrDefault<Role>();
+        }
+
+        public IEnumerable<int> GetAreaNoiseRoleIds()
+        {
+            return _session.QueryOver<Role>()
+                .Where(x => x.SystemTitle == "AreaNoise")
+                .SelectList(x => x.Select(y => y.Id)).List<int>();
         }
     }
 }

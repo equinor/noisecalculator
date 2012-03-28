@@ -6,5 +6,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
     public interface IRoleDAO : IDAO<Role, int>
     {
         Role Get(string title);
+        IEnumerable<int> GetAreaNoiseRoleIds();
     }
 }

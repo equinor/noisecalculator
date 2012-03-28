@@ -61,6 +61,24 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment: {0}.
+        /// </summary>
+        internal static string CommentFormatString {
+            get {
+                return ResourceManager.GetString("CommentFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date: {0}.
+        /// </summary>
+        internal static string DateFormatString {
+            get {
+                return ResourceManager.GetString("DateFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Noise Level (dBA).
         /// </summary>
         internal static string HeadingNoiseLevel {
@@ -115,6 +133,24 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plant: {0}.
+        /// </summary>
+        internal static string PlantFormatString {
+            get {
+                return ResourceManager.GetString("PlantFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profession: {0}.
+        /// </summary>
+        internal static string ProfessionFormatString {
+            get {
+                return ResourceManager.GetString("ProfessionFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculated noise exposure.
         /// </summary>
         internal static string ReportTitle {
@@ -129,6 +165,15 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         internal static string TotalPercentageFormatString {
             get {
                 return ResourceManager.GetString("TotalPercentageFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username: {0}.
+        /// </summary>
+        internal static string UserFormatString {
+            get {
+                return ResourceManager.GetString("UserFormatString", resourceCulture);
             }
         }
         

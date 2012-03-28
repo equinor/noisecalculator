@@ -62,8 +62,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
 			    PdfPage newPdfPage = myPdfDocument.NewPage();
 
                 // LAKHA
-                PdfArea pdfArea = new PdfArea(myPdfDocument, 48, 65, 750, 670);
-
+                PdfArea pdfArea = new PdfArea(myPdfDocument, 48, 95, 750, 670);
 			    PdfTablePage taskTable = myPdfTable.CreateTablePage(pdfArea);
 				
 			    // we also put a Label 
@@ -89,11 +88,25 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 newPdfPage.Add(summaryBackground);
                 newPdfPage.Add(summary);
 
-
                 // Info from report input window
                 PdfTextArea reportPlant = new PdfTextArea(new Font("Verdana", 12, FontStyle.Bold), Color.Black
-                    , new PdfArea(myPdfDocument, 48, 50, 595, 60), ContentAlignment.TopLeft, string.Format("Installasjon: {0}", reportInfo.Plant));
+                    , new PdfArea(myPdfDocument, 48, 50, 595, 60), ContentAlignment.TopLeft, string.Format(ReportResource.PlantFormatString, reportInfo.Plant));
+                PdfTextArea reportCreatedBy = new PdfTextArea(new Font("Verdana", 12, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 650, 50, 595, 60), ContentAlignment.TopLeft, string.Format(ReportResource.UserFormatString, reportInfo.CreatedBy));
+
+                PdfTextArea reportProfession = new PdfTextArea(new Font("Verdana", 12, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 48, 65, 595, 60), ContentAlignment.TopLeft, string.Format(ReportResource.ProfessionFormatString, reportInfo.Group));
+                PdfTextArea reportDate = new PdfTextArea(new Font("Verdana", 12, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 650, 65, 595, 60), ContentAlignment.TopLeft, string.Format(ReportResource.DateFormatString, (reportInfo.Date.HasValue) ? reportInfo.Date.Value.ToString("dd.MM.yyyy") : string.Empty));
+
+                PdfTextArea reportComment = new PdfTextArea(new Font("Verdana", 12, FontStyle.Bold), Color.Black
+                    , new PdfArea(myPdfDocument, 48, 80, 700, 60), ContentAlignment.TopLeft, string.Format(ReportResource.CommentFormatString, reportInfo.Comment));
+
                 newPdfPage.Add(reportPlant);
+                newPdfPage.Add(reportCreatedBy);
+                newPdfPage.Add(reportProfession);
+                newPdfPage.Add(reportDate);
+                newPdfPage.Add(reportComment);
                 
                 
                 

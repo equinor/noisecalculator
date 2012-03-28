@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CommentFormatString" xml:space="preserve">
+    <value>Comment: {0}</value>
+  </data>
+  <data name="DateFormatString" xml:space="preserve">
+    <value>Date: {0}</value>
+  </data>
   <data name="HeadingNoiseLevel" xml:space="preserve">
     <value>Noise Level (dBA)</value>
   </data>
@@ -135,12 +141,21 @@
   <data name="NoiseMeassured" xml:space="preserve">
     <value>measured</value>
   </data>
+  <data name="PlantFormatString" xml:space="preserve">
+    <value>Plant: {0}</value>
+  </data>
+  <data name="ProfessionFormatString" xml:space="preserve">
+    <value>Profession: {0}</value>
+  </data>
   <data name="ReportTitle" xml:space="preserve">
     <value>Calculated noise exposure</value>
     <comment>Beregnet støyeksponering</comment>
   </data>
   <data name="TotalPercentageFormatString" xml:space="preserve">
     <value>Total: {0}%</value>
+  </data>
+  <data name="UserFormatString" xml:space="preserve">
+    <value>Username: {0}</value>
   </data>
   <data name="WorkTimeFormatString" xml:space="preserve">
     <value>{0} h {1} min</value>
