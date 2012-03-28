@@ -326,4 +326,7 @@
   <data name="RemoveAllConformationTitle" xml:space="preserve">
     <value>Fjern Alle?</value>
   </data>
+  <data name="FooterDynamicValidForAreaNoiseUpTo90dBA" xml:space="preserve">
+    <value>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller dersom når arbeidet utføres i  områder med mye klang, feks tanker.</value>
+  </data>
 </root>

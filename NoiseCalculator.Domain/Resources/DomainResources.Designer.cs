@@ -61,7 +61,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as &quot;-----&quot;.
+        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as &quot;Danger of Work Related Injury&quot;.
         /// </summary>
         internal static string NoiseLevelStatusTextCritical {
             get {

@@ -97,6 +97,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is performed in areas....
+        /// </summary>
+        public static string FooterDynamicValidForAreaNoiseUpTo90dBA {
+            get {
+                return ResourceManager.GetString("FooterDynamicValidForAreaNoiseUpTo90dBA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169..
         /// </summary>
         public static string FooterGL0169 {

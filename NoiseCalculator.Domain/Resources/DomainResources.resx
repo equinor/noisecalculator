@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
-    <value>Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as "-----"</value>
+    <value>Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as "Danger of Work Related Injury"</value>
     <comment>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</comment>
   </data>
   <data name="NoiseLevelStatusTextNormal" xml:space="preserve">

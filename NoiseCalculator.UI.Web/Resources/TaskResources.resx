@@ -291,4 +291,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="RemoveAllConformationTitle" xml:space="preserve">
     <value>Remove All?</value>
   </data>
+  <data name="FooterDynamicValidForAreaNoiseUpTo90dBA" xml:space="preserve">
+    <value>The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is performed in areas...</value>
+    <comment>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller dersom når arbeidet utføres i  områder med mye klang, feks tanker.</comment>
+  </data>
 </root>

@@ -212,6 +212,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             {
                 dynamicFootnotes.Add(TaskResources.FooterDynamicNoiseProtection);
                 dynamicFootnotes.Add(TaskResources.FooterDynamicCorrectionForMeasuredNoiseLevel);
+                dynamicFootnotes.Add(TaskResources.FooterDynamicValidForAreaNoiseUpTo90dBA);
             }
 
             return dynamicFootnotes;
