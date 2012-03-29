@@ -238,7 +238,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
             else
             {
-                viewModel.NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture);
+                viewModel.NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture));
             }
             
             

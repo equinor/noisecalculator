@@ -143,10 +143,13 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (taskValuesHaveBeenChanged)
             {
                 Task task = _taskDAO.Get(selectedTask.TaskId);
-                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, helicopterNoiseProtection.HelicopterNoiseProtectionDefinition, viewModel.WorkIntervalId);
+                HelicopterNoiseProtection newHelicopterNoiseProtection = _helicopterNoiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+                
+                //HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, helicopterNoiseProtection.HelicopterNoiseProtectionDefinition, viewModel.WorkIntervalId);
+                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, newHelicopterNoiseProtection.HelicopterNoiseProtectionDefinition, viewModel.WorkIntervalId);
 
                 selectedTask.Title = string.Format("{0} - {1}", task.Title, newHelicopterTask.HelicopterType.Title);
-                selectedTask.NoiseProtection = helicopterNoiseProtection.Title;
+                selectedTask.NoiseProtection = newHelicopterNoiseProtection.Title;
                 selectedTask.Percentage = newHelicopterTask.Percentage;
                 selectedTask.Minutes = newHelicopterTask.GetMaximumAllowedMinutes();
                 selectedTask.HelicopterTaskId = newHelicopterTask.Id;

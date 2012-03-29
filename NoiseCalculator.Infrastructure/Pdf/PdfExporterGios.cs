@@ -111,14 +111,14 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 
                 
                 // LAKHA - Add footnotes...
-		        const int widthOfFootnote = 700;
+		        const int widthOfFootnote = 750;
                 const int heightOfFootnote = 30;
                 int offsetFromTop = 0;
 		        Font footnoteFont = new Font("Verdana", 11, FontStyle.Bold);
                 
                 foreach (string footNoteText in reportInfo.Footnotes)
                 {
-                    double PosY = statusText.PdfArea.BottomRightCornerY + 150 + offsetFromTop + 3;
+                    double PosY = statusText.PdfArea.BottomRightCornerY + 80 + offsetFromTop + 3;
                     PdfArea pdfAreaForText = new PdfArea(myPdfDocument, 48, PosY, widthOfFootnote, heightOfFootnote);
 
                     PdfTextArea footNote = new PdfTextArea(footnoteFont, Color.Black, pdfAreaForText, ContentAlignment.TopLeft, string.Format("* {0}", footNoteText));

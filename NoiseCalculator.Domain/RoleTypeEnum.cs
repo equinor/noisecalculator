@@ -4,6 +4,7 @@ namespace NoiseCalculator.Domain
     {
         Regular,
         Helideck,
-        Rotation
+        Rotation,
+        AreaNoise
     }
 }

@@ -55,7 +55,6 @@ $(document).ready(function () {
     });
 
     updateTotalPercentage();
-//    getDynamicFooters();
 });
 
 function setAllEvents() {
@@ -187,6 +186,10 @@ function bindRegularEvents() {
     /* For Rotation tasks, work time / percentage should be mirrored as assistant time */
     if ($("#roleType").val() == "Rotation") {
         bindRotationEvents();
+    } else if($("#roleType").val() == "AreaNoise") {
+        $("#noiseLevelMeassuredSpan").hide();
+        $("#noiseMeasuredYesLabel").hide();
+        $("#noiseMeasuredYes").hide();
     }
 }
 

@@ -40,17 +40,17 @@ namespace NoiseCalculator.UI.Web
         protected void Application_BeginRequest(Object Sender, EventArgs e)
         {
             RouteData routeData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(HttpContext.Current));
-            
-            if(routeData != null && string.IsNullOrEmpty(routeData.GetRequiredString("controller")) == false)
+
+            if (routeData != null && string.IsNullOrEmpty(routeData.GetRequiredString("controller")) == false)
             {
                 string cultureName = null;
-             
+
                 HttpCookie cultureCookie = Request.Cookies["_culture"];
                 if (cultureCookie != null)
                     cultureName = cultureCookie.Value;
                 else
                     cultureName = "nb-NO";
-                    //cultureName = Request.UserLanguages[0]; // obtain it from HTTP header AcceptLanguages
+                //cultureName = Request.UserLanguages[0]; // obtain it from HTTP header AcceptLanguages
 
                 // Modify current thread's cultures            
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
