@@ -2,9 +2,7 @@
 @using NoiseCalculator.UI.Web.Resources
 @model IEnumerable<Task>
 
-<span style="font-size: larger; font-weight: bold;">@TaskResources.TaskDialogTitle</span>
-
-<input type="hidden" id="formType" />
+<input type="hidden" id="hiddenTaskDialogTitle" value="@TaskResources.TaskDialogAddTitle" />
 
 <select id="taskSelect" size="14">
     @foreach (Task task in Model)

@@ -56,6 +56,7 @@
     <Compile Include="Entities\NoiseProtectionDefinition.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RoleDefinition.cs" />
+    <Compile Include="Entities\Rotation.cs" />
     <Compile Include="Entities\TaskDefinition.cs" />
     <Compile Include="Resources\DomainResources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -111,8 +111,9 @@ function openTaskDialog() {
             bindTaskDialogEvents();
             $(this).dialog({
                 modal: true,
+                title: $("#hiddenTaskDialogTitle").val(),
                 resizable: false,
-                hide: { effect: 'fade', duration: 1000 },
+                hide: { effect: 'fade', duration: 300 },
                 width: 'auto',
                 position: [250, 80]
             });
@@ -142,6 +143,9 @@ function getCreateTaskForm() {
             switch ($("#roleType").val()) {
                 case "Helideck":
                     bindHelideckEvents();
+                    break;
+                case "Rotation":
+                    bindRotationEvents();
                     break;
                 default:
                     bindRegularEvents();
@@ -184,9 +188,7 @@ function bindRegularEvents() {
     });
 
     /* For Rotation tasks, work time / percentage should be mirrored as assistant time */
-    if ($("#roleType").val() == "Rotation") {
-        bindRotationEvents();
-    } else if($("#roleType").val() == "AreaNoise") {
+    if($("#roleType").val() == "AreaNoise") {
         $("#noiseLevelMeassuredSpan").hide();
         $("#noiseMeasuredYesLabel").hide();
         $("#noiseMeasuredYes").hide();
@@ -203,16 +205,98 @@ function bindHelideckEvents() {
 }
 
 function bindRotationEvents() {
+    //
+    /* Set disabled state of task time */
+    if ($('#percentRadio').is(':checked')) {
+        enablePercentageInput();
+    } else {
+        enableWorkTimeInput();
+    }
+
+    /* Set disabled state of noise level measured */
+//    if ($("#noiseMeasuredNo").is(":checked")) {
+//        disableNoiseMeasuredInput();
+//    } else {
+//        enableNoiseMeasuredInput();
+//    }
+
+//    $("#noiseMeasuredYes").click(enableNoiseMeasuredInput);
+//    $("#noiseLevelMeassured").click(enableNoiseMeasuredInput);
+//    $("#noiseMeasuredNo").click(disableNoiseMeasuredInput);
+
+    $("#percentRadio").click(enablePercentageInput);
+    $("#percentage").click(enablePercentageInput);
+
+    $("#workTimeRadio").click(enableWorkTimeInput);
+    $("#hours").click(enableWorkTimeInput);
+    $("#minutes").click(enableWorkTimeInput);
+
+    $("#taskFormCloseButton").click(closeTaskDialog);
+    $('#submitButton').click(function (event) {
+        event.preventDefault();
+        submitRegularForm();
+    });
+    
+
+
+    // ------- TIME ECHO -------
     $("#hours").keyup(function () {
-        $("#hoursAssistant").text($("#hours").val());
+        var hoursValue = "0";
+        var minutesValue = "0";
+        
+        if ($("#minutes").val().length > 0) {
+            minutesValue = $("#minutes").val();
+        }
+        if ($("#hours").val().length > 0) {
+            hoursValue = $("#hours").val();
+        }
+
+        $("#minutesOperator").text(minutesValue);
+        $("#minutesAssistant").text(minutesValue);
+        $("#hoursOperator").text(hoursValue);
+        $("#hoursAssistant").text(hoursValue);
+
+        $("#timeAssistantSpan").show();
+        $("#timeOperatorSpan").show();
+        $("#percentageOperatorSpan").hide();
+        $("#percentageAssistantSpan").hide();
     });
 
     $("#minutes").keyup(function () {
-        $("#minutesAssistant").text($("#minutes").val());
+        var hoursValue = "0";
+        var minutesValue = "0";
+        
+        if ($("#minutes").val().length > 0) {
+            minutesValue = $("#minutes").val();
+        }
+        if ($("#hours").val().length > 0) {
+            hoursValue = $("#hours").val();
+        }
+
+        $("#minutesOperator").text(minutesValue);
+        $("#minutesAssistant").text(minutesValue);
+        $("#hoursOperator").text(hoursValue);
+        $("#hoursAssistant").text(hoursValue);
+
+        $("#timeOperatorSpan").show();
+        $("#timeAssistantSpan").show();
+        $("#percentageOperatorSpan").hide();
+        $("#percentageAssistantSpan").hide();
     });
 
     $("#percentage").keyup(function () {
-        $("#percentageAssistant").text($("#percentage").val());
+        var percentageValue = "0";
+        if ($("#percentage").val().length > 0) {
+            percentageValue = $("#percentage").val();
+        }
+
+        $("#percentageOperator").text(percentageValue);
+        $("#percentageAssistant").text(percentageValue);
+
+        $("#timeOperatorSpan").hide();
+        $("#timeAssistantSpan").hide();
+        $("#percentageOperatorSpan").show();
+        $("#percentageAssistantSpan").show();
     });
 }
 
@@ -315,17 +399,15 @@ function editTask(taskDiv) {
                 case "Helideck":
                     bindHelideckEvents();
                     break;
-                case "Rotation":
-                    alert("Rotation task!");
-                    break;
                 default:
                     bindRegularEvents();
             }
 
             $taskDialog.dialog({
                 modal: true,
+                title: $("#hiddenEditTitle").val(),
                 resizable: false,
-                hide: { effect: 'fade', duration: 1000 },
+                hide: { effect: 'fade', duration: 300 },
                 width: 'auto',
                 position: [250, 80]
             });
@@ -378,7 +460,6 @@ function enableWorkTimeInput() {
     }
 
     $("#percentage").val("");
-    $("#percentageAssistant").text("");
 }
 
 function submitRegularForm() {

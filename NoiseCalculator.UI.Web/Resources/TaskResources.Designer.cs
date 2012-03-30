@@ -349,6 +349,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Task.
+        /// </summary>
+        public static string TaskDialogAddTitle {
+            get {
+                return ResourceManager.GetString("TaskDialogAddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Task.
         /// </summary>
         public static string TaskDialogButtonUseTask {
@@ -358,11 +367,11 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Task.
+        ///   Looks up a localized string similar to Edit Task.
         /// </summary>
-        public static string TaskDialogTitle {
+        public static string TaskDialogEditTitle {
             get {
-                return ResourceManager.GetString("TaskDialogTitle", resourceCulture);
+                return ResourceManager.GetString("TaskDialogEditTitle", resourceCulture);
             }
         }
         

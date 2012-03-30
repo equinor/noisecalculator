@@ -37,7 +37,6 @@ namespace NoiseCalculator.UI.Web.Controllers
                 TaskId = task.Id,
                 Title = task.Title,
                 Role = task.Role.Title,
-                //RoleType = RoleTypeEnum.Regular.ToString(),
                 RoleType = task.Role.RoleType.ToString(),
                 NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(),
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,

@@ -86,11 +86,13 @@ namespace NoiseCalculator.UI.Web.Controllers
         public ActionResult GetCreateFormForTask(int id)
         {
             Task task = _taskDAO.GetFilteredByCurrentCulture(id);
-
-            switch (task.Role.Title)
+            
+            switch (task.Role.RoleType)
             {
-                case "Helideck":
+                case RoleTypeEnum.Helideck:
                     return RedirectToAction("AddTaskHelideck", "Helideck", new { TaskId = task.Id });
+                case RoleTypeEnum.Rotation:
+                    return RedirectToAction("AddTask", "Rotation", new { TaskId = task.Id });
                 default:
                     return RedirectToAction("AddTaskRegular", "Regular", new { TaskId = task.Id });
             }

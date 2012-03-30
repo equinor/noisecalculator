@@ -58,6 +58,8 @@ namespace NoiseCalculator.Infrastructure.NHibernate
         {
             SchemaExport schemaExporter = new SchemaExport(_configuration);
             schemaExporter.Create(false, true);
+            //schemaExporter.SetOutputFile("C:\\appl\\sql.txt");
+            //schemaExporter.Execute(true, false, false);
          }
     }
 }

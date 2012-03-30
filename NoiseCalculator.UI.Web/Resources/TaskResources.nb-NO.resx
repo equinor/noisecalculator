@@ -197,7 +197,7 @@
     <value>Bruk Oppgave</value>
     <comment>Use Task</comment>
   </data>
-  <data name="TaskDialogTitle" xml:space="preserve">
+  <data name="TaskDialogAddTitle" xml:space="preserve">
     <value>Legg Til Oppgave</value>
     <comment>Add Task</comment>
   </data>
@@ -328,5 +328,8 @@
   </data>
   <data name="FooterDynamicValidForAreaNoiseUpTo90dBA" xml:space="preserve">
     <value>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller dersom når arbeidet utføres i  områder med mye klang, feks tanker.</value>
+  </data>
+  <data name="TaskDialogEditTitle" xml:space="preserve">
+    <value>Rediger Oppgave</value>
   </data>
 </root>

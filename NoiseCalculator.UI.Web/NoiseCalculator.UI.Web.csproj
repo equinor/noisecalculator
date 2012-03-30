@@ -96,6 +96,7 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
+    <Compile Include="Controllers\RotationController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -113,6 +114,7 @@
       <DependentUpon>TaskResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\RemoveConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\RotationViewModel.cs" />
     <Compile Include="ViewModels\SelectedTasksRotationViewModel.cs" />
     <Compile Include="ViewModels\HelideckViewModel.cs" />
     <Compile Include="ViewModels\RegularViewModel.cs" />
@@ -243,6 +245,8 @@
     <Content Include="Views\Shared\_RemoveTaskConfirmation.cshtml" />
     <Content Include="Views\Task\_ReportInfo.cshtml" />
     <Content Include="Views\Task\_RemoveAllConfirmation.cshtml" />
+    <Content Include="Views\Rotation\_TaskFormRotation.cshtml" />
+    <Content Include="Views\Rotation\_CreateTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -269,6 +273,7 @@
     <EmbeddedResource Include="Resources\TaskResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

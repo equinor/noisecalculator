@@ -1,0 +1,20 @@
+﻿@using NoiseCalculator.UI.Web.Resources
+@model NoiseCalculator.UI.Web.ViewModels.RotationViewModel
+
+<form method="POST" action="@Url.Action("AddTask")" id="editForm" >
+    @Html.Partial("_TaskFormRotation", Model)
+    
+    <p id="editFormButtons">
+        <div id="submitButton" class="button" style="margin-left: 90px;">
+            <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
+            @TaskResources.TaskFormButtonSubmitAdd
+        </div>
+        
+        <div id="taskFormCloseButton" class="button">
+            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+            @TaskResources.TaskFormButtonClose
+        </div>
+        
+        <br clear="all" />
+    </p>
+</form>

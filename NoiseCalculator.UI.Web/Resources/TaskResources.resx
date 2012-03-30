@@ -177,7 +177,7 @@
   <data name="TaskDialogButtonUseTask" xml:space="preserve">
     <value>Use Task</value>
   </data>
-  <data name="TaskDialogTitle" xml:space="preserve">
+  <data name="TaskDialogAddTitle" xml:space="preserve">
     <value>Add Task</value>
   </data>
   <data name="TaskFormButtonClose" xml:space="preserve">
@@ -294,5 +294,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="FooterDynamicValidForAreaNoiseUpTo90dBA" xml:space="preserve">
     <value>The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is performed in areas...</value>
     <comment>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller dersom når arbeidet utføres i  områder med mye klang, feks tanker.</comment>
+  </data>
+  <data name="TaskDialogEditTitle" xml:space="preserve">
+    <value>Edit Task</value>
   </data>
 </root>
