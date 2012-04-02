@@ -101,9 +101,8 @@ namespace NoiseCalculator.UI.Web.Controllers
         public ActionResult GetEditFormForSelectedTask(int id)
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(id);
-            Task task = _taskDAO.Get(selectedTask.TaskId);
-
-            switch (task.Role.Title)
+            
+            switch (selectedTask.Task.Role.Title)
             {
                 case "Helideck":
                     return RedirectToAction("EditTaskHelideck", "Helideck", new { selectedTaskId = selectedTask.Id });
@@ -184,8 +183,6 @@ namespace NoiseCalculator.UI.Web.Controllers
                     break;
             }
 
-            //totalNoiseDosage.DynamicFootnotes.Add("Dynamic Footer 1");
-            //totalNoiseDosage.DynamicFootnotes.Add("Dynamic Footer 2");
             totalNoiseDosage.DynamicFootnotes = GetDynamicFootnotes(selectedTasks);
 
             return Json(totalNoiseDosage, JsonRequestBehavior.AllowGet);
@@ -198,13 +195,10 @@ namespace NoiseCalculator.UI.Web.Controllers
             
             foreach (SelectedTask selectedTask in selectedTasks)
             {
-                if(hasNoisyWork == false)
+                if(roleIDs.Contains(selectedTask.Task.Role.Id) == false)
                 {
-                    Task task = _taskDAO.Get(selectedTask.TaskId);
-                    if(roleIDs.Contains(task.Role.Id) == false)
-                    {
-                        hasNoisyWork = true;
-                    }
+                    hasNoisyWork = true;
+                    break;
                 }
             }
 
@@ -228,12 +222,10 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = selectedTask.Title,
                 Role = selectedTask.Role,
                 NoiseProtection = selectedTask.NoiseProtection,
-                TaskId = selectedTask.TaskId,
+                TaskId = selectedTask.Task.Id,
                 HelicopterTaskId = selectedTask.HelicopterTaskId
             };
             
-            Task task = _taskDAO.Get(selectedTask.TaskId);
-
             if(selectedTask.IsNoiseMeassured)
             {
                 viewModel.NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
@@ -242,10 +234,10 @@ namespace NoiseCalculator.UI.Web.Controllers
             {
                 viewModel.NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture));
             }
-            
-            
-            
-            if(task.Role.RoleType == RoleTypeEnum.Regular)
+
+
+
+            if (selectedTask.Task.Role.RoleType == RoleTypeEnum.Regular)
             {
                 viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
                 viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);

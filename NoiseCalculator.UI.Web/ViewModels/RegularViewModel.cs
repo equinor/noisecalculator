@@ -34,10 +34,6 @@
             RadioTimeCheckedAttr = string.Empty;
             RadioPercentageCheckedAttr = string.Empty;
             RotationDiplayStyle = "style=\"display: none;\"";
-
-            //IsNoiseMeassured = string.Empty;
-            //IsWorkSpecifiedAsTime { get; set; }
-            //IsWorkSpecifiedAsPercentage { get; set; }
         }
     }
 }

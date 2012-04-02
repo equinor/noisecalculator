@@ -16,7 +16,15 @@ namespace NoiseCalculator.Domain.Entities
         public virtual DateTime CreatedDate { get; set; }
         public virtual bool IsNoiseMeassured { get; set; }
 
-        public virtual int TaskId { get; set; }
+        public virtual Task Task { get; set; }
         public virtual int HelicopterTaskId { get; set; }
+
+        
+        public virtual void AddWorkTime(TimeSpan timeSpan, int percentage)
+        {
+            Hours = timeSpan.Hours;
+            Minutes = timeSpan.Minutes;
+            Percentage = percentage;
+        }
     }
 }

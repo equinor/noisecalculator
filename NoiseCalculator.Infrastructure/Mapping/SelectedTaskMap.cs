@@ -20,8 +20,9 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.CreatedDate).Not.Nullable();
             Map(x => x.IsNoiseMeassured).Not.Nullable();
 
-            Map(x => x.TaskId);
             Map(x => x.HelicopterTaskId);
+
+            References(x => x.Task, "TaskId").LazyLoad(Laziness.False);
         }
     }
 }

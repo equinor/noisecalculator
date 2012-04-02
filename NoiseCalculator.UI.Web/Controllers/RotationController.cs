@@ -1,8 +1,12 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Controllers
@@ -12,10 +16,9 @@ namespace NoiseCalculator.UI.Web.Controllers
         private const string InputChecked = "checked=\"checked\"";
         private const string InputNotChecked = "";
 
-        private ISelectedTaskDAO _selectedTaskDAO;
-        private IRotationDAO _rotationDAO;
-        private ITaskDAO _taskDAO;
-        
+        private readonly ISelectedTaskDAO _selectedTaskDAO;
+        private readonly IRotationDAO _rotationDAO;
+        private readonly ITaskDAO _taskDAO;
         
         public RotationController(ITaskDAO taskDAO, IRotationDAO rotationDAO, ISelectedTaskDAO selectedTaskDAO)
         {
@@ -47,11 +50,119 @@ namespace NoiseCalculator.UI.Web.Controllers
             return PartialView("_CreateTask", viewModel);
         }
 
-        //[HttpPost]
-        //public PartialViewResult AddTask(int taskId)
-        //{
-        //    return new EmptyResult();
-        //    //return PartialView("_SelectedTask", selectedTaskViewModel);
-        //}
+        private TimeSpan CreateTimeSpan(string hoursString, string minutesString)
+        {
+            int hours = string.IsNullOrEmpty(hoursString) ? 0 : int.Parse(hoursString);
+            int minutes = string.IsNullOrEmpty(minutesString) ? 0 : int.Parse(minutesString);
+            return new TimeSpan(0, hours, minutes, 0);
+        }
+
+        [HttpPost]
+        public PartialViewResult AddTaskRotation(RotationViewModel viewModel)
+        {
+            Rotation rotation = _rotationDAO.Get(viewModel.RotationId);
+
+            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, rotation);
+            if (validationViewModel.ValidationErrors.Count > 0)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", validationViewModel);
+            }
+
+            int operatorNoiseLevelMeasured = string.IsNullOrEmpty(viewModel.OperatorNoiseLevelMeasured) ? 0 : int.Parse(viewModel.OperatorNoiseLevelMeasured);
+            int assistantNoiseLevelMeasured = string.IsNullOrEmpty(viewModel.AssistantNoiseLevelMeasured) ? 0 : int.Parse(viewModel.AssistantNoiseLevelMeasured);            
+
+            SelectedTask selectedTaskOperator = CreateSelectedTask(operatorNoiseLevelMeasured, rotation.OperatorTask);
+            SelectedTask selectedTaskAssistant = CreateSelectedTask(assistantNoiseLevelMeasured, rotation.AssistantTask);
+
+            if(string.IsNullOrEmpty(viewModel.Percentage))
+            {
+                TimeSpan timeSpan = CreateTimeSpan(viewModel.Hours, viewModel.Minutes);
+                int percentage = (int)rotation.OperatorTask.CalculatePercentage(operatorNoiseLevelMeasured, timeSpan);
+                selectedTaskOperator.AddWorkTime(timeSpan, percentage);
+            }
+            else
+            {
+                int percentage = int.Parse(viewModel.Percentage);
+                TimeSpan timeSpan = rotation.OperatorTask.CalculateTimeSpan(operatorNoiseLevelMeasured, percentage);
+                selectedTaskOperator.AddWorkTime(timeSpan, percentage);
+            }
+
+            _selectedTaskDAO.Store(selectedTaskOperator);
+            _selectedTaskDAO.Store(selectedTaskAssistant);
+
+            SelectedTasksRotationViewModel selectedTaskRotationViewModel =
+                new SelectedTasksRotationViewModel
+                {
+                    OperatorSelectedTaskViewModel = CreateViewModel(selectedTaskOperator),
+                    AssistantSelectedTaskViewModel = CreateViewModel(selectedTaskAssistant)
+                };
+
+            return PartialView("_SelectedTasksRotation", selectedTaskRotationViewModel);
+        }
+
+
+        private SelectedTask CreateSelectedTask(int noiseLevelMeasured, Task task)
+        {
+            SelectedTask selectedTask = new SelectedTask
+            {
+                Title = task.Title,
+                Role = task.Role.Title,
+                NoiseProtection = task.NoiseProtection.Title,
+                Task = task,
+                CreatedBy = User.Identity.Name,
+                CreatedDate = DateTime.Now.Date
+            };
+
+            if (noiseLevelMeasured > task.NoiseLevelGuideline)
+            {
+                selectedTask.NoiseLevel = noiseLevelMeasured;
+                selectedTask.IsNoiseMeassured = true;
+            }
+            else
+            {
+                selectedTask.NoiseLevel = task.NoiseLevelGuideline;
+                selectedTask.IsNoiseMeassured = false;
+            }
+
+            return selectedTask;
+        }
+
+
+        private ValidationErrorSummaryViewModel ValidateInput(RotationViewModel viewModel, Rotation rotation)
+        {
+            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+
+            //if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - rotation.NoiseLevelGuideline > 6)
+            //{
+            //    errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidline);
+            //}
+
+            //if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
+            //{
+            //    errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
+            //}
+
+            return errorSummaryViewModel;
+        }
+
+
+        private SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
+        {
+            SelectedTaskViewModel viewModel = new SelectedTaskViewModel
+            {
+                Id = selectedTask.Id,
+                Title = selectedTask.Title,
+                Role = selectedTask.Role,
+                NoiseProtection = selectedTask.NoiseProtection,
+                NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
+                TaskId = selectedTask.Task.Id,
+                Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture),
+                Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
+                Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
+            };
+
+            return viewModel;
+        }
     }
 }

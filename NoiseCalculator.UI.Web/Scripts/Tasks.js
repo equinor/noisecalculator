@@ -493,6 +493,39 @@ function submitRegularForm() {
     });
 }
 
+/* SUBMIT ROTATION FORM!!!!!!!!!!!! */
+function submitRegularForm() {
+    var myEditForm = $("#editForm");
+    var formData = {
+        TaskId: $("#taskId").val(),
+        NoiseLevelMeassured: $("#noiseLevelMeassured").val(),
+        Hours: $("#hours").val(),
+        Minutes: $("#minutes").val(),
+        Percentage: $("#percentage").val()
+    };
+
+    $.ajax({
+        url: myEditForm.attr('action'),
+        type: myEditForm.attr('method'),
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "html",
+        success: function (result) {
+            var $taskDiv = $("<div>").append(result);
+
+            if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
+                replaceTaskInTaskList(result);
+            } else {
+                addResultToTaskList($taskDiv);
+            }
+        },
+        error: function (jqXHR) {
+            showValidationError(jqXHR);
+        }
+    });
+}
+
+
 
 function submitHelideckForm() {
     var myEditForm = $('#editForm');
