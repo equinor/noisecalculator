@@ -204,6 +204,40 @@ function bindHelideckEvents() {
     });
 }
 
+
+/* MODIFIED FOR ROTATION */
+function enableNoiseMeasuredInputRotationOperator() {
+    if ($("#noiseMeasuredYesOperator").attr("checked") == undefined) {
+        $("#noiseMeasuredYesOperator").attr("checked", "checked");
+        $("#noiseLevelMeassuredOperator").focus();
+    }
+
+    $("#noiseLevelMeassuredOperator").focus();
+    $("#noiseLevelGuidlineOperator").attr("disabled", true);
+}
+
+function disableNoiseMeasuredInputRotationOperator() {
+    $("#noiseLevelGuidlineOperator").removeAttr("disabled");
+    $("#noiseLevelMeassuredOperator").val("");
+}
+
+function enableNoiseMeasuredInputRotationAssistant() {
+    if ($("#noiseMeasuredYesAssistant").attr("checked") == undefined) {
+        $("#noiseMeasuredYesAssistant").attr("checked", "checked");
+        $("#noiseLevelMeassuredAssistant").focus();
+    }
+
+    $("#noiseLevelMeassuredAssistant").focus();
+    $("#noiseLevelGuidlineAssistant").attr("disabled", true);
+}
+
+function disableNoiseMeasuredInputRotationAssistant() {
+    $("#noiseLevelGuidlineAssistant").removeAttr("disabled");
+    $("#noiseLevelMeassuredAssistant").val("");
+}
+/* ------- MODIFIED FOR ROTATION ------- */
+
+
 function bindRotationEvents() {
     //
     /* Set disabled state of task time */
@@ -213,16 +247,20 @@ function bindRotationEvents() {
         enableWorkTimeInput();
     }
 
-    /* Set disabled state of noise level measured */
-//    if ($("#noiseMeasuredNo").is(":checked")) {
-//        disableNoiseMeasuredInput();
-//    } else {
-//        enableNoiseMeasuredInput();
-//    }
+    // ----------------------------------------------
+    // Refactor - Unscrew this, DRY - Create common code with the "regular task" use case,
+    disableNoiseMeasuredInputRotationOperator();
+    disableNoiseMeasuredInputRotationAssistant();
+    
+    $("#noiseMeasuredYesOperator").click(enableNoiseMeasuredInputRotationOperator);
+    $("#noiseLevelMeassuredOperator").click(enableNoiseMeasuredInputRotationOperator);
+    $("#noiseMeasuredNoOperator").click(disableNoiseMeasuredInputRotationOperator);
 
-//    $("#noiseMeasuredYes").click(enableNoiseMeasuredInput);
-//    $("#noiseLevelMeassured").click(enableNoiseMeasuredInput);
-//    $("#noiseMeasuredNo").click(disableNoiseMeasuredInput);
+    $("#noiseMeasuredYesAssistant").click(enableNoiseMeasuredInputRotationAssistant);
+    $("#noiseLevelMeassuredAssistant").click(enableNoiseMeasuredInputRotationAssistant);
+    $("#noiseMeasuredNoAssistant").click(disableNoiseMeasuredInputRotationAssistant);
+
+// ----------------------------------------------
 
     $("#percentRadio").click(enablePercentageInput);
     $("#percentage").click(enablePercentageInput);
@@ -234,7 +272,7 @@ function bindRotationEvents() {
     $("#taskFormCloseButton").click(closeTaskDialog);
     $('#submitButton').click(function (event) {
         event.preventDefault();
-        submitRegularForm();
+        submitRotationForm();
     });
     
 
@@ -284,19 +322,22 @@ function bindRotationEvents() {
         $("#percentageAssistantSpan").hide();
     });
 
-    $("#percentage").keyup(function () {
-        var percentageValue = "0";
-        if ($("#percentage").val().length > 0) {
-            percentageValue = $("#percentage").val();
+    $("#percentage").keyup(function (event) {
+        var TABKEY = 9;
+        if (event.keyCode != TABKEY) {
+            var percentageValue = "0";
+            if ($("#percentage").val().length > 0) {
+                percentageValue = $("#percentage").val();
+            }
+
+            $("#percentageOperator").text(percentageValue);
+            $("#percentageAssistant").text(percentageValue);
+
+            $("#timeOperatorSpan").hide();
+            $("#timeAssistantSpan").hide();
+            $("#percentageOperatorSpan").show();
+            $("#percentageAssistantSpan").show();
         }
-
-        $("#percentageOperator").text(percentageValue);
-        $("#percentageAssistant").text(percentageValue);
-
-        $("#timeOperatorSpan").hide();
-        $("#timeAssistantSpan").hide();
-        $("#percentageOperatorSpan").show();
-        $("#percentageAssistantSpan").show();
     });
 }
 
@@ -493,15 +534,15 @@ function submitRegularForm() {
     });
 }
 
-/* SUBMIT ROTATION FORM!!!!!!!!!!!! */
-function submitRegularForm() {
+function submitRotationForm() {
     var myEditForm = $("#editForm");
     var formData = {
-        TaskId: $("#taskId").val(),
-        NoiseLevelMeassured: $("#noiseLevelMeassured").val(),
+        RotationId: $("#rotationId").val(),
         Hours: $("#hours").val(),
         Minutes: $("#minutes").val(),
-        Percentage: $("#percentage").val()
+        Percentage: $("#percentage").val(),
+        OperatorNoiseLevelMeasured: $("#noiseLevelMeassuredOperator").val(),
+        AssistantNoiseLevelMeasured: $("#noiseLevelMeassuredAssistant").val()
     };
 
     $.ajax({
@@ -512,19 +553,13 @@ function submitRegularForm() {
         dataType: "html",
         success: function (result) {
             var $taskDiv = $("<div>").append(result);
-
-            if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
-                replaceTaskInTaskList(result);
-            } else {
-                addResultToTaskList($taskDiv);
-            }
+            addResultToTaskList($taskDiv);
         },
         error: function (jqXHR) {
             showValidationError(jqXHR);
         }
     });
 }
-
 
 
 function submitHelideckForm() {

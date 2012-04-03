@@ -538,6 +538,24 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assistant: The measured noise level for assistant is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high..
+        /// </summary>
+        public static string ValidationErrorNoiseLevelToHighAboveGuidlineAssistant {
+            get {
+                return ResourceManager.GetString("ValidationErrorNoiseLevelToHighAboveGuidlineAssistant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator: The measured noise level for operator is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high..
+        /// </summary>
+        public static string ValidationErrorNoiseLevelToHighAboveGuidlineOperator {
+            get {
+                return ResourceManager.GetString("ValidationErrorNoiseLevelToHighAboveGuidlineOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string ValidationErrorSummaryClose {

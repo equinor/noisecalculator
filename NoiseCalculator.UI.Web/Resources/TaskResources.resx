@@ -298,4 +298,10 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="TaskDialogEditTitle" xml:space="preserve">
     <value>Edit Task</value>
   </data>
+  <data name="ValidationErrorNoiseLevelToHighAboveGuidlineAssistant" xml:space="preserve">
+    <value>Assistant: The measured noise level for assistant is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high.</value>
+  </data>
+  <data name="ValidationErrorNoiseLevelToHighAboveGuidlineOperator" xml:space="preserve">
+    <value>Operator: The measured noise level for operator is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high.</value>
+  </data>
 </root>

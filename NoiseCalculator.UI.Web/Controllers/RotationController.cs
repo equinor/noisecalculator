@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +13,6 @@ namespace NoiseCalculator.UI.Web.Controllers
     public class RotationController : Controller
     {
         private const string InputChecked = "checked=\"checked\"";
-        private const string InputNotChecked = "";
 
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IRotationDAO _rotationDAO;
@@ -27,7 +25,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             _selectedTaskDAO = selectedTaskDAO;
         }
 
-        public PartialViewResult AddTask(int taskId)
+        public PartialViewResult AddTaskRotation(int taskId)
         {
             Task task = _taskDAO.Get(taskId);
             Rotation rotation = _rotationDAO.GetByTaskId(taskId);
@@ -48,13 +46,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_CreateTask", viewModel);
-        }
-
-        private TimeSpan CreateTimeSpan(string hoursString, string minutesString)
-        {
-            int hours = string.IsNullOrEmpty(hoursString) ? 0 : int.Parse(hoursString);
-            int minutes = string.IsNullOrEmpty(minutesString) ? 0 : int.Parse(minutesString);
-            return new TimeSpan(0, hours, minutes, 0);
         }
 
         [HttpPost]
@@ -80,12 +71,14 @@ namespace NoiseCalculator.UI.Web.Controllers
                 TimeSpan timeSpan = CreateTimeSpan(viewModel.Hours, viewModel.Minutes);
                 int percentage = (int)rotation.OperatorTask.CalculatePercentage(operatorNoiseLevelMeasured, timeSpan);
                 selectedTaskOperator.AddWorkTime(timeSpan, percentage);
+                selectedTaskAssistant.AddWorkTime(timeSpan, percentage);
             }
             else
             {
                 int percentage = int.Parse(viewModel.Percentage);
                 TimeSpan timeSpan = rotation.OperatorTask.CalculateTimeSpan(operatorNoiseLevelMeasured, percentage);
                 selectedTaskOperator.AddWorkTime(timeSpan, percentage);
+                selectedTaskAssistant.AddWorkTime(timeSpan, percentage);
             }
 
             _selectedTaskDAO.Store(selectedTaskOperator);
@@ -99,6 +92,14 @@ namespace NoiseCalculator.UI.Web.Controllers
                 };
 
             return PartialView("_SelectedTasksRotation", selectedTaskRotationViewModel);
+        }
+
+
+        private TimeSpan CreateTimeSpan(string hoursString, string minutesString)
+        {
+            int hours = string.IsNullOrEmpty(hoursString) ? 0 : int.Parse(hoursString);
+            int minutes = string.IsNullOrEmpty(minutesString) ? 0 : int.Parse(minutesString);
+            return new TimeSpan(0, hours, minutes, 0);
         }
 
 
@@ -133,20 +134,26 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
 
-            //if (!string.IsNullOrEmpty(viewModel.NoiseLevelMeassured) && int.Parse(viewModel.NoiseLevelMeassured) - rotation.NoiseLevelGuideline > 6)
-            //{
-            //    errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidline);
-            //}
+            if (!string.IsNullOrEmpty(viewModel.OperatorNoiseLevelMeasured) && int.Parse(viewModel.OperatorNoiseLevelMeasured) - rotation.OperatorTask.NoiseLevelGuideline > 6)
+            {
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineOperator);
+            }
 
-            //if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
-            //{
-            //    errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
-            //}
+            if (!string.IsNullOrEmpty(viewModel.AssistantNoiseLevelMeasured) && int.Parse(viewModel.AssistantNoiseLevelMeasured) - rotation.AssistantTask.NoiseLevelGuideline > 6)
+            {
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineAssistant);
+            }
+
+            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
+            {
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
+            }
 
             return errorSummaryViewModel;
         }
 
 
+        // DRY this up... TaskController has similar code...
         private SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
         {
             SelectedTaskViewModel viewModel = new SelectedTaskViewModel
@@ -155,12 +162,20 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = selectedTask.Title,
                 Role = selectedTask.Role,
                 NoiseProtection = selectedTask.NoiseProtection,
-                NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
                 TaskId = selectedTask.Task.Id,
                 Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture),
                 Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
+
+            if (selectedTask.IsNoiseMeassured)
+            {
+                viewModel.NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+            }
+            else
+            {
+                viewModel.NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture));
+            }
 
             return viewModel;
         }

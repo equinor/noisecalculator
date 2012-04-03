@@ -28,30 +28,30 @@
     <label class="span80"></label>
     :
     <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
-        <input id="hours" type="text" style="width: 20px; height: 13px;" value="@Model.Hours" />
+        <input id="hours" type="text" style="width: 20px; height: 13px;" />
         @TaskResources.HoursUnit
-        <input id="minutes" type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" />
+        <input id="minutes" type="text" style="width: 26px; height: 13px;" />
         @TaskResources.MinutesUnit
     </span>
             
     <span class="span120" id="percentageSpan">
-        <input id="percentage" type="text" style="width: 26px; height: 13px;" value="@Model.Percentage" />
+        <input id="percentage" type="text" style="width: 26px; height: 13px;" />
         %
     </span>
 </p>
 
-<div style="border: solid 1px lightgray; margin-left: 85px; margin-top: 10px; padding: 5px; width: 430px; ">
+<div class="rotationSubTaskDiv">
     <p>
         <strong>Operator Work</strong>
         <span id="timeOperatorSpan" class="span120" style="margin-left: 8px; display: none;" >
-            <span id="hoursOperator" style="margin-left: 3px; margin-right: 3px; height: 13px; display: inline-block;">0</span>
+            <span id="hoursOperator" class="workTimeEchoSpan">0</span>
             @TaskResources.HoursUnit
-            <span id="minutesOperator" style="margin-left: 3px; margin-right: 3px; height: 13px; display: inline-block;">0</span>
+            <span id="minutesOperator" class="workTimeEchoSpan">0</span>
             @TaskResources.MinutesUnit
         </span>
         
         <span id="percentageOperatorSpan" style="display: none;">
-            <span id="percentageOperator" style="margin-left: 3px; margin-right: 3px; height: 13px; display: inline-block;">0</span>
+            <span id="percentageOperator" class="workTimeEchoSpan">0</span>
             %
         </span>
     </p>
@@ -64,38 +64,38 @@
         <label class="span80">@TaskResources.TaskFormRegularNoiseMeasuredLabel</label>
         :
         <span class="span80">
-            <input id="noiseMeasuredNo" type="radio" name="group1" value="false" @Model.RadioNoiseMeassuredNoCheckedAttr />
-            <label for="noiseMeasuredNo">@TaskResources.No</label>
+            <input id="noiseMeasuredNoOperator" type="radio" name="group1" value="false" @Model.RadioNoiseMeassuredNoCheckedAttr />
+            <label for="noiseMeasuredNoOperator">@TaskResources.No</label>
         </span>
             
         <span class="span80">
-            <input id="noiseMeasuredYes" type="radio" name="group1" @Model.RadioNoiseMeassuredYesCheckedAttr />
-            <label id="noiseMeasuredYesLabel" for="noiseMeasuredYes">@TaskResources.Yes</label>
+            <input id="noiseMeasuredYesOperator" type="radio" name="group1" @Model.RadioNoiseMeassuredYesCheckedAttr />
+            <label id="noiseMeasuredYesOperatorLabel" for="noiseMeasuredYesOperator">@TaskResources.Yes</label>
         </span>
     </p>
     
     <p>
         <label class="span80"></label>
-        <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.OperatorNoiseLevelGuideline</span> dBA</span>
-        <span class="span80" id="noiseLevelMeassuredSpan">
-            <input id="noiseLevelMeassured" type="text" style="width: 30px; height: 13px;" />
+        <span class="span80" id="noiseLevelGuidlineOperator" style="margin-left: 8px;"><span id="noiseLevelGuidlineValueOperator">@Model.OperatorNoiseLevelGuideline</span> dBA</span>
+        <span class="span80" id="noiseLevelMeassuredSpanOperator">
+            <input id="noiseLevelMeassuredOperator" type="text" style="width: 30px; height: 13px;" />
             dBA
         </span>
     </p>
 </div>
 
-<div style="border: solid 1px lightgray; margin-left: 85px; margin-top: 10px; padding: 5px; width: 430px;">
+<div class="rotationSubTaskDiv">
     <p>
         <strong>Assistant Work</strong>
         <span id="timeAssistantSpan" class="span120" style="margin-left: 8px; display: none;" >
-            <span id="hoursAssistant" style="margin-left: 3px; margin-right: 3px; height: 13px; display: inline-block;">0</span>
+            <span id="hoursAssistant" class="workTimeEchoSpan">0</span>
             @TaskResources.HoursUnit
-            <span id="minutesAssistant" style="margin-left: 3px; margin-right: 3px; height: 13px; display: inline-block;">0</span>
+            <span id="minutesAssistant" class="workTimeEchoSpan">0</span>
             @TaskResources.MinutesUnit
         </span>
             
         <span id="percentageAssistantSpan" style="display: none;">
-            <span id="percentageAssistant" style="margin-left: 3px; margin-right: 3px; height: 13px; display: inline-block;">0</span>
+            <span id="percentageAssistant" class="workTimeEchoSpan">0</span>
             %
         </span>
     </p>
@@ -108,21 +108,21 @@
         <label class="span80">@TaskResources.TaskFormRegularNoiseMeasuredLabel</label>
         :
         <span class="span80">
-            <input id="noiseMeasuredNo" type="radio" name="group3" value="false" @Model.RadioNoiseMeassuredNoCheckedAttr />
-            <label for="noiseMeasuredNo">@TaskResources.No</label>
+            <input id="noiseMeasuredNoAssistant" type="radio" name="group3" value="false" @Model.RadioNoiseMeassuredNoCheckedAttr />
+            <label for="noiseMeasuredNoAssistant">@TaskResources.No</label>
         </span>
             
         <span class="span80">
-            <input id="noiseMeasuredYes" type="radio" name="group3" @Model.RadioNoiseMeassuredYesCheckedAttr />
-            <label id="noiseMeasuredYesLabel" for="noiseMeasuredYes">@TaskResources.Yes</label>
+            <input id="noiseMeasuredYesAssistant" type="radio" name="group3" @Model.RadioNoiseMeassuredYesCheckedAttr />
+            <label id="noiseMeasuredYesLabel" for="noiseMeasuredYesAssistant">@TaskResources.Yes</label>
         </span>
     </p>
     
     <p>
         <label class="span80"></label>
-        <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.OperatorNoiseLevelGuideline</span> dBA</span>
-        <span class="span80" id="noiseLevelMeassuredSpan">
-            <input id="noiseLevelMeassured" type="text" style="width: 30px; height: 13px;" />
+        <span class="span80" id="noiseLevelGuidlineAssistant" style="margin-left: 8px;"><span id="noiseLevelGuidlineValueAssistant">@Model.AssistantNoiseLevelGuideline</span> dBA</span>
+        <span class="span80" id="noiseLevelMeassuredSpanAssistant">
+            <input id="noiseLevelMeassuredAssistant" type="text" style="width: 30px; height: 13px;" />
             dBA
         </span>
     </p>

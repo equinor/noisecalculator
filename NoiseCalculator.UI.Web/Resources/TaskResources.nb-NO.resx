@@ -332,4 +332,10 @@
   <data name="TaskDialogEditTitle" xml:space="preserve">
     <value>Rediger Oppgave</value>
   </data>
+  <data name="ValidationErrorNoiseLevelToHighAboveGuidlineAssistant" xml:space="preserve">
+    <value>Hjelpemann: Feltmåling for hjelpemann er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
+  </data>
+  <data name="ValidationErrorNoiseLevelToHighAboveGuidlineOperator" xml:space="preserve">
+    <value>Operatør: Feltmåling for operatør er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
+  </data>
 </root>

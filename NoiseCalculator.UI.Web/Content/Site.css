@@ -338,3 +338,18 @@ p
     display: none;
     background-color: white;
 }
+
+.workTimeEchoSpan {
+    margin-left: 3px; 
+    margin-right: 3px; 
+    height: 13px; 
+    display: inline-block;
+}
+
+.rotationSubTaskDiv {
+    width: 430px;
+    border: solid 1px lightgray; 
+    margin-top: 10px;
+    margin-left: 85px; 
+    padding: 5px; 
+}

@@ -92,7 +92,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 case RoleTypeEnum.Helideck:
                     return RedirectToAction("AddTaskHelideck", "Helideck", new { TaskId = task.Id });
                 case RoleTypeEnum.Rotation:
-                    return RedirectToAction("AddTask", "Rotation", new { TaskId = task.Id });
+                    return RedirectToAction("AddTaskRotation", "Rotation", new { TaskId = task.Id });
                 default:
                     return RedirectToAction("AddTaskRegular", "Regular", new { TaskId = task.Id });
             }
