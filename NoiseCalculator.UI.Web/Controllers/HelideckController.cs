@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain;
@@ -87,9 +86,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             _selectedTaskDAO.Store(selectedTask);
 
-            SelectedTaskViewModel selectedTaskViewModel = CreateViewModel(selectedTask);
-
-            return PartialView("_SelectedTask", selectedTaskViewModel);
+            return PartialView("_SelectedTask", new SelectedTaskViewModel(selectedTask));
         }
 
         public PartialViewResult EditTaskHelideck(int selectedTaskId)
@@ -152,9 +149,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 _selectedTaskDAO.Store(selectedTask);
             }
 
-            SelectedTaskViewModel selectedTaskViewModel = CreateViewModel(selectedTask);
-
-            return PartialView("_SelectedTask", selectedTaskViewModel);
+            return PartialView("_SelectedTask", new SelectedTaskViewModel(selectedTask));
         }
 
 
@@ -180,25 +175,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             return errorSummaryViewModel;
         }
 
-
-        public SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
-        {
-            SelectedTaskViewModel viewModel = new SelectedTaskViewModel
-            {
-                Id = selectedTask.Id,
-                Title = selectedTask.Title,
-                Role = selectedTask.Role,
-                NoiseProtection = selectedTask.NoiseProtection,
-                NoiseLevel = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture),
-                TaskId = selectedTask.Task.Id,
-                HelicopterTaskId = selectedTask.HelicopterTaskId,
-                Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture),
-                Hours = "0",
-                Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
-            };
-
-            return viewModel;
-        }
 
         private void AppendHelideckMasterData(HelideckViewModel viewModel)
         {

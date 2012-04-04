@@ -82,7 +82,7 @@ function setAllEvents() {
                     modal: true,
                     resizable: false,
                     width: 'auto',
-                    position: [250, 80]
+                    position: [500, 140]
                 });
             });
     });
@@ -122,6 +122,11 @@ function openTaskDialog() {
 
 
 function bindTaskDialogEvents() {
+    $("#taskSelect").dblclick(function (event) {
+        event.preventDefault();
+        getCreateTaskForm();
+    });
+    
     $("#useTask").click(function (event) {
         event.preventDefault();
         getCreateTaskForm();
@@ -274,71 +279,6 @@ function bindRotationEvents() {
         event.preventDefault();
         submitRotationForm();
     });
-    
-
-
-    // ------- TIME ECHO -------
-    $("#hours").keyup(function () {
-        var hoursValue = "0";
-        var minutesValue = "0";
-        
-        if ($("#minutes").val().length > 0) {
-            minutesValue = $("#minutes").val();
-        }
-        if ($("#hours").val().length > 0) {
-            hoursValue = $("#hours").val();
-        }
-
-        $("#minutesOperator").text(minutesValue);
-        $("#minutesAssistant").text(minutesValue);
-        $("#hoursOperator").text(hoursValue);
-        $("#hoursAssistant").text(hoursValue);
-
-        $("#timeAssistantSpan").show();
-        $("#timeOperatorSpan").show();
-        $("#percentageOperatorSpan").hide();
-        $("#percentageAssistantSpan").hide();
-    });
-
-    $("#minutes").keyup(function () {
-        var hoursValue = "0";
-        var minutesValue = "0";
-        
-        if ($("#minutes").val().length > 0) {
-            minutesValue = $("#minutes").val();
-        }
-        if ($("#hours").val().length > 0) {
-            hoursValue = $("#hours").val();
-        }
-
-        $("#minutesOperator").text(minutesValue);
-        $("#minutesAssistant").text(minutesValue);
-        $("#hoursOperator").text(hoursValue);
-        $("#hoursAssistant").text(hoursValue);
-
-        $("#timeOperatorSpan").show();
-        $("#timeAssistantSpan").show();
-        $("#percentageOperatorSpan").hide();
-        $("#percentageAssistantSpan").hide();
-    });
-
-    $("#percentage").keyup(function (event) {
-        var TABKEY = 9;
-        if (event.keyCode != TABKEY) {
-            var percentageValue = "0";
-            if ($("#percentage").val().length > 0) {
-                percentageValue = $("#percentage").val();
-            }
-
-            $("#percentageOperator").text(percentageValue);
-            $("#percentageAssistant").text(percentageValue);
-
-            $("#timeOperatorSpan").hide();
-            $("#timeAssistantSpan").hide();
-            $("#percentageOperatorSpan").show();
-            $("#percentageAssistantSpan").show();
-        }
-    });
 }
 
 function addResultToTaskList($taskDiv) {
@@ -489,8 +429,8 @@ function enablePercentageInput() {
 
     $("#hours").val("");
     $("#minutes").val("");
-    $("#hoursAssistant").text("");
-    $("#minutesAssistant").text("");
+    $("#timeOperatorSpan").hide();
+    $("#timeAssistantSpan").hide();
 }
 
 function enableWorkTimeInput() {

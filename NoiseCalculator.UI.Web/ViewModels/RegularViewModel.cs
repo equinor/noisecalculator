@@ -11,7 +11,7 @@
         public string RadioNoiseMeassuredNoCheckedAttr { get; set; }
         public string RadioNoiseMeassuredYesCheckedAttr { get; set; }
         
-        public string NoiseLevelMeassured { get; set; }
+        public int NoiseLevelMeassured { get; set; }
         public string RadioTimeCheckedAttr { get; set; }
         public string RadioPercentageCheckedAttr { get; set; }
         
@@ -25,7 +25,6 @@
         public RegularViewModel()
         {
             NoiseLevelGuideline = string.Empty;
-            NoiseLevelMeassured = string.Empty;
             Hours = string.Empty;
             Minutes = string.Empty;
             Percentage = string.Empty;

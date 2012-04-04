@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.UI.Web.Resources;
 
 namespace NoiseCalculator.UI.Web.ViewModels
 {
@@ -16,15 +17,26 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public int TaskId { get; set; }
         public int HelicopterTaskId { get; set; }
     
-        public SelectedTaskViewModel()
+        public SelectedTaskViewModel(SelectedTask selectedTask)
         {
-            Title = string.Empty;
-            Role = string.Empty;
-            NoiseProtection = string.Empty;
-            NoiseLevel = string.Empty;
-            Hours = string.Empty;
-            Minutes = string.Empty;
-            Percentage = string.Empty;
+            Id = selectedTask.Id;
+            Title = selectedTask.Title;
+            Role = selectedTask.Role;
+            NoiseProtection = selectedTask.NoiseProtection;
+            TaskId = selectedTask.Task.Id;
+            Percentage = selectedTask.Percentage.ToString();
+            Hours = selectedTask.Hours.ToString();
+            Minutes = selectedTask.Minutes.ToString();
+
+
+            if (selectedTask.IsNoiseMeassured)
+            {
+                NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+            }
+            else
+            {
+                NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString());
+            }
         }
     }
 }

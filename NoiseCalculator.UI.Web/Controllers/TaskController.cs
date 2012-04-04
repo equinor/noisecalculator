@@ -39,7 +39,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             IList<SelectedTaskViewModel> selectedTasks = new List<SelectedTaskViewModel>();
             foreach (SelectedTask selectedTask in _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now))
             {
-                selectedTasks.Add(CreateViewModel(selectedTask));
+                selectedTasks.Add(new SelectedTaskViewModel(selectedTask));
             }
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -212,46 +212,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             return dynamicFootnotes;
-        }
-
-        public SelectedTaskViewModel CreateViewModel(SelectedTask selectedTask)
-        {
-            SelectedTaskViewModel viewModel = new SelectedTaskViewModel
-            {
-                Id = selectedTask.Id,
-                Title = selectedTask.Title,
-                Role = selectedTask.Role,
-                NoiseProtection = selectedTask.NoiseProtection,
-                TaskId = selectedTask.Task.Id,
-                HelicopterTaskId = selectedTask.HelicopterTaskId
-            };
-            
-            if(selectedTask.IsNoiseMeassured)
-            {
-                viewModel.NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
-            }
-            else
-            {
-                viewModel.NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture));
-            }
-
-
-
-            if (selectedTask.Task.Role.RoleType == RoleTypeEnum.Regular)
-            {
-                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                viewModel.Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture);
-                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                // HELIDECK
-                viewModel.Percentage = selectedTask.Percentage.ToString(CultureInfo.InvariantCulture);
-                viewModel.Hours = "0";
-                viewModel.Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture);
-            }
-            
-            return viewModel;
         }
     }
 }

@@ -13,11 +13,11 @@ namespace NoiseCalculator.UI.Web.ViewModels
         
         public string OperatorNoiseLevelGuideline { get; set; }
         public string OperatorTitle { get; set; }
-        public string OperatorNoiseLevelMeasured { get; set; } // Post property
+        public int OperatorNoiseLevelMeasured { get; set; } // Post property
         
         public string AssistantNoiseLevelGuideline { get; set; }
         public string AssistantTitle { get; set; }
-        public string AssistantNoiseLevelMeasured { get; set; } // Post property
+        public int AssistantNoiseLevelMeasured { get; set; } // Post property
 
         public string RadioNoiseMeassuredNoCheckedAttr { get; set; }
         public string RadioNoiseMeassuredYesCheckedAttr { get; set; }
