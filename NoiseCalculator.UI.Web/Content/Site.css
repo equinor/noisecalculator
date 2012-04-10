@@ -243,6 +243,12 @@ p
     width: 80px;
 }
 
+.span100
+{
+    display: inline-block; 
+    width: 100px;
+}
+
 .span120
 {
     display: inline-block; 
@@ -347,9 +353,9 @@ p
 }
 
 .rotationSubTaskDiv {
-    width: 430px;
+    width: 410px;
     border: solid 1px lightgray; 
     margin-top: 10px;
-    margin-left: 85px; 
+    margin-left: 105px; 
     padding: 5px; 
 }

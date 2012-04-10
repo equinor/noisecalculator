@@ -226,7 +226,7 @@
     <comment>Work Interval</comment>
   </data>
   <data name="TaskFormRegularAssistantLabel" xml:space="preserve">
-    <value>Assistent</value>
+    <value>Hjelpemann</value>
     <comment>Assistant</comment>
   </data>
   <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
@@ -241,7 +241,7 @@
     <value>Prosent</value>
     <comment>Percent</comment>
   </data>
-  <data name="TaskFormRegularWorkAmountTypeLabel" xml:space="preserve">
+  <data name="TaskFormWorkTimeAsLabel" xml:space="preserve">
     <value>Arbeidstid i</value>
     <comment>Work specified as</comment>
   </data>
@@ -337,5 +337,8 @@
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidlineOperator" xml:space="preserve">
     <value>Operatør: Feltmåling for operatør er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
+  </data>
+  <data name="ValidationErrorRotationMaximum6Hours" xml:space="preserve">
+    <value>Rotasjon kan ikke vare lenger enn 6 timer fordelt på rollene operatør og hjelpemann.</value>
   </data>
 </root>

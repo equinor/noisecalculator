@@ -466,20 +466,20 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work specified as.
-        /// </summary>
-        public static string TaskFormRegularWorkAmountTypeLabel {
-            get {
-                return ResourceManager.GetString("TaskFormRegularWorkAmountTypeLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string TaskFormRegularWorkTimeLabel {
             get {
                 return ResourceManager.GetString("TaskFormRegularWorkTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Time As.
+        /// </summary>
+        public static string TaskFormWorkTimeAsLabel {
+            get {
+                return ResourceManager.GetString("TaskFormWorkTimeAsLabel", resourceCulture);
             }
         }
         
@@ -552,6 +552,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string ValidationErrorNoiseLevelToHighAboveGuidlineOperator {
             get {
                 return ResourceManager.GetString("ValidationErrorNoiseLevelToHighAboveGuidlineOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotations can not have duration longer than 6 hours, divided between operator and assistant..
+        /// </summary>
+        public static string ValidationErrorRotationMaximum6Hours {
+            get {
+                return ResourceManager.GetString("ValidationErrorRotationMaximum6Hours", resourceCulture);
             }
         }
         

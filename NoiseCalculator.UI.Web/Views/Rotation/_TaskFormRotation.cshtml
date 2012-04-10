@@ -6,12 +6,12 @@
 <input id="roleType" type="hidden" value="@Model.RoleType" />
 
 <p>
-    <label for="Title" class="span80">@TaskResources.TaskTitleLabel</label>
+    <label for="Title" class="span100">@TaskResources.TaskTitleLabel</label>
     <span id="Title">: @Model.Title</span>
 </p>
 
 <p style="margin-top: 10px;">
-        <label class="span80">@TaskResources.TaskFormRegularWorkAmountTypeLabel</label>
+        <label class="span100">@TaskResources.TaskFormWorkTimeAsLabel</label>
         :
         <span class="span120">
             <input id="workTimeRadio" type="radio" name="group2" value="worktime" @Model.RadioTimeCheckedAttr />
@@ -25,9 +25,8 @@
     </p>
 
 <p>
-    <label class="span80"></label>
-    :
-    <span class="span120" id="workTimeSpan" style="margin-left: 8px;" >
+    <label class="span100"></label>
+    <span class="span120" id="workTimeSpan" style="margin-left: 12px;" >
         <input id="hours" type="text" style="width: 20px; height: 13px;" />
         @TaskResources.HoursUnit
         <input id="minutes" type="text" style="width: 26px; height: 13px;" />
@@ -42,7 +41,7 @@
 
 <div class="rotationSubTaskDiv">
     <p>
-        <strong>Operator</strong>
+        <strong>@TaskResources.TaskFormRegularOperatorLabel</strong>
     </p>
     
     <p>
@@ -75,7 +74,7 @@
 
 <div class="rotationSubTaskDiv">
     <p>
-        <strong>Assistant</strong>
+        <strong>@TaskResources.TaskFormRegularAssistantLabel</strong>
     </p>
     
     <p>

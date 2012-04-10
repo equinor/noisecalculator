@@ -151,6 +151,12 @@ namespace NoiseCalculator.UI.Web.Controllers
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
             }
 
+            TimeSpan timeSpan = CreateTimeSpan(viewModel.Hours, viewModel.Minutes);
+            if(timeSpan.TotalHours > 6)
+            {
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorRotationMaximum6Hours);
+            }
+
             return errorSummaryViewModel;
         }
     }
