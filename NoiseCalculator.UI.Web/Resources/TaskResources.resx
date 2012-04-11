@@ -308,4 +308,13 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Rotations can not have duration longer than 6 hours, divided between operator and assistant.</value>
     <comment>Rotasjon kan ikke vare lenger enn 6 timer fordelt på rollene operatør og hjelpemann.</comment>
   </data>
+  <data name="LanguageNameEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageNameNorwegian" xml:space="preserve">
+    <value>Norwegian</value>
+  </data>
+  <data name="LanguageNameUnknown" xml:space="preserve">
+    <value>Unknown language</value>
+  </data>
 </root>

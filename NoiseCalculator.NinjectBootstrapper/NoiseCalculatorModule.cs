@@ -23,6 +23,7 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<IHelicopterNoiseProtectionDAO>().To<HelicopterNoiseProtectionDAO>();
             Bind<IRoleDAO>().To<RoleDAO>();
             Bind<IRotationDAO>().To<RotationDAO>();
+            Bind<INoiseProtectionDAO>().To<NoiseProtectionDAO>();
 
             Bind<IPdfExporter>().To<PdfExporterGios>();
 

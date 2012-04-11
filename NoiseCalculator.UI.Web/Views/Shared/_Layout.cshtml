@@ -30,9 +30,7 @@
 
     <div id="footer">
         <ul>
-            <li>@TaskResources.FooterGL0169</li>
-            <li>@TaskResources.FooterNoiseProtectionDefinition</li>
-            <li>@TaskResources.Footer80dBA</li>
+            @RenderSection("StaticFooters", required: false)
         </ul>
         <ul id="dynamicFootnotes">
             @RenderSection("DynamicFooters", required : false)

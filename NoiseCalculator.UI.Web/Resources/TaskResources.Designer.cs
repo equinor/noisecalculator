@@ -187,6 +187,33 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string LanguageNameEnglish {
+            get {
+                return ResourceManager.GetString("LanguageNameEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Norwegian.
+        /// </summary>
+        public static string LanguageNameNorwegian {
+            get {
+                return ResourceManager.GetString("LanguageNameNorwegian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown language.
+        /// </summary>
+        public static string LanguageNameUnknown {
+            get {
+                return ResourceManager.GetString("LanguageNameUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         public static string LayoutUserLabel {

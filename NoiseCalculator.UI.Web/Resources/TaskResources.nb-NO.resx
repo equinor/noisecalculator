@@ -341,4 +341,13 @@
   <data name="ValidationErrorRotationMaximum6Hours" xml:space="preserve">
     <value>Rotasjon kan ikke vare lenger enn 6 timer fordelt på rollene operatør og hjelpemann.</value>
   </data>
+  <data name="LanguageNameEnglish" xml:space="preserve">
+    <value>Engelsk</value>
+  </data>
+  <data name="LanguageNameNorwegian" xml:space="preserve">
+    <value>Norsk</value>
+  </data>
+  <data name="LanguageNameUnknown" xml:space="preserve">
+    <value>Ukjent språk</value>
+  </data>
 </root>

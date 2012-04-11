@@ -1,0 +1,76 @@
+﻿@using System.Globalization
+@using NoiseCalculator.Domain.Entities
+@using NoiseCalculator.UI.Web.Areas.Admin.Models
+@using NoiseCalculator.UI.Web.ViewModels
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.NoiseProtectionIndexViewModel
+
+@{
+    ViewBag.Title = "Noise protection";
+}
+
+<h2>Noise Protection</h2>
+
+<style>    
+    table, th, td
+    {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    
+    td {
+        padding-left: 3px;
+        padding-right: 3px;
+        padding-top: 3px;
+        padding-bottom: 1px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#searchButton").click(function () {
+            $("#searchForm").submit();
+        });
+    });
+</script>
+
+@*<div id="searchDiv" style="border: 1px solid grey; padding: 10px; background-color: white;">*@
+<form id="searchForm" action="@Url.Action("Search")" method="POST" style="border: 1px solid grey; padding: 10px; background-color: white;">
+    <p>
+        <label for="language" class="span80">Language</label>
+        <select id="cultureName" name="cultureName" style="border: 1px solid grey;">
+            @foreach (SelectOptionViewModel selectedOption in Model.Languages)
+            {
+                <option value="@selectedOption.Value" @selectedOption.SelectedAttribute>@selectedOption.Text</option>
+            }
+        </select>
+    </p>
+    
+    <button id="searchButton" class="button" style="margin-top: 10px; margin-left: 85px;" >
+        <img src="@Url.Content("~/Content/printer.png")" class="buttonIcon" />
+        Search
+    </button>
+    <br clear="all" />
+</form>
+@*</div>*@
+
+<div style="padding: 10px; margin-top: 10px;">
+    <table style="border: 1px solid black; background-color: white; ">
+        <thead>
+            <tr>
+                <th></th>
+                <th style="text-align: left;">Title</th>
+                <th style="text-align: left;">Language</th>
+            </tr>
+        </thead>
+    
+        @foreach (NoiseProtectionViewModel noiseProtection in Model.NoiseProtections )
+        {
+            <tr id="@noiseProtection.Id">
+                <td>Edit</td>
+                <td>@noiseProtection.Title</td>
+                <td>@noiseProtection.Language</td>
+            </tr>
+        }
+
+    </table>
+</div>
