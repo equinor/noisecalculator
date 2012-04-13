@@ -10,6 +10,8 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Id(x => x.Id);
 
             Map(x => x.SystemName);
+
+            HasMany(x => x.NoiseProtections);
         }
     }
 }

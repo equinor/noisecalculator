@@ -32,7 +32,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        
         public ActionResult Search(string cultureName)
         {
             // Validate empty or NULL string
@@ -41,6 +41,25 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             NoiseProtectionIndexViewModel viewModel = new NoiseProtectionIndexViewModel(noiseProtections, cultureName);
 
             return View("Index", viewModel);
+        }
+
+        public ActionResult Create()
+        {
+            return PartialView("_Create");
+        }
+
+        [HttpPost]
+        public ActionResult Create(NoiseProtectionCreateModel form)
+        {
+            if(string.IsNullOrEmpty(form.Title))
+            {
+                Response.StatusCode = 500;
+                return Json("FAIL!");
+            }
+            
+            //NoiseProtection noiseProtection = new NoiseProtection{}
+
+            return PartialView("_Create");
         }
 
     }

@@ -15,7 +15,7 @@
     <AssemblyName>NoiseCalculator.UI.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -96,6 +96,7 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
+    <Compile Include="Areas\Admin\Models\NoiseProtectionCreateModel.cs" />
     <Compile Include="Areas\Admin\Models\NoiseProtectionIndexViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
@@ -128,6 +129,8 @@
     <Compile Include="ViewModels\ValidationErrorSummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin.css" />
+    <Content Include="Scripts\Admin.js" />
     <Content Include="Content\add.png" />
     <Content Include="Content\arrow_down.png" />
     <Content Include="Content\bin_closed.png" />
@@ -237,6 +240,8 @@
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\NoiseProtection\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\NoiseProtection\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NoiseProtection\_TableRow.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />
@@ -308,8 +313,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8754</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:8754/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
