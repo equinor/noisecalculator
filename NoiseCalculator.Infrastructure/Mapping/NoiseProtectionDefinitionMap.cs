@@ -11,7 +11,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
 
             Map(x => x.SystemName);
 
-            HasMany(x => x.NoiseProtections);
+            HasMany(x => x.NoiseProtections).Cascade.AllDeleteOrphan();
         }
     }
 }

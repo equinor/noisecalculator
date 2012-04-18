@@ -12,3 +12,23 @@ table, th, td
         padding-top: 3px;
         padding-bottom: 1px;
     }
+    
+#mainContent {
+    padding: 10px;
+}
+
+#definitionList {
+    border: 1px solid black; 
+    background-color: white; 
+    margin-top: 10px;
+}   
+
+.editDefinition:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+    
+.removeDefinition:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}

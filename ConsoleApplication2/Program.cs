@@ -1,4 +1,7 @@
-﻿using Ninject;
+﻿using HibernatingRhinos.Profiler.Appender.NHibernate;
+using NHibernate;
+using NHibernate.Criterion;
+using Ninject;
 using NoiseCalculator.Infrastructure.NHibernate;
 using NoiseCalculator.NinjectBootstrapper;
 
@@ -9,6 +12,30 @@ namespace ConsoleApplication2
         private static void Main(string[] args)
         {
             IKernel kernel = new StandardKernel(new NoiseCalculatorModule());
+            ISessionFactoryManager sessionFactoryManager = kernel.Get<ISessionFactoryManager>();
+            NHibernateProfiler.Initialize();
+            ISession session = sessionFactoryManager.OpenSession();
+
+            //SELECT *
+            //FROM Task
+            //WHERE id NOT IN (
+            //    SELECT Id FROM Task WHERE CultureName = 'nb-NO')
+
+
+            //var subQuery = QueryOver.Of<Task>().Where(x => x.CultureName == "nb-NO").Select(x => x.Id);
+            //var list = session.QueryOver<Task>()
+            //    .Where(Subqueries.WhereProperty<Task>(x => x.Id).NotIn(subQuery)).List();
+
+            //string lol = "lol";
+
+
+            //var detachedSubCriteria = QueryOver.Of<Task>().Where(x => x.CultureName == "nb-NO").Select(x => x.Id).DetachedCriteria;
+            //var listOldschool = session.QueryOver<Task>()
+            //    .Where(Subqueries.PropertyNotIn("Id", detachedSubCriteria)).List();
+
+
+
+
             //ISessionFactoryManager sessionFactoryManager = kernel.Get<ISessionFactoryManager>();
             //sessionFactoryManager.ExportSchema();
 

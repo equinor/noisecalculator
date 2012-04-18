@@ -1,0 +1,17 @@
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericDefinitionViewModel
+
+<tr id="@Model.Id" class="definition" style="height: 30px;">
+    <td style="padding-left:5px; padding-right: 10px;">
+        <div class="editDefinition">
+            <img src="@Url.Content("~/Content/page_edit.png")" />
+            <span style="vertical-align: bottom;">Edit</span>
+        </div>
+    </td>
+    <td style="padding-left:5px; padding-right: 5px;">@Model.SystemName</td>
+    <td style="padding-left:10px; padding-right: 5px;">
+        <div class="removeDefinition">
+            <img src="@Url.Content("~/Content/cancel.png")" />
+            <span style="vertical-align: bottom;">Remove</span>
+        </div>
+    </td>
+</tr>

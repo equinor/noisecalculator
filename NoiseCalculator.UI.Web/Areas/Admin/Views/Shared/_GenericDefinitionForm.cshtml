@@ -1,0 +1,20 @@
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericDefinitionViewModel
+
+<p>
+    <label for="SystemName" class="span80">Title</label>
+    <input id="SystemName" type="text" name="SystemName" style="width: 280px;" value="@Model.SystemName" />
+</p>
+    
+<p style="margin-top: 10px;">
+    <button id="submitButton" class="button" style="margin-left: 85px;">
+        <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
+        @*@TaskResources.TaskFormButtonSubmitEdit*@
+        Submit
+    </button>
+    
+    <button id="closeButton" class="button" style="margin-left: 40px;">
+        <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+        @*@TaskResources.TaskFormButtonClose*@
+        Close
+    </button>
+</p>

@@ -10,14 +10,6 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Id(x => x.Id);
 
             Map(x => x.Title);
-            //Join("RoleTranslation",
-            //     x =>
-            //     {
-            //         x.KeyColumn("Role_id");
-            //         x.Map(m => m.Title);
-            //     });
-
-            //ApplyFilter<CultureNameFilterDefinition>();
             Map(x => x.CultureName);
 
             Map(x => x.RoleType);
