@@ -41,7 +41,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         public ActionResult Create()
         {
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            return PartialView("_CreateNoiseProtectionDefinition", viewModel);
+            
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_CreateGenericDefinition", viewModel);
         }
 
         [HttpPost]
@@ -53,10 +56,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 return Json("FAIL!");
             }
 
-            NoiseProtectionDefinition definition = new NoiseProtectionDefinition();
+            HelicopterNoiseProtectionDefinition definition = new HelicopterNoiseProtectionDefinition();
             definition.SystemName = form.SystemName;
 
-            _noiseProtectionDefinitionDAO.Store(definition);
+            _helicopterNoiseProtectionDefinitionDAO.Store(definition);
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
             viewModel.Id = definition.Id;
             viewModel.SystemName = definition.SystemName;
@@ -66,7 +69,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
+            HelicopterNoiseProtectionDefinition definition = _helicopterNoiseProtectionDefinitionDAO.Get(id);
             
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
             viewModel.Id = definition.Id;
@@ -74,7 +77,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            return PartialView("_EditNoiseProtectionDefinition", viewModel);
+            return PartialView("_EditGenericDefinition", viewModel);
         }
 
         [HttpPost]
@@ -85,10 +88,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 return new EmptyResult();
             }
 
-            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
+            HelicopterNoiseProtectionDefinition definition = _helicopterNoiseProtectionDefinitionDAO.Get(id);
             definition.SystemName = form.SystemName;
 
-            _noiseProtectionDefinitionDAO.Store(definition);
+            _helicopterNoiseProtectionDefinitionDAO.Store(definition);
 
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
             viewModel.Id = definition.Id;
@@ -100,8 +103,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult ConfirmDelete(int id)
         {
-            NoiseProtectionDefinition noiseProtectionDefinition = _noiseProtectionDefinitionDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel(noiseProtectionDefinition);
+            HelicopterNoiseProtectionDefinition definition = _helicopterNoiseProtectionDefinitionDAO.Get(id);
+            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
             
             return PartialView("_DeleteConfirmation", viewModel);
         }
@@ -112,8 +117,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                NoiseProtectionDefinition noiseProtectionDefinition = _noiseProtectionDefinitionDAO.Load(id);
-                _noiseProtectionDefinitionDAO.Delete(noiseProtectionDefinition);
+                HelicopterNoiseProtectionDefinition definition = _helicopterNoiseProtectionDefinitionDAO.Load(id);
+                _helicopterNoiseProtectionDefinitionDAO.Delete(definition);
                 return new EmptyResult();
             }
             catch (Exception ex)

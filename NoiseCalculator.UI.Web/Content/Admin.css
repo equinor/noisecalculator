@@ -32,3 +32,13 @@ table, th, td
 	cursor: pointer;
 	text-decoration: underline;
 }
+
+.editTranslation:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+    
+.removeTranslation:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}

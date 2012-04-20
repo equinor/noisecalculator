@@ -76,6 +76,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionDefinitionController.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionDefinitionController.cs" />
+    <Compile Include="Areas\Admin\Models\GenericTranslationEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\GenericTranslationViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericDefinitionEditModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericDefinitionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericDefinitionIndexViewModel.cs" />
@@ -225,11 +227,13 @@
     <Content Include="Areas\Admin\Views\Shared\_GenericDefinitionForm.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_GenericDefinitionTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_DeleteConfirmation.cshtml" />
-    <Content Include="Areas\Admin\Views\NoiseProtectionDefinition\_CreateNoiseProtectionDefinition.cshtml" />
-    <Content Include="Areas\Admin\Views\NoiseProtectionDefinition\_EditNoiseProtectionDefinition.cshtml" />
-    <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\_CreateNoiseProtectionDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreateGenericDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EditGenericDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\_EditNoiseProtectionDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CreateGenericTranslation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_GenericTranslationTableRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_GenericTranslationForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EditGenericTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />
@@ -250,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\NoiseProtection\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">

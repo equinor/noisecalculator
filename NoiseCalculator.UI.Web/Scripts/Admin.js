@@ -8,11 +8,6 @@ function setAllEvents() {
         showDialogNew();
     });
 
-//    $("#searchForm").delegate("#searchButton", "click", function(event) {
-//        event.preventDefault();
-//        $("#searchForm").submit();
-//    });
-
     $("#dialogDiv").delegate("#submitButton", "click", function(event) {
         event.preventDefault();
         submitForm();
@@ -43,10 +38,50 @@ function setAllEvents() {
         hideDeleteConfirmation();
     });
 
-    $("#dialogDiv").delegate("#adminForm", "submit", function (event) {
+
+    $("#dialogDiv").delegate("#addNewTranslation", "click", function (event) {
         event.preventDefault();
-        submitForm();
+        showTranslationDialogNew();
     });
+
+
+
+//    $("#dialogDiv").delegate(".editTranslation", "click", function (event) {
+//        event.preventDefault();
+//        showDialogEdit(this);
+    //    });
+    $(".editTranslation").live('click', function(event) {
+        event.preventDefault();
+        showTranslationDialogEdit(this);
+    });
+
+
+
+
+
+
+
+
+    $("#submitTranslationButton").live("click", function (event) {
+        event.preventDefault();
+        submitTranslationForm();
+    });
+
+    $("#closeTranslationButton").live("click", function (event) {
+        event.preventDefault();
+        hideTranslationDialog();
+    });
+
+//    $("#dialogDiv").delegate('#submitTranslationButton', 'click', function (event) {
+//        event.preventDefault();
+//        var lol = "lol";
+//    });
+
+//    $("#dialogDiv").delegate('#closeTranslationButtonæ', 'click', function (event) {
+//        event.preventDefault();
+//        var lol = "lol";
+//    });
+    
 } // setAllEvents()
 
 
@@ -154,4 +189,65 @@ function hideDialog() {
 
 function hideDeleteConfirmation() {
     $("#deleteConfirmDialog").dialog('close');
+}
+
+function hideTranslationDialog() {
+    $("#translationDialogDiv").dialog('close');
+}
+
+function showTranslationDialogNew() {
+    $("#translationDialogDiv").load($("#urlCreateTranslation").val(), function () {
+        $("#translationDialogDiv").dialog({
+            title: "Add Translation",
+            modal: true,
+            resizable: false,
+            width: 'auto',
+            position: [300, 100]
+        });
+    });
+}
+
+function showTranslationDialogEdit(editTranslationButton) {
+    var lengthOfIdPrefix = "trans".length;
+    var id = $(editTranslationButton).closest(".translation").attr("id");
+    var parsedId = id.substr(lengthOfIdPrefix, id.length - lengthOfIdPrefix);
+    
+
+    // Oppdater url element til å benytter translation Edit URL
+
+    $.ajax({
+        type: "GET",
+        url: $("#urlEdit").val() + "/" + id,
+        dataType: "html",
+        cache: false,
+        success: function (result) {
+            var $dialogDiv = $('#dialogDiv');
+            $dialogDiv.empty();
+            $dialogDiv.html(result);
+
+            $dialogDiv.dialog({
+                modal: true,
+                title: 'Edit Definition',
+                resizable: false,
+                hide: { effect: 'fade', duration: 300 },
+                width: 'auto',
+                position: [250, 80]
+            });
+        }
+    });
+}
+
+function submitTranslationForm() {
+    $.ajax({
+        type: $("#adminTranslationForm").attr('method'),
+        url: $("#adminTranslationForm").attr('action'),
+        data: $("#adminTranslationForm").serialize(),
+        success: function (result) {
+            $("#translations").append(result);
+            hideTranslationDialog();
+        },
+        error: function (result) {
+            var faen = "Feilmelding!";
+        }
+    });
 }

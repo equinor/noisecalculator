@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
+using NoiseCalculator.UI.Web.Models;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     public class NoiseProtectionDefinitionController : Controller
     {
+        private readonly INoiseProtectionDAO _noiseProtectionDAO;
         private readonly IDAO<NoiseProtectionDefinition, int> _noiseProtectionDefinitionDAO;
 
-        public NoiseProtectionDefinitionController(IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
+        public NoiseProtectionDefinitionController(INoiseProtectionDAO noiseProtectionDAO, IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
         {
+            _noiseProtectionDAO = noiseProtectionDAO;
             _noiseProtectionDefinitionDAO = noiseProtectionDefinitionDAO;
         }
 
@@ -41,7 +45,9 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         public ActionResult Create()
         {
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            return PartialView("_CreateNoiseProtectionDefinition", viewModel);
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            return PartialView("_CreateGenericDefinition", viewModel);
         }
 
         [HttpPost]
@@ -71,10 +77,22 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
             viewModel.Id = definition.Id;
             viewModel.SystemName = definition.SystemName;
+            viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id);
+            foreach (NoiseProtection noiseProtection in definition.NoiseProtections)
+            {
+                GenericTranslationViewModel translationViewModel
+                    = new GenericTranslationViewModel(noiseProtection.CultureName)
+                          {
+                              Id = noiseProtection.Id,
+                              Title = noiseProtection.Title
+                          };
+
+                viewModel.Translations.Add(translationViewModel);
+            }
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            return PartialView("_EditNoiseProtectionDefinition", viewModel);
+            return PartialView("_EditGenericDefinition", viewModel);
         }
 
         [HttpPost]
@@ -100,8 +118,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult ConfirmDelete(int id)
         {
-            NoiseProtectionDefinition noiseProtectionDefinition = _noiseProtectionDefinitionDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel(noiseProtectionDefinition);
+            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
+            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
             
             return PartialView("_DeleteConfirmation", viewModel);
         }
@@ -121,6 +141,51 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 Response.StatusCode = 500;
                 return Json(ex.ToString());
             }
+        }
+
+
+        public ActionResult CreateTranslation(int id)
+        {
+            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(Thread.CurrentThread.CurrentCulture.Name);
+            viewModel.DefinitionId = id;
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_CreateGenericTranslation", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateTranslation(GenericTranslationEditModel form)
+        {
+            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(form.DefinitionId);
+            
+            NoiseProtection noiseProtection = new NoiseProtection();
+            noiseProtection.NoiseProtectionDefinition = definition;
+            noiseProtection.Title = form.Title;
+            noiseProtection.CultureName = form.SelectedCultureName;
+            
+            definition.NoiseProtections.Add(noiseProtection);
+            
+            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
+            viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
+            viewModel.Id = noiseProtection.Id;
+            viewModel.Title = noiseProtection.Title;
+
+            return PartialView("_GenericTranslationTableRow", viewModel);
+        }
+
+        public ActionResult EditTranslation(int id)
+        {
+            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
+
+            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
+            viewModel.Id = noiseProtection.Id;
+            viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
+            viewModel.Title = noiseProtection.Title;
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_EditGenericTranslation", viewModel);
         }
     }
 }
