@@ -9,12 +9,14 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
         public IList<GenericTranslationViewModel> Translations { get; set; }
 
         public string UrlCreateTranslation { get; set; }
+        public string UrlEditTranslation { get; set; }
 
 
         public GenericDefinitionViewModel()
         {
             SystemName = string.Empty;
             UrlCreateTranslation = string.Empty;
+            UrlEditTranslation = string.Empty;
             Translations = new List<GenericTranslationViewModel>();
         }
     }

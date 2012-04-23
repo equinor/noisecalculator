@@ -55,7 +55,10 @@ function setAllEvents() {
         showTranslationDialogEdit(this);
     });
 
-
+    $(".removeTranslation").live('click', function (event) {
+        event.preventDefault();
+        getConfirmDeleteTranslationDialog(this);
+    });
 
 
 
@@ -71,6 +74,8 @@ function setAllEvents() {
         event.preventDefault();
         hideTranslationDialog();
     });
+
+    
 
 //    $("#dialogDiv").delegate('#submitTranslationButton', 'click', function (event) {
 //        event.preventDefault();
@@ -126,6 +131,7 @@ function submitForm() {
         success: function (result) {
             if ($('#' + $(result).attr('id')).length > 0) {
                 replaceExistingItemWithSameId(result);
+                hideDialog();
             } else {
                 addResultToList(result);
             }
@@ -145,7 +151,6 @@ function addResultToList(result) {
 function replaceExistingItemWithSameId(result) {
     var idOfResultDiv = $(result).attr("id");
     $("#" + idOfResultDiv).replaceWith(result);
-    hideDialog();
 }
 
 function showDialogNew() {
@@ -212,28 +217,16 @@ function showTranslationDialogEdit(editTranslationButton) {
     var id = $(editTranslationButton).closest(".translation").attr("id");
     var parsedId = id.substr(lengthOfIdPrefix, id.length - lengthOfIdPrefix);
     
-
     // Oppdater url element til å benytter translation Edit URL
-
-    $.ajax({
-        type: "GET",
-        url: $("#urlEdit").val() + "/" + id,
-        dataType: "html",
-        cache: false,
-        success: function (result) {
-            var $dialogDiv = $('#dialogDiv');
-            $dialogDiv.empty();
-            $dialogDiv.html(result);
-
-            $dialogDiv.dialog({
-                modal: true,
-                title: 'Edit Definition',
-                resizable: false,
-                hide: { effect: 'fade', duration: 300 },
-                width: 'auto',
-                position: [250, 80]
-            });
-        }
+    $("#translationDialogDiv").load($("#urlEditTranslation").val() + '/' + parsedId, function () {
+        $("#translationDialogDiv").dialog({
+            title: "Edit Translation",
+            modal: true,
+            resizable: false,
+            hide: { effect: 'fade', duration: 300 },
+            width: 'auto',
+            position: [250, 80]
+        });
     });
 }
 
@@ -243,11 +236,40 @@ function submitTranslationForm() {
         url: $("#adminTranslationForm").attr('action'),
         data: $("#adminTranslationForm").serialize(),
         success: function (result) {
-            $("#translations").append(result);
-            hideTranslationDialog();
+            if ($('#' + $(result).attr('id')).length > 0) {
+                replaceExistingItemWithSameId(result);
+                hideTranslationDialog();
+            } else {
+                addTranslationResultToList(result);
+            }
         },
         error: function (result) {
             var faen = "Feilmelding!";
         }
     });
+}
+
+function addTranslationResultToList(result) {
+    $("#translations tbody").prepend(result);
+    hideTranslationDialog();
+}
+
+function getConfirmDeleteTranslationDialog(removeTranslationButton) {
+// ADAPT TO CONFIRM TRANSLATION DELETE.
+
+//    var lengthOfIdPrefix = "trans".length;
+//    var id = $(editTranslationButton).closest(".translation").attr("id");
+//    var parsedId = id.substr(lengthOfIdPrefix, id.length - lengthOfIdPrefix);
+//    
+//    $("#deleteConfirmDialog")
+//            .empty()
+//            .load($("#urlDeleteConformation").val() + "/" + $(removeTranslationButton).closest(".translation").attr("id"), function () {
+//                $(this).dialog({
+//                    title: $("#dialogTitleConfirmDelete").val(),
+//                    modal: true,
+//                    resizable: false,
+//                    width: 'auto',
+//                    position: [250, 80]
+//                });
+//            });
 }

@@ -78,6 +78,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.Id = definition.Id;
             viewModel.SystemName = definition.SystemName;
             viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id);
+            viewModel.UrlEditTranslation = Url.Action("EditTranslation");
             foreach (NoiseProtection noiseProtection in definition.NoiseProtections)
             {
                 GenericTranslationViewModel translationViewModel
@@ -162,9 +163,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             NoiseProtection noiseProtection = new NoiseProtection();
             noiseProtection.NoiseProtectionDefinition = definition;
             noiseProtection.Title = form.Title;
-            noiseProtection.CultureName = form.SelectedCultureName;
-            
+            noiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
             definition.NoiseProtections.Add(noiseProtection);
+
+            _noiseProtectionDefinitionDAO.Store(definition);
             
             GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
             viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
@@ -187,5 +189,24 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
             return PartialView("_EditGenericTranslation", viewModel);
         }
+
+        [HttpPost]
+        public ActionResult EditTranslation(GenericTranslationEditModel form)
+        {
+            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(form.Id);
+            noiseProtection.Title = form.Title;
+            noiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
+
+            _noiseProtectionDAO.Store(noiseProtection);
+
+            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
+            viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
+            viewModel.Id = noiseProtection.Id;
+            viewModel.Title = noiseProtection.Title;
+
+            return PartialView("_GenericTranslationTableRow", viewModel);
+        }
+
+        // Refactor... Common CreateTranslationViewModel method
     }
 }

@@ -26,7 +26,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
 
         private void AddLanguageSelectOption(string text, string value)
         {
-            SelectOptionViewModel selectOptionViewModel = new SelectOptionViewModel(text, value) { IsSelected = (value == SelectedLanguage) };
+            SelectOptionViewModel selectOptionViewModel = new SelectOptionViewModel(text, value) { IsSelected = (value == SelectedCultureName) };
             Languages.Add(selectOptionViewModel);
         }
     }
