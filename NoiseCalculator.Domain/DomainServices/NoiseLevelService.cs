@@ -7,11 +7,15 @@ namespace NoiseCalculator.Domain.DomainServices
     {
         public NoiseLevelEnum CalculateNoiseLevelEnum(int percentageDailyDosage)
         {
+            if (percentageDailyDosage == 100)
+            {
+                return NoiseLevelEnum.MaximumAllowedDosage;
+            }
             if (percentageDailyDosage > 100)
             {
                 return NoiseLevelEnum.Critical;
             }
-            if (percentageDailyDosage >= 75 && percentageDailyDosage <= 100)
+            if (percentageDailyDosage >= 75 && percentageDailyDosage < 100)
             {
                 return NoiseLevelEnum.Warning;
             }
@@ -28,6 +32,9 @@ namespace NoiseCalculator.Domain.DomainServices
                     break;
                 case NoiseLevelEnum.Warning:
                     return DomainResources.NoiseLevelStatusTextWarning;
+                    break;
+                case NoiseLevelEnum.MaximumAllowedDosage:
+                    return DomainResources.NoiseLevelStatusTextMaximumAllowedDosage;
                     break;
                 case NoiseLevelEnum.Critical:
                     return DomainResources.NoiseLevelStatusTextCritical;

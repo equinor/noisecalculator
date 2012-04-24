@@ -16,7 +16,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
         public string UrlCreate { get; set; }
         public string UrlEdit { get; set; }
         public string UrlDeleteConfirmation { get; set; }
-        public string UrlDeleteDefinition { get; set; }
+        //public string UrlDeleteDefinition { get; set; }
 
         //public GenericDefinitionIndexViewModel(IEnumerable<NoiseProtectionDefinition> noiseProtectionsDefinitions) : this(noiseProtectionsDefinitions, string.Empty)
         //{
@@ -37,7 +37,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
             Definitions = new List<GenericDefinitionViewModel>();
             //foreach (NoiseProtectionDefinition noiseProtDefinitions in noiseProtectionsDefinitions)
             //{
-            //    Definitions.Add(new GenericDefinitionViewModel { Id = noiseProtDefinitions.Id, SystemName = noiseProtDefinitions.SystemName});
+            //    Definitions.Add(new GenericDefinitionViewModel { Id = noiseProtDefinitions.Id, Title = noiseProtDefinitions.Title});
             //}
 
             //NoiseProtections = new List<NoiseProtectionViewModel>();

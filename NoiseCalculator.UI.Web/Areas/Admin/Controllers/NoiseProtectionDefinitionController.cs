@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
-using NoiseCalculator.UI.Web.Models;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
@@ -37,7 +36,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.UrlCreate = Url.Action("Create");
             viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-            viewModel.UrlDeleteDefinition = Url.Action("Delete");
 
             return View(viewModel);
         }
@@ -47,6 +45,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return PartialView("_CreateGenericDefinition", viewModel);
         }
 
@@ -79,6 +78,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.SystemName = definition.SystemName;
             viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id);
             viewModel.UrlEditTranslation = Url.Action("EditTranslation");
+            viewModel.UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation");
+            
             foreach (NoiseProtection noiseProtection in definition.NoiseProtections)
             {
                 GenericTranslationViewModel translationViewModel
@@ -119,10 +120,13 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult ConfirmDelete(int id)
         {
-            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
+            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
             DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
+            viewModel.Id = noiseProtection.Id.ToString();
+            viewModel.Title = noiseProtection.Title;
+            viewModel.UrlDeleteAction = Url.Action("Delete");
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             
             return PartialView("_DeleteConfirmation", viewModel);
         }
@@ -208,5 +212,34 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         }
 
         // Refactor... Common CreateTranslationViewModel method
+
+        public ActionResult ConfirmDeleteTranslation(int id)
+        {
+            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
+            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
+            viewModel.Id = "trans" + noiseProtection.Id;
+            viewModel.Title = noiseProtection.Title;
+            viewModel.UrlDeleteAction = Url.Action("DeleteTranslation");
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_DeleteConfirmation", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTranslation(int id)
+        {
+            try
+            {
+                NoiseProtection noiseProtection = _noiseProtectionDAO.Load(id);
+                _noiseProtectionDAO.Delete(noiseProtection);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Json(ex.ToString());
+            }
+        }
     }
 }

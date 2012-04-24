@@ -2,11 +2,12 @@
 @model NoiseCalculator.UI.Web.ViewModels.DeleteConfirmationViewModel
 
 <input id="dialogTitleConfirmDelete" type="hidden" value="Confirm delete??" />
+<input id="urlDeleteAction" type="hidden" value="@Model.UrlDeleteAction" />
 <input id="idToDelete" type="hidden" value="@Model.Id" />
     
 <p>
-    <span class="label-130px">Definition Name</span>
-    <strong>: @Model.SystemName</strong>
+    <span class="label-130px">Title</span>
+    <strong>: @Model.Title</strong>
 </p>
 
 <p style="margin-top: 20px;">

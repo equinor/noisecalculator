@@ -502,6 +502,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work time is split equally on operator and assistant..
+        /// </summary>
+        public static string TaskFormRotationWorkTimeSplitComment {
+            get {
+                return ResourceManager.GetString("TaskFormRotationWorkTimeSplitComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work Time As.
         /// </summary>
         public static string TaskFormWorkTimeAsLabel {

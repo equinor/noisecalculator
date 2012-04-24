@@ -20,7 +20,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             NoiseLevelEnum noiseLevelEnum = noiseLevelService.CalculateNoiseLevelEnum(percentageDailyDosage);
 
             // Assert
-            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Normal );
+            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Normal);
         }
 
         [Test]
@@ -38,7 +38,21 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
         }
 
         [Test]
-        public void CalculateNoiseLevelEnum_PercentageIs100_ReturnsEnumValueCritical()
+        public void CalculateNoiseLevelEnum_PercentageIsMoreThan100_ReturnsEnumValueCritical()
+        {
+            // Arrange
+            INoiseLevelService noiseLevelService = new NoiseLevelService();
+            const int percentageDailyDosage = 101;
+
+            // Act
+            NoiseLevelEnum noiseLevelEnum = noiseLevelService.CalculateNoiseLevelEnum(percentageDailyDosage);
+
+            // Assert
+            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Critical);
+        }
+
+        [Test]
+        public void CalculateNoiseLevelEnum_PercentageIsExactly100_ReturnsEnumValueMaximumAllowedDosage()
         {
             // Arrange
             INoiseLevelService noiseLevelService = new NoiseLevelService();
@@ -48,7 +62,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             NoiseLevelEnum noiseLevelEnum = noiseLevelService.CalculateNoiseLevelEnum(percentageDailyDosage);
 
             // Assert
-            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Critical);
+            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.MaximumAllowedDosage);
         }
     }
 }

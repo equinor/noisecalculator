@@ -178,6 +178,9 @@ namespace NoiseCalculator.UI.Web.Controllers
                 case NoiseLevelEnum.Warning:
                     totalNoiseDosage.CssClass = "noiseLevelWarning";
                     break;
+                case NoiseLevelEnum.MaximumAllowedDosage:
+                    totalNoiseDosage.CssClass = "noiseLevelWarning";
+                    break;
                 case NoiseLevelEnum.Critical:
                     totalNoiseDosage.CssClass = "noiseLevelCritical";
                     break;
@@ -191,6 +194,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public IList<string> GetDynamicFootnotes(IEnumerable<SelectedTask> selectedTasks)
         {
             bool hasNoisyWork = false;
+            bool hasRegularTasks = false;
             var roleIDs = _roleDAO.GetAreaNoiseRoleIds();
             
             foreach (SelectedTask selectedTask in selectedTasks)
@@ -198,7 +202,11 @@ namespace NoiseCalculator.UI.Web.Controllers
                 if(roleIDs.Contains(selectedTask.Task.Role.Id) == false)
                 {
                     hasNoisyWork = true;
-                    break;
+
+                    if (selectedTask.HelicopterTaskId == 0)
+                    {
+                        hasRegularTasks = true;
+                    }
                 }
             }
 
@@ -208,7 +216,11 @@ namespace NoiseCalculator.UI.Web.Controllers
             {
                 dynamicFootnotes.Add(TaskResources.FooterDynamicNoiseProtection);
                 dynamicFootnotes.Add(TaskResources.FooterDynamicCorrectionForMeasuredNoiseLevel);
-                dynamicFootnotes.Add(TaskResources.FooterDynamicValidForAreaNoiseUpTo90dBA);
+
+                if (hasRegularTasks)
+                {
+                    dynamicFootnotes.Add(TaskResources.FooterDynamicValidForAreaNoiseUpTo90dBA);
+                }
             }
 
             return dynamicFootnotes;

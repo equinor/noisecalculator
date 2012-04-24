@@ -67,7 +67,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
 
-            bool noiseLevelIsMeassured = (selectedTask.NoiseLevel != selectedTask.Task.NoiseLevelGuideline);
+            bool noiseLevelIsMeassuredAboveGuideline = (selectedTask.NoiseLevel > selectedTask.Task.NoiseLevelGuideline);
             bool workIsEnteredAsTime = (selectedTask.Hours > 0 || selectedTask.Minutes > 0);
 
             RegularViewModel viewModel = new RegularViewModel
@@ -79,8 +79,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RoleType = selectedTask.Task.Role.RoleType.ToString(),
                 NoiseLevelGuideline = selectedTask.Task.NoiseLevelGuideline.ToString(),
                 NoiseLevelMeassured = selectedTask.NoiseLevel,
-                RadioNoiseMeassuredNoCheckedAttr = noiseLevelIsMeassured ? InputNotChecked : InputChecked,
-                RadioNoiseMeassuredYesCheckedAttr = noiseLevelIsMeassured ? InputChecked : InputNotChecked,
+                RadioNoiseMeassuredNoCheckedAttr = noiseLevelIsMeassuredAboveGuideline ? InputNotChecked : InputChecked,
+                RadioNoiseMeassuredYesCheckedAttr = noiseLevelIsMeassuredAboveGuideline ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = workIsEnteredAsTime ? InputChecked : InputNotChecked,
                 RadioPercentageCheckedAttr = workIsEnteredAsTime ? InputNotChecked : InputChecked,
                 Hours = selectedTask.Hours.ToString(),

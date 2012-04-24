@@ -317,4 +317,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="LanguageNameUnknown" xml:space="preserve">
     <value>Unknown language</value>
   </data>
+  <data name="TaskFormRotationWorkTimeSplitComment" xml:space="preserve">
+    <value>Work time is split equally on operator and assistant.</value>
+    <comment>Arbeidstid fordeles likt på operatør og hjelpemann.</comment>
+  </data>
 </root>

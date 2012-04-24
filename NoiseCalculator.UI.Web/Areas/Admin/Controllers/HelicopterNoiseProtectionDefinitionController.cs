@@ -33,7 +33,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.UrlCreate = Url.Action("Create");
             viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-            viewModel.UrlDeleteDefinition = Url.Action("Delete");
+            //viewModel.UrlDeleteDefinition = Url.Action("Delete");
 
             return View(viewModel);
         }
@@ -105,8 +105,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             HelicopterNoiseProtectionDefinition definition = _helicopterNoiseProtectionDefinitionDAO.Get(id);
             DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
+            viewModel.Id = definition.Id.ToString();
+            viewModel.Title = definition.SystemName;
             
             return PartialView("_DeleteConfirmation", viewModel);
         }

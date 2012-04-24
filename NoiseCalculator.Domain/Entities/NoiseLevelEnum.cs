@@ -4,6 +4,7 @@ namespace NoiseCalculator.Domain.Entities
     {
         Normal,
         Warning,
+        MaximumAllowedDosage,
         Critical
     }
 }

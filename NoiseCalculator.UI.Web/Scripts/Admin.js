@@ -39,31 +39,21 @@ function setAllEvents() {
     });
 
 
+    // Translation events
     $("#dialogDiv").delegate("#addNewTranslation", "click", function (event) {
         event.preventDefault();
         showTranslationDialogNew();
     });
 
-
-
-//    $("#dialogDiv").delegate(".editTranslation", "click", function (event) {
-//        event.preventDefault();
-//        showDialogEdit(this);
-    //    });
     $(".editTranslation").live('click', function(event) {
         event.preventDefault();
         showTranslationDialogEdit(this);
     });
 
-    $(".removeTranslation").live('click', function (event) {
+    $(".removeTranslation").live('click', function(event) {
         event.preventDefault();
         getConfirmDeleteTranslationDialog(this);
     });
-
-
-
-
-
 
     $("#submitTranslationButton").live("click", function (event) {
         event.preventDefault();
@@ -74,18 +64,7 @@ function setAllEvents() {
         event.preventDefault();
         hideTranslationDialog();
     });
-
-    
-
-//    $("#dialogDiv").delegate('#submitTranslationButton', 'click', function (event) {
-//        event.preventDefault();
-//        var lol = "lol";
-//    });
-
-//    $("#dialogDiv").delegate('#closeTranslationButtonæ', 'click', function (event) {
-//        event.preventDefault();
-//        var lol = "lol";
-//    });
+    // End Translation events
     
 } // setAllEvents()
 
@@ -107,10 +86,11 @@ function getConfirmDeleteDialog(removeDefinitionButton) {
 function deleteDefinition() {
     // Get item by creating a ID selector based on the idToDelete value
     var $item = $('#' + $("#idToDelete").val());
+    var id = $item.attr("id").match( /[\d]+$/ )[0]; // <--- First matched items should be the id at end of string
 
     $.ajax({
         type: "POST",
-        url: $("#urlDeleteDefinition").val() + "/" + $item.attr("id"),
+        url: $("#urlDeleteAction").val() + "/" + id,
         dataType: "json",
         cache: false,
         success: function () {
@@ -244,7 +224,7 @@ function submitTranslationForm() {
             }
         },
         error: function (result) {
-            var faen = "Feilmelding!";
+            var feil = "Feilmelding!";
         }
     });
 }
@@ -255,21 +235,38 @@ function addTranslationResultToList(result) {
 }
 
 function getConfirmDeleteTranslationDialog(removeTranslationButton) {
-// ADAPT TO CONFIRM TRANSLATION DELETE.
+    var lengthOfIdPrefix = "trans".length;
+    var id = $(removeTranslationButton).closest(".translation").attr("id");
+    var parsedId = id.substr(lengthOfIdPrefix, id.length - lengthOfIdPrefix);
+    
+    $("#deleteConfirmDialog")
+            .empty()
+            .load($("#urlDeleteTranslationConformation").val() + "/" + parsedId, function () {
+                $(this).dialog({
+                    title: $("#dialogTitleConfirmDelete").val(),
+                    modal: true,
+                    resizable: false,
+                    width: 'auto',
+                    position: [250, 80]
+                });
+            });
+}
 
-//    var lengthOfIdPrefix = "trans".length;
-//    var id = $(editTranslationButton).closest(".translation").attr("id");
-//    var parsedId = id.substr(lengthOfIdPrefix, id.length - lengthOfIdPrefix);
-//    
-//    $("#deleteConfirmDialog")
-//            .empty()
-//            .load($("#urlDeleteConformation").val() + "/" + $(removeTranslationButton).closest(".translation").attr("id"), function () {
-//                $(this).dialog({
-//                    title: $("#dialogTitleConfirmDelete").val(),
-//                    modal: true,
-//                    resizable: false,
-//                    width: 'auto',
-//                    position: [250, 80]
-//                });
-//            });
+function deleteTranslation() {
+    // Get item by creating a ID selector based on the idToDelete value
+    var $item = $('#' + $("#idToDelete").val());
+
+    $.ajax({
+        type: "POST",
+        url: $("#urlDeleteAction").val() + "/" + $item.attr("id"),
+        dataType: "json",
+        cache: false,
+        success: function () {
+            $item.remove();
+            hideDeleteConfirmation();
+        },
+        error: function (jqXHR) {
+            alert("Unable to remove: " + jqXHR.responseText);
+        }
+    });
 }

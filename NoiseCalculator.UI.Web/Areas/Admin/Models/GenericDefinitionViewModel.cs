@@ -10,6 +10,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
 
         public string UrlCreateTranslation { get; set; }
         public string UrlEditTranslation { get; set; }
+        public string UrlDeleteTranslationConfirmation { get; set; }
 
 
         public GenericDefinitionViewModel()

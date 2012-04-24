@@ -121,6 +121,9 @@
     <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</value>
     <comment>Work under the calculated noise level is not allowed!</comment>
   </data>
+  <data name="NoiseLevelStatusTextMaximumAllowedDosage" xml:space="preserve">
+    <value>Beregnet støydose er akseptabel, men personellet kan ikke eksponeres for mer støy denne arbeidsdagen.</value>
+  </data>
   <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
     <value>Beregnet støyeksponering er akseptabel.</value>
     <comment>Noise level is below the upper limt and is considered safe</comment>

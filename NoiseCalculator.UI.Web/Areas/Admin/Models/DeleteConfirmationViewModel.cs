@@ -1,10 +1,9 @@
-﻿using NoiseCalculator.Domain.Entities;
-
-namespace NoiseCalculator.UI.Web.ViewModels
+﻿namespace NoiseCalculator.UI.Web.ViewModels
 {
     public class DeleteConfirmationViewModel
     {
-        public int Id { get; set; }
-        public string SystemName { get; set; }
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string UrlDeleteAction { get; set; }
     }
 }

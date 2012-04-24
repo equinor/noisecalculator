@@ -70,6 +70,15 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculated noise exposure is acceptable, but the employee can not be exposed for more noise this work day..
+        /// </summary>
+        internal static string NoiseLevelStatusTextMaximumAllowedDosage {
+            get {
+                return ResourceManager.GetString("NoiseLevelStatusTextMaximumAllowedDosage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculated noise exposure is acceptable..
         /// </summary>
         internal static string NoiseLevelStatusTextNormal {
