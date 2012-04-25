@@ -1,7 +1,6 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-//using NHibernate.ByteCode.Castle;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NoiseCalculator.Infrastructure.Mapping;
@@ -21,7 +20,6 @@ namespace NoiseCalculator.Infrastructure.NHibernate
             _configuration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionString))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<TaskMap>())
-                //.ProxyFactoryFactory<ProxyFactoryFactory>()
                 .BuildConfiguration();
 
             _sessionFactory = _configuration.BuildSessionFactory();
