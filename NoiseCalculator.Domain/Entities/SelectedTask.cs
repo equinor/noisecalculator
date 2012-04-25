@@ -4,7 +4,7 @@ namespace NoiseCalculator.Domain.Entities
 {
     public class SelectedTask
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; set; }
         public virtual string Title { get; set; }
         public virtual string Role { get; set; }
         public virtual string NoiseProtection { get; set; }

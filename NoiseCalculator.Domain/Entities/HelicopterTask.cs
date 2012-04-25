@@ -2,7 +2,7 @@ namespace NoiseCalculator.Domain.Entities
 {
     public class HelicopterTask
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; set; }
         public virtual HelicopterType HelicopterType { get; set; }
         public virtual HelicopterNoiseProtectionDefinition HelicopterNoiseProtectionDefinition { get; set; }
         public virtual HelicopterWorkInterval HelicopterWorkInterval { get; set; }

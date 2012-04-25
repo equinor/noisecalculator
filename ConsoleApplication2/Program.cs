@@ -1,6 +1,4 @@
-﻿using HibernatingRhinos.Profiler.Appender.NHibernate;
-using NHibernate;
-using NHibernate.Criterion;
+﻿using NHibernate;
 using Ninject;
 using NoiseCalculator.Infrastructure.NHibernate;
 using NoiseCalculator.NinjectBootstrapper;
@@ -13,7 +11,6 @@ namespace ConsoleApplication2
         {
             IKernel kernel = new StandardKernel(new NoiseCalculatorModule());
             ISessionFactoryManager sessionFactoryManager = kernel.Get<ISessionFactoryManager>();
-            NHibernateProfiler.Initialize();
             ISession session = sessionFactoryManager.OpenSession();
 
             //SELECT *

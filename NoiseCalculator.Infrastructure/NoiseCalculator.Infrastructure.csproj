@@ -35,27 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate">
-      <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
+      <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Gios Pdf.NET, Version=1.0.4434.30260, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Gios Pdf.NET.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\..\..\..\..\..\..\appl\NHibernate.Profiler-Build-918\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
+      <HintPath>..\packages\NHibernate.3.3.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -110,9 +101,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pdf\Resources\ReportResource.nb-NO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ReportResource.nb-NO.Designer.cs</LastGenOutput>
@@ -133,6 +121,9 @@
     <Content Include="Libs\Gios Pdf.NET.pdb" />
     <Content Include="Libs\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Pdf\Gios PDF Generator.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using Ninject.Modules;
+using Ninject.Web.Common;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
