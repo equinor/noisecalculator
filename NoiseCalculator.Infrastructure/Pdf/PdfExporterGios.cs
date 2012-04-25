@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -71,13 +72,13 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 
                 // LAKHA - Status
                 PdfTextArea statusText = new PdfTextArea(new Font("Verdana", 14, FontStyle.Bold), Color.Black
-                    , new PdfArea(myPdfDocument, 48, taskTable.CellArea(taskTable.LastRow, 6 - 1).BottomRightCornerY + 20, 595, 60), ContentAlignment.TopLeft,
+                    , new PdfArea(myPdfDocument, 48, taskTable.CellArea(taskTable.LastRow, 6 - 1).BottomRightCornerY + 10, 595, 60), ContentAlignment.TopLeft,
                     _noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum));
    
                 // LAKHA - Total prosent
-                PdfRectangle summaryBackground = new PdfArea(myPdfDocument, 635, taskTable.CellArea(taskTable.LastRow, 6-1).BottomRightCornerY + 20, 165, 45).ToRectangle(noiseLevelColor, noiseLevelColor);
+                PdfRectangle summaryBackground = new PdfArea(myPdfDocument, 635, taskTable.CellArea(taskTable.LastRow, 6-1).BottomRightCornerY + 10, 165, 45).ToRectangle(noiseLevelColor, noiseLevelColor);
                 PdfTextArea summary = new PdfTextArea(new Font("Verdana", 26, FontStyle.Bold), Color.Black
-                    , new PdfArea(myPdfDocument, 640, taskTable.CellArea(taskTable.LastRow, 6-1).BottomRightCornerY + 30, 595, 60), ContentAlignment.TopLeft,
+                    , new PdfArea(myPdfDocument, 640, taskTable.CellArea(taskTable.LastRow, 6-1).BottomRightCornerY + 20, 595, 60), ContentAlignment.TopLeft,
                     string.Format(ReportResource.TotalPercentageFormatString, totalNoiseDosage));
 				
 			    // nice thing: we can put all the objects in the following lines, so we can have
@@ -109,22 +110,29 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 newPdfPage.Add(reportComment);
                 
                 
-                
                 // LAKHA - Add footnotes...
 		        const int widthOfFootnote = 750;
-                const int heightOfFootnote = 30;
-                int offsetFromTop = 0;
-		        Font footnoteFont = new Font("Verdana", 11, FontStyle.Bold);
-                
+                Font footnoteFont = new Font("Verdana", 9, FontStyle.Regular);
+                double posY = statusText.PdfArea.BottomRightCornerY + 3;
+
                 foreach (string footNoteText in reportInfo.Footnotes)
                 {
-                    double PosY = statusText.PdfArea.BottomRightCornerY + 80 + offsetFromTop + 3;
-                    PdfArea pdfAreaForText = new PdfArea(myPdfDocument, 48, PosY, widthOfFootnote, heightOfFootnote);
+                    int heightOfFootnote = 10;
 
+                    if(footNoteText.Length > 380)
+                    {
+                        heightOfFootnote = heightOfFootnote*3;
+                    }
+                    else if(footNoteText.Length > 160)
+                    {
+                        heightOfFootnote = heightOfFootnote * 2;
+                    }
+
+                    PdfArea pdfAreaForText = new PdfArea(myPdfDocument, 48, posY, widthOfFootnote, heightOfFootnote);
                     PdfTextArea footNote = new PdfTextArea(footnoteFont, Color.Black, pdfAreaForText, ContentAlignment.TopLeft, string.Format("* {0}", footNoteText));
                     newPdfPage.Add(footNote);
 
-                    offsetFromTop += heightOfFootnote;
+                    posY = footNote.PdfArea.BottomRightCornerY + 2;
                 }
 			    
                 // we save each generated page before start rendering the next.
