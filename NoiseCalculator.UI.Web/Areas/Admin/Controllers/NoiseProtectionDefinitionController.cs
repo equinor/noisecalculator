@@ -49,17 +49,18 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             return PartialView("_CreateGenericDefinition", viewModel);
         }
 
+
         [HttpPost]
         public ActionResult Create(GenericDefinitionEditModel form)
         {
-            if(string.IsNullOrEmpty(form.SystemName))
+            if (string.IsNullOrEmpty(form.Title))
             {
                 Response.StatusCode = 500;
                 return Json("FAIL!");
             }
 
             NoiseProtectionDefinition definition = new NoiseProtectionDefinition();
-            definition.SystemName = form.SystemName;
+            definition.SystemName = form.Title;
 
             _noiseProtectionDefinitionDAO.Store(definition);
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
@@ -100,13 +101,13 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, GenericDefinitionEditModel form)
         {
-            if(string.IsNullOrEmpty(form.SystemName))
+            if(string.IsNullOrEmpty(form.Title))
             {
                 return new EmptyResult();
             }
 
             NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
-            definition.SystemName = form.SystemName;
+            definition.SystemName = form.Title;
 
             _noiseProtectionDefinitionDAO.Store(definition);
 
@@ -120,10 +121,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult ConfirmDelete(int id)
         {
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
+            NoiseProtectionDefinition definintion = _noiseProtectionDefinitionDAO.Get(id);
             DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = noiseProtection.Id.ToString();
-            viewModel.Title = noiseProtection.Title;
+            viewModel.Id = definintion.Id.ToString();
+            viewModel.Title = definintion.SystemName;
             viewModel.UrlDeleteAction = Url.Action("Delete");
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);

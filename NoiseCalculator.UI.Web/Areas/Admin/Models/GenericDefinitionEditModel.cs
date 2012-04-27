@@ -2,6 +2,6 @@
 {
     public class GenericDefinitionEditModel
     {
-        public string SystemName { get; set; }
+        public string Title { get; set; }
     }
 }

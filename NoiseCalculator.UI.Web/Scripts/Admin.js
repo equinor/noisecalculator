@@ -184,7 +184,7 @@ function showTranslationDialogNew() {
     $("#translationDialogDiv").load($("#urlCreateTranslation").val(), function () {
         $("#translationDialogDiv").dialog({
             title: "Add Translation",
-            modal: true,
+            //modal: true,
             resizable: false,
             width: 'auto',
             position: [300, 100]
@@ -201,7 +201,7 @@ function showTranslationDialogEdit(editTranslationButton) {
     $("#translationDialogDiv").load($("#urlEditTranslation").val() + '/' + parsedId, function () {
         $("#translationDialogDiv").dialog({
             title: "Edit Translation",
-            modal: true,
+            //modal: true,
             resizable: false,
             hide: { effect: 'fade', duration: 300 },
             width: 'auto',
@@ -221,6 +221,7 @@ function submitTranslationForm() {
                 hideTranslationDialog();
             } else {
                 addTranslationResultToList(result);
+                hideTranslationDialog();
             }
         },
         error: function (result) {
