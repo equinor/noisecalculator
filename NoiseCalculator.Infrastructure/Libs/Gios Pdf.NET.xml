@@ -1,0 +1,1035 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gios Pdf.NET</name>
+    </assembly>
+    <members>
+        <member name="T:Gios.Pdf.PdfColumn">
+            <summary>
+            a Column of a PdfTable
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfCellRange">
+            <summary>
+            This class represent a range of Cell. Each method called will be applied to each Cell.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetContentFormat(System.String)">
+            <summary>
+            Sets this Content Format to each Cell of the CellRange.
+            </summary>
+            <param name="Format"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetContent(System.Object)">
+            <summary>
+            sets this Content to each Cell of the CellRange.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetBackgroundColor(System.Drawing.Color)">
+            <summary>
+            sets this Color as background to each Cell of the CellRange
+            </summary>
+            <param name="BackgroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetBackgroundColor(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            sets those two colors as alternating backgrounds to each Row of the CellRange
+            </summary>
+            <param name="BackgroundColor"></param>
+            <param name="AlternateBackgroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetForegroundColor(System.Drawing.Color)">
+            <summary>
+            sets this Color as Foreground Color to each Cell of the CellRange.
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetColors(System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            sets Foreground and Background Colors of each Cell of the CellRange.
+            </summary>
+            <param name="ForegroundColor"></param>
+            <param name="BackgroundColor"></param>
+            <param name="AlternateBackgroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetColors(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            sets this Foreground and Background Colors to each Cell of the CellRange.
+            </summary>
+            <param name="ForegroundColor"></param>
+            <param name="BackgroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetContentAlignment(System.Drawing.ContentAlignment)">
+            <summary>
+            sets this content alignment to each Cell of the CellRange.
+            </summary>
+            <param name="ContentAlignment"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetFont(System.Drawing.Font)">
+            <summary>
+            sets this font to each Cell of the CellRange.
+            </summary>
+            <param name="Font"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetTransparent">
+            <summary>
+            sets transparent each Cell of the CellRange.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.SetCellPadding(System.Double)">
+            <summary>
+            sets this CellPadding to each Cell of the CellRange.
+            </summary>
+            <param name="CellPadding"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCellRange.MergeCells">
+            <summary>
+            The CellRange will be collapsed into a single Cell (with the lowest row and column index)
+            This method will automatically sets the colspan and rowspan of the first Cell of the Range.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfCellRange.Cells">
+            <summary>
+            The entire collection of Cells.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfColumn.SetWidth(System.Int32)">
+            <summary>
+            sets the Relative Width of the Column. For example: if the relative widths of a 3 columns
+            table are 10,10,30; the columns will respectivelly sized as 20%,20%,60% of the table size.
+            </summary>
+            <param name="RelativeWidth"></param>
+        </member>
+        <member name="T:Gios.Pdf.PdfCell">
+            <summary>
+            Cell of a PdfTable
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetFont(System.Drawing.Font)">
+            <summary>
+            sets the font to be used in the Cell.
+            </summary>
+            <param name="Font"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetBackgroundColor(System.Drawing.Color)">
+            <summary>
+            sets the background color of the Cell.
+            </summary>
+            <param name="BackgroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetForegroundColor(System.Drawing.Color)">
+            <summary>
+            sets the foreground color of the Cell.
+            </summary>
+            <param name="ForegroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetContentAlignment(System.Drawing.ContentAlignment)">
+            <summary>
+            sets the Content Alignment of the Cell.
+            </summary>
+            <param name="ContentAlignment"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetColors(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            sets the background and foreground colors of the Cell.
+            </summary>
+            <param name="ForegroundColor"></param>
+            <param name="BackgroundColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetTransparent">
+            <summary>
+            makes the Cell background a transparent layer.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetCellPadding(System.Double)">
+            <summary>
+            sets the Padding of the Cell.
+            </summary>
+            <param name="CellPadding"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetContent(System.Object)">
+            <summary>
+            Sets the content of the cell. 
+            </summary>
+            <param name="Content"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCell.SetContentFormat(System.String)">
+            <summary>
+            Sets the string Format of the Cell
+            </summary>
+            <param name="Format"></param>
+        </member>
+        <member name="P:Gios.Pdf.PdfCell.Content">
+            <summary>
+            gets the Content inside the Cell.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfCell.ColSpan">
+            <summary>
+            gets or sets the Column Span of the Cell.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfCell.RowSpan">
+            <summary>
+            gets or sets the Row Span of the Cell.
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfTable">
+            <summary>
+            the generic Pdf Table class.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.SetBorders(System.Drawing.Color,System.Double,Gios.Pdf.BorderType)">
+            <summary>
+            sets the borders style of the Table.
+            </summary>
+            <param name="BorderColor"></param>
+            <param name="BorderWidth"></param>
+            <param name="BorderType"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.SetColumnsWidth(System.Int32[])">
+            <summary>
+            sets the widths of the Columns.
+            </summary>
+            <param name="ColumnsWidthArray"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.Cell(System.Int32,System.Int32)">
+            <summary>
+            gets a Cell of the Table.
+            </summary>
+            <param name="Row"></param>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.CellRange(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            gets a range of Cells of the Table.
+            </summary>
+            <param name="startRow"></param>
+            <param name="startColumn"></param>
+            <param name="endRow"></param>
+            <param name="endColumn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.SetRowHeight(System.Double)">
+            <summary>
+            sets the Height of the Rows of the Table. We suggest you not to use it
+            unless each rows contains more or less the same quantity of Text.
+            </summary>
+            <param name="RowHeight"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.ImportDataTable(System.Data.DataTable,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Imports text from a datatable.
+            </summary>
+            <param name="dt">The Source Datatable</param>
+            <param name="PdfTableStartRow">the starting row of the Pdf Table that will import datas.</param>
+            <param name="PdfTableStartColumn">the starting column of the Pdf Table that will import datas.</param>
+            <param name="DataTableStartRow">the starting row of the DataTable that will export datas.</param>
+            <param name="DataTableEndRow">the ending row of the DataTable that will export datas.</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.ImportDataTable(System.Data.DataTable,System.Int32,System.Int32)">
+            <summary>
+            Imports text from a datatable.
+            </summary>
+            <param name="dt">The Source Datatable</param>
+            <param name="PdfTableStartRow">the starting row of the Pdf Table that will import datas.</param>
+            <param name="PdfTableStartColumn">the starting column of the Pdf Table that will import datas.</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.ImportDataTable(System.Data.DataTable)">
+            <summary>
+            Imports text from a datatable.
+            </summary>
+            <param name="dt">The Source Datatable</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfTable.CreateTablePage(Gios.Pdf.PdfArea)">
+            <summary>
+            Creates the TablePage, the rasterized page of a Table.
+            </summary>
+            <param name="PageArea"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gios.Pdf.PdfTable.VisibleHeaders">
+            <summary>
+            gets or sets if table headers will be visible.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTable.HeadersRow">
+            <summary>
+            returns the header of the the Table. It will be considered as a usual PdfRow.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTable.Rows">
+            <summary>
+            the Collection of the Rows of the Table.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTable.Columns">
+            <summary>
+            the Collection of the Columns of the Table.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTable.AllTablePagesCreated">
+            <summary>
+            returns true if all the pages of the Table are already rasterized to a TablePage.
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.BorderType">
+            <summary>
+            describes a kind of border for a PdfTable
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.None">
+            <summary>
+            table without borders
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.Bounds">
+            <summary>
+            table boreder on the bounds (just the encloding rectangle)
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.Rows">
+            <summary>
+            only the row (horizontal) lines
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.RowsAndBounds">
+            <summary>
+            table boreder on the bounds with horizontal lines
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.Columns">
+            <summary>
+            only the column (vertical) lines
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.ColumnsAndBounds">
+            <summary>
+            table boreder on the bounds with vertical lines
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.CompleteGrid">
+            <summary>
+            table completely bordered (rectangle, rows and lines)
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.BorderType.RowsAndColumns">
+            <summary>
+            table with horizontal and vertical lines without the encloding rectangle
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfLine">
+            <summary>
+            a generic Line for a PdfPage
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfObject">
+            <summary>
+            the abstract pdf object class
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.PdfObject.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.PdfObject.type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfLine.#ctor(Gios.Pdf.PdfDocument,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.Color,System.Double)">
+            <summary>
+            created a new line to put inside a PdfPage
+            </summary>
+            <param name="Start">the starting point of the line</param>
+            <param name="End">the ending point of the line</param>
+            <param name="Color">the Color of the line</param>
+            <param name="StrokeWidth">the width of the stroke</param>
+        </member>
+        <member name="P:Gios.Pdf.PdfLine.Color">
+            <summary>
+            gets or sets the Color of the line
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfLine.StrokeWidth">
+            <summary>
+            gets or sets the width of the stroke
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfLine.Start">
+            <summary>
+            gets or sets the starting point of the line
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfLine.End">
+            <summary>
+            gets or sets the ending point of the line
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfPage">
+            <summary>
+            a generic page for a PdfDocument
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfImage,System.Double,System.Double)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfImage"></param>
+            <param name="posx"></param>
+            <param name="posy"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfImage,System.Double,System.Double,System.Double)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfImage"></param>
+            <param name="posx">The target X positioning of the picture.</param>
+            <param name="posy">The target Y positioning of the picture.</param>
+            <param name="DPI">The target resolution of the picture.</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfRectangle)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfRectangle"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfCircle)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfCircle"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfLine)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfLine"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfTablePage)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfTablePage"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.Add(Gios.Pdf.PdfTextArea)">
+            <summary>
+            adds a Pdf Element into this PdfPage.
+            </summary>
+            <param name="PdfTextArea"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.CreateCopy">
+            <summary>
+            creates a copy of this page in order to use it as a template
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfPage.SaveToDocument">
+            <summary>
+            save this page to the document and discard any further change
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfDocument">
+            <summary>
+            The base Pdf Document.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.SetPageFormat(Gios.Pdf.PdfDocumentFormat)">
+            <summary>
+            sets the page format for the Pdf Documents (default is A4)
+            </summary>
+            <param name="PdfDocumentFormat"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.SetHeaders(System.String,System.String,System.String)">
+            <summary>
+            set Document Subject and Title.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.#ctor">
+            <summary>
+            Creates a new Pdf Document.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.SaveToStream(System.IO.Stream)">
+            <summary>
+            Outputs the Complete Pdf Document to a Generic Stream
+            </summary>
+            <param name="m">
+            The Generic Stream to Output the Pdf Document
+            </param>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.SaveToFile(System.String)">
+            <summary>
+            Outputs the complete PDF Document to a file
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.NewPage">
+            <summary>
+            Creates a New Page for the Pdf Document
+            </summary>
+            <returns>
+            
+            </returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.NewImage(System.String)">
+             <summary>
+             Insert the Image Object into the Document before placing it in a document page
+             </summary>
+             <param name="file">
+             the Color 72dpi Jpeg Image to insert into the document
+             </param>
+             <returns>
+             
+            </returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.NewTable(System.Drawing.ContentAlignment,System.Drawing.Font,System.Drawing.Color,System.Int32,System.Int32,System.Double)">
+            <summary>
+            Instantiates a new PdfTable setting the default specs.
+            </summary>
+            <param name="DefaultContentAlignment"></param>
+            <param name="DefaultFont"></param>
+            <param name="DefaultForegroundColor"></param>
+            <param name="Rows"></param>
+            <param name="Columns"></param>
+            <param name="CellPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocument.NewTable(System.Drawing.Font,System.Int32,System.Int32,System.Double)">
+            <summary>
+            Instantiates a new PdfTable setting the default specs.
+            </summary>
+            <param name="DefaultFont"></param>
+            <param name="Rows"></param>
+            <param name="Columns"></param>
+            <param name="CellPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocument.PageHeight">
+            <summary>
+            gets othe height of the page in points (using 72 dpi depth)
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocument.PageWidth">
+            <summary>
+            gets the width of the page in points (using 72 dpi depth)
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocument.PageCount">
+            <summary>
+            gets the current saved pages number of the document.
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfArea">
+            <summary>
+            A generic sized Area.
+            </summary>
+        </member>
+        <member name="F:Gios.Pdf.PdfArea.PdfDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.#ctor(Gios.Pdf.PdfDocument,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new Area for correctly placing objects into Pdf Pages
+            </summary>
+            <param name="posx">Top-Left Vertex X-coordinate</param>
+            <param name="posy">Top-Left Vertex Y-coordinate</param>
+            <param name="width">Width of the Area</param>
+            <param name="height">Height of the Area</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.InnerArea(System.Double)">
+            <summary>
+            Generates a new Area inside the base one specifing the width difference.
+            </summary>
+            <param name="Difference">the Width difference of the inner Area</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.InnerArea(System.Double,System.Double)">
+            <summary>
+            Generates a new Area inside the base one specifing the width difference.
+            </summary>
+            <param name="WidthDifference">the Width difference of the inner Area</param>
+            <param name="HeightDifference">the Height difference of the inner Area</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.OuterArea(System.Double)">
+            <summary>
+            Generates a new Area outside the base one specifing the width difference
+            </summary>
+            <param name="Difference">the Width difference of the inner Area</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.OuterArea(System.Double,System.Double)">
+            <summary>
+            Generates a new Area outside the base one specifing the width difference.
+            </summary>
+            <param name="WidthDifference">the Width difference of the inner Area</param>
+            <param name="HeightDifference">the Height difference of the inner Area</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.Merge(Gios.Pdf.PdfArea)">
+            <summary>
+            Extends the area to the bounds of another area
+            </summary>
+            <param name="Area"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.InnerCircle(System.Drawing.Color)">
+            <summary>
+            Creates a Circle inside the Area
+            </summary>
+            <param name="BorderColor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.OuterCircle(System.Drawing.Color)">
+            <summary>
+            Creates a Circle outside the Area
+            </summary>
+            <param name="BorderColor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.InnerCircle(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a Circle inside the Area
+            </summary>
+            <param name="BorderColor"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.OuterCircle(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a Circle outside the Area
+            </summary>
+            <param name="BorderColor"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.SlashLine(System.Drawing.Color)">
+            <summary>
+            Creates a line which crosses the Area from the bottom-left to the top-right corner
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.BackSlashLine(System.Drawing.Color)">
+            <summary>
+            Creates a line which crosses the Area from the top-left to the bottom-right corner
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.SlashLine(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line which crosses the Area from the bottom-left to the top-right corner
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.BackSlashLine(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line which crosses the Area from the top-left to the bottom-right corner
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.UpperBound(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line corresponding to the Upper Bound of the Area
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.LowerBound(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line corresponding to the lower bound of the Area
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.LeftBound(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line corresponding to the left bound of the Area
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.HorizontalAxe(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line corresponding to the Horizontal Axe of the Area
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.VerticalAxe(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line corresponding to the Vertical Axe of the Area
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.RightBound(System.Drawing.Color,System.Double)">
+            <summary>
+            Creates a line corresponding to the right bound of the Area.
+            </summary>
+            <param name="Color"></param>
+            <param name="StrokeWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.ToRectangle(System.Drawing.Color)">
+            <summary>
+            Creates a simple void rectangle delimited by this Area.
+            </summary>
+            <param name="BorderColor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.ToRectangle(System.Drawing.Color,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="BorderColor"></param>
+            <param name="BorderWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.ToRectangle(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Creates a simple void rectangle delimited by this Area.
+            </summary>
+            <param name="BorderColor"></param>
+            <param name="FillingColor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfArea.ToRectangle(System.Drawing.Color,System.Double,System.Drawing.Color)">
+            <summary>
+            Creates a filled rectangle delimited by this Area.
+            </summary>
+            <param name="BorderColor"></param>
+            <param name="BorderWidth"></param>
+            <param name="FillingColor"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.PosX">
+            <summary>
+            gets or sets the X positioning of the Area
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.PosY">
+            <summary>
+            gets or sets the Y positioning of the Area
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.CenterX">
+            <summary>
+            gets the X-coordinate of the center of the Area.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.CenterY">
+            <summary>
+            gets the Y-coordinate of the center of the Area.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.Width">
+            <summary>
+            gets or sets the Width of the Area.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.Height">
+            <summary>
+            gets or sets the Height of the Area.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.TopLeftVertex">
+            <summary>
+            gets the coordinates struct of the Top Left Vertex of the Area
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.BottomRightVertex">
+            <summary>
+            gets the coordinates struct of the Bottom Right Vertex of the Area
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.BottomLeftVertex">
+            <summary>
+            gets the coordinates struct of the Bottom Left Vertex of the Area
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.TopRightVertex">
+            <summary>
+            gets the coordinates struct of the Top Right Vertex of the Area
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.BottomRightCornerX">
+            <summary>
+            get or sets the bottom-right bound X-coordinate
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfArea.BottomRightCornerY">
+            <summary>
+            get or sets the bottom-right boud Y-coordinate
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfRow">
+            <summary>
+            a Row of a PdfTable
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfRow.SetRowHeight(System.Double)">
+            <summary>
+            forces the height of the Row
+            </summary>
+            <param name="RowHeight">the forced height of the row</param>
+        </member>
+        <member name="P:Gios.Pdf.PdfRow.Index">
+            <summary>
+            returns the index of the row
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfRow.Item(System.Int32)">
+            <summary>
+            returns a specific cell of the row
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfRow.Height">
+            <summary>
+            returns the Height of the row
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfTextArea">
+            <summary>
+            an area to be use for Text writingsz
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfTextArea.#ctor(System.Drawing.Font,System.Drawing.Color,Gios.Pdf.PdfArea,System.Drawing.ContentAlignment,System.String)">
+            <summary>
+            creates a new PdfTextArea
+            </summary>
+            <param name="Font">the font that will be used</param>
+            <param name="Color">the color of the font that will be used</param>
+            <param name="TextArea">the estabilished area for the Text</param>
+            <param name="PdfTextAlign">the ContentAlignment for the Text inside the area</param>
+            <param name="Text">the text that will be written inside the area</param>
+        </member>
+        <member name="P:Gios.Pdf.PdfTextArea.PdfArea">
+            <summary>
+            gets the Area available for the Text
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTextArea.OverFlowText">
+            <summary>
+            returns the Text that can't fit inside the estabilished area
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfImage">
+            <summary>
+            a 72dpi jpeg based Image for a PdfPage
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfImage.Height">
+            <summary>
+            gets the height of the loaded picture
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfImage.Width">
+            <summary>
+            gets the width of the loaded picture
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfTablePage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfTablePage.CellArea(System.Int32,System.Int32)">
+            <summary>
+            returns the Area where the Cell has been rasterized.
+            </summary>
+            <param name="Row"></param>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfTablePage.ContainsRow(System.Int32)">
+            <summary>
+            returns true if the Table Contains the rendering of this Row Index.
+            </summary>
+            <param name="RowIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gios.Pdf.PdfTablePage.Area">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTablePage.FirstRow">
+            <summary>
+            the index of the first Row of the rendered Table Page.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfTablePage.LastRow">
+            <summary>
+            the index of the last Row of the rendered Table Page.
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfRectangle">
+            <summary>
+            a generic Rectangle for a PdfPage
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfRectangle.#ctor(Gios.Pdf.PdfDocument,Gios.Pdf.PdfArea,System.Drawing.Color)">
+            <summary>
+            creates a new rectangle
+            </summary>
+            <param name="RectangleArea">the area which will contains the rectangle</param>
+            <param name="BorderColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfRectangle.#ctor(Gios.Pdf.PdfDocument,Gios.Pdf.PdfArea,System.Drawing.Color,System.Double)">
+            <summary>
+            creates a new rectangle 
+            </summary>
+            <param name="RectangleArea"></param>
+            <param name="BorderColor"></param>
+            <param name="BorderWidth"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfRectangle.#ctor(Gios.Pdf.PdfDocument,Gios.Pdf.PdfArea,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            creates a new rectangle
+            </summary>
+            <param name="RectangleArea"></param>
+            <param name="BorderColor"></param>
+            <param name="FillingColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfRectangle.#ctor(Gios.Pdf.PdfDocument,Gios.Pdf.PdfArea,System.Drawing.Color,System.Double,System.Drawing.Color)">
+            <summary>
+            creates a new rectangle
+            </summary>
+            <param name="RectangleArea"></param>
+            <param name="BorderColor"></param>
+            <param name="BorderWidth"></param>
+            <param name="FillingColor"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfRectangle.Fill(System.Drawing.Color)">
+            <summary>
+            fills the rectangle with a Color
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfRectangle.Border(System.Drawing.Color)">
+            <summary>
+            sets the color of rectangle's border
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="P:Gios.Pdf.PdfRectangle.RectangleArea">
+            <summary>
+            gets the area of the rectangle
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfRectangle.StrokeWidth">
+            <summary>
+            gets or sets the width of the stroke
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfCircle">
+            <summary>
+            a circle to put inside a PdfPage
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfCircle.#ctor(System.Double,System.Double,System.Double,System.Drawing.Color)">
+            <summary>
+            creates a new circle
+            </summary>
+            <param name="posx">center's x coordinate</param>
+            <param name="posy">center's y coordinate</param>
+            <param name="ray">ray measure</param>
+            <param name="Color">circumference color</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCircle.#ctor(System.Double,System.Double,System.Double,System.Double,System.Drawing.Color)">
+            <summary>
+            creates a circle with different x and y diamaters (ellipse)
+            </summary>
+            <param name="posx">center's x coordinate</param>
+            <param name="posy">center's y coordinate</param>
+            <param name="XDiameter">x diameter measure</param>
+            <param name="YDiameter">y diameter measure</param>
+            <param name="Color">circumference color</param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCircle.SetDiameters(System.Double,System.Double)">
+            <summary>
+            sets the diameters lenght of the circle.
+            </summary>
+            <param name="XDiameter"></param>
+            <param name="YDiameter"></param>
+        </member>
+        <member name="M:Gios.Pdf.PdfCircle.SetRay(System.Double)">
+            <summary>
+            sets the ray lenght of the circle.
+            </summary>
+            <param name="Ray"></param>
+        </member>
+        <member name="P:Gios.Pdf.PdfCircle.AxesArea">
+            <summary>
+            gets or sets the Area of defined by the horizontal and vertical axes
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfCircle.StrokeWidth">
+            <summary>
+            gets or sets the stroke width (default value is 1)
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfCircle.Center">
+            <summary>
+            gets the center coordinates
+            </summary>
+        </member>
+        <member name="T:Gios.Pdf.PdfDocumentFormat">
+            <summary>
+            Represents the Paper Size of each Page of the Document.
+            </summary>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocumentFormat.InInches(System.Double,System.Double)">
+            <summary>
+            creates a custom inches sized paper.
+            </summary>
+            <param name="Width"></param>
+            <param name="Height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gios.Pdf.PdfDocumentFormat.InCentimeters(System.Double,System.Double)">
+            <summary>
+            creates a custom centimeters sized paper.
+            </summary>
+            <param name="Width"></param>
+            <param name="Height"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocumentFormat.A4">
+            <summary>
+            gets the Classic A4 Letter.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocumentFormat.A4_Horizontal">
+            <summary>
+            gets the Classic A4 Letter (Horizontal)
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocumentFormat.Letter_8_5x11">
+            <summary>
+            gets the 8.5x11 American Letter.
+            </summary>
+        </member>
+        <member name="P:Gios.Pdf.PdfDocumentFormat.Letter_8_5x11_Horizontal">
+            <summary>
+            gets the 8.5x11 American Letter (Horizontal)
+            </summary>
+        </member>
+    </members>
+</doc>

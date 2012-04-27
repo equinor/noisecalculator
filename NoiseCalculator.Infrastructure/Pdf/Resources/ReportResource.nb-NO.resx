@@ -128,7 +128,7 @@
     <comment>Noise Level</comment>
   </data>
   <data name="HeadingNoiseProtection" xml:space="preserve">
-    <value>Hørselvern</value>
+    <value>Hørselsvern</value>
     <comment>Noise Protection</comment>
   </data>
   <data name="HeadingRole" xml:space="preserve">
