@@ -10,12 +10,12 @@ using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
-    public class NoiseProtectionDefinitionController : Controller
+    public class NoiseProtectionController : Controller
     {
-        private readonly INoiseProtectionDAO _noiseProtectionDAO;
+        private readonly IDAO<NoiseProtection,int> _noiseProtectionDAO;
         private readonly IDAO<NoiseProtectionDefinition, int> _noiseProtectionDefinitionDAO;
 
-        public NoiseProtectionDefinitionController(INoiseProtectionDAO noiseProtectionDAO, IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
+        public NoiseProtectionController(IDAO<NoiseProtection, int> noiseProtectionDAO, IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
         {
             _noiseProtectionDAO = noiseProtectionDAO;
             _noiseProtectionDefinitionDAO = noiseProtectionDefinitionDAO;
@@ -24,15 +24,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         
         public ActionResult Index()
         {
-            IEnumerable<NoiseProtectionDefinition> noiseProtectionDefinitions = _noiseProtectionDefinitionDAO.GetAll();
+            IEnumerable<NoiseProtectionDefinition> definitions = _noiseProtectionDefinitionDAO.GetAll();
             
             GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
-            foreach (NoiseProtectionDefinition noiseProtDefinitions in noiseProtectionDefinitions)
+            foreach (var definition in definitions)
             {
-                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = noiseProtDefinitions.Id, SystemName = noiseProtDefinitions.SystemName });
+                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = definition.Id, SystemName = definition.SystemName });
             }
 
-            viewModel.PageTitle = "Noise Protection Definitions"; // <---- TRANSLATIION!
+            viewModel.PageTitle = "Noise Protection"; // <---- TRANSLATIION!
             viewModel.UrlCreate = Url.Action("Create");
             viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
