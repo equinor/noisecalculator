@@ -12,7 +12,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.Title);
             Map(x => x.CultureName);
 
-            References(x => x.HelicopterNoiseProtectionDefinition).Not.Nullable();
+            References(x => x.HelicopterNoiseProtectionDefinition).Nullable();
         }
     }
 }

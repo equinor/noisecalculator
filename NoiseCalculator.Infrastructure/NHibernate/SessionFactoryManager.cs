@@ -21,7 +21,7 @@ namespace NoiseCalculator.Infrastructure.NHibernate
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionString))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<TaskMap>())
                 .BuildConfiguration();
-
+            
             _sessionFactory = _configuration.BuildSessionFactory();
         }
 

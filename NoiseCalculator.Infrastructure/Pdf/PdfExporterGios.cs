@@ -158,6 +158,10 @@ namespace NoiseCalculator.Infrastructure.Pdf
                     {
                         return Color.Yellow;
                     }
+                case NoiseLevelEnum.MaximumAllowedDosage:
+                    {
+                        return Color.Yellow;
+                    }
                 default:
                     {
                         return Color.GreenYellow;
