@@ -263,7 +263,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs.</value>
-    <comment>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselvern menes ørepropper og øreklokker brukt samtidig.</comment>
+    <comment>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.</comment>
   </data>
   <data name="SelectedTaskNoiseMeasured" xml:space="preserve">
     <value>(Measured)</value>
@@ -274,7 +274,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   </data>
   <data name="FooterDynamicNoiseProtection" xml:space="preserve">
     <value>The following conditions apply regarding noise protection. The noise protection should be well maintained and used correctly. When using "universal ear plugs", individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1.</value>
-    <comment>Følgende betingelser ang. hørselvernet gjelder. Høreselvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte propper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</comment>
+    <comment>Følgende betingelser ang. hørselsvernet gjelder. Høreselsvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte propper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</comment>
   </data>
   <data name="IndexButtonRemoveAll" xml:space="preserve">
     <value>Remove All</value>
