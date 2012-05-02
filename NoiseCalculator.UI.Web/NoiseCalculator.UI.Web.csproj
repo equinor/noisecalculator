@@ -78,6 +78,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HelicopterTaskController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HelicopterWorkIntervalController.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Models\GenericTranslationEditModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericTranslationViewModel.cs" />
@@ -85,6 +88,8 @@
     <Compile Include="Areas\Admin\Models\GenericDefinitionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericDefinitionIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DeleteConfirmationViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\HelicopterTaskIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\HelicopterTaskViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
@@ -225,9 +230,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <Content Include="Areas\Admin\Views\Web.config" />
-    <Content Include="Areas\Admin\Views\Shared\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\AdminIndex.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_GenericDefinitionForm.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_GenericDefinitionTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_DeleteConfirmation.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_CreateGenericDefinition.cshtml" />
@@ -236,6 +240,11 @@
     <Content Include="Areas\Admin\Views\Shared\_GenericTranslationTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_GenericTranslationForm.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditGenericTranslation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_GenericItemListTable.cshtml" />
+    <Content Include="Areas\Admin\Views\NoiseProtection\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HelicopterNoiseProtection\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HelicopterType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HelicopterWorkInterval\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />

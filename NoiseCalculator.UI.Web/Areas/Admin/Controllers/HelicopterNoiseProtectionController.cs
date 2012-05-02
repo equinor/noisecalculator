@@ -37,6 +37,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return View(viewModel);
         }
 
@@ -63,9 +65,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             definition.SystemName = form.Title;
 
             _helicopterNoiseProtectionDefinitionDAO.Store(definition);
+            
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
             viewModel.Id = definition.Id;
             viewModel.SystemName = definition.SystemName;
+            viewModel.HasTranslationSupport = true;
 
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
@@ -80,6 +84,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id);
             viewModel.UrlEditTranslation = Url.Action("EditTranslation");
             viewModel.UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation");
+            viewModel.HasTranslationSupport = true;
             
             foreach (HelicopterNoiseProtection helicopterNoiseProtection in definition.HelicopterNoiseProtections   )
             {

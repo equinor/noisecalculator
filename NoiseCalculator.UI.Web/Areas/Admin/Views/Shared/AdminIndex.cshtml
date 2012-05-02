@@ -1,8 +1,8 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models
 @model GenericDefinitionIndexViewModel
-
 @{
     ViewBag.Title = @Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Stylesheets
 {
@@ -13,9 +13,7 @@
     <script src="@Url.Content("~/Scripts/Admin.js")" type="text/javascript"></script>
 }
 
-<input id="urlCreate" type="hidden" value="@Model.UrlCreate" />
-<input id="urlEdit" type="hidden" value="@Model.UrlEdit" />
-<input id="urlDeleteConformation" type="hidden" value="@Model.UrlDeleteConfirmation" />
+@RenderSection("AdminHidden", required: true)
 
 <h2>@Model.PageTitle</h2>
 
@@ -27,23 +25,7 @@
     
     <br clear="all" />
 
-    <table id="definitionList">
-        <thead>
-            <tr>
-                <th></th>
-                <th style="text-align: left;">Definition Name</th>
-                <th></th>
-            </tr>
-        </thead>
-    
-        <tbody>
-        @foreach (GenericDefinitionViewModel genericDefinitionViewModel in Model.Definitions)
-        {
-            @Html.Partial("_GenericDefinitionTableRow", genericDefinitionViewModel)
-        }
-        </tbody>
-
-    </table>
+    @RenderSection("ItemList", required: true)
 </div>
 
 <div id="dialogDiv" style="display: none;"></div>

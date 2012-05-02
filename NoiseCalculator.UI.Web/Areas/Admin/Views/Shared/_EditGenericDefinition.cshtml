@@ -13,34 +13,38 @@
         <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.SystemName" />
     </p>
 
-    <strong>Translations</strong>
-    <br/>
     
-    <button id="addNewTranslation" class="button" style="font-size: 12px;">
-        <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
-        Add New
-    </button>
+    @if(Model.HasTranslationSupport)
+    {
+        <strong>Translations</strong>
+        <br/>
+    
+        <button id="addNewTranslation" class="button" style="font-size: 12px;">
+            <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
+            Add New
+        </button>
 
-    <br clear="all" />
+        <br clear="all" />
     
-    <table id="translations" style="margin-top: 10px;">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Title</th>           
-                <th>Language</th>
-                <th></th>
-            </tr>
-        </thead>
+        <table id="translations" style="margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>           
+                    <th>Language</th>
+                    <th></th>
+                </tr>
+            </thead>
     
-        <tbody>
-            @foreach (GenericTranslationViewModel translationViewModel in Model.Translations)
-	        {
-		        @Html.Partial("_GenericTranslationTableRow", translationViewModel)
-            }
-        </tbody>
+            <tbody>
+                @foreach (GenericTranslationViewModel translationViewModel in Model.Translations)
+                {
+                    @Html.Partial("_GenericTranslationTableRow", translationViewModel)
+                }
+            </tbody>
 
-    </table>
+        </table>
+    }
 
     <p style="margin-top: 10px;">
         <button id="submitButton" class="button" style="margin-left: 85px;">

@@ -1,0 +1,19 @@
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models
+@model IEnumerable<GenericDefinitionViewModel>
+
+<table id="itemList">
+    <thead>
+        <tr>
+            <th></th>
+            <th style="text-align: left;">Definition Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (GenericDefinitionViewModel genericDefinitionViewModel in Model)
+    {
+        @Html.Partial("_GenericDefinitionTableRow", genericDefinitionViewModel)
+    }
+    </tbody>
+</table>

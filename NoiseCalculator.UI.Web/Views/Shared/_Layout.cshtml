@@ -21,11 +21,12 @@
         <div style="color: White; text-align: right; position: relative; margin-right: 10px;" >
             @TaskResources.LayoutUserLabel: <strong>@UserHelper.GetUsernameWithoutDomain(User.Identity.Name)</strong>
             <br />
-            <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" />
-            <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" />
+            <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" alt="Norwegian" />
+            <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" alt="English" />
             <input id="currentLangTwoCharCode" type="hidden" value="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName" />
         </div>
         <br clear="all"/>
+        @RenderSection("ContextMenu", required: false)
     </div>
     <div id="main">
         @RenderBody()

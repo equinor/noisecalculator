@@ -1,0 +1,16 @@
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericDefinitionIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminIndex.cshtml";
+}
+@section AdminHidden
+{
+    <input id="urlCreate" type="hidden" value="@Model.UrlCreate" />
+    <input id="urlEdit" type="hidden" value="@Model.UrlEdit" />
+    <input id="urlDeleteConformation" type="hidden" value="@Model.UrlDeleteConfirmation" />
+}
+@section ItemList
+{
+    @Html.Partial("_GenericItemListTable", Model.Definitions)
+}

@@ -124,7 +124,7 @@ function submitForm() {
 }
 
 function addResultToList(result) {
-    $("#definitionList tbody").prepend(result);
+    $("#itemList tbody").prepend(result);
     hideDialog();
 }
 
