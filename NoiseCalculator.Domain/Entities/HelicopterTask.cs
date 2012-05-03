@@ -7,14 +7,14 @@ namespace NoiseCalculator.Domain.Entities
         
         // Commented while testing new data model
         //public virtual HelicopterNoiseProtectionDefinition HelicopterNoiseProtectionDefinition { get; set; }
-        public HelicopterNoiseProtection HelicopterNoiseProtection { get; set; } // <--- For testing
+        public virtual HelicopterNoiseProtection HelicopterNoiseProtection { get; set; } // <--- For testing
         
         public virtual HelicopterWorkInterval HelicopterWorkInterval { get; set; }
         public virtual int Percentage { get; set; }
 
         // New, for admin and translation
-        public string CultureName { get; set; }
-        public HelicopterTaskDefinition HelicopterTaskDefinition { get; set; }
+        public virtual string CultureName { get; set; }
+        public virtual HelicopterTaskDefinition HelicopterTaskDefinition { get; set; }
 
         public virtual int GetMaximumAllowedMinutes()
         {
