@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -33,6 +34,15 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .SingleOrDefault<HelicopterTask>();
 
             return helicopterTask;
+        }
+
+        public IEnumerable<HelicopterTask> GetAll(HelicopterTaskDefinition definition)
+        {
+            IEnumerable<HelicopterTask> helicopterTasks = _session.QueryOver<HelicopterTask>()
+                .Where(x => x.HelicopterTaskDefinition == definition)
+                .List();
+
+            return helicopterTasks;
         }
     }
 }

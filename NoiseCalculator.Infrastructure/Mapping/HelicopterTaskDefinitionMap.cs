@@ -10,6 +10,9 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Id(x => x.Id);
 
             Map(x => x.Title);
+
+            HasMany(x => x.HelicopterTasks)
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

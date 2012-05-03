@@ -1,4 +1,5 @@
-﻿using NoiseCalculator.Domain.Entities;
+﻿using System.Collections.Generic;
+using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
 {
@@ -6,5 +7,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
     {
         //HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId);
         HelicopterTask Get(int helicopterId, int noiseProtectionId, int workIntervalId);
+        IEnumerable<HelicopterTask> GetAll(HelicopterTaskDefinition definition);
     }
 }
