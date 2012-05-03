@@ -74,6 +74,7 @@
     <Compile Include="DataAccess\Interfaces\IRotationDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ISelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ITaskDAO.cs" />
+    <Compile Include="Mapping\HelicopterTaskDefinitionMap.cs" />
     <Compile Include="Mapping\RoleDefinitionMap.cs" />
     <Compile Include="Mapping\NoiseProtectionDefinitionMap.cs" />
     <Compile Include="Mapping\RotationMap.cs" />
