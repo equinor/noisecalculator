@@ -1,20 +1,13 @@
+
 namespace NoiseCalculator.Domain.Entities
 {
     public class HelicopterTask
     {
         public virtual int Id { get; set; }
         public virtual HelicopterType HelicopterType { get; set; }
-        
-        // Commented while testing new data model
-        //public virtual HelicopterNoiseProtectionDefinition HelicopterNoiseProtectionDefinition { get; set; }
-        public virtual HelicopterNoiseProtection HelicopterNoiseProtection { get; set; } // <--- For testing
-        
+        public virtual HelicopterNoiseProtectionDefinition HelicopterNoiseProtectionDefinition { get; set; }
         public virtual HelicopterWorkInterval HelicopterWorkInterval { get; set; }
         public virtual int Percentage { get; set; }
-
-        // New, for admin and translation
-        public virtual string CultureName { get; set; }
-        public virtual HelicopterTaskDefinition HelicopterTaskDefinition { get; set; }
 
         public virtual int GetMaximumAllowedMinutes()
         {
@@ -23,6 +16,11 @@ namespace NoiseCalculator.Domain.Entities
             int minutes = int.Parse(minuteElements[1]);
             
             return minutes;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} - {2}", HelicopterType.Title, HelicopterNoiseProtectionDefinition.SystemName, HelicopterWorkInterval.Title);
         }
     }
 }

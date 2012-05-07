@@ -1,7 +1,8 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericDefinitionIndexViewModel
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericDefinitionIndexViewModel
 
 @{
-    ViewBag.Title = "Index";
+    //ViewBag.Title = "Index";
+    ViewBag.Title = @Model.PageTitle;
     Layout = "~/Areas/Admin/Views/Shared/AdminIndex.cshtml";
 }
 
@@ -11,7 +12,10 @@
     <input id="urlEdit" type="hidden" value="@Model.UrlEdit" />
     <input id="urlDeleteConformation" type="hidden" value="@Model.UrlDeleteConfirmation" />
 }
-
+@section PageTitleText
+{
+    @Model.PageTitle
+}
 @section ItemList
 {
     @Html.Partial("_GenericItemListTable", Model.Definitions)

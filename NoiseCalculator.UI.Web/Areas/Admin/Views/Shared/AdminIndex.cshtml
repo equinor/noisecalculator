@@ -1,7 +1,4 @@
-﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models
-@model GenericDefinitionIndexViewModel
-@{
-    ViewBag.Title = @Model.PageTitle;
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Stylesheets
@@ -15,7 +12,7 @@
 
 @RenderSection("AdminHidden", required: true)
 
-<h2>@Model.PageTitle</h2>
+<h2>@RenderSection("PageTitleText", required: true)</h2>
 
 <div id="mainContent">
     <button id="addNew" class="button">

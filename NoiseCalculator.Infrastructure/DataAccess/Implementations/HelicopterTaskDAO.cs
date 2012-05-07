@@ -11,24 +11,12 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
         }
 
-        //public HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId)
-        //{
-        //    HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
-        //        .Where(x => x.HelicopterType.Id == helicopterId)
-        //        .And(x => x.HelicopterWorkInterval.Id == workIntervalId)
-        //        .And(x => x.HelicopterNoiseProtectionDefinition == noiseProtectionDefinition)
-        //        .Fetch(x => x.HelicopterType).Eager
-        //        .Fetch(x => x.HelicopterWorkInterval).Eager
-        //        .SingleOrDefault<HelicopterTask>();
-
-        //    return helicopterTask;
-        //}
-        public HelicopterTask Get(int helicopterId, int noiseProtectionId, int workIntervalId)
+        public HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId)
         {
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
                 .Where(x => x.HelicopterType.Id == helicopterId)
                 .And(x => x.HelicopterWorkInterval.Id == workIntervalId)
-                .And(x => x.HelicopterNoiseProtection.Id == noiseProtectionId)
+                .And(x => x.HelicopterNoiseProtectionDefinition == noiseProtectionDefinition)
                 .Fetch(x => x.HelicopterType).Eager
                 .Fetch(x => x.HelicopterWorkInterval).Eager
                 .SingleOrDefault<HelicopterTask>();
@@ -36,13 +24,17 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return helicopterTask;
         }
 
-        public IEnumerable<HelicopterTask> GetAll(HelicopterTaskDefinition definition)
+        public HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId, int workIntervalId)
         {
-            IEnumerable<HelicopterTask> helicopterTasks = _session.QueryOver<HelicopterTask>()
-                .Where(x => x.HelicopterTaskDefinition == definition)
-                .List();
+            HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
+                .Where(x => x.HelicopterType.Id == helicopterId)
+                .And(x => x.HelicopterWorkInterval.Id == workIntervalId)
+                .And(x => x.HelicopterNoiseProtectionDefinition.Id == noiseProtectionDefinitionId)
+                .Fetch(x => x.HelicopterType).Eager
+                .Fetch(x => x.HelicopterWorkInterval).Eager
+                .SingleOrDefault<HelicopterTask>();
 
-            return helicopterTasks;
+            return helicopterTask;
         }
     }
 }

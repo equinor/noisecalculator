@@ -1,5 +1,6 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models
-@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericDefinitionViewModel
+@using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericDefinitionViewModel
 
 <form id="adminForm" action="@Url.Action("Edit")" method="POST" style="margin-top: 10px;">
     
@@ -39,6 +40,11 @@
             <tbody>
                 @foreach (GenericTranslationViewModel translationViewModel in Model.Translations)
                 {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     @Html.Partial("_GenericTranslationTableRow", translationViewModel)
                 }
             </tbody>

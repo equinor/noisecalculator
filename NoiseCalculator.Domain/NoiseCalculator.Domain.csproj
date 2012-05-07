@@ -44,7 +44,6 @@
     <Compile Include="Entities\HelicopterNoiseProtectionDefinition.cs" />
     <Compile Include="Entities\HelicopterTask.cs" />
     <Compile Include="Entities\HelicopterNoiseProtection.cs" />
-    <Compile Include="Entities\HelicopterTaskDefinition.cs" />
     <Compile Include="Entities\HelicopterType.cs" />
     <Compile Include="Entities\HelicopterWorkInterval.cs" />
     <Compile Include="Entities\NoiseLevelEnum.cs" />

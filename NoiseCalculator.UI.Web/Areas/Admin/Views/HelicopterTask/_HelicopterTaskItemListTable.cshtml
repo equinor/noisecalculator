@@ -1,0 +1,22 @@
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask
+@model IEnumerable<HelicopterTaskListItemViewModel>
+
+<table id="itemList">
+    <thead>
+        <tr>
+            <th></th>
+            <th class="heading">Helicopter</th>
+            <th class="heading">Noise Protection Definition</th>
+            <th class="heading">Work Interval</th>
+            <th class="heading">Percentage</th> 
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (HelicopterTaskListItemViewModel helicopterTaskViewModel in Model)
+    {
+        @Html.Partial("_HelicopterTaskTableRow", helicopterTaskViewModel)
+    }
+    </tbody>
+</table>
