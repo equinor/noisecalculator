@@ -82,6 +82,7 @@
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterWorkIntervalController.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
     <Compile Include="Areas\Admin\Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Models\Generic\DeleteConfirmationViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Generic\GenericDefinitionEditModel.cs" />
