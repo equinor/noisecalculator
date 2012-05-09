@@ -77,6 +77,8 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
@@ -255,6 +258,11 @@
     <Content Include="Areas\Admin\Views\HelicopterTask\_CreateHelicopterTask.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_EditHelicopterTask.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_CreateTaskDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_EditTaskDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_TaskForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_TaskTableRow.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />

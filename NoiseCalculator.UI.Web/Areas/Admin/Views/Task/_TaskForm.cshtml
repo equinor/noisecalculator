@@ -1,0 +1,57 @@
+﻿@using NoiseCalculator.UI.Web.Resources
+@using NoiseCalculator.UI.Web.ViewModels
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.Task.TaskViewModel
+        
+<input type="hidden" name="Id" value="@Model.Id" />
+
+<p>
+    <label for="Title" class="label-130px">@TaskResources.TaskFormRegularPercentageLabel</label>
+    :
+    <input id="Title" name="Title" type="text" value="@Model.Title" />
+</p>
+
+<p style="margin-top: 15px;">
+    <label for="RoleId" class="label-130px">The Label</label>
+    :
+    <select id="RoleId" name="RoleId">
+        @foreach (SelectOptionViewModel selectOption in Model.Roles)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+<p style="margin-top: 15px;">
+    <label for="NoiseProtectionId" class="label-130px">The Label</label>
+    :
+    <select id="NoiseProtectionId" name="NoiseProtectionId">
+        @foreach (SelectOptionViewModel selectOption in Model.NoiseProtections)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+<p>
+    <label for="NoiseLevelGuideline" class="label-130px">@TaskResources.TaskFormRegularPercentageLabel</label>
+    :
+    <input id="NoiseLevelGuideline" name="NoiseLevelGuideline" type="text" value="@Model.NoiseLevelGuideline" />
+</p>
+
+<p>
+    <label for="AllowedExposureMinutes" class="label-130px">@TaskResources.TaskFormRegularPercentageLabel</label>
+    :
+    <input id="AllowedExposureMinutes" name="AllowedExposureMinutes" type="text" value="@Model.AllowedExposureMinutes" />
+</p>
+
+<p style="margin-top: 10px;">
+    <button id="submitButton" class="button" style="margin-left: 85px;">
+        <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
+        Submit
+    </button>
+    
+    <button id="closeButton" class="button" style="margin-left: 40px;">
+        <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+        Close
+    </button>
+</p>

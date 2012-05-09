@@ -1,0 +1,13 @@
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Task.TaskListItemViewModel
+<tr id="trans@(Model.Id)" class="translation">
+    <td class="editTranslation">
+        <img src="@Url.Content("~/Content/page_edit.png")" />
+        <span style="vertical-align: bottom;">Edit</span>
+    </td>
+    <td>@Model.Title</td>
+    <td>@Model.SelectedLanguage</td>
+    <td class="removeTranslation">
+        <img src="@Url.Content("~/Content/cancel.png")" />
+        <span style="vertical-align: bottom;">Remove</span>
+    </td>
+</tr>
