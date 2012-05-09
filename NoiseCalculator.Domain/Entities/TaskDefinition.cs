@@ -6,6 +6,6 @@ namespace NoiseCalculator.Domain.Entities
     {
         public virtual int Id { get; set; }
         public virtual string SystemName { get; set; }
-        public IList<Task> Tasks { get; set; }
+        public virtual IList<Task> Tasks { get; set; }
     }
 }
