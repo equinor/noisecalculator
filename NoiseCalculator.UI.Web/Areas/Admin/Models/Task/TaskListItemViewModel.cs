@@ -9,6 +9,6 @@
         public int NoiseLevelGuideline { get; set; }
         public int AllowedExposureMinutes { get; set; }
 
-        public string Language { get; private set; }
+        public string Language { get; set; }
     }
 }

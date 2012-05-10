@@ -1,12 +1,4 @@
-﻿/* File Created: april 12, 2012 */
-
-/*table, th, td
-    {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }*/
-
-table
+﻿table
 {
     border: none;
     border-collapse: collapse;
@@ -36,6 +28,13 @@ tbody
         border: 1px solid black;
         border-collapse: collapse;
         border-spacing: 0px;
+        padding-left:5px; 
+        padding-right: 5px;
+    }
+
+    tbody tr
+    {
+        height: 28px;
     }
 
     tbody tr:hover {
@@ -48,27 +47,32 @@ tbody
 }
 
 #itemList {
-    /*border: 1px solid black;*/ 
-    /*background-color: white;*/ 
     margin-top: 10px;
-}   
+}
 
-.editDefinition:hover {
+.editButton
+{
+    margin-right: 5px;
+    background-image: url("/Content/page_edit.png");
+    background-position: 4px; 
+    background-repeat: no-repeat; 
+    padding-left: 25px;
+}
+
+.editButton:hover {
     cursor: pointer;
     text-decoration: underline;
 }
-    
-.removeDefinition:hover {
-	cursor: pointer;
-	text-decoration: underline;
+
+.removeButton
+{
+    background-image: url("/Content/cancel.png");
+    background-position: 4px; 
+    background-repeat: no-repeat; 
+    padding-left: 25px;
 }
 
-.editTranslation:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-    
-.removeTranslation:hover {
+.removeButton:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }

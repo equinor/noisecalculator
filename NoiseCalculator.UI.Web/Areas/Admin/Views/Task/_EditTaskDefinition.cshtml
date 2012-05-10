@@ -27,21 +27,20 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Title</th>           
+                <th>Title</th>
+                <th>Role</th>
+                <th>Noise Protection</th>
+                <th>Noise Level Guideline</th>
+                <th>Allowed Exposure</th>
                 <th>Language</th>
                 <th></th>
             </tr>
         </thead>
     
         <tbody>
-            @foreach (TaskViewModel taskViewModel in Model.Tasks)
+            @foreach (TaskListItemViewModel taskViewModel in Model.Tasks)
             {
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                @Html.Partial("_GenericTranslationTableRow", taskViewModel)
+                @Html.Partial("_TaskTableRow", taskViewModel)
             }
         </tbody>
 

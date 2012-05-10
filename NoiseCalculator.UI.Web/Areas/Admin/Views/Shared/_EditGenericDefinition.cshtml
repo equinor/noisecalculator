@@ -31,8 +31,8 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Title</th>           
-                    <th>Language</th>
+                    <th class="heading">Title</th>           
+                    <th class="heading">Language</th>
                     <th></th>
                 </tr>
             </thead>
@@ -40,11 +40,6 @@
             <tbody>
                 @foreach (GenericTranslationViewModel translationViewModel in Model.Translations)
                 {
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
                     @Html.Partial("_GenericTranslationTableRow", translationViewModel)
                 }
             </tbody>

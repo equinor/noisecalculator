@@ -84,10 +84,13 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             foreach (Task task in definition.Tasks)
             {
                 TaskListItemViewModel translationViewModel
-                    = new TaskListItemViewModel(task.CultureName)
+                    = new TaskListItemViewModel()
                     {
                         Id = task.Id,
-                        Title = task.Title
+                        Title = task.Title,
+                        NoiseLevelGuideline = task.NoiseLevelGuideline,
+                        AllowedExposureMinutes = task.AllowedExposureMinutes,
+                        Language = task.CultureName
                     };
 
                 viewModel.Tasks.Add(translationViewModel);
@@ -95,7 +98,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            return PartialView("_EditGenericDefinition", viewModel);
+            return PartialView("_EditTaskDefinition", viewModel);
         }
 
         public ActionResult ConfirmDelete(int id)

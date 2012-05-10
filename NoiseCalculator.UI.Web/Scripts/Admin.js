@@ -18,12 +18,12 @@ function setAllEvents() {
         hideDialog();
     });
 
-    $("#mainContent").delegate(".editDefinition", "click", function (event) {
+    $("#mainContent").delegate(".definition .editButton", "click", function (event) {
         event.preventDefault();
         showDialogEdit(this);
     });
 
-    $("#mainContent").delegate(".removeDefinition", "click", function (event) {
+    $("#mainContent").delegate(".definition .removeButton", "click", function (event) {
         event.preventDefault();
         getConfirmDeleteDialog(this);
     });
@@ -45,16 +45,16 @@ function setAllEvents() {
         showTranslationDialogNew();
     });
 
-    $(".editTranslation").live('click', function(event) {
+    $(".translation.editButton").live('click', function (event) {
         event.preventDefault();
         showTranslationDialogEdit(this);
     });
 
-    $(".removeTranslation").live('click', function(event) {
+    $(".translation .removeButton").live('click', function (event) {
         event.preventDefault();
         getConfirmDeleteTranslationDialog(this);
     });
-
+    
     $("#submitTranslationButton").live("click", function (event) {
         event.preventDefault();
         submitTranslationForm();
