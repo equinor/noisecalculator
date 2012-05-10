@@ -1,22 +1,5 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericDefinitionViewModel
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Task.TaskViewModel
 
 <form id="adminForm" action="@Url.Action("Create")" method="POST" style="margin-top: 10px;">
-    <input type="hidden" id="definitionId" value="@Model.Id" />
-
-    <p>
-        <label for="Title" class="span80">Title</label>
-        <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.SystemName" />
-    </p>
-
-    <p style="margin-top: 10px;">
-        <button id="submitButton" class="button" style="margin-left: 85px;">
-            <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
-            Submit
-        </button>
     
-        <button id="closeButton" class="button" style="margin-left: 40px;">
-            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-            Close
-        </button>
-    </p>
 </form>

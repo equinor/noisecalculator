@@ -1,14 +1,9 @@
 ﻿@using NoiseCalculator.UI.Web.ViewModels
-@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericTranslationViewModel
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.Task.TaskViewModel
 
 <input type="hidden" name="id" value="@Model.Id" />
 <input type="hidden" name="definitionId" value="@Model.DefinitionId" />
 
-<p>
-    <label for="Title" class="span120">Title</label>
-    <input id="Title" type="text" name="title" style="width: 280px;" value="@Model.Title" />
-</p>
-    
 <p>
     <label for="selectedCultureName" class="span120">Language</label>
     <select id="selectedCultureName" name="selectedCultureName">
@@ -18,6 +13,33 @@
         }
     </select>
 </p>
+
+<p>
+    <label for="Title" class="label-130px">Title</label>
+    <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.Title" />
+</p>
+
+<p>
+    <label for="roleId" class="label-130px">Role</label>
+    <select id="roleId" name="roleId">
+        @foreach (SelectOptionViewModel selectOption in Model.Roles)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+<p>
+    <label for="NoiseLevelGuideline" class="label-130px">Noise Level Guideline</label>
+    <input id="NoiseLevelGuideline" type="text" name="NoiseLevelGuideline" style="width: 280px;" value="@Model.Title" />
+</p>
+
+<p>
+    <label for="AllowedExposureMinutes" class="label-130px">Title</label>
+    <input id="AllowedExposureMinutes" type="text" name="AllowedExposureMinutes" style="width: 280px;" value="@Model.Title" />
+</p>
+
+
     
 <p style="margin-top: 10px;">
     <button id="submitTranslationButton" class="button" style="margin-left: 85px;">

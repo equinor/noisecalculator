@@ -8,6 +8,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public IList<SelectOptionViewModel> Roles { get; set; }
+        public IList<SelectOptionViewModel> NoiseProtections { get; set; }
         public int NoiseLevelGuideline { get; set; }
         public int AllowedExposureMinutes { get; set; }
         public IList<SelectOptionViewModel> Languages { get; private set; }
