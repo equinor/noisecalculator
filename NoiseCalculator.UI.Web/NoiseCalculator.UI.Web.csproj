@@ -257,10 +257,7 @@
     <Content Include="Areas\Admin\Views\HelicopterTask\_CreateHelicopterTask.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_EditHelicopterTask.cshtml" />
-    <Content Include="Areas\Admin\Views\Task\_CreateTaskDefinition.cshtml" />
-    <Content Include="Areas\Admin\Views\Task\_EditTaskDefinition.cshtml" />
-    <Content Include="Areas\Admin\Views\Task\_TaskForm.cshtml" />
-    <Content Include="Areas\Admin\Views\Task\_TaskTableRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />

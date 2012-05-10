@@ -12,5 +12,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
         public string UrlCreateTranslation { get; set; }
         public string UrlEditTranslation { get; set; }
         public string UrlDeleteTranslationConfirmation { get; set; }
+
+        
+        public TaskDefinitionViewModel()
+        {
+            Tasks = new List<TaskListItemViewModel>();
+        }
     }
 }
