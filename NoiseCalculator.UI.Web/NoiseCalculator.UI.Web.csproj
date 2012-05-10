@@ -94,6 +94,8 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskListItemViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
@@ -255,7 +257,6 @@
     <Content Include="Areas\Admin\Views\HelicopterTask\_CreateHelicopterTask.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_EditHelicopterTask.cshtml" />
-    <Content Include="Areas\Admin\Views\Task\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_CreateTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_EditTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_TaskForm.cshtml" />
@@ -280,7 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\Task\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
