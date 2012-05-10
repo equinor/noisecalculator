@@ -77,8 +77,6 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Models\Task\TaskListItemViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\Task\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
@@ -96,7 +94,6 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
@@ -283,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\Task\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
