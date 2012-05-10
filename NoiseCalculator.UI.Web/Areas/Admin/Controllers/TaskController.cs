@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Task;
+using NoiseCalculator.UI.Web.Models;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
@@ -40,11 +43,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            TaskDefinitionViewModel viewModel = new TaskDefinitionViewModel();
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_CreateTaskDefinition", viewModel);
+            return PartialView("_CreateGenericDefinition", new GenericDefinitionViewModel());
         }
 
         [HttpPost]
@@ -88,9 +87,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                     {
                         Id = task.Id,
                         Title = task.Title,
+                        Role = task.Role.Title,
+                        NoiseProtection = task.NoiseProtection.Title,
                         NoiseLevelGuideline = task.NoiseLevelGuideline,
                         AllowedExposureMinutes = task.AllowedExposureMinutes,
-                        Language = task.CultureName
+                        Language = LanguageResolver.GetLanguageName(task.CultureName)
                     };
 
                 viewModel.Tasks.Add(translationViewModel);
@@ -101,22 +102,64 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             return PartialView("_EditTaskDefinition", viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Edit(int id, GenericDefinitionEditModel form)
+        {
+            if (string.IsNullOrEmpty(form.Title))
+            {
+                return new EmptyResult();
+            }
+
+            TaskDefinition definition = _taskDefinitionDAO.Get(id);
+            definition.SystemName = form.Title;
+
+            _taskDefinitionDAO.Store(definition);
+
+            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
+
+            return PartialView("_GenericDefinitionTableRow", viewModel);
+        }
+
         public ActionResult ConfirmDelete(int id)
         {
-            return new EmptyResult();
+            TaskDefinition definintion = _taskDefinitionDAO.Get(id);
+            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
+            viewModel.Id = definintion.Id.ToString();
+            viewModel.Title = definintion.SystemName;
+            viewModel.UrlDeleteAction = Url.Action("Delete");
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_DeleteConfirmation", viewModel);
         }
         
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                TaskDefinition noiseProtectionDefinition = _taskDefinitionDAO.Load(id);
+                _taskDefinitionDAO.Delete(noiseProtectionDefinition);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Json(ex.ToString());
+            }
+        }
+
         // ------------------------------------------------------------
         public ActionResult CreateTranslation(int id)
         {
-            //GenericTranslationViewModel viewModel = new GenericTranslationViewModel(Thread.CurrentThread.CurrentCulture.Name);
-            //viewModel.DefinitionId = id;
+            TaskViewModel viewModel = new TaskViewModel(Thread.CurrentThread.CurrentCulture.Name);
+            viewModel.DefinitionId = id;
 
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            //return PartialView("_CreateGenericTranslation", viewModel);
-
-            return new EmptyResult();
+            return PartialView("_CreateTask", viewModel);
         }
 
         [HttpPost]

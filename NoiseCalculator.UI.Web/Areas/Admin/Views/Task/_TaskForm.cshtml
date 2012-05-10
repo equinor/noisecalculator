@@ -1,0 +1,32 @@
+﻿@using NoiseCalculator.UI.Web.ViewModels
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericTranslationViewModel
+
+<input type="hidden" name="id" value="@Model.Id" />
+<input type="hidden" name="definitionId" value="@Model.DefinitionId" />
+
+<p>
+    <label for="Title" class="span120">Title</label>
+    <input id="Title" type="text" name="title" style="width: 280px;" value="@Model.Title" />
+</p>
+    
+<p>
+    <label for="selectedCultureName" class="span120">Language</label>
+    <select id="selectedCultureName" name="selectedCultureName">
+        @foreach (SelectOptionViewModel selectOption in Model.Languages)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+    
+<p style="margin-top: 10px;">
+    <button id="submitTranslationButton" class="button" style="margin-left: 85px;">
+        <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
+        Submit
+    </button>
+                
+    <button id="closeTranslationButton" class="button" style="margin-left: 40px;">
+        <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+        Close
+    </button>
+</p>

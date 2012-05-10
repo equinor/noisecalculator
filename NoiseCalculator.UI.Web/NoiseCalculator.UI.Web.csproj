@@ -94,6 +94,7 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskListItemViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
@@ -258,6 +259,10 @@
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_EditHelicopterTask.cshtml" />
     <Content Include="Areas\Admin\Views\Task\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_CreateTask.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_EditTaskDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_TaskTableRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_TaskForm.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />
