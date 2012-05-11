@@ -45,6 +45,21 @@ tbody
     padding: 10px;
 }
 
+#dialogDiv {
+    display: none;
+    font-size: 14px;
+}
+
+#translationDialogDiv {
+    display: none;
+    font-size: 14px;
+}
+
+#deleteConfirmDialog {
+    display: none;
+    font-size: 14px;
+}
+
 #itemList {
     margin-top: 10px;
 }

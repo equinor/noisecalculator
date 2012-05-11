@@ -5,7 +5,7 @@
 <input type="hidden" name="definitionId" value="@Model.DefinitionId" />
 
 <p>
-    <label for="selectedCultureName" class="span120">Language</label>
+    <label for="selectedCultureName" class="label-130px">Language</label>
     <select id="selectedCultureName" name="selectedCultureName">
         @foreach (SelectOptionViewModel selectOption in Model.Languages)
         {
@@ -30,19 +30,29 @@
 </p>
 
 <p>
-    <label for="NoiseLevelGuideline" class="label-130px">Noise Level Guideline</label>
-    <input id="NoiseLevelGuideline" type="text" name="NoiseLevelGuideline" style="width: 280px;" value="@Model.Title" />
+    <label for="noiseProtectionId" class="label-130px">Noise Protection</label>
+    <select id="noiseProtectionId" name="noiseProtectionId">
+        @foreach (SelectOptionViewModel selectOption in Model.NoiseProtections)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
 </p>
 
 <p>
-    <label for="AllowedExposureMinutes" class="label-130px">Title</label>
-    <input id="AllowedExposureMinutes" type="text" name="AllowedExposureMinutes" style="width: 280px;" value="@Model.Title" />
+    <label for="NoiseLevelGuideline" class="label-130px">Noise Level</label>
+    <input id="NoiseLevelGuideline" type="text" name="NoiseLevelGuideline" style="width: 280px;" value="@Model.NoiseLevelGuideline" />
+</p>
+
+<p>
+    <label for="AllowedExposureMinutes" class="label-130px">Allowed Exposure</label>
+    <input id="AllowedExposureMinutes" type="text" name="AllowedExposureMinutes" style="width: 280px;" value="@Model.AllowedExposureMinutes" />
 </p>
 
 
     
 <p style="margin-top: 10px;">
-    <button id="submitTranslationButton" class="button" style="margin-left: 85px;">
+    <button id="submitTranslationButton" class="button" style="margin-left: 135px;">
         <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
         Submit
     </button>

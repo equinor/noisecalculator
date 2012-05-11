@@ -45,7 +45,7 @@ function setAllEvents() {
         showTranslationDialogNew();
     });
 
-    $(".translation.editButton").live('click', function (event) {
+    $(".translation .editButton").live('click', function (event) {
         event.preventDefault();
         showTranslationDialogEdit(this);
     });

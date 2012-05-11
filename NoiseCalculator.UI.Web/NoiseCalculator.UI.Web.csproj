@@ -94,6 +94,7 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Task\TaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskListItemViewModel.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Areas\Admin\Views\Task\_EditTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_TaskTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_TaskForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\_EditTask.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />

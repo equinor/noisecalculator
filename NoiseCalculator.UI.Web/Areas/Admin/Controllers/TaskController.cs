@@ -1,23 +1,34 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Task;
 using NoiseCalculator.UI.Web.Models;
+using NoiseCalculator.UI.Web.Resources;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     public class TaskController : Controller
     {
-        private IDAO<TaskDefinition, int> _taskDefinitionDAO;
+        private readonly IDAO<TaskDefinition, int> _taskDefinitionDAO;
+        private readonly ITaskDAO _taskDAO;
+        private readonly IRoleDAO _roleDAO;
+        private readonly INoiseProtectionDAO _noiseProtectionDAO;
 
-        public TaskController(IDAO<TaskDefinition, int> taskDefinitionDAO)
+
+        public TaskController(IDAO<TaskDefinition, int> taskDefinitionDAO, ITaskDAO taskDAO, IRoleDAO roleDAO, INoiseProtectionDAO noiseProtectionDAO)
         {
             _taskDefinitionDAO = taskDefinitionDAO;
+            _taskDAO = taskDAO;
+            _roleDAO = roleDAO;
+            _noiseProtectionDAO = noiseProtectionDAO;
         }
 
 
@@ -72,13 +83,14 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             TaskDefinition definition = _taskDefinitionDAO.Get(id);
 
             TaskDefinitionViewModel viewModel 
-                = new TaskDefinitionViewModel();
-            
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-            viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id);
-            viewModel.UrlEditTranslation = Url.Action("EditTranslation");
-            viewModel.UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation");
+                = new TaskDefinitionViewModel
+                      {
+                          Id = definition.Id,
+                          SystemName = definition.SystemName,
+                          UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id),
+                          UrlEditTranslation = Url.Action("EditTranslation"),
+                          UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation")
+                      };
 
             foreach (Task task in definition.Tasks)
             {
@@ -157,97 +169,152 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             TaskViewModel viewModel = new TaskViewModel(Thread.CurrentThread.CurrentCulture.Name);
             viewModel.DefinitionId = id;
 
+            viewModel.Roles.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
+            foreach (Role role in _roleDAO.GetAllFilteredByCurrentCulture())
+            {
+                // We want separate handling for rotation tasks, as the view should be quite different
+                if(role.RoleType != RoleTypeEnum.Rotation)
+                {
+                    viewModel.Roles.Add(new SelectOptionViewModel(role.Title, role.Id.ToString()));
+                }
+            }
+
+            viewModel.NoiseProtections.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
+            foreach (NoiseProtection noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            {
+                viewModel.NoiseProtections.Add(new SelectOptionViewModel(noiseProtection.Title, noiseProtection.Id.ToString()));
+            }
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_CreateTask", viewModel);
         }
 
         [HttpPost]
-        public ActionResult CreateTranslation(GenericTranslationEditModel form)
+        public ActionResult CreateTranslation(TaskEditModel form)
         {
-            //NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(form.DefinitionId);
+            TaskDefinition definition = _taskDefinitionDAO.Get(form.DefinitionId);
 
-            //NoiseProtection noiseProtection = new NoiseProtection();
-            //noiseProtection.NoiseProtectionDefinition = definition;
-            //noiseProtection.Title = form.Title;
-            //noiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
-            //definition.NoiseProtections.Add(noiseProtection);
+            Task task = new Task()
+                            {
+                                Title = form.Title,
+                                Role = _roleDAO.Get(form.RoleId),
+                                NoiseProtection = _noiseProtectionDAO.Get(form.NoiseProtectionId),
+                                NoiseLevelGuideline = form.NoiseLevelGuideline,
+                                AllowedExposureMinutes = form.AllowedExposureMinutes,
+                                TaskDefinition = definition,
+                                CultureName = form.SelectedCultureName,
+                            };
+            
+            definition.Tasks.Add(task);
 
-            //_noiseProtectionDefinitionDAO.Store(definition);
+            _taskDefinitionDAO.Store(definition);
 
-            //GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
-            //viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
-            //viewModel.Id = noiseProtection.Id;
-            //viewModel.Title = noiseProtection.Title;
-
-            //return PartialView("_GenericTranslationTableRow", viewModel);
-            return new EmptyResult();
+            TaskListItemViewModel viewModel = CreateTaskListItemViewModel(task);
+            return PartialView("_TaskTableRow", viewModel);
         }
 
         public ActionResult EditTranslation(int id)
         {
-            //NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
+            Task task = _taskDAO.Get(id);
 
-            //GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
-            //viewModel.Id = noiseProtection.Id;
-            //viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
-            //viewModel.Title = noiseProtection.Title;
+            IList<SelectOptionViewModel> roles = new List<SelectOptionViewModel>();
+            IList<SelectOptionViewModel> noiseProtections = new List<SelectOptionViewModel>();
 
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            roles.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
+            foreach (Role role in _roleDAO.GetAllFilteredByCurrentCulture())
+            {
+                // We want separate handling for rotation tasks, as the view should be quite different
+                if (role.RoleType != RoleTypeEnum.Rotation)
+                {
+                    roles.Add(new SelectOptionViewModel(role.Title, role.Id.ToString()) { IsSelected = (role.Id == task.Role.Id) });
+                }
+            }
 
-            //return PartialView("_EditGenericTranslation", viewModel);
-            return new EmptyResult();
+            noiseProtections.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
+            foreach (NoiseProtection noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            {
+                noiseProtections.Add(new SelectOptionViewModel(noiseProtection.Title, noiseProtection.Id.ToString()){ IsSelected = (noiseProtection.Id == task.NoiseProtection.Id)});
+            }
+
+            TaskViewModel viewModel = new TaskViewModel(task.CultureName)
+                                          {
+                                              Id = task.Id,
+                                              Title = task.Title,
+                                              NoiseLevelGuideline = task.NoiseLevelGuideline,
+                                              AllowedExposureMinutes = task.AllowedExposureMinutes,
+                                              DefinitionId = task.TaskDefinition.Id,
+                                              Roles = roles,
+                                              NoiseProtections = noiseProtections
+                                          };
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_EditTask", viewModel);
         }
 
         [HttpPost]
-        public ActionResult EditTranslation(GenericTranslationEditModel form)
+        public ActionResult EditTranslation(TaskEditModel form)
         {
-            //NoiseProtection noiseProtection = _noiseProtectionDAO.Get(form.Id);
-            //noiseProtection.Title = form.Title;
-            //noiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
+            Task task = _taskDAO.Get(form.Id);
+            
+            task.Title = form.Title;
+            task.NoiseLevelGuideline = form.NoiseLevelGuideline;
+            task.AllowedExposureMinutes = form.AllowedExposureMinutes;
+            task.Role = _roleDAO.Get(form.RoleId);
+            task.NoiseProtection = _noiseProtectionDAO.Get(form.NoiseProtectionId);
+            
+            _taskDAO.Store(task);
 
-            //_noiseProtectionDAO.Store(noiseProtection);
-
-            //GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
-            //viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
-            //viewModel.Id = noiseProtection.Id;
-            //viewModel.Title = noiseProtection.Title;
-
-            //return PartialView("_GenericTranslationTableRow", viewModel);
-            return new EmptyResult();
+            TaskListItemViewModel viewModel = CreateTaskListItemViewModel(task);
+            return PartialView("_TaskTableRow", viewModel);
         }
-
-        // Refactor... Common CreateTranslationViewModel method
 
         public ActionResult ConfirmDeleteTranslation(int id)
         {
-            //NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
-            //DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            //viewModel.Id = "trans" + noiseProtection.Id;
-            //viewModel.Title = noiseProtection.Title;
-            //viewModel.UrlDeleteAction = Url.Action("DeleteTranslation");
+            Task task = _taskDAO.Get(id);
+            
+            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
+            viewModel.Id = "trans" + task.Id;
+            viewModel.Title = task.Title;
+            viewModel.UrlDeleteAction = Url.Action("DeleteTranslation");
 
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            //return PartialView("_DeleteConfirmation", viewModel);
-            return new EmptyResult();
+            return PartialView("_DeleteConfirmation", viewModel);
         }
 
         [HttpPost]
         public ActionResult DeleteTranslation(int id)
         {
-            //try
-            //{
-            //    NoiseProtection noiseProtection = _noiseProtectionDAO.Load(id);
-            //    _noiseProtectionDAO.Delete(noiseProtection);
-            //    return new EmptyResult();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.StatusCode = 500;
-            //    return Json(ex.ToString());
-            //}
-            return new EmptyResult();
+            try
+            {
+                Task task = _taskDAO.Load(id);
+                _taskDAO.Delete(task);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Json(ex.ToString());
+            }
+        }
+
+
+        private TaskListItemViewModel CreateTaskListItemViewModel(Task task)
+        {
+            TaskListItemViewModel taskListItemViewModel = new TaskListItemViewModel
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Role = task.Role.Title,
+                NoiseProtection = task.NoiseProtection.Title,
+                NoiseLevelGuideline = task.NoiseLevelGuideline,
+                AllowedExposureMinutes = task.AllowedExposureMinutes,
+                Language = LanguageResolver.GetLanguageName(task.CultureName)
+            };
+
+            return taskListItemViewModel;
         }
 
     }

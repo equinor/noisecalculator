@@ -4,7 +4,6 @@ using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
-using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask;
 using NoiseCalculator.UI.Web.Resources;

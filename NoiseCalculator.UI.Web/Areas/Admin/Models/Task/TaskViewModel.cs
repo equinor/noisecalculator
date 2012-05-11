@@ -22,6 +22,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
             SelectedCultureName = selectedCultureName;
             SelectedLanguage = LanguageResolver.GetLanguageName(selectedCultureName);
             Languages = new List<SelectOptionViewModel>();
+            Roles = new List<SelectOptionViewModel>();
+            NoiseProtections = new List<SelectOptionViewModel>();
 
             AddLanguageSelectOption("-- Select One --", string.Empty);
             AddLanguageSelectOption(LanguageResolver.GetLanguageName("nb-NO"), "nb-NO");
