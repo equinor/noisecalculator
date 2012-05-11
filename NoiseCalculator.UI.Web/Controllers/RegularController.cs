@@ -106,7 +106,11 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            selectedTask.NoiseLevel = viewModel.NoiseLevelMeassured;
+            if(viewModel.NoiseLevelMeassured > selectedTask.NoiseLevel)
+            {
+                selectedTask.NoiseLevel = viewModel.NoiseLevelMeassured;
+            }
+            
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
             {
                 selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
