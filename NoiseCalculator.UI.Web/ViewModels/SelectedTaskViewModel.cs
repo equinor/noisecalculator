@@ -28,14 +28,20 @@ namespace NoiseCalculator.UI.Web.ViewModels
             Hours = selectedTask.Hours.ToString();
             Minutes = selectedTask.Minutes.ToString();
 
-
-            if (selectedTask.IsNoiseMeassured)
+            if (selectedTask.HelicopterTaskId > 0)
             {
-                NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+                NoiseLevel = TaskResources.SelectedTaskNoiseLevelNotApplicable;
             }
             else
             {
-                NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString());
+                if (selectedTask.IsNoiseMeassured)
+                {
+                    NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+                }
+                else
+                {
+                    NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString());
+                }
             }
         }
     }

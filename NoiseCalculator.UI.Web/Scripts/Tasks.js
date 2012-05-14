@@ -45,6 +45,8 @@ $(document).ready(function () {
     });
 
     $("#printAsPdf").click(function () {
+        $("#comment").maxlength({ max: 75, showFeedback: true, feedbackTarget: '#maxlengthFeedback', feedbackText: '{c} ({m} max)' });
+        
         $("#reportInfo").dialog({
             modal: true,
             title: $("#reportInfo").attr("title"),

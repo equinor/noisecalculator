@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 
@@ -63,6 +62,34 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
 
             // Assert
             Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.MaximumAllowedDosage);
+        }
+
+        [Test]
+        public void CalculateNoiseLevelEnum_PercentgeIs200_ReturnEnumValueWorkRelatedInjury()
+        {
+            // Arrange
+            INoiseLevelService noiseLevelService = new NoiseLevelService();
+            const int percentageDailyDosage = 200;
+
+            // Act
+            NoiseLevelEnum noiseLevelEnum = noiseLevelService.CalculateNoiseLevelEnum(percentageDailyDosage);
+
+            // Assert
+            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.DangerOfWorkRelatedInjury);
+        }
+
+        [Test]
+        public void CalculateNoiseLevelEnum_PercentgeIsAbove200_ReturnEnumValueWorkRelatedInjury()
+        {
+            // Arrange
+            INoiseLevelService noiseLevelService = new NoiseLevelService();
+            const int percentageDailyDosage = 208;
+
+            // Act
+            NoiseLevelEnum noiseLevelEnum = noiseLevelService.CalculateNoiseLevelEnum(percentageDailyDosage);
+
+            // Assert
+            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.DangerOfWorkRelatedInjury);
         }
     }
 }

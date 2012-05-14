@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin.css" />
+    <Content Include="Content\jquery.maxlength.css" />
     <Content Include="Scripts\Admin.js" />
     <Content Include="Content\add.png" />
     <Content Include="Content\arrow_down.png" />
@@ -209,6 +210,9 @@
     <Content Include="Scripts\jquery-ui-1.8.16.js" />
     <Content Include="Scripts\jquery-ui-1.8.16.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.maxlength.js" />
+    <Content Include="Scripts\jquery.maxlength.min.js" />
+    <Content Include="Scripts\jquery.maxlength.pack.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

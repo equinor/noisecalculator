@@ -133,7 +133,8 @@
     <value>My Tasks</value>
   </data>
   <data name="IndexTotalDailyDosageLabel" xml:space="preserve">
-    <value>Total Daily Dosage</value>
+    <value>Percentage of daily noise dosage</value>
+    <comment>Prosent av daglig støydose</comment>
   </data>
   <data name="LayoutUserLabel" xml:space="preserve">
     <value>User</value>
@@ -241,7 +242,7 @@
     <value>Work interval must be selected.</value>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidline" xml:space="preserve">
-    <value>The measured noise level is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high.</value>
+    <value>The measured noise level is more than 6 dBA above what the detailed risk analysis in GL0169 takes into account and it is therefore invalid. Apply noise reducing meassures and perform measure the noise level again. Contact an industrial hygenist if the noise level is still to high.</value>
     <comment>Feltmåling er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. 
 Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. 
 Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
@@ -299,10 +300,10 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Edit Task</value>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidlineAssistant" xml:space="preserve">
-    <value>Assistant: The measured noise level for assistant is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high.</value>
+    <value>Assistant: The measured noise level is more than 6 dBA above what the detailed risk analysis in GL0169 takes into account and it is therefore invalid. Apply noise reducing meassures and perform measure the noise level again. Contact an industrial hygenist if the noise level is still to high.</value>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidlineOperator" xml:space="preserve">
-    <value>Operator: The measured noise level for operator is higher than what the detailed risk analysis in GL0169 takes into account. Apply noise reducing meassures and perform measure the noise level again. Contact HME if the noise level is still to high.</value>
+    <value>Operator: The measured noise level is more than 6 dBA above what the detailed risk analysis in GL0169 takes into account and it is therefore invalid. Apply noise reducing meassures and perform measure the noise level again. Contact an industrial hygenist if the noise level is still to high.</value>
   </data>
   <data name="ValidationErrorRotationMaximum6Hours" xml:space="preserve">
     <value>Rotations can not have duration longer than 6 hours, divided between operator and assistant.</value>
@@ -320,5 +321,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="TaskFormRotationWorkTimeSplitComment" xml:space="preserve">
     <value>Work time is split equally on operator and assistant.</value>
     <comment>Arbeidstid fordeles likt på operatør og hjelpemann.</comment>
+  </data>
+  <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
+    <value>Not applicable</value>
   </data>
 </root>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -182,6 +181,9 @@ namespace NoiseCalculator.UI.Web.Controllers
                     totalNoiseDosage.CssClass = "noiseLevelWarning";
                     break;
                 case NoiseLevelEnum.Critical:
+                    totalNoiseDosage.CssClass = "noiseLevelCritical";
+                    break;
+                case NoiseLevelEnum.DangerOfWorkRelatedInjury:
                     totalNoiseDosage.CssClass = "noiseLevelCritical";
                     break;
             }

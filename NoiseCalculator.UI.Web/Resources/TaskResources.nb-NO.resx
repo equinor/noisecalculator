@@ -138,7 +138,7 @@
     <comment>My Tasks</comment>
   </data>
   <data name="IndexTotalDailyDosageLabel" xml:space="preserve">
-    <value>Total daglig dose</value>
+    <value>Prosent av daglig støydose</value>
     <comment>Total Daily Dosage</comment>
   </data>
   <data name="LayoutUserLabel" xml:space="preserve">
@@ -282,7 +282,7 @@
     <comment>Work interval must be selected.</comment>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidline" xml:space="preserve">
-    <value>Feltmåling er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
+    <value>Feltmåling er mer enn 6 dBA høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for og risikovurderingen er derfor ugyldig. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
     <comment>Calculation is invalid for noise levels that are 7 dBA or more above the guideline.</comment>
   </data>
   <data name="ValidationErrorWorkTimeRequired" xml:space="preserve">
@@ -333,10 +333,10 @@
     <value>Rediger Oppgave</value>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidlineAssistant" xml:space="preserve">
-    <value>Hjelpemann: Feltmåling for hjelpemann er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
+    <value>Hjelpemann: Feltmåling er mer enn 6 dBA høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for og risikovurderingen er derfor ugyldig. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
   </data>
   <data name="ValidationErrorNoiseLevelToHighAboveGuidlineOperator" xml:space="preserve">
-    <value>Operatør: Feltmåling for operatør er høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
+    <value>Operatør: Feltmåling er mer enn 6 dBA høyere enn det den detaljerte risikovurderingen i GL0169 tar høyde for og risikovurderingen er derfor ugyldig. Gjennomfør støyreduserende tiltak og foreta en ny feltmåling. Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</value>
   </data>
   <data name="ValidationErrorRotationMaximum6Hours" xml:space="preserve">
     <value>Rotasjon kan ikke vare lenger enn 6 timer fordelt på rollene operatør og hjelpemann.</value>
@@ -352,5 +352,8 @@
   </data>
   <data name="TaskFormRotationWorkTimeSplitComment" xml:space="preserve">
     <value>Arbeidstid fordeles likt på operatør og hjelpemann.</value>
+  </data>
+  <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
+    <value>Ikke aktuelt</value>
   </data>
 </root>

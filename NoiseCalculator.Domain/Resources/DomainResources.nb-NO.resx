@@ -118,8 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
-    <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</value>
+    <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt.</value>
     <comment>Work under the calculated noise level is not allowed!</comment>
+  </data>
+  <data name="NoiseLevelStatusTextDangerOfWorkRelatedInjury" xml:space="preserve">
+    <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Dersom arbeidet allerede er utført må det meldes som "Tilløp til ARS".</value>
   </data>
   <data name="NoiseLevelStatusTextMaximumAllowedDosage" xml:space="preserve">
     <value>Beregnet støydose er akseptabel, men personellet kan ikke eksponeres for mer støy denne arbeidsdagen.</value>
