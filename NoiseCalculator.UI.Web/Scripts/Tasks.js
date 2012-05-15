@@ -117,7 +117,8 @@ function openTaskDialog() {
                 resizable: false,
                 hide: { effect: 'fade', duration: 300 },
                 width: 'auto',
-                position: [250, 80]
+                position: [200, 10]
+                //position: [250, 80]
             });
         });
 }
@@ -246,7 +247,6 @@ function disableNoiseMeasuredInputRotationAssistant() {
 
 
 function bindRotationEvents() {
-    //
     /* Set disabled state of task time */
     if ($('#percentRadio').is(':checked')) {
         enablePercentageInput();

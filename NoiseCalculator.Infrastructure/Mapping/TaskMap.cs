@@ -13,6 +13,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.NoiseLevelGuideline);
             Map(x => x.AllowedExposureMinutes);
             Map(x => x.CultureName);
+            Map(x => x.SortOrder);
 
             References(x => x.Role);
             References(x => x.NoiseProtection);

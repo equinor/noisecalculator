@@ -17,7 +17,8 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             IEnumerable<Task> entities = _session.QueryOver<Task>()
                 .Where(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
                 .Fetch(x => x.Role).Eager
-                .OrderBy(x => x.Title).Asc
+                .OrderBy(x => x.SortOrder).Desc
+                .ThenBy(x => x.Title).Asc
                 .List<Task>();
             
             return entities;

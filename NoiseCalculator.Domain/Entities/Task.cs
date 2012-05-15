@@ -12,6 +12,7 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int NoiseLevelGuideline { get; set; }
         public virtual int AllowedExposureMinutes { get; set; }
         public virtual string CultureName { get; set; }
+        public virtual int SortOrder { get; set; }
 
         
         public virtual decimal CalculatePercentage(int actualNoiseLevel, TimeSpan actualExposure )

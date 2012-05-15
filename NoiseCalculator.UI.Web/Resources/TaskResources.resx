@@ -325,4 +325,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
     <value>Not applicable</value>
   </data>
+  <data name="FooterDynamicUseNoisyWorkWhenTaskIsMissing" xml:space="preserve">
+    <value>If a noisy task is not found in the application one should use the "Non noisy work" task with the same noise level. Then notify abd industrial hygenist so that the specific task can be evaluated and added to the application.</value>
+    <comment>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.</comment>
+  </data>
 </root>

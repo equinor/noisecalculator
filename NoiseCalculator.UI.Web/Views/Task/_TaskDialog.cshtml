@@ -4,7 +4,7 @@
 
 <input type="hidden" id="hiddenTaskDialogTitle" value="@TaskResources.TaskDialogAddTitle" />
 
-<select id="taskSelect" size="14">
+<select id="taskSelect" size="19">
     @foreach (Task task in Model)
     {
         <option value="@task.Id">@task.Title  (@task.Role.Title)</option>

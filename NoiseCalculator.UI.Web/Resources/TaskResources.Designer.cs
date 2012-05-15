@@ -97,6 +97,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If a noisy task is not found in the application one should use the &quot;Non noisy work&quot; task with the same noise level. Then notify abd industrial hygenist so that the specific task can be evaluated and added to the application..
+        /// </summary>
+        public static string FooterDynamicUseNoisyWorkWhenTaskIsMissing {
+            get {
+                return ResourceManager.GetString("FooterDynamicUseNoisyWorkWhenTaskIsMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is performed in areas....
         /// </summary>
         public static string FooterDynamicValidForAreaNoiseUpTo90dBA {

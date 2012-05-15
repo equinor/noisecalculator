@@ -356,4 +356,7 @@
   <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
     <value>Ikke aktuelt</value>
   </data>
+  <data name="FooterDynamicUseNoisyWorkWhenTaskIsMissing" xml:space="preserve">
+    <value>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.</value>
+  </data>
 </root>
