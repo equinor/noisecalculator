@@ -106,7 +106,11 @@ namespace NoiseCalculator.UI.Web.Controllers
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            if(viewModel.NoiseLevelMeassured > selectedTask.NoiseLevel)
+            if(viewModel.NoiseLevelMeassured == 0)
+            {
+                selectedTask.NoiseLevel = selectedTask.Task.NoiseLevelGuideline;
+            }
+            else if(viewModel.NoiseLevelMeassured > selectedTask.NoiseLevel)
             {
                 selectedTask.NoiseLevel = viewModel.NoiseLevelMeassured;
             }
