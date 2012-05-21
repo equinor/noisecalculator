@@ -67,9 +67,6 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
 
-            bool noiseLevelIsMeassuredAboveGuideline = (selectedTask.NoiseLevel > selectedTask.Task.NoiseLevelGuideline);
-            bool workIsEnteredAsTime = (selectedTask.Hours > 0 || selectedTask.Minutes > 0);
-
             RegularViewModel viewModel = new RegularViewModel
             {
                 TaskId = selectedTask.Task.Id,
@@ -79,13 +76,12 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RoleType = selectedTask.Task.Role.RoleType.ToString(),
                 NoiseLevelGuideline = selectedTask.Task.NoiseLevelGuideline.ToString(),
                 NoiseLevelMeassured = selectedTask.NoiseLevel,
-                RadioNoiseMeassuredNoCheckedAttr = noiseLevelIsMeassuredAboveGuideline ? InputNotChecked : InputChecked,
-                RadioNoiseMeassuredYesCheckedAttr = noiseLevelIsMeassuredAboveGuideline ? InputChecked : InputNotChecked,
-                RadioTimeCheckedAttr = workIsEnteredAsTime ? InputChecked : InputNotChecked,
-                RadioPercentageCheckedAttr = workIsEnteredAsTime ? InputNotChecked : InputChecked,
+                RadioNoiseMeassuredNoCheckedAttr = selectedTask.IsNoiseMeassured ? InputNotChecked : InputChecked,
+                RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
+                RadioTimeCheckedAttr = InputChecked,
+                
                 Hours = selectedTask.Hours.ToString(),
-                Minutes = selectedTask.Minutes.ToString(),
-                Percentage = selectedTask.Percentage.ToString()
+                Minutes = selectedTask.Minutes.ToString()
             };
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -109,12 +105,14 @@ namespace NoiseCalculator.UI.Web.Controllers
             if(viewModel.NoiseLevelMeassured == 0)
             {
                 selectedTask.NoiseLevel = selectedTask.Task.NoiseLevelGuideline;
+                selectedTask.IsNoiseMeassured = false;
             }
-            else if(viewModel.NoiseLevelMeassured > selectedTask.NoiseLevel)
+            else if (viewModel.NoiseLevelMeassured >= selectedTask.Task.NoiseLevelGuideline)
             {
                 selectedTask.NoiseLevel = viewModel.NoiseLevelMeassured;
+                selectedTask.IsNoiseMeassured = true;
             }
-            
+
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
             {
                 selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
