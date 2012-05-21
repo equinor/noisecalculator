@@ -164,13 +164,6 @@ function getCreateTaskForm() {
 
 
 function bindRegularEvents() {
-    /* Set disabled state of task time */
-    if ($('#percentRadio').is(':checked')) {
-        enablePercentageInput();
-    } else {
-        enableWorkTimeInput();
-    }
-    
     /* Set disabled state of noise level measured */
     if($("#noiseMeasuredNo").is(":checked")) {
         disableNoiseMeasuredInput();
@@ -194,9 +187,9 @@ function bindRegularEvents() {
         event.preventDefault();
         submitRegularForm();
     });
-
-    /* For Rotation tasks, work time / percentage should be mirrored as assistant time */
-    if($("#roleType").val() == "AreaNoise") {
+    
+    // Meassured noise level is not applicable for non-noisy work in areas with noise
+    if ($("#roleType").val() == "AreaNoise") {
         $("#noiseLevelMeassuredSpan").hide();
         $("#noiseMeasuredYesLabel").hide();
         $("#noiseMeasuredYes").hide();
@@ -247,13 +240,6 @@ function disableNoiseMeasuredInputRotationAssistant() {
 
 
 function bindRotationEvents() {
-    /* Set disabled state of task time */
-    if ($('#percentRadio').is(':checked')) {
-        enablePercentageInput();
-    } else {
-        enableWorkTimeInput();
-    }
-
     // ----------------------------------------------
     // Refactor - Unscrew this, DRY - Create common code with the "regular task" use case,
     disableNoiseMeasuredInputRotationOperator();
