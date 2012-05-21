@@ -209,7 +209,7 @@
     <value>Operator</value>
   </data>
   <data name="TaskFormRegularPercentageLabel" xml:space="preserve">
-    <value>Percent</value>
+    <value>% of daily noise dosage</value>
   </data>
   <data name="TaskFormWorkTimeAsLabel" xml:space="preserve">
     <value>Work Time As</value>

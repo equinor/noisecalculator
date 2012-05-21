@@ -238,7 +238,7 @@
     <comment>Operator</comment>
   </data>
   <data name="TaskFormRegularPercentageLabel" xml:space="preserve">
-    <value>Prosent</value>
+    <value>% av daglig støydose</value>
     <comment>Percent</comment>
   </data>
   <data name="TaskFormWorkTimeAsLabel" xml:space="preserve">

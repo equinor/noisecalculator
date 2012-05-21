@@ -502,7 +502,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Percent.
+        ///   Looks up a localized string similar to % of daily noise dosage.
         /// </summary>
         public static string TaskFormRegularPercentageLabel {
             get {
