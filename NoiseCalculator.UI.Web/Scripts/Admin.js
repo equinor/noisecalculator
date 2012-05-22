@@ -71,16 +71,16 @@ function setAllEvents() {
 
 function getConfirmDeleteDialog(removeDefinitionButton) {
     $("#deleteConfirmDialog")
-            .empty()
-            .load($("#urlDeleteConformation").val() + "/" + $(removeDefinitionButton).closest(".definition").attr("id"), function () {
-                $(this).dialog({
-                    title: $("#dialogTitleConfirmDelete").val(),
-                    modal: true,
-                    resizable: false,
-                    width: 'auto',
-                    position: [250, 80]
-                });
+        .empty()
+        .load($("#urlDeleteConformation").val() + "/" + $(removeDefinitionButton).closest(".definition").attr("id"), function () {
+            $(this).dialog({
+                title: $("#dialogTitleConfirmDelete").val(),
+                modal: true,
+                resizable: false,
+                width: 'auto',
+                position: [250, 80]
             });
+        });
 }
 
 function deleteDefinition() {
@@ -144,6 +144,20 @@ function showDialogNew() {
         });
     });
 }
+
+// TEST TEST
+function showDialogNewRotation() {
+    $("#dialogDiv").load($("#urlCreateRotation").val(), function () {
+        $("#dialogDiv").dialog({
+            title: "Add New",
+            modal: true,
+            resizable: false,
+            width: 'auto',
+            position: [250, 80]
+        });
+    });
+}
+// TEST TEST
 
 function showDialogEdit(editDefinitionButton) {
     $.ajax({

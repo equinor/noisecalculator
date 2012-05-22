@@ -1,0 +1,42 @@
+﻿@using NoiseCalculator.UI.Web.ViewModels
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask.RotationTaskViewModel
+
+<input type="hidden" name="id" value="@Model.Id" />
+
+<p>
+    <label for="Title" class="label-130px">Title</label>
+    <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.Title" />
+</p>
+
+<p>
+    <label for="operatorTaskId" class="label-130px">Operator Task</label>
+    <select id="operatorTaskId" name="operatorTaskId">
+        @foreach (SelectOptionViewModel selectOption in Model.OperatorTasks)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+<p>
+    <label for="assistantTaskId" class="label-130px">Assistant Task</label>
+    <select id="assistantTaskId" name="assistantTaskId">
+        @foreach (SelectOptionViewModel selectOption in Model.AssistantTasks)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+
+<p style="margin-top: 10px;">
+    <button id="submitTranslationButton" class="button" style="margin-left: 135px;">
+        <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
+        Submit
+    </button>
+                
+    <button id="closeTranslationButton" class="button" style="margin-left: 40px;">
+        <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+        Close
+    </button>
+</p>

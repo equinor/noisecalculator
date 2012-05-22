@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.Infrastructure.Pdf;
 using NoiseCalculator.UI.Web.Models;
@@ -54,13 +54,8 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (selectedTasks.Count() > 0)
             {
-                reportInfo.Footnotes.Add(TaskResources.FooterGL0169);
-                reportInfo.Footnotes.Add(TaskResources.Footer80dBA);
-                reportInfo.Footnotes.Add(TaskResources.FooterNoiseProtectionDefinition);
-                foreach (string dynamicFootnote in GetDynamicFootnotes(selectedTasks))
-                {
-                    reportInfo.Footnotes.Add(dynamicFootnote);
-                }
+                reportInfo.Footnotes.AddRange(FootnoteResources.GetStaticFootnotes());
+                reportInfo.Footnotes.AddRange(GetDynamicFootnotes(selectedTasks));
 
                 Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks, reportInfo);
                 HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -15,6 +16,15 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return _session.QueryOver<Rotation>()
                 .Where(x => x.Task.Id == taskId)
                 .SingleOrDefault<Rotation>();
+        }
+
+        public IEnumerable<Rotation> GetAllFetchTaskOrderedByTaskTitle()
+        {
+            return _session.QueryOver<Rotation>()
+                .Fetch(x => x.Task).Eager
+                .Fetch(x => x.OperatorTask).Eager
+                .Fetch(x => x.AssistantTask).Eager
+                .List<Rotation>();
         }
     }
 }

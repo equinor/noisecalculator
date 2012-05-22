@@ -1,4 +1,5 @@
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 
 namespace NoiseCalculator.Domain.DomainServices
 {

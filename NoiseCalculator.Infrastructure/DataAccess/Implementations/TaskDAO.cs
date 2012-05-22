@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 
 namespace NoiseCalculator.Infrastructure.DataAccess.Implementations

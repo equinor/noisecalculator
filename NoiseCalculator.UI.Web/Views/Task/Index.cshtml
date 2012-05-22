@@ -77,8 +77,8 @@
 @Html.Partial("_RemoveAllConfirmation")
 @section StaticFooters
 {
-    <li>@TaskResources.FooterGL0169</li>
-    <li>@TaskResources.FooterNoiseProtectionDefinition</li>
-    <li>@TaskResources.FooterDynamicUseNoisyWorkWhenTaskIsMissing</li>
-    <li>@TaskResources.Footer80dBA</li>
+    @foreach (string footnote in FootnoteResources.GetStaticFootnotes())
+    {
+        <li>@footnote</li>
+    }
 }

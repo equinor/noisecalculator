@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;

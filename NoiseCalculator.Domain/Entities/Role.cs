@@ -1,3 +1,5 @@
+using NoiseCalculator.Domain.Enums;
+
 namespace NoiseCalculator.Domain.Entities
 {
     public class Role

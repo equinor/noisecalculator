@@ -6,6 +6,7 @@ using System.Linq;
 using Gios.Pdf;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.Pdf.Resources;
 
 

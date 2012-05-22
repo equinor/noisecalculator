@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 
 namespace NoiseCalculator.Domain.Tests.DomainServices
 {

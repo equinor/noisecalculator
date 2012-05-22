@@ -10,6 +10,7 @@
     <input id="urlCreate" type="hidden" value="@Model.UrlCreate" />
     <input id="urlEdit" type="hidden" value="@Model.UrlEdit" />
     <input id="urlDeleteConformation" type="hidden" value="@Model.UrlDeleteConfirmation" />
+    <input id="urlCreateRotation" type="hidden" value="@Url.Action("Create", "RotationTask")" />
 }
 @section PageTitleText
 {
@@ -17,5 +18,6 @@
 }
 @section ItemList
 {
+    <span id="addRotationTask" onclick="showDialogNewRotation()" style="font-size: 20px; cursor: pointer;" >Add Rotation Task</span>
     @Html.Partial("_GenericItemListTable", Model.Definitions)
 }

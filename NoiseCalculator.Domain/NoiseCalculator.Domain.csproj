@@ -46,19 +46,19 @@
     <Compile Include="Entities\HelicopterNoiseProtection.cs" />
     <Compile Include="Entities\HelicopterType.cs" />
     <Compile Include="Entities\HelicopterWorkInterval.cs" />
-    <Compile Include="Entities\NoiseLevelEnum.cs" />
     <Compile Include="Entities\NoiseProtection.cs" />
     <Compile Include="Entities\NoiseProtectionDefinition.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RoleDefinition.cs" />
     <Compile Include="Entities\Rotation.cs" />
     <Compile Include="Entities\TaskDefinition.cs" />
+    <Compile Include="Enums\NoiseLevelEnum.cs" />
+    <Compile Include="Enums\RoleTypeEnum.cs" />
     <Compile Include="Resources\DomainResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RoleTypeEnum.cs" />
     <Compile Include="Entities\SelectedTask.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

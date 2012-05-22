@@ -82,6 +82,7 @@
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterWorkIntervalController.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RotationTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
     <Compile Include="Areas\Admin\Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Models\Generic\DeleteConfirmationViewModel.cs" />
@@ -94,6 +95,9 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Models\LanguageResolver.cs" />
     <Compile Include="Models\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\FootnoteResources.cs" />
     <Compile Include="Resources\TaskResources.nb-NO.Designer.cs">
       <DependentUpon>TaskResources.nb-NO.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -269,6 +274,8 @@
     <Content Include="Areas\Admin\Views\Task\_TaskTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_TaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\Task\_EditTask.cshtml" />
+    <Content Include="Areas\Admin\Views\RotationTask\_CreateRotationTask.cshtml" />
+    <Content Include="Areas\Admin\Views\RotationTask\_RotationTaskForm.cshtml" />
     <None Include="Properties\PublishProfiles\Publish filesystem.pubxml" />
     <None Include="readme.txt" />
     <Content Include="Views\Regular\_TaskFormRegular.cshtml" />

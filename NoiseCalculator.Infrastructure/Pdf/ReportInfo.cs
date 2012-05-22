@@ -10,7 +10,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
         public DateTime? Date { get; set; }
         public string CreatedBy { get; set; }
         public string Comment { get; set; }
-        public IList<string> Footnotes { get; set; }
+        public List<string> Footnotes { get; set; }
 
         public ReportInfo()
         {
