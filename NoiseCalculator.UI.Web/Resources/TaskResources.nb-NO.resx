@@ -290,13 +290,14 @@
     <comment>Task work time must be specified, either as hours/minutes or percentage of daily dosage</comment>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>Dette verktøyet bygger på GL0169: Støy - retningslinjer for kartlegging og tiltak.</value>
+    <value>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926: "Working Environment"</value>
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Legg til arbeidsoppgaver for å beregne din støyeksponering</value>
   </data>
   <data name="Footer80dBA" xml:space="preserve">
-    <value>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstaker kan heller ikke utføre arbeid som gir støy over 80 dBA.</value>
+    <value>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</value>
+    <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstaker kan heller ikke utføre arbeid som gir støy over 80 dBA.</comment>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.</value>
@@ -308,7 +309,7 @@
     <value>I beregning av støyeksponering er det tatt hensyn til pauser i de støyende arbeider (forflyttning osv.) og gjort en korreksjon for målt støynivås andel av en normal arbeidssyklus. Oppgitt arbeidstid skal gjenspeile den totale tiden brukt til arbeidsoppgaven, inkludert ikke-støyende arbeid. Ved store endringer i normal arbeidssyklus ta kontakt med yrkeshygieniker.</value>
   </data>
   <data name="FooterDynamicNoiseProtection" xml:space="preserve">
-    <value>Følgende betingelser ang. hørselsvernet gjelder. Høreselsvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte ørepropper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</value>
+    <value>Følgende betingelser ang. hørselsvernet gjelder ved utføring av støyende arbeidsoppgaver. Hørselsvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte ørepropper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</value>
   </data>
   <data name="IndexButtonRemoveAll" xml:space="preserve">
     <value>Fjern Alle</value>

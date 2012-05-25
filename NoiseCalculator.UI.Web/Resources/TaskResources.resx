@@ -251,16 +251,16 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Task work time must be specified, either as hours/minutes or percentage of daily dosage</value>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>This tool is based upon noise guideline GL0169.</value>
-    <comment>Dette verktøyet bygger på GL0169: Støy - rettningslinjer for kartlegging og tiltak.</comment>
+    <value>This tool is based upon noise guideline GL0169 as described in TR0926: "Worknig Environment".</value>
+    <comment>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926:"Working Environment"</comment>
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Add tasks to calculate your noise exposure</value>
     <comment>Legg til arbeidsoppgaver for å beregne din støyeksponering</comment>
   </data>
   <data name="Footer80dBA" xml:space="preserve">
-    <value>If calculated noise dosage is 100% the worker must stay in areas with a noise level less than 80dBA the rest of the day. The worker can also not perform any work with a noise level above 80 dBA.</value>
-    <comment>Dersom beregnet støydose er 100% skal arbeidstager oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstager kan heller ikke utføre arbeid som gir støy over 80 dBA.</comment>
+    <value>If calculated noise dosage is 100% the employee must stay in areas with a noise level less than 80dBA the rest of the day and not perform work that produces a noise level abouve 80 dBA. The employee can also not stay in areas with impulse noise or perform work that produces impulse noise.</value>
+    <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</comment>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs.</value>
@@ -274,7 +274,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <comment>I beregning av støyeksponering er det tatt hensyn til pauser i deg støyende arbeider (forflyttning osv.) og gjort en korreksjon for målt støynivås andel av en normal arbeidssyklus. Oppgitt arbeidstid skal gjennspeile den totale tiden brukt til arbeidsoppgaven, inkludert ikke-støyende arbeid. Ved store endringer i normal arbeidssyklus ta kontakt med yrkeshygieniker.</comment>
   </data>
   <data name="FooterDynamicNoiseProtection" xml:space="preserve">
-    <value>The following conditions apply regarding noise protection. The noise protection should be well maintained and used correctly. When using "universal ear plugs", individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1.</value>
+    <value>The following conditions apply regarding noise protection during noisy work. The noise protection should be well maintained and used correctly. When using "universal ear plugs", individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1.</value>
     <comment>Følgende betingelser ang. hørselsvernet gjelder. Høreselsvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte propper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</comment>
   </data>
   <data name="IndexButtonRemoveAll" xml:space="preserve">

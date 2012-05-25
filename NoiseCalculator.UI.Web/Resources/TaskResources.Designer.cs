@@ -70,7 +70,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If calculated noise dosage is 100% the worker must stay in areas with a noise level less than 80dBA the rest of the day. The worker can also not perform any work with a noise level above 80 dBA..
+        ///   Looks up a localized string similar to If calculated noise dosage is 100% the employee must stay in areas with a noise level less than 80dBA the rest of the day and not perform work that produces a noise level abouve 80 dBA. The employee can also not stay in areas with impulse noise or perform work that produces impulse noise..
         /// </summary>
         public static string Footer80dBA {
             get {
@@ -88,7 +88,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following conditions apply regarding noise protection. The noise protection should be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1..
+        ///   Looks up a localized string similar to The following conditions apply regarding noise protection during noisy work. The noise protection should be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1..
         /// </summary>
         public static string FooterDynamicNoiseProtection {
             get {
@@ -115,7 +115,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169..
+        ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169 as described in TR0926: &quot;Worknig Environment&quot;..
         /// </summary>
         public static string FooterGL0169 {
             get {
