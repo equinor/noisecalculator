@@ -296,7 +296,9 @@ function updateTotalPercentage() {
             $("#statusText").text(result.StatusText);
             $("#totalDailyPercentageDiv").removeClass().addClass(result.CssClass);
 
-            if (result.Percentage > 0) {
+            var numberOfResults = $("#taskList").find(".task").length;
+            
+            if (numberOfResults > 0) {
                 $("#removeAllContainer").show();
             } else {
                 $("#removeAllContainer").hide();
@@ -465,6 +467,7 @@ function submitRegularForm() {
 function submitRotationForm() {
     var myEditForm = $("#editForm");
     var formData = {
+        //RotationId: $("#TaskDefinitionId").val(),
         RotationId: $("#rotationId").val(),
         Hours: $("#hours").val(),
         Minutes: $("#minutes").val(),

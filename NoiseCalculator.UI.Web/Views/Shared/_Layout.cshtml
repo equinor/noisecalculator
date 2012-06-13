@@ -15,12 +15,11 @@
 </head>
 <body>
     <div class="header">
-        <img src="@Url.Content("~/Content/Statoil_logo.gif")" style="float: left;" />
+        <img id="headerLogo" src="@Url.Content("~/Content/statoil_vertical_neg_80x40.png")" />
         <span id="applicationTitle">@TaskResources.ApplicationTitle</span>
             
-        <div style="color: White; text-align: right; position: relative; margin-right: 10px;" >
-            @TaskResources.LayoutUserLabel: <strong>@UserHelper.GetUsernameWithoutDomain(User.Identity.Name)</strong>
-            <br />
+        <div style="color: White; text-align: right; position: absolute; right: 10px; top: 0px;" >
+            <span style="display: block;" >@TaskResources.LayoutUserLabel: <strong>@UserHelper.GetUsernameWithoutDomain(User.Identity.Name)</strong></span>
             <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" alt="Norwegian" />
             <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" alt="English" />
             <input id="currentLangTwoCharCode" type="hidden" value="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName" />
@@ -28,6 +27,7 @@
         <br clear="all"/>
         @RenderSection("ContextMenu", required: false)
     </div>
+    
     <div id="main">
         @RenderBody()
     </div>
@@ -39,7 +39,6 @@
         <ul id="dynamicFootnotes">
             @RenderSection("DynamicFooters", required : false)
         </ul>
-
     </div>
     
     @RenderSection("ScriptsBottom", required: false)

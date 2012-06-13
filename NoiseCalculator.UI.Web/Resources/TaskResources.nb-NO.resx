@@ -130,11 +130,11 @@
     <comment>Add Task</comment>
   </data>
   <data name="IndexButtonCreatePdf" xml:space="preserve">
-    <value>Skriv ut PDF</value>
+    <value>Utskrift</value>
     <comment>Print PDF</comment>
   </data>
   <data name="IndexTitle" xml:space="preserve">
-    <value>Mine oppgaver</value>
+    <value>Støykalkulator</value>
     <comment>My Tasks</comment>
   </data>
   <data name="IndexTotalDailyDosageLabel" xml:space="preserve">

@@ -23,7 +23,9 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return _session.QueryOver<Rotation>()
                 .Fetch(x => x.Task).Eager
                 .Fetch(x => x.OperatorTask).Eager
+                .Fetch(x => x.OperatorTask.Role).Eager
                 .Fetch(x => x.AssistantTask).Eager
+                .Fetch(x => x.AssistantTask.Role).Eager
                 .List<Rotation>();
         }
     }

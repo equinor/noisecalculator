@@ -127,10 +127,10 @@
     <value>Add Task</value>
   </data>
   <data name="IndexButtonCreatePdf" xml:space="preserve">
-    <value>Print PDF</value>
+    <value>Print</value>
   </data>
   <data name="IndexTitle" xml:space="preserve">
-    <value>My Tasks</value>
+    <value>Noise Calculator</value>
   </data>
   <data name="IndexTotalDailyDosageLabel" xml:space="preserve">
     <value>Percentage of daily noise dosage</value>

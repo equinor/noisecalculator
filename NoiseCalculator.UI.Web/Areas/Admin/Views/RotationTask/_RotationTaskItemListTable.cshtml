@@ -1,0 +1,21 @@
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
+@model IEnumerable<RotationTaskListItemViewModel>
+
+<table id="itemList">
+    <thead>
+        <tr>
+            <td></td>
+            <th>Title</th>
+            <th>Operator Task Title</th>
+            <th>Assistant Task Title</th>
+            <td></td>
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (RotationTaskListItemViewModel rotationTaskViewModel in Model)
+    {
+        @Html.Partial("_RotationTaskTableRow", rotationTaskViewModel)
+    }
+    </tbody>
+</table>

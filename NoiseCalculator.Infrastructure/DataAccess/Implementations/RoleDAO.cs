@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -12,11 +11,12 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
         }
 
-        public Role Get(string systemTitle)
+        public Role Get(string systemTitle, string cultureName)
         {
             return _session.QueryOver<Role>()
                 .Where(x => x.SystemTitle == systemTitle)
-                .And(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
+                //.And(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
+                .And(x => x.CultureName == cultureName)
                 .SingleOrDefault<Role>();
         }
 
