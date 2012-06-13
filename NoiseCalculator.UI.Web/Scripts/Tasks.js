@@ -253,15 +253,6 @@ function bindRotationEvents() {
     $("#noiseLevelMeassuredAssistant").click(enableNoiseMeasuredInputRotationAssistant);
     $("#noiseMeasuredNoAssistant").click(disableNoiseMeasuredInputRotationAssistant);
 
-// ----------------------------------------------
-
-    $("#percentRadio").click(enablePercentageInput);
-    $("#percentage").click(enablePercentageInput);
-
-    $("#workTimeRadio").click(enableWorkTimeInput);
-    $("#hours").click(enableWorkTimeInput);
-    $("#minutes").click(enableWorkTimeInput);
-
     $("#taskFormCloseButton").click(closeTaskDialog);
     $('#submitButton').click(function (event) {
         event.preventDefault();
@@ -467,11 +458,9 @@ function submitRegularForm() {
 function submitRotationForm() {
     var myEditForm = $("#editForm");
     var formData = {
-        //RotationId: $("#TaskDefinitionId").val(),
         RotationId: $("#rotationId").val(),
         Hours: $("#hours").val(),
         Minutes: $("#minutes").val(),
-        Percentage: $("#percentage").val(),
         OperatorNoiseLevelMeasured: $("#noiseLevelMeassuredOperator").val(),
         AssistantNoiseLevelMeasured: $("#noiseLevelMeassuredAssistant").val()
     };

@@ -646,6 +646,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task work time must be specified..
+        /// </summary>
+        public static string ValidationErrorWorkTimeRequiredRotation {
+            get {
+                return ResourceManager.GetString("ValidationErrorWorkTimeRequiredRotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string Yes {

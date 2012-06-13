@@ -62,25 +62,17 @@ namespace NoiseCalculator.UI.Web.Controllers
             SelectedTask selectedTaskOperator = CreateSelectedTask(viewModel.OperatorNoiseLevelMeasured, rotation.OperatorTask);
             SelectedTask selectedTaskAssistant = CreateSelectedTask(viewModel.AssistantNoiseLevelMeasured, rotation.AssistantTask);
 
-            if(string.IsNullOrEmpty(viewModel.Percentage))
-            {
-                TimeSpan timeSpan = new TimeSpan(CreateTimeSpan(viewModel.Hours, viewModel.Minutes).Ticks / 2);
-                
-                int percentageOperator = (int)rotation.OperatorTask.CalculatePercentage(selectedTaskOperator.NoiseLevel, timeSpan);
-                int percentageAssistant = (int)rotation.AssistantTask.CalculatePercentage(selectedTaskAssistant.NoiseLevel, timeSpan);
-                
-                selectedTaskOperator.AddWorkTime(timeSpan, percentageOperator);
-                selectedTaskAssistant.AddWorkTime(timeSpan, percentageAssistant);
-            }
-            else
-            {
-                int percentage = int.Parse(viewModel.Percentage);
-                TimeSpan timeSpanOperator = new TimeSpan(rotation.OperatorTask.CalculateTimeSpan(selectedTaskOperator.NoiseLevel, percentage).Ticks / 2);
-                TimeSpan timeSpanAssistant = new TimeSpan(rotation.AssistantTask.CalculateTimeSpan(selectedTaskAssistant.NoiseLevel, percentage).Ticks / 2);
 
-                selectedTaskOperator.AddWorkTime(timeSpanOperator, percentage);
-                selectedTaskAssistant.AddWorkTime(timeSpanAssistant, percentage);
-            }
+
+            TimeSpan timeSpan = new TimeSpan(CreateTimeSpan(viewModel.Hours, viewModel.Minutes).Ticks / 2);
+                
+            int percentageOperator = (int)rotation.OperatorTask.CalculatePercentage(selectedTaskOperator.NoiseLevel, timeSpan);
+            int percentageAssistant = (int)rotation.AssistantTask.CalculatePercentage(selectedTaskAssistant.NoiseLevel, timeSpan);
+                
+            selectedTaskOperator.AddWorkTime(timeSpan, percentageOperator);
+            selectedTaskAssistant.AddWorkTime(timeSpan, percentageAssistant);
+
+
 
             _selectedTaskDAO.Store(selectedTaskOperator);
             _selectedTaskDAO.Store(selectedTaskAssistant);
@@ -145,9 +137,9 @@ namespace NoiseCalculator.UI.Web.Controllers
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineAssistant);
             }
 
-            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
+            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
             {
-                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequiredRotation);
             }
 
             TimeSpan timeSpan = CreateTimeSpan(viewModel.Hours, viewModel.Minutes);

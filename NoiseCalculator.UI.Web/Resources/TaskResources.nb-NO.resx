@@ -360,4 +360,7 @@
   <data name="FooterDynamicUseNoisyWorkWhenTaskIsMissing" xml:space="preserve">
     <value>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.</value>
   </data>
+  <data name="ValidationErrorWorkTimeRequiredRotation" xml:space="preserve">
+    <value>Oppgavens arbeidstid må oppgis.</value>
+  </data>
 </root>
