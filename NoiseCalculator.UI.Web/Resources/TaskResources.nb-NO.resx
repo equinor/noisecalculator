@@ -363,4 +363,19 @@
   <data name="ValidationErrorWorkTimeRequiredRotation" xml:space="preserve">
     <value>Oppgavens arbeidstid må oppgis.</value>
   </data>
+  <data name="ReportInfoCommentLabel" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="ReportInfoDateLabel" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="ReportInfoPlantLabel" xml:space="preserve">
+    <value>Installasjon</value>
+  </data>
+  <data name="ReportInfoProfessionLabel" xml:space="preserve">
+    <value>Faggruppe</value>
+  </data>
+  <data name="ReportInfoDialogTitle" xml:space="preserve">
+    <value>Valgfri informasjon til rapporten</value>
+  </data>
 </root>

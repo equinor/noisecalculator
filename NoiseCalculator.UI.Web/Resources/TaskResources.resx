@@ -251,7 +251,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Task work time must be specified, either as hours/minutes or percentage of daily dosage</value>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>This tool is based upon noise guideline GL0169 as described in TR0926: "Worknig Environment".</value>
+    <value>The Noise calculator is based on “GL0169 Method for handling hazardous noise” and is in compliance with “TR0926 Working environment”</value>
     <comment>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926:"Working Environment"</comment>
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
@@ -259,22 +259,22 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <comment>Legg til arbeidsoppgaver for å beregne din støyeksponering</comment>
   </data>
   <data name="Footer80dBA" xml:space="preserve">
-    <value>If calculated noise dosage is 100% the employee must stay in areas with a noise level less than 80dBA the rest of the day and not perform work that produces a noise level abouve 80 dBA. The employee can also not stay in areas with impulse noise or perform work that produces impulse noise.</value>
+    <value>If the calculated noise dosage is 100 % the employee must remain in areas where the noise level is below 80 dBA for the rest of the day and not perform any work that produces noise above 80 dBA. The employee must also avoid areas with impulse noise (sudden bangs), and work that produces impulse noise.</value>
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</comment>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
-    <value>By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs.</value>
+    <value>Single hearing protection means ear muffs or ear plugs. Double hearing protection means ear muffs and ear plugs used at the same time</value>
     <comment>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.</comment>
   </data>
   <data name="SelectedTaskNoiseMeasured" xml:space="preserve">
     <value>(Measured)</value>
   </data>
   <data name="FooterDynamicCorrectionForMeasuredNoiseLevel" xml:space="preserve">
-    <value>The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the meassured noise levels share of a normal work cycle. The provided work time reflects the total time spent on the task, including the non noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygenist.</value>
+    <value>The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the measured noise levels share of a normal work cycle. The provided work time shall reflect the total time spent on the task, including the non-noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygienist.</value>
     <comment>I beregning av støyeksponering er det tatt hensyn til pauser i deg støyende arbeider (forflyttning osv.) og gjort en korreksjon for målt støynivås andel av en normal arbeidssyklus. Oppgitt arbeidstid skal gjennspeile den totale tiden brukt til arbeidsoppgaven, inkludert ikke-støyende arbeid. Ved store endringer i normal arbeidssyklus ta kontakt med yrkeshygieniker.</comment>
   </data>
   <data name="FooterDynamicNoiseProtection" xml:space="preserve">
-    <value>The following conditions apply regarding noise protection during noisy work. The noise protection should be well maintained and used correctly. When using "universal ear plugs", individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1.</value>
+    <value>The following conditions apply regarding the noise protection during noisy work. The noise protection shall be well maintained and used correctly. When using "universal ear plugs", individual training shall be given regarding use and insertion. When using custom molded ear plugs, insertion training shall be given. Ref:GL0169, table 4-1.</value>
     <comment>Følgende betingelser ang. hørselsvernet gjelder. Høreselsvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte propper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</comment>
   </data>
   <data name="IndexButtonRemoveAll" xml:space="preserve">
@@ -293,7 +293,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Remove All?</value>
   </data>
   <data name="FooterDynamicValidForAreaNoiseUpTo90dBA" xml:space="preserve">
-    <value>The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is performed in areas...</value>
+    <value>The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is carried out in areas with a lot of reverberation, for example in tanks.</value>
     <comment>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller dersom når arbeidet utføres i  områder med mye klang, feks tanker.</comment>
   </data>
   <data name="TaskDialogEditTitle" xml:space="preserve">
@@ -326,10 +326,26 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Not applicable</value>
   </data>
   <data name="FooterDynamicUseNoisyWorkWhenTaskIsMissing" xml:space="preserve">
-    <value>If a noisy task is not found in the application one should use the "Non noisy work" task with the same noise level. Then notify abd industrial hygenist so that the specific task can be evaluated and added to the application.</value>
+    <value>If a noisy work operation is missing from the list one must use «non-noisy work” with the corresponding noise level. Report the noisy work operation to the industrial hygienist for risk assessment and entry into Noise calculator.</value>
     <comment>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.</comment>
   </data>
   <data name="ValidationErrorWorkTimeRequiredRotation" xml:space="preserve">
     <value>Task work time must be specified.</value>
+  </data>
+  <data name="ReportInfoCommentLabel" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ReportInfoDateLabel" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ReportInfoPlantLabel" xml:space="preserve">
+    <value>Plant</value>
+  </data>
+  <data name="ReportInfoProfessionLabel" xml:space="preserve">
+    <value>Work Profession</value>
+  </data>
+  <data name="ReportInfoDialogTitle" xml:space="preserve">
+    <value>Optional information for the report</value>
+    <comment>Valgfri informasjon til rapporten</comment>
   </data>
 </root>

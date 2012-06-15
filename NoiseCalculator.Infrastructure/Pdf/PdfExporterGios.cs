@@ -190,19 +190,44 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
             foreach (SelectedTask selectedTask in selectedTasks)
             {
+                /*
+                if (selectedTask.HelicopterTaskId > 0)
+                {
+                    NoiseLevel = TaskResources.SelectedTaskNoiseLevelNotApplicable;
+                }
+                else
+                {
+                    if (selectedTask.IsNoiseMeassured)
+                    {
+                        NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+                    }
+                    else
+                    {
+                        NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString());
+                    }
+                }
+                */
+                
                 DataRow dr = dt.NewRow();
 
                 dr[titleHeading] = selectedTask.Title;
                 dr[roleHeading] = selectedTask.Role;
                 dr[noiseProtectionHeading] = selectedTask.NoiseProtection;
-                
-                if(selectedTask.IsNoiseMeassured)
+
+                if (selectedTask.HelicopterTaskId > 0)
                 {
-                    dr[noiseLevelHeading] = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, ReportResource.NoiseMeassured);
+                    dr[noiseLevelHeading] = ReportResource.SelectedTaskNoiseLevelNotApplicable;
                 }
                 else
                 {
-                    dr[noiseLevelHeading] = string.Format("{0} dBA", selectedTask.NoiseLevel);
+                    if (selectedTask.IsNoiseMeassured)
+                    {
+                        dr[noiseLevelHeading] = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, ReportResource.NoiseMeassured);
+                    }
+                    else
+                    {
+                        dr[noiseLevelHeading] = string.Format("{0} dBA", selectedTask.NoiseLevel);
+                    }
                 }
                 
                 dr[workTimeHeading] = string.Format(ReportResource.WorkTimeFormatString, selectedTask.Hours, selectedTask.Minutes);

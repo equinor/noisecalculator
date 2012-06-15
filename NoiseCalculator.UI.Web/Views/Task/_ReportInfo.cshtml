@@ -1,33 +1,33 @@
 ﻿@using NoiseCalculator.UI.Web.Resources
-<div id="reportInfo" style="display: none; background-color: white;" title="Valgfri informasjon til rapporten" >
+<div id="reportInfo" style="display: none; background-color: white;" title="@TaskResources.ReportInfoDialogTitle" >
     <input id="pdfReportUrl" type="hidden" value="@Url.Action("PdfReport")"/>    
 
     <p>
-        <label for="plant" class="label-normal120">Installasjon</label>
+        <label for="plant" class="label-130px">@TaskResources.ReportInfoPlantLabel</label>
         :         
         <input id="plant" type="text" style="width: 200px;" />
     </p>
     
     <p>
-        <label for="group" class="label-normal120">Faggruppe</label>
+        <label for="group" class="label-130px">@TaskResources.ReportInfoProfessionLabel</label>
         :         
         <input id="group" type="text" style="width: 200px;" />
     </p>
 
     <p>
-        <label for="date" class="label-normal120">Dato</label>
+        <label for="date" class="label-130px">@TaskResources.ReportInfoDateLabel</label>
         :
         <input id="date" type="text" style="width: 160px;" value="@DateTime.Now.Date.ToString("dd.MM.yyyy")" />
     </p>
 
     <p>
-        <label for="comment" class="label-normal120" style="vertical-align: top;">Kommentar</label>
+        <label for="comment" class="label-130px" style="vertical-align: top;">@TaskResources.ReportInfoCommentLabel</label>
         <span style="vertical-align: top;">:</span>
         <textarea id="comment" rows="2" style="width: 200px;"></textarea>
     </p>
 
     <p>
-        <span class="label-normal120"></span>
+        <span class="label-130px"></span>
         <span id="maxlengthFeedback" style="margin-left: 15px;"></span>
     </p>
 

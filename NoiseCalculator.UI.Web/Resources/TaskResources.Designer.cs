@@ -70,7 +70,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If calculated noise dosage is 100% the employee must stay in areas with a noise level less than 80dBA the rest of the day and not perform work that produces a noise level abouve 80 dBA. The employee can also not stay in areas with impulse noise or perform work that produces impulse noise..
+        ///   Looks up a localized string similar to If the calculated noise dosage is 100 % the employee must remain in areas where the noise level is below 80 dBA for the rest of the day and not perform any work that produces noise above 80 dBA. The employee must also avoid areas with impulse noise (sudden bangs), and work that produces impulse noise..
         /// </summary>
         public static string Footer80dBA {
             get {
@@ -79,7 +79,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the meassured noise levels share of a normal work cycle. The provided work time reflects the total time spent on the task, including the non noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygenist..
+        ///   Looks up a localized string similar to The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the measured noise levels share of a normal work cycle. The provided work time shall reflect the total time spent on the task, including the non-noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygienist..
         /// </summary>
         public static string FooterDynamicCorrectionForMeasuredNoiseLevel {
             get {
@@ -88,7 +88,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following conditions apply regarding noise protection during noisy work. The noise protection should be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training should be given regarding usage and insertion. When using custom molded ear plugs, insertion training should be given. Ref:GL0169, tabell 4-1..
+        ///   Looks up a localized string similar to The following conditions apply regarding the noise protection during noisy work. The noise protection shall be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training shall be given regarding use and insertion. When using custom molded ear plugs, insertion training shall be given. Ref:GL0169, table 4-1..
         /// </summary>
         public static string FooterDynamicNoiseProtection {
             get {
@@ -97,7 +97,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If a noisy task is not found in the application one should use the &quot;Non noisy work&quot; task with the same noise level. Then notify abd industrial hygenist so that the specific task can be evaluated and added to the application..
+        ///   Looks up a localized string similar to If a noisy work operation is missing from the list one must use «non-noisy work” with the corresponding noise level. Report the noisy work operation to the industrial hygienist for risk assessment and entry into Noise calculator..
         /// </summary>
         public static string FooterDynamicUseNoisyWorkWhenTaskIsMissing {
             get {
@@ -106,7 +106,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is performed in areas....
+        ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is carried out in areas with a lot of reverberation, for example in tanks..
         /// </summary>
         public static string FooterDynamicValidForAreaNoiseUpTo90dBA {
             get {
@@ -115,7 +115,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This tool is based upon noise guideline GL0169 as described in TR0926: &quot;Worknig Environment&quot;..
+        ///   Looks up a localized string similar to The Noise calculator is based on “GL0169 Method for handling hazardous noise” and is in compliance with “TR0926 Working environment”.
         /// </summary>
         public static string FooterGL0169 {
             get {
@@ -124,7 +124,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By single noise protection we mean earplugs or earmuffs. By double noise protection we mean earplugs used together with earmuffs..
+        ///   Looks up a localized string similar to Single hearing protection means ear muffs or ear plugs. Double hearing protection means ear muffs and ear plugs used at the same time.
         /// </summary>
         public static string FooterNoiseProtectionDefinition {
             get {
@@ -309,6 +309,51 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string RemoveTaskConfirmationTitle {
             get {
                 return ResourceManager.GetString("RemoveTaskConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string ReportInfoCommentLabel {
+            get {
+                return ResourceManager.GetString("ReportInfoCommentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string ReportInfoDateLabel {
+            get {
+                return ResourceManager.GetString("ReportInfoDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional information for the report.
+        /// </summary>
+        public static string ReportInfoDialogTitle {
+            get {
+                return ResourceManager.GetString("ReportInfoDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plant.
+        /// </summary>
+        public static string ReportInfoPlantLabel {
+            get {
+                return ResourceManager.GetString("ReportInfoPlantLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Profession.
+        /// </summary>
+        public static string ReportInfoProfessionLabel {
+            get {
+                return ResourceManager.GetString("ReportInfoProfessionLabel", resourceCulture);
             }
         }
         

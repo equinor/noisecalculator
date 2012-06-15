@@ -156,6 +156,9 @@
     <value>Beregnet støyeksponering</value>
     <comment>My Tasks</comment>
   </data>
+  <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
+    <value>Ikke aktuellt</value>
+  </data>
   <data name="TotalPercentageFormatString" xml:space="preserve">
     <value>Totalt: {0}%</value>
     <comment>Total: {0}%</comment>

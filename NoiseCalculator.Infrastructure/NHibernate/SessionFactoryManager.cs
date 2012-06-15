@@ -9,8 +9,8 @@ namespace NoiseCalculator.Infrastructure.NHibernate
 {
     public class SessionFactoryManager : ISessionFactoryManager
     {
-        private const string ConnectionString = @"Data Source=st-tw466\TM614;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=t391H_ie75;";
-        //private const string ConnectionString = @"Data Source=st-qm611\QM611;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=4oiW!pR4v2;";
+        //private const string ConnectionString = @"Data Source=st-tw466\TM614;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=t391H_ie75;";
+        private const string ConnectionString = @"Data Source=st-qm611\QM611;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=4oiW!pR4v2;";
         //private const string ConnectionString = @"Data Source=localhost;Initial Catalog=NoiseCalculator;Integrated Security=SSPI;";
         
         private readonly Configuration _configuration;

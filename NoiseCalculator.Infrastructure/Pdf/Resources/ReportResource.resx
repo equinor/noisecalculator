@@ -151,6 +151,9 @@
     <value>Calculated noise exposure</value>
     <comment>Beregnet støyeksponering</comment>
   </data>
+  <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
+    <value>N/A</value>
+  </data>
   <data name="TotalPercentageFormatString" xml:space="preserve">
     <value>Total: {0}%</value>
   </data>
