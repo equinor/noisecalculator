@@ -15,16 +15,23 @@
 </head>
 <body>
     <div class="header">
-        <img id="headerLogo" src="@Url.Content("~/Content/statoil_vertical_neg_80x40.png")" />
-        <span id="applicationTitle">@TaskResources.ApplicationTitle</span>
+        <div style="position: relative;">
+            <img id="headerLogo" src="@Url.Content("~/Content/statoil_vertical_neg_80x40.png")" />
+            <span id="applicationTitle">
+                @TaskResources.ApplicationTitle 
+                <span id="helpButton"> <img src="@Url.Content("~/Content/help.png")" style="display: inline-block; height: 18px; width: 18px; vertical-align: middle; " />  @TaskResources.IndexHelpTitle</span> 
+            </span>
             
-        <div style="color: White; text-align: right; position: absolute; right: 10px; top: 0px;" >
-            <span style="display: block;" >@TaskResources.LayoutUserLabel: <strong>@UserHelper.GetUsernameWithoutDomain(User.Identity.Name)</strong></span>
-            <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" alt="Norwegian" />
-            <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" alt="English" />
-            <input id="currentLangTwoCharCode" type="hidden" value="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName" />
+            <div style="color: White; text-align: right; position: absolute; right: 10px; top: 0px;" >
+                <span style="display: block;" >@TaskResources.LayoutUserLabel: <strong>@UserHelper.GetUsernameWithoutDomain(User.Identity.Name)</strong></span>
+                
+                <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" alt="Norwegian" />
+                <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" alt="English" />
+                <input id="currentLangTwoCharCode" type="hidden" value="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName" />
+            </div>
+            <br clear="all"/>
         </div>
-        <br clear="all"/>
+        
         @RenderSection("ContextMenu", required: false)
     </div>
     
@@ -40,6 +47,8 @@
             @RenderSection("DynamicFooters", required : false)
         </ul>
     </div>
+
+    <div id="helpDialog" title="@TaskResources.IndexHelpTitle">@Html.Partial("_Help")</div>
     
     @RenderSection("ScriptsBottom", required: false)
 </body>

@@ -348,4 +348,25 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Optional information for the report</value>
     <comment>Valgfri informasjon til rapporten</comment>
   </data>
+  <data name="IndexHelpTitle" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpGL0169" xml:space="preserve">
+    <value>Information On GL0169</value>
+    <comment>Informasjon om GL0169</comment>
+  </data>
+  <data name="HelpMissingTasks" xml:space="preserve">
+    <value>Information On Missing Tasks</value>
+    <comment>Informasjon om manglande arbeidsoppgåver</comment>
+  </data>
+  <data name="HelpNoisyTasksAndFieldMeasurement" xml:space="preserve">
+    <value>Information On Noisy Tasks / Field Measurements</value>
+    <comment>Informasjon om støyande arbeidsoppgåver / verifiserande måling</comment>
+  </data>
+  <data name="HelpUserManual" xml:space="preserve">
+    <value>User Manual - Noise Calculator</value>
+  </data>
+  <data name="HelpUserManualButtonology" xml:space="preserve">
+    <value>User Manual - «Buttonology»</value>
+  </data>
 </root>

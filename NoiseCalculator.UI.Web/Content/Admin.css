@@ -1,4 +1,43 @@
-﻿table
+﻿* { /* Reset styles */
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+
+.contextMenu {
+    margin-top: 5px;
+    margin-left: 110px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+    .contextMenu li {
+        float: left;
+        list-style: none;
+        margin-right: 10px;
+        border: solid 1px grey;
+        background-color: darkgrey; 
+    }
+
+    .contextMenu li:hover {
+        border: solid 1px lightgray;
+    }
+
+        .contextMenu li:hover a {
+            color: white;
+}
+
+        .contextMenu li a{
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            padding: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+table
 {
     border: none;
     border-collapse: collapse;

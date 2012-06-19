@@ -1,29 +1,44 @@
 ﻿// Initialize event handlers
 setAllEvents();
 
+function openHelpDialog() {
+    $("#helpDialog").dialog({
+        modal: true,
+        title: $("#helpButton").text(),
+        resizable: false,
+        hide: { effect: 'fade', duration: 300 },
+        show: { effect: 'fade', duration: 300 },
+        width: 'auto',
+        position: [300, 100]
+    });
+}
+
 $(document).ready(function () {
     $("#addTask").click(function () {
         openTaskDialog();
     });
+
+    $("#helpButton").click(function() {
+        openHelpDialog();
+    });
         
     $("#removeAllTasks").click(function () {
         $("#removeAllConfirmDialog").dialog({
-                    title: $("#removeAllConfirmDialog").attr("title"),
-                    modal: true,
-                    resizable: false,
-                    width: 'auto',
-                    position: [250, 80]
-                });
-                
-                $("#confirmRemoveAll").click(function () {
-                    removeAllTasks();
-                });
-
-                $("#cancelRemoveAll").click(function () {
-                    $("#removeAllConfirmDialog").dialog('close');
-                });
-        
+                title: $("#removeAllConfirmDialog").attr("title"),
+                modal: true,
+                resizable: false,
+                width: 'auto',
+                position: [250, 80]
             });
+                
+        $("#confirmRemoveAll").click(function () {
+            removeAllTasks();
+        });
+
+        $("#cancelRemoveAll").click(function () {
+            $("#removeAllConfirmDialog").dialog('close');
+        });  
+    });
 
     /* Date picker in report info */
     $("#date").datepicker({

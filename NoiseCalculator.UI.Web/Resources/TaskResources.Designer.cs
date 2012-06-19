@@ -133,6 +133,51 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information On GL0169.
+        /// </summary>
+        public static string HelpGL0169 {
+            get {
+                return ResourceManager.GetString("HelpGL0169", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information On Missing Tasks.
+        /// </summary>
+        public static string HelpMissingTasks {
+            get {
+                return ResourceManager.GetString("HelpMissingTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information On Noisy Tasks / Field Measurements.
+        /// </summary>
+        public static string HelpNoisyTasksAndFieldMeasurement {
+            get {
+                return ResourceManager.GetString("HelpNoisyTasksAndFieldMeasurement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Manual - Noise Calculator.
+        /// </summary>
+        public static string HelpUserManual {
+            get {
+                return ResourceManager.GetString("HelpUserManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Manual - «Buttonology».
+        /// </summary>
+        public static string HelpUserManualButtonology {
+            get {
+                return ResourceManager.GetString("HelpUserManualButtonology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to h.
         /// </summary>
         public static string HoursUnit {
@@ -165,6 +210,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string IndexButtonRemoveAll {
             get {
                 return ResourceManager.GetString("IndexButtonRemoveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string IndexHelpTitle {
+            get {
+                return ResourceManager.GetString("IndexHelpTitle", resourceCulture);
             }
         }
         

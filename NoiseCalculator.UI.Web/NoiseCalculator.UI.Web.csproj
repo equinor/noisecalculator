@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin.css" />
+    <Content Include="Content\help.png" />
     <Content Include="Content\jquery.maxlength.css" />
     <Content Include="Content\printer2.png" />
     <Content Include="Scripts\Admin.js" />
@@ -297,6 +298,7 @@
     <Content Include="Views\Task\_RemoveAllConfirmation.cshtml" />
     <Content Include="Views\Rotation\_TaskFormRotation.cshtml" />
     <Content Include="Views\Rotation\_CreateTask.cshtml" />
+    <Content Include="Views\Shared\_Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

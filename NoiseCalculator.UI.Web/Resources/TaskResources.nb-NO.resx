@@ -378,4 +378,22 @@
   <data name="ReportInfoDialogTitle" xml:space="preserve">
     <value>Valgfri informasjon til rapporten</value>
   </data>
+  <data name="IndexHelpTitle" xml:space="preserve">
+    <value>Hjelp</value>
+  </data>
+  <data name="HelpGL0169" xml:space="preserve">
+    <value>Informasjon om GL0169</value>
+  </data>
+  <data name="HelpMissingTasks" xml:space="preserve">
+    <value>Informasjon om manglande arbeidsoppgåver</value>
+  </data>
+  <data name="HelpNoisyTasksAndFieldMeasurement" xml:space="preserve">
+    <value>Informasjon om støyande arbeidsoppgåver / verifiserande måling</value>
+  </data>
+  <data name="HelpUserManual" xml:space="preserve">
+    <value>Bruksanvisning - Støykalkulator</value>
+  </data>
+  <data name="HelpUserManualButtonology" xml:space="preserve">
+    <value>Bruksanvisning - «Knottologien»</value>
+  </data>
 </root>

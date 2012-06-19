@@ -9,6 +9,17 @@
 {
     <script src="@Url.Content("~/Scripts/Admin.js")" type="text/javascript"></script>
 }
+@section ContextMenu
+{
+    <ul class="contextMenu">
+        <li><a href="@Url.Action("Index", "Task")">Tasks</a></li>
+        <li><a href="@Url.Action("Index", "NoiseProtection")">Noise Protection</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterTask")">Helicopter Tasks</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterType")">Helicopter Types</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterWorkInterval")">Helicopter Work Interval</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterNoiseProtection")">Helicopter Noise Protection</a></li>
+    </ul>
+}
 
 @RenderSection("AdminHidden", required: true)
 

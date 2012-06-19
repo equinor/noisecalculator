@@ -155,6 +155,10 @@ namespace NoiseCalculator.Infrastructure.Pdf
                     {
                         return Color.Red;
                     }
+                case NoiseLevelEnum.DangerOfWorkRelatedInjury:
+                    {
+                        return Color.Red;
+                    }
                 case NoiseLevelEnum.Warning:
                     {
                         return Color.Yellow;

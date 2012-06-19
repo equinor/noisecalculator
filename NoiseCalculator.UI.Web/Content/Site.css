@@ -404,3 +404,35 @@ p
     margin-bottom: 10px; 
     margin-top: 0px;
 }
+
+#helpButton {
+    margin-right: 10px;
+    margin-left: 20px; 
+    font-size: 18px; 
+    font-weight: bold;
+    padding: 0px;
+}
+
+#helpButton:hover {
+    cursor: pointer;
+    color: #f8ed37;
+    border-bottom: 2px solid;
+}
+
+#helpDialog {
+    border: 1px solid grey; 
+    background-color: white; 
+    display: none;
+}
+
+    #helpDialog li {
+        margin-bottom: 10px;
+    }
+
+    #helpDialog li a {
+        color: #0000a5;
+    }
+
+    #helpDialog li a:hover {
+        color: #7777a5;
+    }
