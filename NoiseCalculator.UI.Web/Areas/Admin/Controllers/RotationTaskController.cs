@@ -7,12 +7,14 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask;
 using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
+    [CustomAuthorize]
     public class RotationTaskController : Controller
     {
         private readonly IRotationDAO _rotationDAO;

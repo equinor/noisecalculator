@@ -25,6 +25,7 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<IRoleDAO>().To<RoleDAO>();
             Bind<IRotationDAO>().To<RotationDAO>();
             Bind<INoiseProtectionDAO>().To<NoiseProtectionDAO>();
+            Bind<IAdministratorDAO>().To<AdministratorDAO>();
 
             Bind<IPdfExporter>().To<PdfExporterGios>();
 

@@ -1,5 +1,7 @@
-﻿using NHibernate;
+﻿using System.Security.Principal;
+using NHibernate;
 using Ninject;
+using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.NHibernate;
 using NoiseCalculator.NinjectBootstrapper;
 
@@ -10,9 +12,20 @@ namespace ConsoleApplication2
         private static void Main(string[] args)
         {
             IKernel kernel = new StandardKernel(new NoiseCalculatorModule());
-            ISessionFactoryManager sessionFactoryManager = kernel.Get<ISessionFactoryManager>();
-            ISession session = sessionFactoryManager.OpenSession();
+            //ISessionFactoryManager sessionFactoryManager = kernel.Get<ISessionFactoryManager>();
+            //ISession session = sessionFactoryManager.OpenSession();
+            
+            //Administrator admin = new Administrator(WindowsIdentity.GetCurrent().Name);
 
+            //using (ITransaction tx = session.BeginTransaction())
+            //{
+            //    session.SaveOrUpdate(admin);
+            //    tx.Commit();
+            //}
+            
+            
+            
+            //sessionFactoryManager.ExportSchema();
             //SELECT *
             //FROM Task
             //WHERE id NOT IN (

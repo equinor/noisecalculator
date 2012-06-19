@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Implementations\AdministratorDAO.cs" />
     <Compile Include="DataAccess\Implementations\GenericDAO.cs" />
     <Compile Include="DataAccess\Implementations\HelicopterTaskDAO.cs" />
     <Compile Include="DataAccess\Implementations\NoiseProtectionDAO.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="DataAccess\Implementations\RotationDAO.cs" />
     <Compile Include="DataAccess\Implementations\SelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Implementations\TaskDAO.cs" />
+    <Compile Include="DataAccess\Interfaces\IAdministratorDAO.cs" />
     <Compile Include="DataAccess\Interfaces\INoiseProtectionDAO.cs" />
     <Compile Include="DataAccess\Interfaces\IHelicopterNoiseProtectionDAO.cs" />
     <Compile Include="DataAccess\Interfaces\IRoleDAO.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="DataAccess\Interfaces\IRotationDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ISelectedTaskDAO.cs" />
     <Compile Include="DataAccess\Interfaces\ITaskDAO.cs" />
+    <Compile Include="Mapping\AdministratorMap.cs" />
     <Compile Include="Mapping\RoleDefinitionMap.cs" />
     <Compile Include="Mapping\NoiseProtectionDefinitionMap.cs" />
     <Compile Include="Mapping\RotationMap.cs" />

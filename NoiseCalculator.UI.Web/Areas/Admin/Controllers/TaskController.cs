@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Task;
 using NoiseCalculator.UI.Web.Models;
@@ -14,6 +15,7 @@ using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
+    [CustomAuthorize]
     public class TaskController : Controller
     {
         private readonly IDAO<TaskDefinition, int> _taskDefinitionDAO;

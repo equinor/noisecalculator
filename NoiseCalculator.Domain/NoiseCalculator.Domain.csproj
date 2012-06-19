@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DomainServices\INoiseLevelService.cs" />
     <Compile Include="DomainServices\NoiseLevelService.cs" />
+    <Compile Include="Entities\Administrator.cs" />
     <Compile Include="Entities\HelicopterNoiseProtectionDefinition.cs" />
     <Compile Include="Entities\HelicopterTask.cs" />
     <Compile Include="Entities\HelicopterNoiseProtection.cs" />
