@@ -214,6 +214,11 @@
     <Content Include="Areas\Admin\Views\RotationTask\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_RotationTaskItemListTable.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_RotationTaskTableRow.cshtml" />
+    <Content Include="Content\help\Bruksanvisning Knottologi.ppt" />
+    <Content Include="Content\help\Bruksanvisning Støykalkulator.ppt" />
+    <Content Include="Content\help\Informasjon GL019.ppt" />
+    <Content Include="Content\help\Informasjon_Manglende arbeidsoppgaver.ppt" />
+    <Content Include="Content\help\Informasjon_Støyende arbeidsoppgaver og verifiserende feltmåling.ppt" />
     <None Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

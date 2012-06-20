@@ -1,25 +1,25 @@
-﻿using System.Web.Mvc;
+﻿//using System.Web.Mvc;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin
-{
-    public class AdminAreaRegistration : AreaRegistration
-    {
-        public override string AreaName
-        {
-            get
-            {
-                return "Admin";
-            }
-        }
+//namespace NoiseCalculator.UI.Web.Areas.Admin
+//{
+//    public class AdminAreaRegistration : AreaRegistration
+//    {
+//        public override string AreaName
+//        {
+//            get
+//            {
+//                return "Admin";
+//            }
+//        }
 
-        public override void RegisterArea(AreaRegistrationContext context)
-        {
-            context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                new[] { "NoiseCalculator.UI.Web.Areas.Admin.Controllers" }
-            );
-        }
-    }
-}
+//        public override void RegisterArea(AreaRegistrationContext context)
+//        {
+//            context.MapRoute(
+//                "Admin_default",
+//                "Admin/{controller}/{action}/{id}",
+//                new { action = "Index", id = UrlParameter.Optional },
+//                new[] { "NoiseCalculator.UI.Web.Areas.Admin.Controllers" }
+//            );
+//        }
+//    }
+//}
