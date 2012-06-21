@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;

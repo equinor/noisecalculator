@@ -1,6 +1,8 @@
-﻿namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
+﻿using NoiseCalculator.Domain.Entities;
+
+namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
 {
-    public interface IAdministratorDAO
+    public interface IAdministratorDAO : IDAO<Administrator, string>
     {
         bool UserIsAdmin(string username);
     }

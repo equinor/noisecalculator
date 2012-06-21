@@ -132,7 +132,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             //    {
             //        Id = helicopterTask.Id,
             //        Helicopter = helicopterTask.HelicopterType.Title,
-            //        NoiseProtectionDefinition = helicopterTask.HelicopterNoiseProtectionDefinition.SystemName,
+            //        NoiseProtectionDefinition = helicopterTask.HelicopterNoiseProtectionDefinition.Username,
             //        WorkInterval = helicopterTask.HelicopterWorkInterval.Title,
             //        Percentage = helicopterTask.Percentage
             //    };

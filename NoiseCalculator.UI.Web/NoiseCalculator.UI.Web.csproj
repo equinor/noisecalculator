@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdministratorController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
@@ -84,6 +85,10 @@
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\RotationTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
+    <Compile Include="Areas\Admin\Models\Administrator\AdministratorIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Administrator\AdministratorListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Administrator\AdministratorViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Administrator\AdministratorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Models\Generic\DeleteConfirmationViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Generic\GenericDefinitionEditModel.cs" />
@@ -219,6 +224,12 @@
     <Content Include="Content\help\Informasjon GL019.ppt" />
     <Content Include="Content\help\Informasjon_Manglende arbeidsoppgaver.ppt" />
     <Content Include="Content\help\Informasjon_Støyende arbeidsoppgaver og verifiserende feltmåling.ppt" />
+    <Content Include="Areas\Admin\Views\Administrator\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Administrator\_AdministratorItemListTable.cshtml" />
+    <Content Include="Areas\Admin\Views\Administrator\_AdministratorTableRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Administrator\_CreateAdministrator.cshtml" />
+    <Content Include="Areas\Admin\Views\Administrator\_EditAdministrator.cshtml" />
+    <Content Include="Areas\Admin\Views\Administrator\_AdministratorForm.cshtml" />
     <None Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

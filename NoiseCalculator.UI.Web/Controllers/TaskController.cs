@@ -49,7 +49,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public ActionResult PdfReport(ReportInfo reportInfo)
         {
-            reportInfo.CreatedBy = UserHelper.GetUsernameWithoutDomain(User.Identity.Name);
+            reportInfo.CreatedBy = UserHelper.CreateUsernameWithoutDomain(User.Identity.Name);
             IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
 
             if (selectedTasks.Count() > 0)

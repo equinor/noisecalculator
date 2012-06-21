@@ -13,6 +13,11 @@ function setAllEvents() {
         submitForm();
     });
 
+    $("#dialogDiv").submit(function(event) {
+        event.preventDefault();
+        submitForm();
+    });  
+
     $("#dialogDiv").delegate("#closeButton", "click", function(event) {
         event.preventDefault();
         hideDialog();
@@ -86,7 +91,16 @@ function getConfirmDeleteDialog(removeDefinitionButton) {
 function deleteDefinition() {
     // Get item by creating a ID selector based on the idToDelete value
     var $item = $('#' + $("#idToDelete").val());
-    var id = $item.attr("id").match( /[\d]+$/ )[0]; // <--- First matched items should be the id at end of string
+
+    var id;
+    var matches = $item.attr("id").match( /[\d]+$/ );
+    if(matches !== null && matches.length > 0) {
+        id = matches[0];
+    } else {
+        id = $item.attr("id");
+    }
+     // <--- First matched items should be the id at end of string
+//    var id = $item.attr("id").match( /[\d]+$/ )[0]; // <--- First matched items should be the id at end of string
 
     $.ajax({
         type: "POST",
