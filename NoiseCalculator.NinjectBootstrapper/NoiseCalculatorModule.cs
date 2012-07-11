@@ -18,17 +18,18 @@ namespace NoiseCalculator.NinjectBootstrapper
             Bind<IStatelessSession>().ToProvider<StatelessSessionProvider>().InRequestScope();
 
             Bind(typeof (IDAO<,>)).To(typeof (GenericDAO<,>));
-            Bind<ITaskDAO>().To<TaskDAO>();
-            Bind<ISelectedTaskDAO>().To<SelectedTaskDAO>();
-            Bind<IHelicopterTaskDAO>().To<HelicopterTaskDAO>();
+            Bind<IAdministratorDAO>().To<AdministratorDAO>();
             Bind<IHelicopterNoiseProtectionDAO>().To<HelicopterNoiseProtectionDAO>();
+            Bind<IHelicopterTaskDAO>().To<HelicopterTaskDAO>();
+            Bind<INoiseProtectionDAO>().To<NoiseProtectionDAO>();
             Bind<IRoleDAO>().To<RoleDAO>();
             Bind<IRotationDAO>().To<RotationDAO>();
-            Bind<INoiseProtectionDAO>().To<NoiseProtectionDAO>();
-            Bind<IAdministratorDAO>().To<AdministratorDAO>();
-
+            Bind<ISelectedTaskDAO>().To<SelectedTaskDAO>();
+            Bind<ITaskDAO>().To<TaskDAO>();
+            Bind<ITaskDefinitionDAO>().To<TaskDefinitionDAO>();
+            
+            // PDF Exporter
             Bind<IPdfExporter>().To<PdfExporterGios>();
-
             Bind<INoiseLevelService>().To<NoiseLevelService>();
         }
     }

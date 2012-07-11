@@ -33,65 +33,19 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Index()
-        {
-            IEnumerable<TaskDefinition> definitions = _taskDefinitionDAO.GetAll();
-
-            GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
-            foreach (var definition in definitions)
-            {
-                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = definition.Id, SystemName = definition.SystemName });
-            }
-
-            viewModel.PageTitle = "Tasks"; // <---- TRANSLATIION!
-            viewModel.UrlCreate = Url.Action("Create");
-            viewModel.UrlEdit = Url.Action("Edit");
-            viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return View(viewModel);
-        }
-
-        public ActionResult Create()
-        {
-            return PartialView("_CreateGenericDefinition", new GenericDefinitionViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult Create(GenericDefinitionEditModel form)
-        {
-            if (string.IsNullOrEmpty(form.Title))
-            {
-                Response.StatusCode = 500;
-                return Json("FAIL!");
-            }
-
-            TaskDefinition definition = new TaskDefinition();
-            definition.SystemName = form.Title;
-
-            _taskDefinitionDAO.Store(definition);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-
-            return PartialView("_GenericDefinitionTableRow", viewModel);
-        }
-
         public ActionResult Edit(int id)
         {
             TaskDefinition definition = _taskDefinitionDAO.Get(id);
 
-            TaskDefinitionViewModel viewModel 
-                = new TaskDefinitionViewModel
-                      {
-                          Id = definition.Id,
-                          SystemName = definition.SystemName,
-                          UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id),
-                          UrlEditTranslation = Url.Action("EditTranslation"),
-                          UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation")
-                      };
+            TaskDefinitionGenericViewModel viewModel
+                = new TaskDefinitionGenericViewModel
+                {
+                    Id = definition.Id,
+                    SystemName = definition.SystemName,
+                    UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id),
+                    UrlEditTranslation = Url.Action("EditTranslation"),
+                    UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation")
+                };
 
             foreach (Task task in definition.Tasks)
             {
@@ -135,36 +89,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
-        public ActionResult ConfirmDelete(int id)
-        {
-            TaskDefinition definintion = _taskDefinitionDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = definintion.Id.ToString();
-            viewModel.Title = definintion.SystemName;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
 
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_DeleteConfirmation", viewModel);
-        }
-        
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                TaskDefinition noiseProtectionDefinition = _taskDefinitionDAO.Load(id);
-                _taskDefinitionDAO.Delete(noiseProtectionDefinition);
-                return new EmptyResult();
-            }
-            catch (Exception ex)
-            {
-                Response.StatusCode = 500;
-                return Json(ex.ToString());
-            }
-        }
-
-        // ------------------------------------------------------------
+        // -----------------------------------------------------
         public ActionResult CreateTranslation(int id)
         {
             TaskViewModel viewModel = new TaskViewModel(Thread.CurrentThread.CurrentCulture.Name);

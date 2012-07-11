@@ -85,6 +85,7 @@
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\RotationTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskDefinitionController.cs" />
     <Compile Include="Areas\Admin\Models\Administrator\AdministratorIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Administrator\AdministratorListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Administrator\AdministratorViewModel.cs" />
@@ -104,9 +105,13 @@
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RotationTask\TaskDefinitionGenericViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TaskDefinition\CreateTaskDefinitionEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\TaskDefinition\TaskDefinitionListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TaskDefinition\TaskDefinitionIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TaskDefinition\NewTaskDefinitionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\Task\TaskDefinitionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Task\TaskListItemViewModel.cs" />
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
@@ -230,6 +235,10 @@
     <Content Include="Areas\Admin\Views\Administrator\_CreateAdministrator.cshtml" />
     <Content Include="Areas\Admin\Views\Administrator\_EditAdministrator.cshtml" />
     <Content Include="Areas\Admin\Views\Administrator\_AdministratorForm.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskDefinition\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskDefinition\_CreateTaskDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskDefinition\_TaskDefinitionItemListTable.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskDefinition\_TaskDefinitionTableRow.cshtml" />
     <None Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

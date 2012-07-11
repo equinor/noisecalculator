@@ -1,6 +1,7 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericDefinitionViewModel
+﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition.TaskDefinitionListItemViewModel
         <tr id="@Model.Id" class="definition editable" style="border: 1px solid grey;">
             <td class="editButton">Edit</td>
             <td>@Model.SystemName</td>
+            <td>@Model.RoleType</td>
             <td class="removeButton">Remove</td>
         </tr>

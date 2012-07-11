@@ -10,6 +10,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Id(x => x.Id);
 
             Map(x => x.SystemName);
+            Map(x => x.RoleType);
 
             HasMany(x => x.Tasks)
                 .Cascade.AllDeleteOrphan();

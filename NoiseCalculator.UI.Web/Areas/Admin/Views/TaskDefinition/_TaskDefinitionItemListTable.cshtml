@@ -1,0 +1,20 @@
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition
+@model IEnumerable<TaskDefinitionListItemViewModel>
+
+<table id="itemList">
+    <thead>
+        <tr>
+            <td></td>
+            <th>Definition Name</th>
+            <th>Role Type</th>
+            <td></td>
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (TaskDefinitionListItemViewModel definitionViewModel in Model)
+    {
+        @Html.Partial("_TaskDefinitionTableRow", definitionViewModel)
+    }
+    </tbody>
+</table>

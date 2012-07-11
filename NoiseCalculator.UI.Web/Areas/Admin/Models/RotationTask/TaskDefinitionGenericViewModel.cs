@@ -2,10 +2,11 @@
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
 {
-    public class TaskDefinitionViewModel
+    public class TaskDefinitionGenericViewModel
     {
         public int Id { get; set; }
         public string SystemName { get; set; }
+        public string RoleType { get; set; }
 
         public IList<TaskListItemViewModel> Tasks { get; set; }
 
@@ -14,7 +15,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
         public string UrlDeleteTranslationConfirmation { get; set; }
 
         
-        public TaskDefinitionViewModel()
+        public TaskDefinitionGenericViewModel()
         {
             Tasks = new List<TaskListItemViewModel>();
         }

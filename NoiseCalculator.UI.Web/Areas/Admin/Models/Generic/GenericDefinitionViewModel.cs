@@ -10,7 +10,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
         public bool HasTranslationSupport { get; set; }
         public IList<GenericTranslationViewModel> Translations { get; set; }
 
-        
         public string UrlCreateTranslation { get; set; }
         public string UrlEditTranslation { get; set; }
         public string UrlDeleteTranslationConfirmation { get; set; }

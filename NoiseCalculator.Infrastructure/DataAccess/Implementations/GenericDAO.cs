@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using NHibernate;
 using NHibernate.Criterion;
@@ -41,6 +43,15 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         public IEnumerable<TEntity> GetAll()
         {
             IEnumerable<TEntity> entities = _session.QueryOver<TEntity>().List<TEntity>();
+            return entities;
+        }
+
+        public IEnumerable<TEntity> GetAllOrderedBy(Expression<Func<TEntity, object>> orderBy)
+        {
+            IEnumerable<TEntity> entities = _session.QueryOver<TEntity>()
+                .OrderBy(orderBy).Asc
+                .List<TEntity>();
+
             return entities;
         }
 

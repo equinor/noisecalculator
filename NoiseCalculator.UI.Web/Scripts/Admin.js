@@ -27,6 +27,10 @@ function setAllEvents() {
         event.preventDefault();
         showDialogEdit(this);
     });
+    $("#mainContent").delegate("tr.definition.editable", "dblclick", function (event) {
+        event.preventDefault();
+        showDialogEdit(this);
+    });
 
     $("#mainContent").delegate(".definition .removeButton", "click", function (event) {
         event.preventDefault();
@@ -70,9 +74,24 @@ function setAllEvents() {
         hideTranslationDialog();
     });
     // End Translation events
+
+    $("#helpButton").click(function () {
+        openHelpDialog();
+    });
     
 } // setAllEvents()
 
+function openHelpDialog() {
+    $("#helpDialog").dialog({
+        modal: true,
+        title: $("#helpButton").text(),
+        resizable: false,
+        hide: { effect: 'fade', duration: 300 },
+        show: { effect: 'fade', duration: 300 },
+        width: 'auto',
+        position: [300, 100]
+    });
+}
 
 function getConfirmDeleteDialog(removeDefinitionButton) {
     $("#deleteConfirmDialog")

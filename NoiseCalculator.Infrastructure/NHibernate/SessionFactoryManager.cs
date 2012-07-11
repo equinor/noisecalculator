@@ -1,27 +1,25 @@
+using System.Configuration;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NoiseCalculator.Infrastructure.Mapping;
+using Configuration = NHibernate.Cfg.Configuration;
 
 namespace NoiseCalculator.Infrastructure.NHibernate
 {
     public class SessionFactoryManager : ISessionFactoryManager
     {
-        //private const string ConnectionString = @"Data Source=st-pm611\pm611;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=sT3%9gyL2c;";
-        //private const string ConnectionString = @"Data Source=st-tw466\TM614;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=t391H_ie75;";
-        //private const string ConnectionString = @"Data Source=st-qm611\QM611;Initial Catalog=NoiseCalculator;User Id=noisecalculator;Password=4oiW!pR4v2;";
-        private const string ConnectionString = @"Data Source=localhost;Initial Catalog=NoiseCalculator;Integrated Security=SSPI;";
-        
         private readonly Configuration _configuration;
         private readonly ISessionFactory _sessionFactory;
 
 
         public SessionFactoryManager()
         {
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            
             _configuration = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionString))
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<TaskMap>())
                 .BuildConfiguration();
             
