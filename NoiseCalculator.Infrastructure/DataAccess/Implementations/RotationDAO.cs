@@ -5,7 +5,7 @@ using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 
 namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
 {
-    public class RotationDAO : GenericDAO<Rotation,int>,IRotationDAO
+    public class RotationDAO : GenericDAO<Rotation,int>, IRotationDAO
     {
         public RotationDAO(ISession session) : base(session)
         {
@@ -18,7 +18,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .SingleOrDefault<Rotation>();
         }
 
-        public IEnumerable<Rotation> GetAllFetchTaskOrderedByTaskTitle()
+        public IList<Rotation> GetAllByTaskDefinitionIdOrderedByTaskTitle(int taskDefinitionId)
         {
             return _session.QueryOver<Rotation>()
                 .Fetch(x => x.Task).Eager
@@ -26,6 +26,9 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .Fetch(x => x.OperatorTask.Role).Eager
                 .Fetch(x => x.AssistantTask).Eager
                 .Fetch(x => x.AssistantTask.Role).Eager
+                .JoinQueryOver(x => x.Task)
+                    .Where(x => x.TaskDefinition.Id == taskDefinitionId)
+                    .OrderBy(x => x.Title).Asc
                 .List<Rotation>();
         }
     }

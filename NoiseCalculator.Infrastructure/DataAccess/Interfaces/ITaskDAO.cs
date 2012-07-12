@@ -6,5 +6,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
     public interface ITaskDAO : IDAO<Task, int>
     {
         IEnumerable<Task> GetAllOrdered();
+        //
     }
 }

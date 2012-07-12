@@ -60,6 +60,11 @@ function setAllEvents() {
         event.preventDefault();
         showTranslationDialogEdit(this);
     });
+    
+    $(".translation").live('dblclick', function (event) {
+        event.preventDefault();
+        showTranslationDialogEdit(this);
+    });
 
     $(".translation .removeButton").live('click', function (event) {
         event.preventDefault();
@@ -120,8 +125,6 @@ function deleteDefinition() {
     } else {
         id = $item.attr("id");
     }
-     // <--- First matched items should be the id at end of string
-//    var id = $item.attr("id").match( /[\d]+$/ )[0]; // <--- First matched items should be the id at end of string
 
     $.ajax({
         type: "POST",
@@ -175,19 +178,34 @@ function showDialogNew() {
             modal: true,
             resizable: false,
             width: 'auto',
-            position: [250, 80]
+            position: [100, 80]
         });
     });
 }
 
+function getRoleTypeFromRow(eventNode) {
+    var roleType = $(eventNode).closest(".definition").find(".role").html();
+    if (roleType === 'Rotation') {
+        return $("#urlEditRotation").val();
+    }
+    else {
+        return $("#urlEditGeneric").val();
+    }
+}
 
-function showDialogEdit(editDefinitionButton) {
-    //var lol = $(editDefinitionButton).closest(".definition.role");
-    //$("#mainContent").delegate(".definition .removeButton", "click", function (event)
+function showDialogEdit(eventNode) {
+    
+    var urlEdit;
 
+    if($("#urlEditGeneric").length > 0) { //  only task view has this element
+        urlEdit = getRoleTypeFromRow(eventNode);
+    } else {
+        urlEdit = $("#urlEdit").val();
+    }
+    
     $.ajax({
         type: "GET",
-        url: $("#urlEdit").val() + "/" + $(editDefinitionButton).closest(".definition").attr("id"),
+        url: urlEdit + "/" + $(eventNode).closest(".definition").attr("id"),
         dataType: "html",
         cache: false,
         success: function (result) {
@@ -201,7 +219,7 @@ function showDialogEdit(editDefinitionButton) {
                 resizable: false,
                 hide: { effect: 'fade', duration: 300 },
                 width: 'auto',
-                position: [250, 80]
+                position: [100, 80]
             });
         }
     });
@@ -226,7 +244,7 @@ function showTranslationDialogNew() {
             modal: true,
             resizable: false,
             width: 'auto',
-            position: [300, 100]
+            position: [150, 120]
         });
     });
 }
@@ -244,7 +262,7 @@ function showTranslationDialogEdit(editTranslationButton) {
             resizable: false,
             hide: { effect: 'fade', duration: 300 },
             width: 'auto',
-            position: [250, 80]
+            position: [150, 120]
         });
     });
 }

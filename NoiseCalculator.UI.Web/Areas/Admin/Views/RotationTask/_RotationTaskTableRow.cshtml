@@ -1,8 +1,9 @@
 ﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask.RotationTaskListItemViewModel
         <tr id="@Model.Id" class="definition tr editable" style="height: 30px;">
             <td class="editButton">Edit</td>
+            <td>@Model.Language</td>
             <td>@Model.Title</td>
-            <td>@Model.OperatorTask <strong>(@Model.OperatorRole)</strong></td>
-            <td>@Model.AssistantTask <strong>(@Model.AssistantRole)</strong></td>
+            <td>@Model.OperatorTask @*<strong>(@Model.OperatorRole)</strong>*@</td>
+            <td>@Model.AssistantTask <@*strong>(@Model.AssistantRole)</strong>*@</td>
             <td class="removeButton">Remove</td>
         </tr>

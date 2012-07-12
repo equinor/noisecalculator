@@ -1,23 +1,26 @@
 ﻿using System.Collections.Generic;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
+namespace NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
 {
-    public class TaskDefinitionGenericViewModel
+    public class TaskDefinitionRotationViewModel
     {
         public int Id { get; set; }
         public string SystemName { get; set; }
         public string RoleType { get; set; }
 
-        public IList<TaskListItemViewModel> Tasks { get; set; }
+        public IList<RotationTaskListItemViewModel> RotationTasks { get; set; }
 
         public string UrlCreateTranslation { get; set; }
         public string UrlEditTranslation { get; set; }
         public string UrlDeleteTranslationConfirmation { get; set; }
 
-        
-        public TaskDefinitionGenericViewModel()
+
+        public TaskDefinitionRotationViewModel()
         {
-            Tasks = new List<TaskListItemViewModel>();
+            RotationTasks = new List<RotationTaskListItemViewModel>();
+            UrlCreateTranslation = string.Empty;
+            UrlEditTranslation = string.Empty;
+            UrlDeleteTranslationConfirmation = string.Empty;
         }
     }
 }

@@ -33,64 +33,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Edit(int id)
-        {
-            TaskDefinition definition = _taskDefinitionDAO.Get(id);
-
-            TaskDefinitionGenericViewModel viewModel
-                = new TaskDefinitionGenericViewModel
-                {
-                    Id = definition.Id,
-                    SystemName = definition.SystemName,
-                    UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id),
-                    UrlEditTranslation = Url.Action("EditTranslation"),
-                    UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation")
-                };
-
-            foreach (Task task in definition.Tasks)
-            {
-                TaskListItemViewModel translationViewModel
-                    = new TaskListItemViewModel()
-                    {
-                        Id = task.Id,
-                        Title = task.Title,
-                        Role = task.Role.Title,
-                        NoiseProtection = task.NoiseProtection.Title,
-                        NoiseLevelGuideline = task.NoiseLevelGuideline,
-                        AllowedExposureMinutes = task.AllowedExposureMinutes,
-                        Language = LanguageResolver.GetLanguageName(task.CultureName)
-                    };
-
-                viewModel.Tasks.Add(translationViewModel);
-            }
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_EditTaskDefinition", viewModel);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(int id, GenericDefinitionEditModel form)
-        {
-            if (string.IsNullOrEmpty(form.Title))
-            {
-                return new EmptyResult();
-            }
-
-            TaskDefinition definition = _taskDefinitionDAO.Get(id);
-            definition.SystemName = form.Title;
-
-            _taskDefinitionDAO.Store(definition);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-
-            return PartialView("_GenericDefinitionTableRow", viewModel);
-        }
-
-
-        // -----------------------------------------------------
         public ActionResult CreateTranslation(int id)
         {
             TaskViewModel viewModel = new TaskViewModel(Thread.CurrentThread.CurrentCulture.Name);
@@ -242,6 +184,65 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             };
 
             return taskListItemViewModel;
+        }
+
+
+        // -----------------------------------------------------------------
+        // -----------------------------------------------------------------
+        public ActionResult EditTaskDefinition(int id)
+        {
+            TaskDefinition definition = _taskDefinitionDAO.Get(id);
+
+            TaskDefinitionGenericViewModel viewModel
+                = new TaskDefinitionGenericViewModel
+                {
+                    Id = definition.Id,
+                    SystemName = definition.SystemName,
+                    UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("CreateTranslation"), definition.Id),
+                    UrlEditTranslation = Url.Action("EditTranslation"),
+                    UrlDeleteTranslationConfirmation = Url.Action("ConfirmDeleteTranslation")
+                };
+
+            foreach (Task task in definition.Tasks)
+            {
+                TaskListItemViewModel translationViewModel
+                    = new TaskListItemViewModel()
+                    {
+                        Id = task.Id,
+                        Title = task.Title,
+                        Role = task.Role.Title,
+                        NoiseProtection = task.NoiseProtection.Title,
+                        NoiseLevelGuideline = task.NoiseLevelGuideline,
+                        AllowedExposureMinutes = task.AllowedExposureMinutes,
+                        Language = LanguageResolver.GetLanguageName(task.CultureName)
+                    };
+
+                viewModel.Tasks.Add(translationViewModel);
+            }
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            return PartialView("_EditTaskDefinition", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditTaskDefinition(int id, GenericDefinitionEditModel form)
+        {
+            if (string.IsNullOrEmpty(form.Title))
+            {
+                return new EmptyResult();
+            }
+
+            TaskDefinition definition = _taskDefinitionDAO.Get(id);
+            definition.SystemName = form.Title;
+
+            _taskDefinitionDAO.Store(definition);
+
+            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
+
+            return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
     }

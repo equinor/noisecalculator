@@ -8,5 +8,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
         public string OperatorRole { get; set; }
         public string AssistantTask { get; set; }
         public string AssistantRole { get; set; }
+        public string Language { get; set; }
     }
 }
