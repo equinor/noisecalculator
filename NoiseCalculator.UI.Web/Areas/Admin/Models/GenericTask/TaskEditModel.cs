@@ -1,4 +1,4 @@
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
+namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
 {
     public class TaskEditModel
     {

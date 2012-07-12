@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NoiseCalculator.UI.Web.Models;
 using NoiseCalculator.UI.Web.ViewModels;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
+namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
 {
     public class TaskViewModel
     {

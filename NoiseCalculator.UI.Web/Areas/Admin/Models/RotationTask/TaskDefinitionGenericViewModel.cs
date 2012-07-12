@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Task
+namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
 {
     public class TaskDefinitionGenericViewModel
     {
