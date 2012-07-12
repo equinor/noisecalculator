@@ -5,11 +5,13 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
+    [CustomAuthorize]
     public class TaskDefinitionController : Controller
     {
         private readonly ITaskDefinitionDAO _taskDefinitionDAO;
@@ -39,6 +41,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             viewModel.PageTitle = "Tasks Definitions"; // <---- TRANSLATIION!
             viewModel.UrlCreate = Url.Action("Create");
             //viewModel.UrlEdit = Url.Action("Edit");
+            viewModel.UrlEditGeneric = Url.Action("Edit", "GenericTask");
+            viewModel.UrlEditRotation = Url.Action("Edit", "RotationTask");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);

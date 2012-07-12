@@ -19,18 +19,12 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
     {
         private readonly IRotationDAO _rotationDAO;
         private readonly ITaskDAO _taskDAO;
-        private readonly IDAO<TaskDefinition, int> _taskDefinitionDAO;
-        private readonly IRoleDAO _roleDAO;
 
         public RotationTaskController(IRotationDAO rotationDAO, 
-                                        ITaskDAO taskDAO, 
-                                        IDAO<TaskDefinition, int> taskDefinitionDAO,
-                                        IRoleDAO roleDAO)
+                                        ITaskDAO taskDAO)
         {
             _rotationDAO = rotationDAO;
             _taskDAO = taskDAO;
-            _taskDefinitionDAO = taskDefinitionDAO;
-            _roleDAO = roleDAO;
         }
 
 
@@ -140,6 +134,12 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             //return PartialView("_HelicopterTaskTableRow", viewModel);
             return new EmptyResult();
         }
+
+        public ActionResult Edit(int id)
+        {
+            return new EmptyResult();
+        }
+
 
     }
 }

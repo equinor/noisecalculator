@@ -8,7 +8,7 @@ using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.Task;
+using NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask;
 using NoiseCalculator.UI.Web.Models;
 using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
@@ -16,7 +16,7 @@ using NoiseCalculator.UI.Web.ViewModels;
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
-    public class TaskController : Controller
+    public class GenericTaskController : Controller
     {
         private readonly IDAO<TaskDefinition, int> _taskDefinitionDAO;
         private readonly ITaskDAO _taskDAO;
@@ -24,7 +24,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         private readonly INoiseProtectionDAO _noiseProtectionDAO;
 
 
-        public TaskController(IDAO<TaskDefinition, int> taskDefinitionDAO, ITaskDAO taskDAO, IRoleDAO roleDAO, INoiseProtectionDAO noiseProtectionDAO)
+        public GenericTaskController(IDAO<TaskDefinition, int> taskDefinitionDAO, ITaskDAO taskDAO, IRoleDAO roleDAO, INoiseProtectionDAO noiseProtectionDAO)
         {
             _taskDefinitionDAO = taskDefinitionDAO;
             _taskDAO = taskDAO;
