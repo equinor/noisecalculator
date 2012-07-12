@@ -23,6 +23,7 @@ function setAllEvents() {
         hideDialog();
     });
 
+
     $("#mainContent").delegate(".definition .editButton", "click", function (event) {
         event.preventDefault();
         showDialogEdit(this);
@@ -36,6 +37,7 @@ function setAllEvents() {
         event.preventDefault();
         getConfirmDeleteDialog(this);
     });
+
 
     $("#deleteConfirmDialog").delegate("#confirmDeleteButton", "click", function(event) {
         event.preventDefault();
@@ -178,21 +180,11 @@ function showDialogNew() {
     });
 }
 
-// TEST TEST
-function showDialogNewRotation() {
-    $("#dialogDiv").load($("#urlCreateRotation").val(), function () {
-        $("#dialogDiv").dialog({
-            title: "Add New",
-            modal: true,
-            resizable: false,
-            width: 'auto',
-            position: [250, 80]
-        });
-    });
-}
-// TEST TEST
 
 function showDialogEdit(editDefinitionButton) {
+    //var lol = $(editDefinitionButton).closest(".definition.role");
+    //$("#mainContent").delegate(".definition .removeButton", "click", function (event)
+
     $.ajax({
         type: "GET",
         url: $("#urlEdit").val() + "/" + $(editDefinitionButton).closest(".definition").attr("id"),
