@@ -40,7 +40,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
             viewModel.PageTitle = "Tasks Definitions"; // <---- TRANSLATIION!
             viewModel.UrlCreate = Url.Action("Create");
-            //viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlEditGeneric = Url.Action("EditTaskDefinition", "GenericTask");
             viewModel.UrlEditRotation = Url.Action("EditTaskDefinition", "RotationTask");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");

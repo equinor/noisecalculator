@@ -79,10 +79,12 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministratorController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionDefinitionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterWorkIntervalController.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NoiseProtectionDefinitionController.cs" />
     <Compile Include="Areas\Admin\Controllers\RotationTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\GenericTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskDefinitionController.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\LanguageListBuilder.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskListItemViewModel.cs" />
@@ -243,6 +246,8 @@
     <Content Include="Areas\Admin\Views\RotationTask\_EditTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_CreateRotationTask.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_EditRotationTask.cshtml" />
+    <Content Include="Areas\Admin\Views\NoiseProtectionDefinition\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\Index.cshtml" />
     <None Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -292,8 +297,6 @@
     <Content Include="Areas\Admin\Views\Shared\_GenericTranslationForm.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditGenericTranslation.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_GenericItemListTable.cshtml" />
-    <Content Include="Areas\Admin\Views\NoiseProtection\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HelicopterNoiseProtection\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterType\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterWorkInterval\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\Index.cshtml" />

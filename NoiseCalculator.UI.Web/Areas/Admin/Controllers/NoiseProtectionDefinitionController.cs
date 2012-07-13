@@ -4,40 +4,39 @@ using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
-using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
-    [CustomAuthorize]
-    public class HelicopterTypeController : Controller
+    public class NoiseProtectionDefinitionController : Controller
     {
-        private readonly IDAO<HelicopterType, int> _helicopterTypeDAO;
+        private readonly IDAO<NoiseProtectionDefinition, int> _noiseProtectionDefinitionDAO;
 
-        public HelicopterTypeController(IDAO<HelicopterType,int> helicopterTypeDAO)
+        public NoiseProtectionDefinitionController(IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
         {
-            _helicopterTypeDAO = helicopterTypeDAO;
+            _noiseProtectionDefinitionDAO = noiseProtectionDefinitionDAO;
         }
 
-        
+
         public ActionResult Index()
         {
-            IEnumerable<HelicopterType> helicopterTypes = _helicopterTypeDAO.GetAll();
+            IEnumerable<NoiseProtectionDefinition> definitions = _noiseProtectionDefinitionDAO.GetAll();
 
             GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
-            foreach (var helicopterType in helicopterTypes)
+            foreach (var definition in definitions)
             {
-                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = helicopterType.Id, SystemName = helicopterType.Title });
+                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = definition.Id, SystemName = definition.SystemName });
             }
 
-            viewModel.PageTitle = "Helicopter Type"; // <---- TRANSLATIION!
+            viewModel.PageTitle = "Noise Protection"; // <---- TRANSLATIION!
             viewModel.UrlCreate = Url.Action("Create");
             viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             return View(viewModel);
         }
-
 
         public ActionResult Create()
         {
@@ -48,6 +47,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             return PartialView("_CreateGenericDefinition", viewModel);
         }
 
+
         [HttpPost]
         public ActionResult Create(GenericDefinitionEditModel form)
         {
@@ -57,33 +57,46 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 return Json("FAIL!");
             }
 
-            HelicopterType helicopterType = new HelicopterType();
-            helicopterType.Title = form.Title;
+            NoiseProtectionDefinition definition = new NoiseProtectionDefinition();
+            definition.SystemName = form.Title;
 
-            _helicopterTypeDAO.Store(helicopterType);
-            
+            _noiseProtectionDefinitionDAO.Store(definition);
+
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterType.Id;
-            viewModel.SystemName = helicopterType.Title;
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
 
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
-
         public ActionResult Edit(int id)
         {
-            HelicopterType helicopterType = _helicopterTypeDAO.Get(id);
+            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
 
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterType.Id;
-            viewModel.SystemName = helicopterType.Title;
-            viewModel.HasTranslationSupport = false;
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
+            viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("Create", "NoiseProtection"), definition.Id);
+            viewModel.UrlEditTranslation = Url.Action("Edit", "NoiseProtection");
+            viewModel.UrlDeleteTranslationConfirmation = Url.Action("ConfirmDelete", "NoiseProtection");
+            viewModel.HasTranslationSupport = true;
+
+            foreach (NoiseProtection noiseProtection in definition.NoiseProtections)
+            {
+                GenericTranslationViewModel translationViewModel
+                    = new GenericTranslationViewModel(noiseProtection.CultureName)
+                    {
+                        Id = noiseProtection.Id,
+                        Title = noiseProtection.Title
+                    };
+
+                viewModel.Translations.Add(translationViewModel);
+            }
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_EditGenericDefinition", viewModel);
         }
-
 
         [HttpPost]
         public ActionResult Edit(int id, GenericDefinitionEditModel form)
@@ -93,14 +106,14 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 return new EmptyResult();
             }
 
-            HelicopterType helicopterType = _helicopterTypeDAO.Get(id);
-            helicopterType.Title = form.Title;
+            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
+            definition.SystemName = form.Title;
 
-            _helicopterTypeDAO.Store(helicopterType);
+            _noiseProtectionDefinitionDAO.Store(definition);
 
             GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterType.Id;
-            viewModel.SystemName = helicopterType.Title;
+            viewModel.Id = definition.Id;
+            viewModel.SystemName = definition.SystemName;
 
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
@@ -108,10 +121,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult ConfirmDelete(int id)
         {
-            HelicopterType helicopterType = _helicopterTypeDAO.Get(id);
+            NoiseProtectionDefinition definintion = _noiseProtectionDefinitionDAO.Get(id);
             DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = helicopterType.Id.ToString();
-            viewModel.Title = helicopterType.Title;
+            viewModel.Id = definintion.Id.ToString();
+            viewModel.Title = definintion.SystemName;
             viewModel.UrlDeleteAction = Url.Action("Delete");
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -119,13 +132,14 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
             try
             {
-                HelicopterType helicopterWorkInterval = _helicopterTypeDAO.Load(id);
-                _helicopterTypeDAO.Delete(helicopterWorkInterval);
+                NoiseProtectionDefinition noiseProtectionDefinition = _noiseProtectionDefinitionDAO.Load(id);
+                _noiseProtectionDefinitionDAO.Delete(noiseProtectionDefinition);
                 return new EmptyResult();
             }
             catch (Exception ex)

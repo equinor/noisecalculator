@@ -35,7 +35,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
         public ActionResult CreateTranslation(int id)
         {
-            TaskViewModel viewModel = new TaskViewModel(Thread.CurrentThread.CurrentCulture.Name);
+            IList<SelectOptionViewModel> languages = new LanguageListBuilder().CreateSelectedLanguageList(Thread.CurrentThread.CurrentCulture.Name);
+            TaskViewModel viewModel = new TaskViewModel(languages);
             viewModel.DefinitionId = id;
 
             viewModel.Roles.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
@@ -106,7 +107,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 noiseProtections.Add(new SelectOptionViewModel(noiseProtection.Title, noiseProtection.Id.ToString()){ IsSelected = (noiseProtection.Id == task.NoiseProtection.Id)});
             }
 
-            TaskViewModel viewModel = new TaskViewModel(task.CultureName)
+            IList<SelectOptionViewModel> languages = new LanguageListBuilder().CreateSelectedLanguageList(task.CultureName);
+            TaskViewModel viewModel = new TaskViewModel(languages)
                                           {
                                               Id = task.Id,
                                               Title = task.Title,

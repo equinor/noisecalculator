@@ -1,47 +1,53 @@
 ﻿@using NoiseCalculator.UI.Web.ViewModels
 @model NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask.RotationTaskViewModel
 
+<input type="hidden" name="id" value="@Model.Id" />
+<input type="hidden" name="taskDefinitionId" value="@Model.TaskDefinitionId" />
 
-<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" style="margin-top: 10px;">
-    <input type="hidden" name="id" value="@Model.Id" />
-    <input type="hidden" name="id" value="@Model.TaskDefinitionId" />
-
-    <p>
-        <label for="Title" class="label-130px">Title</label>
-        <input id="Title" type="text" name="Title" style="width: 300px;" value="@Model.Title" />
-    </p>
-
-    <p>
-        <label for="operatorTaskId" class="label-130px">Operator Task</label>
-        <select id="operatorTaskId" name="operatorTaskId" style="width: 300px;"> 
-            @foreach (SelectOptionViewModel selectOption in Model.OperatorTasks)
-            {
-                <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
-            }
-        </select>
-    </p>
-
-    <p>
-        <label for="assistantTaskId" class="label-130px">Assistant Task</label>
-        <select id="assistantTaskId" name="assistantTaskId" style="width: 300px;">
-            @foreach (SelectOptionViewModel selectOption in Model.AssistantTasks)
-            {
-                <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
-            }
-        </select>
-    </p>
-
-
-    <p style="margin-top: 10px;">
-        <button id="submitButton" class="button" style="margin-left: 135px;">
-            <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
-            Submit
-        </button>
-                
-        <button id="closeButton" class="button" style="margin-left: 40px;">
-            <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-            Close
-        </button>
-    </p>
+<p>
+    <label for="selectedCultureName" class="label-130px">Language</label>
+    <select id="selectedCultureName" name="selectedCultureName">
+        @foreach (SelectOptionViewModel selectOption in Model.Languages)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
     
-</form>
+<p>
+    <label for="Title" class="label-130px">Title</label>
+    <input id="Title" type="text" name="Title" style="width: 300px;" value="@Model.Title" />
+</p>
+
+<p>
+    <label for="operatorTaskId" class="label-130px">Operator Task</label>
+    <select id="operatorTaskId" name="operatorTaskId" style="width: 300px;"> 
+        @foreach (SelectOptionViewModel selectOption in Model.OperatorTasks)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+<p>
+    <label for="assistantTaskId" class="label-130px">Assistant Task</label>
+    <select id="assistantTaskId" name="assistantTaskId" style="width: 300px;">
+        @foreach (SelectOptionViewModel selectOption in Model.AssistantTasks)
+        {
+            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
+        }
+    </select>
+</p>
+
+
+<p style="margin-top: 10px;">
+    <button id="submitTranslationButton" class="button" style="margin-left: 135px;">
+        <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
+        Submit
+    </button>
+                
+    <button id="closeTranslationButton" class="button" style="margin-left: 40px;">
+        <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+        Close
+    </button>
+</p>

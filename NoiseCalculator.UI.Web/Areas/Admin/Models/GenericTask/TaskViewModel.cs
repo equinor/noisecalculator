@@ -13,27 +13,14 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
         public int NoiseLevelGuideline { get; set; }
         public int AllowedExposureMinutes { get; set; }
         public IList<SelectOptionViewModel> Languages { get; private set; }
-        public string SelectedLanguage { get; private set; }
         public string SelectedCultureName { get; private set; }
         public int DefinitionId { get; set; }
 
-        public TaskViewModel(string selectedCultureName)
+        public TaskViewModel(IList<SelectOptionViewModel> languages)
         {
-            SelectedCultureName = selectedCultureName;
-            SelectedLanguage = LanguageResolver.GetLanguageName(selectedCultureName);
-            Languages = new List<SelectOptionViewModel>();
+            Languages = languages;
             Roles = new List<SelectOptionViewModel>();
             NoiseProtections = new List<SelectOptionViewModel>();
-
-            AddLanguageSelectOption("-- Select One --", string.Empty);
-            AddLanguageSelectOption(LanguageResolver.GetLanguageName("nb-NO"), "nb-NO");
-            AddLanguageSelectOption(LanguageResolver.GetLanguageName("en-US"), "en-US");
-        }
-
-        private void AddLanguageSelectOption(string text, string value)
-        {
-            SelectOptionViewModel selectOptionViewModel = new SelectOptionViewModel(text, value) { IsSelected = (value == SelectedCultureName) };
-            Languages.Add(selectOptionViewModel);
         }
     }
 }

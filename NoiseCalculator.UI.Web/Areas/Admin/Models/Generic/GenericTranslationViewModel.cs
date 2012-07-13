@@ -9,6 +9,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
         public int Id { get; set; }
         public string Title { get; set; }
         public IList<SelectOptionViewModel> Languages { get; private set; }
+        public string FormActionUrl { get; set; }
         public string SelectedLanguage { get; private set; }
         public string SelectedCultureName { get; private set; }
         public int DefinitionId { get; set; }

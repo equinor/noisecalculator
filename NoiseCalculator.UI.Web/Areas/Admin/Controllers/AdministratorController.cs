@@ -34,7 +34,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
             viewModel.PageTitle = "Administrators"; // <---- TRANSLATIION!
             viewModel.UrlCreate = Url.Action("Create");
-            //viewModel.UrlEdit = Url.Action("Edit");
             viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
