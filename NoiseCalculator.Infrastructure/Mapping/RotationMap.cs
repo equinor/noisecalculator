@@ -9,7 +9,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
         {
             Id(x => x.Id);
 
-            References(x => x.Task).Cascade.SaveUpdate();
+            References(x => x.Task).Cascade.All();
             References(x => x.OperatorTask).LazyLoad(Laziness.False);
             References(x => x.AssistantTask).LazyLoad(Laziness.False);
         }
