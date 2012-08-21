@@ -133,6 +133,33 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Helicopter.
+        /// </summary>
+        public static string HelicopterTaskLabelHelicopterType {
+            get {
+                return ResourceManager.GetString("HelicopterTaskLabelHelicopterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Protection.
+        /// </summary>
+        public static string HelicopterTaskLabelNoiseProtection {
+            get {
+                return ResourceManager.GetString("HelicopterTaskLabelNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Interval.
+        /// </summary>
+        public static string HelicopterTaskLabelWorkInterval {
+            get {
+                return ResourceManager.GetString("HelicopterTaskLabelWorkInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information On GL0169.
         /// </summary>
         public static string HelpGL0169 {
@@ -543,96 +570,6 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string TaskFormButtonSubmitEdit {
             get {
                 return ResourceManager.GetString("TaskFormButtonSubmitEdit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Noise Protection.
-        /// </summary>
-        public static string TaskFormHelideckHelicopterNoiseProtectionLabel {
-            get {
-                return ResourceManager.GetString("TaskFormHelideckHelicopterNoiseProtectionLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Helicopter.
-        /// </summary>
-        public static string TaskFormHelideckHelicopterTypeLabel {
-            get {
-                return ResourceManager.GetString("TaskFormHelideckHelicopterTypeLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Work Interval.
-        /// </summary>
-        public static string TaskFormHelideckHelicopterWorkIntervalLabel {
-            get {
-                return ResourceManager.GetString("TaskFormHelideckHelicopterWorkIntervalLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Assistant.
-        /// </summary>
-        public static string TaskFormRegularAssistantLabel {
-            get {
-                return ResourceManager.GetString("TaskFormRegularAssistantLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Noise Measured.
-        /// </summary>
-        public static string TaskFormRegularNoiseMeasuredLabel {
-            get {
-                return ResourceManager.GetString("TaskFormRegularNoiseMeasuredLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Operator.
-        /// </summary>
-        public static string TaskFormRegularOperatorLabel {
-            get {
-                return ResourceManager.GetString("TaskFormRegularOperatorLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to % of daily noise dosage.
-        /// </summary>
-        public static string TaskFormRegularPercentageLabel {
-            get {
-                return ResourceManager.GetString("TaskFormRegularPercentageLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Time.
-        /// </summary>
-        public static string TaskFormRegularWorkTimeLabel {
-            get {
-                return ResourceManager.GetString("TaskFormRegularWorkTimeLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Work time is split equally on operator and assistant..
-        /// </summary>
-        public static string TaskFormRotationWorkTimeSplitComment {
-            get {
-                return ResourceManager.GetString("TaskFormRotationWorkTimeSplitComment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Work Time As.
-        /// </summary>
-        public static string TaskFormWorkTimeAsLabel {
-            get {
-                return ResourceManager.GetString("TaskFormWorkTimeAsLabel", resourceCulture);
             }
         }
         

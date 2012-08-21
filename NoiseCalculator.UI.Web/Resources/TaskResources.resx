@@ -190,32 +190,14 @@
   <data name="TaskFormButtonSubmitEdit" xml:space="preserve">
     <value>Save Changes</value>
   </data>
-  <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
+  <data name="HelicopterTaskLabelNoiseProtection" xml:space="preserve">
     <value>Noise Protection</value>
   </data>
-  <data name="TaskFormHelideckHelicopterTypeLabel" xml:space="preserve">
+  <data name="HelicopterTaskLabelHelicopterType" xml:space="preserve">
     <value>Helicopter</value>
   </data>
-  <data name="TaskFormHelideckHelicopterWorkIntervalLabel" xml:space="preserve">
+  <data name="HelicopterTaskLabelWorkInterval" xml:space="preserve">
     <value>Work Interval</value>
-  </data>
-  <data name="TaskFormRegularAssistantLabel" xml:space="preserve">
-    <value>Assistant</value>
-  </data>
-  <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
-    <value>Noise Measured</value>
-  </data>
-  <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
-    <value>Operator</value>
-  </data>
-  <data name="TaskFormRegularPercentageLabel" xml:space="preserve">
-    <value>% of daily noise dosage</value>
-  </data>
-  <data name="TaskFormWorkTimeAsLabel" xml:space="preserve">
-    <value>Work Time As</value>
-  </data>
-  <data name="TaskFormRegularWorkTimeLabel" xml:space="preserve">
-    <value>Time</value>
   </data>
   <data name="TaskRoleLabel" xml:space="preserve">
     <value>Role</value>
@@ -317,10 +299,6 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   </data>
   <data name="LanguageNameUnknown" xml:space="preserve">
     <value>Unknown language</value>
-  </data>
-  <data name="TaskFormRotationWorkTimeSplitComment" xml:space="preserve">
-    <value>Work time is split equally on operator and assistant.</value>
-    <comment>Arbeidstid fordeles likt på operatør og hjelpemann.</comment>
   </data>
   <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
     <value>Not applicable</value>

@@ -1,11 +1,12 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask.TaskListItemViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask.TaskListItemViewModel
 <tr id="trans@(Model.Id)" class="translation">
-    <td class="editButton">Edit</td>
+    <td class="editButton">@AdminResources.ColumnEdit</td>
     <td>@Model.Language</td>    
     <td>@Model.Title</td>
     <td>@Model.Role</td>
     <td>@Model.NoiseProtection</td>
     <td>@Model.NoiseLevelGuideline dBA</td>
     <td>@Model.AllowedExposureMinutes min</td>
-    <td class="removeButton">Remove</td>
+    <td class="removeButton">@AdminResources.ColumnRemove</td>
 </tr>

@@ -1,14 +1,15 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask
+@using NoiseCalculator.UI.Web.Areas.Admin.Resources
 @model IEnumerable<HelicopterTaskListItemViewModel>
 
 <table id="itemList">
     <thead>
         <tr>
             <td></td>
-            <th>Helicopter</th>
-            <th>Noise Protection Definition</th>
-            <th>Work Interval</th>
-            <th>Percentage</th> 
+            <th>@AdminResources.HelicopterTaskColumnHelicopter</th>
+            <th>@AdminResources.HelicopterTaskColumnNoiseProtectionDefinition</th>
+            <th>@AdminResources.HelicopterTaskColumnWorkInterval</th>
+            <th>@AdminResources.HelicopterTaskColumnPercentage</th> 
             <td></td>
         </tr>
     </thead>

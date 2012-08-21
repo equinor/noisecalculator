@@ -1,11 +1,12 @@
-﻿@using NoiseCalculator.UI.Web.ViewModels
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@using NoiseCalculator.UI.Web.ViewModels
 @model NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask.TaskViewModel
 
 <input type="hidden" name="id" value="@Model.Id" />
 <input type="hidden" name="definitionId" value="@Model.DefinitionId" />
 
 <p>
-    <label for="selectedCultureName" class="label-130px">Language</label>
+    <label for="selectedCultureName" class="label-130px">@AdminResources.GenericTaskLanguage</label>
     <select id="selectedCultureName" name="selectedCultureName">
         @foreach (SelectOptionViewModel selectOption in Model.Languages)
         {
@@ -15,12 +16,12 @@
 </p>
 
 <p>
-    <label for="Title" class="label-130px">Title</label>
+    <label for="Title" class="label-130px">@AdminResources.GenericTaskTitle</label>
     <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.Title" />
 </p>
 
 <p>
-    <label for="roleId" class="label-130px">Role</label>
+    <label for="roleId" class="label-130px">@AdminResources.GenericTaskRole</label>
     <select id="roleId" name="roleId">
         @foreach (SelectOptionViewModel selectOption in Model.Roles)
         {
@@ -30,7 +31,7 @@
 </p>
 
 <p>
-    <label for="noiseProtectionId" class="label-130px">Noise Protection</label>
+    <label for="noiseProtectionId" class="label-130px">@AdminResources.GenericTaskNoiseProtection</label>
     <select id="noiseProtectionId" name="noiseProtectionId">
         @foreach (SelectOptionViewModel selectOption in Model.NoiseProtections)
         {
@@ -40,12 +41,12 @@
 </p>
 
 <p>
-    <label for="NoiseLevelGuideline" class="label-130px">Noise Level</label>
+    <label for="NoiseLevelGuideline" class="label-130px">@AdminResources.GenericTaskNoiseLevel</label>
     <input id="NoiseLevelGuideline" type="text" name="NoiseLevelGuideline" style="width: 280px;" value="@Model.NoiseLevelGuideline" />
 </p>
 
 <p>
-    <label for="AllowedExposureMinutes" class="label-130px">Allowed Exposure</label>
+    <label for="AllowedExposureMinutes" class="label-130px">@AdminResources.GenericTaskAllowedExposure</label>
     <input id="AllowedExposureMinutes" type="text" name="AllowedExposureMinutes" style="width: 280px;" value="@Model.AllowedExposureMinutes" />
 </p>
 
@@ -54,11 +55,11 @@
 <p style="margin-top: 10px;">
     <button id="submitTranslationButton" class="button" style="margin-left: 135px;">
         <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
-        Submit
+        @AdminResources.ButtonSubmit
     </button>
                 
     <button id="closeTranslationButton" class="button" style="margin-left: 40px;">
         <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-        Close
+        @AdminResources.ButtonClose
     </button>
 </p>

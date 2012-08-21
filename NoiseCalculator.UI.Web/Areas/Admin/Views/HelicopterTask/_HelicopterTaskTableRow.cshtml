@@ -1,9 +1,10 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask.HelicopterTaskListItemViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask.HelicopterTaskListItemViewModel
         <tr id="@Model.Id" class="definition tr editable" style="height: 30px;">
-            <td class="editButton">Edit</td>
+            <td class="editButton">@AdminResources.ColumnEdit</td>
             <td>@Model.Helicopter</td>
             <td>@Model.NoiseProtectionDefinition</td>
             <td>@Model.WorkInterval</td>
             <td>@Model.Percentage</td> 
-            <td class="removeButton">Remove</td>
+            <td class="removeButton">@AdminResources.ColumnRemove</td>
         </tr>

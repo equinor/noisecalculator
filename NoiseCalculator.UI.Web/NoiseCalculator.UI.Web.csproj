@@ -118,6 +118,11 @@
     <Compile Include="Areas\Admin\Models\GenericTask\TaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericTask\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericTask\TaskListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Resources\AdminResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
@@ -238,8 +243,6 @@
     <Content Include="Areas\Admin\Views\Administrator\_AdministratorItemListTable.cshtml" />
     <Content Include="Areas\Admin\Views\Administrator\_AdministratorTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\Administrator\_CreateAdministrator.cshtml" />
-    <Content Include="Areas\Admin\Views\Administrator\_EditAdministrator.cshtml" />
-    <Content Include="Areas\Admin\Views\Administrator\_AdministratorForm.cshtml" />
     <Content Include="Areas\Admin\Views\TaskDefinition\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TaskDefinition\_CreateTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\TaskDefinition\_TaskDefinitionItemListTable.cshtml" />
@@ -350,6 +353,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\Admin\Resources\AdminResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdminResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\TaskResources.nb-NO.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskResources.nb-NO.Designer.cs</LastGenOutput>

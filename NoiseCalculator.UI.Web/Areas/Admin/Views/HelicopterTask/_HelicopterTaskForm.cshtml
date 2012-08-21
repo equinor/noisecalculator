@@ -1,11 +1,11 @@
-﻿@using NoiseCalculator.UI.Web.Resources
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
 @using NoiseCalculator.UI.Web.ViewModels
 @model NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask.HelicopterTaskViewModel
         
 <input type="hidden" name="Id" value="@Model.Id" />
 
 <p style="margin-top: 15px;">
-    <label for="HelicopterTypeId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterTypeLabel</label>
+    <label for="HelicopterTypeId" class="label-130px">@AdminResources.TaskFormHelideckHelicopterTypeLabel</label>
     :
     <select id="HelicopterTypeId" name="HelicopterTypeId" class="helicopterDropDown">
         @foreach (SelectOptionViewModel selectOption in Model.Helicopters)
@@ -16,7 +16,7 @@
 </p>
 
 <p>
-    <label for="HelicopterNoiseProtectionDefinitionId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterNoiseProtectionLabel</label>
+    <label for="HelicopterNoiseProtectionDefinitionId" class="label-130px">@AdminResources.TaskFormHelideckHelicopterNoiseProtectionLabel</label>
     :
     <select id="HelicopterNoiseProtectionDefinitionId" name="HelicopterNoiseProtectionDefinitionId" class="helicopterDropDown">
         @foreach (SelectOptionViewModel selectOption in Model.NoiseProtectionDefinitions)
@@ -27,7 +27,7 @@
 </p>
 
 <p>
-    <label for="HelicopterWorkIntervalId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
+    <label for="HelicopterWorkIntervalId" class="label-130px">@AdminResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
     :
     <select id="HelicopterWorkIntervalId" name="HelicopterWorkIntervalId" class="helicopterDropDown" >
         @foreach (SelectOptionViewModel selectOption in Model.WorkIntervals)
@@ -38,7 +38,7 @@
 </p>
 
 <p>
-    <label for="Percentage" class="label-130px">@TaskResources.TaskFormRegularPercentageLabel</label>
+    <label for="Percentage" class="label-130px">@AdminResources.TaskFormRegularPercentageLabel</label>
     :
     <input id="Percentage" name="Percentage" type="text" value="@Model.Percentage" />
 </p>
@@ -46,11 +46,11 @@
 <p style="margin-top: 10px;">
     <button id="submitButton" class="button" style="margin-left: 85px;">
         <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
-        Submit
+        @AdminResources.ButtonSubmit
     </button>
     
     <button id="closeButton" class="button" style="margin-left: 40px;">
         <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-        Close
+        @AdminResources.ButtonClose
     </button>
 </p>
