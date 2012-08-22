@@ -124,6 +124,96 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrator Users.
+        /// </summary>
+        public static string ContextMenuAdministratorUsers {
+            get {
+                return ResourceManager.GetString("ContextMenuAdministratorUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helictoper: Noise Protection.
+        /// </summary>
+        public static string ContextMenuHelicopterNoiseProtection {
+            get {
+                return ResourceManager.GetString("ContextMenuHelicopterNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter: Tasks.
+        /// </summary>
+        public static string ContextMenuHelicopterTasks {
+            get {
+                return ResourceManager.GetString("ContextMenuHelicopterTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter: Types.
+        /// </summary>
+        public static string ContextMenuHelicopterTypes {
+            get {
+                return ResourceManager.GetString("ContextMenuHelicopterTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helictoper: Work Interval.
+        /// </summary>
+        public static string ContextMenuHelictoperWorkInterval {
+            get {
+                return ResourceManager.GetString("ContextMenuHelictoperWorkInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Protection.
+        /// </summary>
+        public static string ContextMenuNoiseProtection {
+            get {
+                return ResourceManager.GetString("ContextMenuNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string ContextMenuTasks {
+            get {
+                return ResourceManager.GetString("ContextMenuTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Removal.
+        /// </summary>
+        public static string DeleteConfirmationWindowTitle {
+            get {
+                return ResourceManager.GetString("DeleteConfirmationWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Definition Name.
+        /// </summary>
+        public static string GenericDefinitionColumnDefinitionName {
+            get {
+                return ResourceManager.GetString("GenericDefinitionColumnDefinitionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string GenericDefinitionLabelTitle {
+            get {
+                return ResourceManager.GetString("GenericDefinitionLabelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allowed Exposure.
         /// </summary>
         public static string GenericTaskAllowedExposure {
@@ -178,6 +268,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string GenericTranslationLabelTitle {
+            get {
+                return ResourceManager.GetString("GenericTranslationLabelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Translations.
         /// </summary>
         public static string HeadingTranslations {
@@ -219,6 +318,132 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string HelicopterTaskColumnWorkInterval {
             get {
                 return ResourceManager.GetString("HelicopterTaskColumnWorkInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assistant Task.
+        /// </summary>
+        public static string RotationTaskColumnAssistantTask {
+            get {
+                return ResourceManager.GetString("RotationTaskColumnAssistantTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string RotationTaskColumnLanguage {
+            get {
+                return ResourceManager.GetString("RotationTaskColumnLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator Task.
+        /// </summary>
+        public static string RotationTaskColumnOperatorTask {
+            get {
+                return ResourceManager.GetString("RotationTaskColumnOperatorTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string RotationTaskColumnTitle {
+            get {
+                return ResourceManager.GetString("RotationTaskColumnTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string RotationTaskDefinitionLabelTitle {
+            get {
+                return ResourceManager.GetString("RotationTaskDefinitionLabelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translations.
+        /// </summary>
+        public static string RotationTaskDefinitionLabelTranslations {
+            get {
+                return ResourceManager.GetString("RotationTaskDefinitionLabelTranslations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assistant Task.
+        /// </summary>
+        public static string RotationTaskLabelAssistantTask {
+            get {
+                return ResourceManager.GetString("RotationTaskLabelAssistantTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string RotationTaskLabelLanguage {
+            get {
+                return ResourceManager.GetString("RotationTaskLabelLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator Task.
+        /// </summary>
+        public static string RotationTaskLabelOperatorTask {
+            get {
+                return ResourceManager.GetString("RotationTaskLabelOperatorTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string RotationTaskLabelTitle {
+            get {
+                return ResourceManager.GetString("RotationTaskLabelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Definition Name.
+        /// </summary>
+        public static string TaskDefinitionColumnDefinitionName {
+            get {
+                return ResourceManager.GetString("TaskDefinitionColumnDefinitionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Type.
+        /// </summary>
+        public static string TaskDefinitionColumnRoleType {
+            get {
+                return ResourceManager.GetString("TaskDefinitionColumnRoleType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Type.
+        /// </summary>
+        public static string TaskDefinitionLabelRoleType {
+            get {
+                return ResourceManager.GetString("TaskDefinitionLabelRoleType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string TaskDefinitionLabelTitle {
+            get {
+                return ResourceManager.GetString("TaskDefinitionLabelTitle", resourceCulture);
             }
         }
         

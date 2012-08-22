@@ -1,4 +1,5 @@
-﻿@{
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Stylesheets
@@ -12,13 +13,13 @@
 @section ContextMenu
 {
     <ul class="contextMenu">
-        <li><a href="@Url.Action("Index", "TaskDefinition")">Tasks</a></li>
-        <li><a href="@Url.Action("Index", "NoiseProtectionDefinition")">Noise Protection</a></li>
-        <li><a href="@Url.Action("Index", "HelicopterTask")">Helicopter Tasks</a></li>
-        <li><a href="@Url.Action("Index", "HelicopterType")">Helicopter Types</a></li>
-        <li><a href="@Url.Action("Index", "HelicopterWorkInterval")">Helicopter Work Interval</a></li>
-        <li><a href="@Url.Action("Index", "HelicopterNoiseProtectionDefinition")">Helicopter Noise Protection</a></li>
-        <li><a href="@Url.Action("Index", "Administrator")">Administrators</a></li>
+        <li><a href="@Url.Action("Index", "TaskDefinition")">@AdminResources.ContextMenuTasks</a></li>
+        <li><a href="@Url.Action("Index", "NoiseProtectionDefinition")">@AdminResources.ContextMenuNoiseProtection</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterTask")">@AdminResources.ContextMenuHelicopterTasks</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterType")">@AdminResources.ContextMenuHelicopterTypes</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterWorkInterval")">@AdminResources.ContextMenuHelictoperWorkInterval</a></li>
+        <li><a href="@Url.Action("Index", "HelicopterNoiseProtectionDefinition")">@AdminResources.ContextMenuHelicopterNoiseProtection</a></li>
+        <li><a href="@Url.Action("Index", "Administrator")">@AdminResources.ContextMenuAdministratorUsers</a></li>
     </ul>
 }
 
@@ -29,7 +30,7 @@
 <div id="mainContent">
     <button id="addNew" class="button">
         <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
-        Add New
+        @AdminResources.ButtonAddNew
     </button>
     
     <br clear="all" />

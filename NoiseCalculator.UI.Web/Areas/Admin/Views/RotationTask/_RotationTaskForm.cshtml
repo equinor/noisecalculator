@@ -1,11 +1,12 @@
-﻿@using NoiseCalculator.UI.Web.ViewModels
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@using NoiseCalculator.UI.Web.ViewModels
 @model NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask.RotationTaskViewModel
 
 <input type="hidden" name="id" value="@Model.Id" />
 <input type="hidden" name="taskDefinitionId" value="@Model.TaskDefinitionId" />
 
 <p>
-    <label for="selectedCultureName" class="label-130px">Language</label>
+    <label for="selectedCultureName" class="label-130px">@AdminResources.RotationTaskLabelLanguage</label>
     <select id="selectedCultureName" name="selectedCultureName">
         @foreach (SelectOptionViewModel selectOption in Model.Languages)
         {
@@ -15,12 +16,12 @@
 </p>
     
 <p>
-    <label for="Title" class="label-130px">Title</label>
+    <label for="Title" class="label-130px">@AdminResources.RotationTaskColumnTitle</label>
     <input id="Title" type="text" name="Title" style="width: 300px;" value="@Model.Title" />
 </p>
 
 <p>
-    <label for="operatorTaskId" class="label-130px">Operator Task</label>
+    <label for="operatorTaskId" class="label-130px">@AdminResources.RotationTaskLabelOperatorTask</label>
     <select id="operatorTaskId" name="operatorTaskId" style="width: 300px;"> 
         @foreach (SelectOptionViewModel selectOption in Model.OperatorTasks)
         {
@@ -30,7 +31,7 @@
 </p>
 
 <p>
-    <label for="assistantTaskId" class="label-130px">Assistant Task</label>
+    <label for="assistantTaskId" class="label-130px">@AdminResources.RotationTaskLabelAssistantTask</label>
     <select id="assistantTaskId" name="assistantTaskId" style="width: 300px;">
         @foreach (SelectOptionViewModel selectOption in Model.AssistantTasks)
         {
@@ -43,11 +44,11 @@
 <p style="margin-top: 10px;">
     <button id="submitTranslationButton" class="button" style="margin-left: 135px;">
         <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
-        Submit
+        @AdminResources.ButtonSubmit
     </button>
                 
     <button id="closeTranslationButton" class="button" style="margin-left: 40px;">
         <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-        Close
+        @AdminResources.ButtonClose
     </button>
 </p>

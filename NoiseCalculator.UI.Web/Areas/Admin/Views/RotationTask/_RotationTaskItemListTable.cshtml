@@ -1,13 +1,14 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
+@using NoiseCalculator.UI.Web.Areas.Admin.Resources
 @model IEnumerable<RotationTaskListItemViewModel>
 
 <table id="itemList">
     <thead>
         <tr>
             <td></td>
-            <th>Title</th>
-            <th>Operator Task Title</th>
-            <th>Assistant Task Title</th>
+            <th>@AdminResources.RotationTaskColumnTitle</th>
+            <th>@AdminResources.RotationTaskColumnOperatorTask</th>
+            <th>@AdminResources.RotationTaskColumnAssistantTask</th>
             <td></td>
         </tr>
     </thead>

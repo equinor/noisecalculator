@@ -1,12 +1,13 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition
+@using NoiseCalculator.UI.Web.Areas.Admin.Resources
 @model IEnumerable<TaskDefinitionListItemViewModel>
 
 <table id="itemList">
     <thead>
         <tr>
             <td></td>
-            <th>Definition Name</th>
-            <th>Role Type</th>
+            <th>@AdminResources.TaskDefinitionColumnDefinitionName</th>
+            <th>@AdminResources.TaskDefinitionColumnRoleType</th>
             <td></td>
         </tr>
     </thead>

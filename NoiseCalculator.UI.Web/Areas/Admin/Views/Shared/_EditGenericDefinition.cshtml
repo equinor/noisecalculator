@@ -1,4 +1,5 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
+@using NoiseCalculator.UI.Web.Areas.Admin.Resources
 @model GenericDefinitionViewModel
 
 <form id="adminForm" action="@Url.Action("Edit")" method="POST" style="margin-top: 10px;">
@@ -9,19 +10,19 @@
     <input type="hidden" id="definitionId" value="@Model.Id" />
 
     <p>
-        <label for="Title" class="span80">Title</label>
+        <label for="Title" class="span80">@AdminResources.GenericDefinitionLabelTitle</label>
         <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.SystemName" />
     </p>
 
     
     @if(Model.HasTranslationSupport)
     {
-        <strong>Translations</strong>
+        <strong>@AdminResources.HeadingTranslations</strong>
         <br/>
     
         <button id="addNewTranslation" class="button" style="font-size: 12px;">
             <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
-            Add New
+            @AdminResources.ButtonAddNew
         </button>
 
         <br clear="all" />
@@ -30,8 +31,8 @@
             <thead>
                 <tr>
                     <td></td>
-                    <th>Language</th>
-                    <th>Title</th>
+                    <th>@AdminResources.GenericTaskLanguage</th>
+                    <th>@AdminResources.GenericTaskTitle</th>
                     <td></td>
                 </tr>
             </thead>
@@ -49,12 +50,12 @@
     <p style="margin-top: 10px;">
         <button id="submitButton" class="button" style="margin-left: 85px;">
             <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
-            Submit
+            @AdminResources.ButtonSubmit
         </button>
     
         <button id="closeButton" class="button" style="margin-left: 40px;">
             <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-            Close
+            @AdminResources.ButtonClose
         </button>
     </p>
 </form>

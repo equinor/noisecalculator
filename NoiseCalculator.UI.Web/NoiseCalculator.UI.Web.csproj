@@ -123,6 +123,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdminResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Resources\AdminResources.nb-NO.Designer.cs">
+      <DependentUpon>AdminResources.nb-NO.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
@@ -354,6 +359,10 @@
     <EmbeddedResource Include="Areas\Admin\Resources\AdminResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdminResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Admin\Resources\AdminResources.nb-NO.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdminResources.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TaskResources.nb-NO.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -118,159 +118,205 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdminColumnLabelUsername" xml:space="preserve">
-    <value>Username</value>
+    <value>Brukernavn</value>
+    <comment>Username</comment>
   </data>
   <data name="AdminLabelUsername" xml:space="preserve">
-    <value>Username</value>
+    <value>Brukernavn</value>
+    <comment>Username</comment>
   </data>
   <data name="ButtonAddNew" xml:space="preserve">
-    <value>Add New</value>
+    <value>Legg Til Ny</value>
+    <comment>Add New</comment>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Lukk</value>
+    <comment>Close</comment>
   </data>
   <data name="ButtonSubmit" xml:space="preserve">
-    <value>Save</value>
+    <value>Lagre</value>
+    <comment>Save</comment>
   </data>
   <data name="ColumnEdit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Rediger</value>
+    <comment>Edit</comment>
   </data>
   <data name="ColumnRemove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Fjern</value>
+    <comment>Remove</comment>
   </data>
   <data name="ContextMenuAdministratorUsers" xml:space="preserve">
-    <value>Administrator Users</value>
+    <value>Administratorbrukere</value>
+    <comment>Administrator Users</comment>
   </data>
   <data name="ContextMenuHelicopterNoiseProtection" xml:space="preserve">
-    <value>Helictoper: Noise Protection</value>
+    <value>Helikopter: Støybeskyttelse</value>
+    <comment>Helictoper Noise Protection</comment>
   </data>
   <data name="ContextMenuHelicopterTasks" xml:space="preserve">
-    <value>Helicopter: Tasks</value>
+    <value>Helikopter: Oppgaver</value>
+    <comment>Helicopter Task</comment>
   </data>
   <data name="ContextMenuHelicopterTypes" xml:space="preserve">
-    <value>Helicopter: Types</value>
+    <value>Helikopter: Typer</value>
+    <comment>Helicopter Type</comment>
   </data>
   <data name="ContextMenuHelictoperWorkInterval" xml:space="preserve">
-    <value>Helictoper: Work Interval</value>
+    <value>Helikopter: Arbeidstider</value>
+    <comment>Helictoper Work Interval</comment>
   </data>
   <data name="ContextMenuNoiseProtection" xml:space="preserve">
-    <value>Noise Protection</value>
+    <value>Arbeidstid</value>
+    <comment>Noise Protection</comment>
   </data>
   <data name="ContextMenuTasks" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Oppgaver</value>
+    <comment>Tasks</comment>
   </data>
   <data name="DeleteConfirmationWindowTitle" xml:space="preserve">
-    <value>Confirm Removal</value>
+    <value>Bekreft Fjerning</value>
+    <comment>Confirm Removal</comment>
   </data>
   <data name="GenericDefinitionColumnDefinitionName" xml:space="preserve">
-    <value>Definition Name</value>
+    <value>Definisjonsnavn</value>
+    <comment>Definition Name</comment>
   </data>
   <data name="GenericDefinitionLabelTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="GenericTaskAllowedExposure" xml:space="preserve">
-    <value>Allowed Exposure</value>
+    <value>Tillatt eksponering</value>
+    <comment>Allowed Exposure</comment>
   </data>
   <data name="GenericTaskLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Språk</value>
+    <comment>Language</comment>
   </data>
   <data name="GenericTaskNoiseLevel" xml:space="preserve">
-    <value>Noise Level</value>
+    <value>Støynivå</value>
+    <comment>Noise Level</comment>
   </data>
   <data name="GenericTaskNoiseProtection" xml:space="preserve">
-    <value>Noise Protection</value>
+    <value>Hørselsvern</value>
+    <comment>Noise Protection</comment>
   </data>
   <data name="GenericTaskRole" xml:space="preserve">
-    <value>Role</value>
+    <value>Rolle</value>
+    <comment>Role</comment>
   </data>
   <data name="GenericTaskTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="GenericTranslationLabelTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="HeadingTranslations" xml:space="preserve">
-    <value>Translations</value>
+    <value>Oversettelser</value>
+    <comment>Translations</comment>
   </data>
   <data name="HelicopterTaskColumnHelicopter" xml:space="preserve">
-    <value>Helicopter</value>
+    <value>Helikopter</value>
+    <comment>Helicopter</comment>
   </data>
   <data name="HelicopterTaskColumnNoiseProtectionDefinition" xml:space="preserve">
-    <value>Noise Protection Definition</value>
+    <value>Hørselsverndefinisjon</value>
+    <comment>Noise Protection Definition</comment>
   </data>
   <data name="HelicopterTaskColumnPercentage" xml:space="preserve">
-    <value>Percentage</value>
+    <value>Prosent</value>
+    <comment>Percentage</comment>
   </data>
   <data name="HelicopterTaskColumnWorkInterval" xml:space="preserve">
     <value>Work Interval</value>
   </data>
   <data name="RotationTaskColumnAssistantTask" xml:space="preserve">
-    <value>Assistant Task</value>
+    <value>Hjelpemann Oppgave</value>
+    <comment>Assistant Task</comment>
   </data>
   <data name="RotationTaskColumnLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Språk</value>
+    <comment>Language</comment>
   </data>
   <data name="RotationTaskColumnOperatorTask" xml:space="preserve">
-    <value>Operator Task</value>
+    <value>Opperatør</value>
+    <comment>Operator Task</comment>
   </data>
   <data name="RotationTaskColumnTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="RotationTaskDefinitionLabelTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="RotationTaskDefinitionLabelTranslations" xml:space="preserve">
-    <value>Translations</value>
+    <value>Oversettelser</value>
+    <comment>Translations</comment>
   </data>
   <data name="RotationTaskLabelAssistantTask" xml:space="preserve">
-    <value>Assistant Task</value>
+    <value>Hjelpemann</value>
+    <comment>Assistant Task</comment>
   </data>
   <data name="RotationTaskLabelLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Språk</value>
+    <comment>Language</comment>
   </data>
   <data name="RotationTaskLabelOperatorTask" xml:space="preserve">
-    <value>Operator Task</value>
+    <value>Opperatør Oppgave</value>
+    <comment>Operator Task</comment>
   </data>
   <data name="RotationTaskLabelTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="TaskDefinitionColumnDefinitionName" xml:space="preserve">
-    <value>Definition Name</value>
+    <value>Definisjonsnavn</value>
+    <comment>Definition Name</comment>
   </data>
   <data name="TaskDefinitionColumnRoleType" xml:space="preserve">
-    <value>Role Type</value>
+    <value>Rolletype</value>
+    <comment>Role Type</comment>
   </data>
   <data name="TaskDefinitionLabelRoleType" xml:space="preserve">
-    <value>Role Type</value>
+    <value>Rolletype</value>
+    <comment>Role Type</comment>
   </data>
   <data name="TaskDefinitionLabelTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>Tittel</value>
+    <comment>Title</comment>
   </data>
   <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
-    <value>Noise Protection</value>
+    <value>Høreselsvern</value>
+    <comment>Noise Protection</comment>
   </data>
   <data name="TaskFormHelideckHelicopterTypeLabel" xml:space="preserve">
-    <value>Helicopter</value>
+    <value>Helikopter</value>
+    <comment>Helicopter</comment>
   </data>
   <data name="TaskFormHelideckHelicopterWorkIntervalLabel" xml:space="preserve">
     <value>Work Interval</value>
   </data>
   <data name="TaskFormRegularAssistantLabel" xml:space="preserve">
-    <value>Assistant</value>
+    <value>Hjelpemann</value>
+    <comment>Assistant</comment>
   </data>
   <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
-    <value>Noise Measured</value>
+    <value>Feltmåling</value>
+    <comment>Noise Measured</comment>
   </data>
   <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
-    <value>Operator</value>
+    <value>Operatør</value>
+    <comment>Operator</comment>
   </data>
   <data name="TaskFormRegularPercentageLabel" xml:space="preserve">
-    <value>% of daily noise dosage</value>
+    <value>% av daglig støydose</value>
+    <comment>% of daily noise dosage</comment>
   </data>
   <data name="TaskFormRegularWorkTimeLabel" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="TaskFormWorkTimeAsLabel" xml:space="preserve">
-    <value>Work Time As</value>
+    <value>Arbeidstid</value>
+    <comment>Time</comment>
   </data>
 </root>
