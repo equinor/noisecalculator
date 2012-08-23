@@ -7,10 +7,6 @@ namespace ConsoleApplication2
         private static void Main(string[] args)
         {
             //IKernel kernel = new StandardKernel(new NoiseCalculatorModule());
-
-            string connectionString = ConfigurationManager.AppSettings["Lol"];
-            string lol = "lol";
-
         }
     }
 }
