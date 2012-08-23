@@ -1,15 +1,15 @@
 using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Domain.Tests.Entitites
 {
-    [TestFixture]
+    [TestClass]
     public class TaskTests
     {
         //[MethodName_StateUnderTest_ExpectedBehavior]
 
-        [Test]
+        [TestMethod]
         public void CalculatePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90_25Percent()
         {
             // Arrange
@@ -23,7 +23,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             Assert.AreEqual(25, calculatedPercentage);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculatePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs112_50Percent()
         {
             // Arrange
@@ -38,7 +38,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             Assert.AreEqual(50, calculatedPercentage);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculatePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs113_62point5Percent()
         {
             // Arrange
@@ -50,10 +50,10 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, actualExposure);
 
             // Assert
-            Assert.AreEqual(62.5, calculatedPercentage);
+            Assert.AreEqual(62.5m, calculatedPercentage);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculatePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs114_83point3Percent()
         {
             // Arrange
@@ -65,10 +65,10 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, actualExposure);
 
             // Assert
-            Assert.AreEqual(83.3, Math.Round(calculatedPercentage, 1));
+            Assert.AreEqual(83.3m, Math.Round(calculatedPercentage, 1));
         }
 
-        [Test]
+        [TestMethod]
         public void CalculatePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime90AndNoiseLevelMeassuredIs115_100Percent()
         {
             // Arrange
@@ -83,7 +83,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             Assert.AreEqual(100, calculatedPercentage);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculatePercentage_AllowedExposureIs360AndNoiseLevelIs109WithActualTime180_50Percent()
         {
             // Arrange
@@ -97,7 +97,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             Assert.AreEqual(50, calculatedPercentage);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateTimeSpan_AllowedExposureIs360AndNoiseLevelIs109WithPercent25_90Minutes()
         {
             // Arrange
@@ -109,10 +109,10 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             TimeSpan allowedTimeSpan = task.CalculateTimeSpan(actualNoiseLevel, percentage);
 
             // Assert
-            Assert.That(allowedTimeSpan.TotalMinutes, Is.EqualTo(90));
+            Assert.AreEqual(90, allowedTimeSpan.TotalMinutes);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateTimeSpan_AllowedExposureIs360AndNoiseLevelIs109WithNoiseLevelMeasured112AndPercent25_90Minutes()
         {
             // Arrange
@@ -124,7 +124,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             TimeSpan allowedTimeSpan = task.CalculateTimeSpan(actualNoiseLevel, percentage);
 
             // Assert
-            Assert.That(allowedTimeSpan.TotalMinutes, Is.EqualTo(45));
+            Assert.AreEqual(45, allowedTimeSpan.TotalMinutes);
         }
     }
 }

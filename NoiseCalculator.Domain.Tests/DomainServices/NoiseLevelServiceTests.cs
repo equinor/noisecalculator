@@ -1,15 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NoiseCalculator.Domain.DomainServices;
-using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 
 namespace NoiseCalculator.Domain.Tests.DomainServices
 {
-    [TestFixture]
+    [TestClass]
     public class TaskCalculatorTests
     {
         //[MethodName_StateUnderTest_ExpectedBehavior]
-        [Test]
+        [TestMethod]
         public void CalculateNoiseLevelEnum_PercentageIs60_ReturnsEnumValueNormal()
         {
             // Arrange
@@ -23,7 +22,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Normal);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateNoiseLevelEnum_PercentageIs80_ReturnsEnumValueWarning()
         {
             // Arrange
@@ -37,7 +36,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Warning);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateNoiseLevelEnum_PercentageIsMoreThan100_ReturnsEnumValueCritical()
         {
             // Arrange
@@ -51,7 +50,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Critical);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateNoiseLevelEnum_PercentageIsExactly100_ReturnsEnumValueMaximumAllowedDosage()
         {
             // Arrange
@@ -65,7 +64,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.MaximumAllowedDosage);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateNoiseLevelEnum_PercentgeIs200_ReturnEnumValueWorkRelatedInjury()
         {
             // Arrange
@@ -79,7 +78,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.DangerOfWorkRelatedInjury);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateNoiseLevelEnum_PercentgeIsAbove200_ReturnEnumValueWorkRelatedInjury()
         {
             // Arrange
