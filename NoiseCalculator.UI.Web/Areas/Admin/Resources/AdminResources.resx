@@ -196,7 +196,7 @@
     <value>Helicopter</value>
   </data>
   <data name="HelicopterTaskColumnNoiseProtectionDefinition" xml:space="preserve">
-    <value>Noise Protection Definition</value>
+    <value>Noise Protection</value>
   </data>
   <data name="HelicopterTaskColumnPercentage" xml:space="preserve">
     <value>Percentage</value>

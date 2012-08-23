@@ -222,8 +222,8 @@
     <comment>Helicopter</comment>
   </data>
   <data name="HelicopterTaskColumnNoiseProtectionDefinition" xml:space="preserve">
-    <value>Hørselsverndefinisjon</value>
-    <comment>Noise Protection Definition</comment>
+    <value>Høreselsvern</value>
+    <comment>Noise Protection</comment>
   </data>
   <data name="HelicopterTaskColumnPercentage" xml:space="preserve">
     <value>Prosent</value>
