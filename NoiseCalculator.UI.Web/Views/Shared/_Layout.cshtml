@@ -23,7 +23,10 @@
             </span>
             
             <div style="color: White; text-align: right; position: absolute; right: 10px; top: 0px;" >
-                <span style="display: block;" >@TaskResources.LayoutUserLabel: <strong>@UserHelper.CreateUsernameWithoutDomain(User.Identity.Name)</strong></span>
+                <span style="display: block;" >
+                    @RenderSection("AdminLink", required: false)
+                    @TaskResources.LayoutUserLabel: <strong>@UserHelper.CreateUsernameWithoutDomain(User.Identity.Name)</strong>
+                </span>
                 
                 <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" alt="Norwegian" />
                 <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" alt="English" />

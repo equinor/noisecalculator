@@ -36,13 +36,22 @@ page width. Or, you can specify an exact pixel width. */
     color: lightgray;
     font-size: 26px;
     margin-left: 30px;
-    /*margin-top: 9px;*/
     bottom: 0px;
     position: absolute;
     display: inline-block;
-    /*
-    margin-top: 29px; 
-    margin-left: 30px; */
+}
+
+#adminLink 
+{
+    font-weight: bold;
+    margin-right: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+#adminLink:hover
+{
+    text-decoration: underline;
 }
 
 header h1, #header h1 { }

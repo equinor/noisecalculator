@@ -396,4 +396,7 @@
   <data name="HelpUserManualButtonology" xml:space="preserve">
     <value>Bruksanvisning - «Knottologien»</value>
   </data>
+  <data name="AdminLinkText" xml:space="preserve">
+    <value>Administrasjonsside</value>
+  </data>
 </root>

@@ -347,4 +347,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="HelpUserManualButtonology" xml:space="preserve">
     <value>User Manual - «Buttonology»</value>
   </data>
+  <data name="AdminLinkText" xml:space="preserve">
+    <value>Administration Page</value>
+  </data>
 </root>

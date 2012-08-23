@@ -156,6 +156,7 @@
     <Compile Include="ViewModels\RegularViewModel.cs" />
     <Compile Include="ViewModels\SelectedTaskViewModel.cs" />
     <Compile Include="ViewModels\SelectOptionViewModel.cs" />
+    <Compile Include="ViewModels\TaskIndexViewModel.cs" />
     <Compile Include="ViewModels\TotalNoiseDosageViewModel.cs" />
     <Compile Include="ViewModels\ValidationErrorSummaryViewModel.cs" />
   </ItemGroup>
@@ -338,9 +339,7 @@
     <Content Include="Views\Rotation\_CreateTask.cshtml" />
     <Content Include="Views\Shared\_Help.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
       <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>

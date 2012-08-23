@@ -22,28 +22,32 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly IPdfExporter _pdfExporter;
         private readonly INoiseLevelService _noiseLevelService;
         private readonly IRoleDAO _roleDAO;
+        private readonly IAdministratorDAO _administratorDAO;
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter, INoiseLevelService noiseLevelService, IRoleDAO roleDAO)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, IPdfExporter pdfExporter, INoiseLevelService noiseLevelService, IRoleDAO roleDAO, IAdministratorDAO administratorDAO)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
             _pdfExporter = pdfExporter;
             _noiseLevelService = noiseLevelService;
             _roleDAO = roleDAO;
+            _administratorDAO = administratorDAO;
         }
         
 
         public ActionResult Index()
         {
-            IList<SelectedTaskViewModel> selectedTasks = new List<SelectedTaskViewModel>();
+            TaskIndexViewModel viewModel = new TaskIndexViewModel();
+            viewModel.IsAdmin = _administratorDAO.UserIsAdmin(UserHelper.CreateUsernameWithoutDomain(User.Identity.Name));
+
             foreach (SelectedTask selectedTask in _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now))
             {
-                selectedTasks.Add(new SelectedTaskViewModel(selectedTask));
+                viewModel.SelectedTasks.Add(new SelectedTaskViewModel(selectedTask));
             }
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             
-            return View(selectedTasks);
+            return View(viewModel);
         }
 
 

@@ -1,7 +1,7 @@
 ﻿
 @using NoiseCalculator.UI.Web.Resources
 @using NoiseCalculator.UI.Web.ViewModels
-@model IEnumerable<SelectedTaskViewModel> 
+@model TaskIndexViewModel 
 @{
     ViewBag.Title = @TaskResources.IndexTitle;
 }
@@ -33,7 +33,7 @@
     <div class="separatorDiv"></div>
     
     <div id="taskList"> 
-        @foreach (SelectedTaskViewModel selectedTask in Model)
+        @foreach (SelectedTaskViewModel selectedTask in Model.SelectedTasks)
         {
             @Html.Partial("_SelectedTask", selectedTask);
         }
@@ -77,5 +77,11 @@
     @foreach (string footnote in FootnoteResources.GetStaticFootnotes())
     {
         <li>@footnote</li>
+    }
+}
+@section AdminLink
+{
+    @if(Model.IsAdmin) {
+        <a id="adminLink" href="@Url.Action("Index", "TaskDefinition", new { Area = "Admin"})">@TaskResources.AdminLinkText</a> @:-
     }
 }
