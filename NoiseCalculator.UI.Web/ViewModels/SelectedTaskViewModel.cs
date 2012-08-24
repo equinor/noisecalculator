@@ -16,6 +16,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
 
         public int TaskId { get; set; }
         public int HelicopterTaskId { get; set; }
+        public string RoleType { get; set; }
     
         public SelectedTaskViewModel(SelectedTask selectedTask)
         {
@@ -27,6 +28,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
             Percentage = selectedTask.Percentage.ToString();
             Hours = selectedTask.Hours.ToString();
             Minutes = selectedTask.Minutes.ToString();
+            RoleType = selectedTask.Task.Role.RoleType.ToString();
 
             if (selectedTask.HelicopterTaskId > 0)
             {
