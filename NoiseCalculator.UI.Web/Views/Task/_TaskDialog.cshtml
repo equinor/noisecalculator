@@ -1,13 +1,13 @@
-﻿@using NoiseCalculator.Domain.Entities
-@using NoiseCalculator.UI.Web.Resources
-@model IEnumerable<Task>
+﻿@using NoiseCalculator.UI.Web.Resources
+@using NoiseCalculator.UI.Web.ViewModels
+@model IEnumerable<TaskSelectViewModel>
 
 <input type="hidden" id="hiddenTaskDialogTitle" value="@TaskResources.TaskDialogAddTitle" />
 
 <select id="taskSelect" size="19">
-    @foreach (Task task in Model)
+    @foreach (TaskSelectViewModel task in Model)
     {
-        <option value="@task.Id">@task.Title  (@task.Role.Title)</option>
+        <option value="@task.Id-@task.RoleType">@task.Title  (@task.Role)</option>
     }
 </select>
 

@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Controllers\RegularController.cs" />
     <Compile Include="Controllers\HelideckController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\RotationController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
@@ -138,7 +139,6 @@
     <Compile Include="Models\LanguageResolver.cs" />
     <Compile Include="Models\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\FootnoteResources.cs" />
     <Compile Include="Resources\TaskResources.nb-NO.Designer.cs">
       <DependentUpon>TaskResources.nb-NO.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\SelectedTaskViewModel.cs" />
     <Compile Include="ViewModels\SelectOptionViewModel.cs" />
     <Compile Include="ViewModels\TaskIndexViewModel.cs" />
+    <Compile Include="ViewModels\TaskSelectViewModel.cs" />
     <Compile Include="ViewModels\TotalNoiseDosageViewModel.cs" />
     <Compile Include="ViewModels\ValidationErrorSummaryViewModel.cs" />
   </ItemGroup>
