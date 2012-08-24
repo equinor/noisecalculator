@@ -39,6 +39,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainServices\FootnotesService.cs" />
+    <Compile Include="DomainServices\IFootnotesService.cs" />
     <Compile Include="DomainServices\INoiseLevelService.cs" />
     <Compile Include="DomainServices\NoiseLevelService.cs" />
     <Compile Include="Entities\Administrator.cs" />
