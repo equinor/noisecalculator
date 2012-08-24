@@ -43,12 +43,7 @@
     </div>
 
     <div id="footer">
-        <ul>
-            @RenderSection("StaticFooters", required: false)
-        </ul>
-        <ul id="dynamicFootnotes">
-            @RenderSection("DynamicFooters", required : false)
-        </ul>
+        <ul id="footerTexts"></ul>
     </div>
 
     <div id="helpDialog" title="@TaskResources.IndexHelpTitle">@Html.Partial("_Help")</div>
