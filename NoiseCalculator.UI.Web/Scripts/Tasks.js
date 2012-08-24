@@ -133,7 +133,6 @@ function openTaskDialog() {
                 hide: { effect: 'fade', duration: 300 },
                 width: 'auto',
                 position: [200, 10]
-                //position: [250, 80]
             });
         });
 }
@@ -151,19 +150,21 @@ function bindTaskDialogEvents() {
     });
 }
 
-
 function getCreateTaskForm() {
-    var taskId = $('#taskSelect option:selected').val();
+    var taskSelectValueSplitted = $("#taskSelect option:selected").val().split('-');
+    var taskId = taskSelectValueSplitted[0];
+    var roleType = taskSelectValueSplitted[1];
+
     $.ajax({
         type: "GET",
-        url: getCreateTaskFormUrl + "/" + taskId,
+        url: getCreateTaskFormUrl(roleType) + "/" + taskId,
         dataType: "html",
         cache: false,
         success: function (result) {
             $('#taskForm').empty();
             $('#taskForm').html(result);
-
-            switch ($("#roleType").val()) {
+            
+            switch (roleType) {
                 case "Helideck":
                     bindHelideckEvents();
                     break;
@@ -177,6 +178,16 @@ function getCreateTaskForm() {
     });
 }
 
+function getCreateTaskFormUrl(roleType) {
+    switch (roleType) {
+        case "Helideck":
+            return createHelideckTaskFormUrl;
+        case "Rotation":
+            return createRotationTaskFormUrl;
+        default:
+            return createRegularTaskFormUrl;
+    }
+}
 
 function bindRegularEvents() {
     /* Set disabled state of noise level measured */
@@ -311,9 +322,9 @@ function updateTotalPercentage() {
             }
 
             // Dynamic footnotes
-            $("#dynamicFootnotes").empty();
-            $.each(result.DynamicFootnotes, function () {
-                $("#dynamicFootnotes").append("<li>" + this + "</li>");
+            $("#footerTexts").empty();
+            $.each(result.Footnotes, function () {
+                $("#footerTexts").append("<li>" + this + "</li>");
             });
         },
         error: function (result) {
@@ -360,11 +371,12 @@ function removeAllTasks() {
 
 function editTask(taskDiv) {
     var selectedTaskId = taskDiv.attr("id");
+    var roleType = $(taskDiv).find(".roleType").text();
     
     /* Edit Dialog Task */
     $.ajax({
         type: "GET",
-        url: getEditTaskFormUrl + "/" + selectedTaskId,
+        url: getEditTaskFormUrl(roleType) + "/" + selectedTaskId,
         dataType: "html",
         cache: false,
         success: function (result) {
@@ -372,7 +384,7 @@ function editTask(taskDiv) {
             $taskDialog.empty();
             $taskDialog.html(result);
 
-            switch ($("#roleType").val()) {
+            switch (roleType) {
                 case "Helideck":
                     bindHelideckEvents();
                     break;
@@ -390,6 +402,15 @@ function editTask(taskDiv) {
             });
         }
     });
+}
+
+function getEditTaskFormUrl(roleType) {
+    switch (roleType) {
+        case "Helideck":
+            return editHelideckTaskFormUrl;
+        default:
+            return editRegularTaskFormUrl;
+    }
 }
 
 

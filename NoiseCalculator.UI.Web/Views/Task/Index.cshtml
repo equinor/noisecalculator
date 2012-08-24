@@ -6,15 +6,19 @@
     ViewBag.Title = @TaskResources.IndexTitle;
 }
 
-<script src="../../Scripts/jquery-ui-1.8.16.min.js" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.maxlength.js")" type="text/javascript"></script>
 <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/jquery.maxlength.css")" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
     var addTaskUrl = "@Url.Action("AddTask")";
-    var getCreateTaskFormUrl = "@Url.Action("GetCreateFormForTask")";
-    var getEditTaskFormUrl = "@Url.Action("GetEditFormForSelectedTask")";
+    var createHelideckTaskFormUrl = "@Url.Action("AddTaskHelideck", "Helideck")";
+    var createRegularTaskFormUrl = "@Url.Action("AddTaskRegular", "Regular")";
+    var createRotationTaskFormUrl = "@Url.Action("AddTaskRotation", "Rotation")";
+
+    var editHelideckTaskFormUrl = "@Url.Action("EditTaskHelideck", "Helideck")";
+    var editRegularTaskFormUrl = "@Url.Action("EditTaskRegular", "Regular")";
+    
     var removeTaskUrl = "@Url.Action("RemoveTask")";
     var getTotalPercentageUrl = "@Url.Action("GetTotalPercentage")";
     var getRemoveTaskConfirmationUrl = "@Url.Action("GetRemoveTaskConfirmationDialog")";
@@ -72,13 +76,6 @@
 <div id="deleteConfirmDialog" style="display: none;"></div>
 @Html.Partial("_ReportInfo")
 @Html.Partial("_RemoveAllConfirmation")
-@section StaticFooters
-{
-    @foreach (string footnote in FootnoteResources.GetStaticFootnotes())
-    {
-        <li>@footnote</li>
-    }
-}
 @section AdminLink
 {
     @if(Model.IsAdmin) {
