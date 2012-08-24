@@ -24,10 +24,10 @@ namespace NoiseCalculator.UI.Web.Controllers
             _selectedTaskDAO = selectedTaskDAO;
         }
 
-        public PartialViewResult AddTaskRotation(int taskId)
+        public PartialViewResult AddTaskRotation(int id)
         {
-            Task task = _taskDAO.Get(taskId);
-            Rotation rotation = _rotationDAO.GetByTaskId(taskId);
+            Task task = _taskDAO.Get(id);
+            Rotation rotation = _rotationDAO.GetByTaskId(id);
 
             RotationViewModel viewModel = new RotationViewModel()
             {

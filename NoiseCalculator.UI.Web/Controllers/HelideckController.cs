@@ -36,9 +36,9 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        public PartialViewResult AddTaskHelideck(int taskId)
+        public PartialViewResult AddTaskHelideck(int id)
         {
-            Task task = _taskDAO.Get(taskId);
+            Task task = _taskDAO.Get(id);
 
             HelideckViewModel viewModel = new HelideckViewModel
             {
@@ -89,9 +89,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             return PartialView("_SelectedTask", new SelectedTaskViewModel(selectedTask));
         }
 
-        public PartialViewResult EditTaskHelideck(int selectedTaskId)
+        public PartialViewResult EditTaskHelideck(int id)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
+            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
             
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
             HelicopterNoiseProtection helicopterNoiseProtection = 

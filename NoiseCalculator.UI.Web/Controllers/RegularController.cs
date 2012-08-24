@@ -24,9 +24,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             _selectedTaskDAO = selectedTaskDAO;
         }
 
-        public PartialViewResult AddTaskRegular(int taskId)
+        public PartialViewResult AddTaskRegular(int id)
         {
-            Task task = _taskDAO.GetFilteredByCurrentCulture(taskId);
+            Task task = _taskDAO.GetFilteredByCurrentCulture(id);
 
             RegularViewModel viewModel = new RegularViewModel
             {
@@ -63,9 +63,9 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        public PartialViewResult EditTaskRegular(int selectedTaskId)
+        public PartialViewResult EditTaskRegular(int id)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(selectedTaskId);
+            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
 
             RegularViewModel viewModel = new RegularViewModel
             {
