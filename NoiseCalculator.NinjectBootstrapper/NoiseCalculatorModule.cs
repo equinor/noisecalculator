@@ -31,6 +31,9 @@ namespace NoiseCalculator.NinjectBootstrapper
             // PDF Exporter
             Bind<IPdfExporter>().To<PdfExporterGios>();
             Bind<INoiseLevelService>().To<NoiseLevelService>();
+
+            // Domain Services
+            Bind<IFootnotesService>().To<FootnotesService>();
         }
     }
 }
