@@ -2,6 +2,8 @@
 @model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
 
 <div id="@Model.Id" class="task">
+    <span class="roleType" style="display: none;">@Model.RoleType</span>
+
     <div class="taskListButton taskListEdit">
         <img src="@Url.Content("~/Content/page_edit.png")" class="taskIcon" />
         @TaskResources.SelectedTaskEditLabel
