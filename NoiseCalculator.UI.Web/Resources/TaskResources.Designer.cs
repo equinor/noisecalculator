@@ -88,42 +88,6 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the measured noise levels share of a normal work cycle. The provided work time shall reflect the total time spent on the task, including the non-noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygienist..
-        /// </summary>
-        public static string FooterDynamicCorrectionForMeasuredNoiseLevel {
-            get {
-                return ResourceManager.GetString("FooterDynamicCorrectionForMeasuredNoiseLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The following conditions apply regarding the noise protection during noisy work. The noise protection shall be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training shall be given regarding use and insertion. When using custom molded ear plugs, insertion training shall be given. Ref:GL0169, table 4-1..
-        /// </summary>
-        public static string FooterDynamicNoiseProtection {
-            get {
-                return ResourceManager.GetString("FooterDynamicNoiseProtection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If a noisy work operation is missing from the list one must use «non-noisy work” with the corresponding noise level. Report the noisy work operation to the industrial hygienist for risk assessment and entry into Noise calculator..
-        /// </summary>
-        public static string FooterDynamicUseNoisyWorkWhenTaskIsMissing {
-            get {
-                return ResourceManager.GetString("FooterDynamicUseNoisyWorkWhenTaskIsMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is carried out in areas with a lot of reverberation, for example in tanks..
-        /// </summary>
-        public static string FooterDynamicValidForAreaNoiseUpTo90dBA {
-            get {
-                return ResourceManager.GetString("FooterDynamicValidForAreaNoiseUpTo90dBA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The Noise calculator is based on “GL0169 Method for handling hazardous noise” and is in compliance with “TR0926 Working environment”.
         /// </summary>
         public static string FooterGL0169 {
@@ -138,6 +102,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string FooterNoiseProtectionDefinition {
             get {
                 return ResourceManager.GetString("FooterNoiseProtectionDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If a noisy work operation is missing from the list one must use «non-noisy work” with the corresponding noise level. Report the noisy work operation to the industrial hygienist for risk assessment and entry into Noise calculator..
+        /// </summary>
+        public static string FooterUseNoisyWorkWhenTaskIsMissing {
+            get {
+                return ResourceManager.GetString("FooterUseNoisyWorkWhenTaskIsMissing", resourceCulture);
             }
         }
         
@@ -318,6 +291,33 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string LayoutUserLabel {
             get {
                 return ResourceManager.GetString("LayoutUserLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the measured noise levels share of a normal work cycle. The provided work time shall reflect the total time spent on the task, including the non-noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygienist..
+        /// </summary>
+        public static string LOLFooterDynamicCorrectionForMeasuredNoiseLevel {
+            get {
+                return ResourceManager.GetString("LOLFooterDynamicCorrectionForMeasuredNoiseLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following conditions apply regarding the noise protection during noisy work. The noise protection shall be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training shall be given regarding use and insertion. When using custom molded ear plugs, insertion training shall be given. Ref:GL0169, table 4-1..
+        /// </summary>
+        public static string LOLFooterDynamicNoiseProtection {
+            get {
+                return ResourceManager.GetString("LOLFooterDynamicNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is carried out in areas with a lot of reverberation, for example in tanks..
+        /// </summary>
+        public static string LOLFooterDynamicValidForAreaNoiseUpTo90dBA {
+            get {
+                return ResourceManager.GetString("LOLFooterDynamicValidForAreaNoiseUpTo90dBA", resourceCulture);
             }
         }
         
@@ -579,6 +579,96 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string TaskFormButtonSubmitEdit {
             get {
                 return ResourceManager.GetString("TaskFormButtonSubmitEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Protection.
+        /// </summary>
+        public static string TaskFormHelideckHelicopterNoiseProtectionLabel {
+            get {
+                return ResourceManager.GetString("TaskFormHelideckHelicopterNoiseProtectionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter.
+        /// </summary>
+        public static string TaskFormHelideckHelicopterTypeLabel {
+            get {
+                return ResourceManager.GetString("TaskFormHelideckHelicopterTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Interval.
+        /// </summary>
+        public static string TaskFormHelideckHelicopterWorkIntervalLabel {
+            get {
+                return ResourceManager.GetString("TaskFormHelideckHelicopterWorkIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assistant.
+        /// </summary>
+        public static string TaskFormRegularAssistantLabel {
+            get {
+                return ResourceManager.GetString("TaskFormRegularAssistantLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Measured.
+        /// </summary>
+        public static string TaskFormRegularNoiseMeasuredLabel {
+            get {
+                return ResourceManager.GetString("TaskFormRegularNoiseMeasuredLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator.
+        /// </summary>
+        public static string TaskFormRegularOperatorLabel {
+            get {
+                return ResourceManager.GetString("TaskFormRegularOperatorLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of daily noise dosage.
+        /// </summary>
+        public static string TaskFormRegularPercentageLabel {
+            get {
+                return ResourceManager.GetString("TaskFormRegularPercentageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string TaskFormRegularWorkTimeLabel {
+            get {
+                return ResourceManager.GetString("TaskFormRegularWorkTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work time is distributed on operator and assistant..
+        /// </summary>
+        public static string TaskFormRotationWorkTimeSplitComment {
+            get {
+                return ResourceManager.GetString("TaskFormRotationWorkTimeSplitComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Time As.
+        /// </summary>
+        public static string TaskFormWorkTimeAsLabel {
+            get {
+                return ResourceManager.GetString("TaskFormWorkTimeAsLabel", resourceCulture);
             }
         }
         
