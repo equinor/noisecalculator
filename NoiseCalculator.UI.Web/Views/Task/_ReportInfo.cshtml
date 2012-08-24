@@ -1,6 +1,6 @@
 ﻿@using NoiseCalculator.UI.Web.Resources
 <div id="reportInfo" style="display: none; background-color: white;" title="@TaskResources.ReportInfoDialogTitle" >
-    <input id="pdfReportUrl" type="hidden" value="@Url.Action("PdfReport")"/>    
+    <input id="pdfReportUrl" type="hidden" value="@Url.Action("PdfReportCurrentTasks", "Pdf")"/>
 
     <p>
         <label for="plant" class="label-130px">@TaskResources.ReportInfoPlantLabel</label>
