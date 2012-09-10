@@ -5,7 +5,7 @@
 <input type="hidden" name="Id" value="@Model.Id" />
 
 <p style="margin-top: 15px;">
-    <label for="HelicopterTypeId" class="label-130px">@AdminResources.TaskFormHelideckHelicopterTypeLabel</label>
+    <label for="HelicopterTypeId" class="label-170px">@AdminResources.TaskFormHelideckHelicopterTypeLabel</label>
     :
     <select id="HelicopterTypeId" name="HelicopterTypeId" class="helicopterDropDown">
         @foreach (SelectOptionViewModel selectOption in Model.Helicopters)
@@ -16,7 +16,7 @@
 </p>
 
 <p>
-    <label for="HelicopterNoiseProtectionDefinitionId" class="label-130px">@AdminResources.TaskFormHelideckHelicopterNoiseProtectionLabel</label>
+    <label for="HelicopterNoiseProtectionDefinitionId" class="label-170px">@AdminResources.TaskFormHelideckHelicopterNoiseProtectionLabel</label>
     :
     <select id="HelicopterNoiseProtectionDefinitionId" name="HelicopterNoiseProtectionDefinitionId" class="helicopterDropDown">
         @foreach (SelectOptionViewModel selectOption in Model.NoiseProtectionDefinitions)
@@ -27,7 +27,7 @@
 </p>
 
 <p>
-    <label for="HelicopterWorkIntervalId" class="label-130px">@AdminResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
+    <label for="HelicopterWorkIntervalId" class="label-170px">@AdminResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
     :
     <select id="HelicopterWorkIntervalId" name="HelicopterWorkIntervalId" class="helicopterDropDown" >
         @foreach (SelectOptionViewModel selectOption in Model.WorkIntervals)
@@ -38,7 +38,7 @@
 </p>
 
 <p>
-    <label for="Percentage" class="label-130px">@AdminResources.TaskFormRegularPercentageLabel</label>
+    <label for="Percentage" class="label-170px">@AdminResources.TaskFormRegularPercentageLabel</label>
     :
     <input id="Percentage" name="Percentage" type="text" value="@Model.Percentage" />
 </p>

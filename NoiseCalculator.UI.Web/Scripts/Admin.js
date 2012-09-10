@@ -155,8 +155,7 @@ function submitForm() {
             }
         },
         error: function (jqXHR) {
-            //alert("error!");
-            showValidationError(jqXHR);
+            showValidationError(jqXHR, $("#adminForm"));
         }
     });
 }
@@ -282,7 +281,7 @@ function submitTranslationForm() {
             }
         },
         error: function (jqXHR) {
-            showValidationError(jqXHR);
+            showValidationError(jqXHR, $("#adminTranslationForm"));
         }
     });
 }

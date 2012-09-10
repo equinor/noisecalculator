@@ -476,7 +476,7 @@ function submitRegularForm() {
             }
         },
         error: function (jqXHR) {
-            showValidationError(jqXHR);
+            showValidationError(jqXHR, myEditForm);
         }
     });
 }
@@ -502,7 +502,7 @@ function submitRotationForm() {
             addResultToTaskList($taskDiv);
         },
         error: function (jqXHR) {
-            showValidationError(jqXHR);
+            showValidationError(jqXHR, myEditForm);
         }
     });
 }
@@ -533,7 +533,7 @@ function submitHelideckForm() {
             }
         },
         error: function (jqXHR) {
-            showValidationError(jqXHR);
+            showValidationError(jqXHR, myEditForm);
         }
     });
 }

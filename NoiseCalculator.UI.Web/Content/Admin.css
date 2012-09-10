@@ -1,6 +1,12 @@
-﻿* { /* Reset styles */
+﻿/* Reset styles */
+/** { 
     margin: 0px;
     border: 0px;
+    padding: 0px;
+}*/
+
+h2 {
+    margin: 0px;
     padding: 0px;
 }
 
@@ -9,6 +15,7 @@
     margin-left: 110px;
     margin-bottom: 5px;
     overflow: hidden;
+    padding: 0;
 }
 
     .contextMenu li {

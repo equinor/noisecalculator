@@ -7,7 +7,7 @@
 
 <p>
     <label for="selectedCultureName" class="label-130px">@AdminResources.GenericTaskLanguage</label>
-    <select id="selectedCultureName" name="selectedCultureName">
+    <select id="selectedCultureName" name="selectedCultureName" style="width: 180px;">
         @foreach (SelectOptionViewModel selectOption in Model.Languages)
         {
             <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
@@ -22,7 +22,7 @@
 
 <p>
     <label for="roleId" class="label-130px">@AdminResources.GenericTaskRole</label>
-    <select id="roleId" name="roleId">
+    <select id="roleId" name="roleId" style="width: 180px;">
         @foreach (SelectOptionViewModel selectOption in Model.Roles)
         {
             <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
@@ -32,7 +32,7 @@
 
 <p>
     <label for="noiseProtectionId" class="label-130px">@AdminResources.GenericTaskNoiseProtection</label>
-    <select id="noiseProtectionId" name="noiseProtectionId">
+    <select id="noiseProtectionId" name="noiseProtectionId" style="width: 180px;">
         @foreach (SelectOptionViewModel selectOption in Model.NoiseProtections)
         {
             <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>

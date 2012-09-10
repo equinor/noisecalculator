@@ -204,6 +204,12 @@ p
     display: inline-block;
 }
 
+.label-170px
+{
+    width: 170px; 
+    display: inline-block;
+}
+
 .button
 {
     float: left;

@@ -4,11 +4,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask
 {
     public class HelicopterTaskIndexViewModel
     {
-        //public string PageTitle { get; set; }        
         public IList<HelicopterTaskListItemViewModel> HelicopterTasks { get; private set; }
-        //public string UrlCreate { get; set; }
-        //public string UrlEdit { get; set; }
-        //public string UrlDeleteConfirmation { get; set; }
 
         public HelicopterTaskIndexViewModel()
         {

@@ -1,8 +1,9 @@
 ﻿
-function showValidationError(jqXHR) {
+function showValidationError(jqXHR, $formDiv) {
     var errorDiv = $("<div>").replaceWith(jqXHR.responseText).hide();
 
-    $("#editForm").append(errorDiv);
+    //$("#editForm").append(errorDiv);
+    $formDiv.append(errorDiv);
 
     $("#closeErrorDialog").click(function () {
         errorDiv.dialog("close");
