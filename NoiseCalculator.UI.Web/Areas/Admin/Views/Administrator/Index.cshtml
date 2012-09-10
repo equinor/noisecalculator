@@ -1,17 +1,18 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Administrator.AdministratorIndexViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.Administrator.AdministratorIndexViewModel
            
 @{
-    ViewBag.Title = @Model.PageTitle;
+    ViewBag.Title = AdminResources.PageTitleAdministratorUsers;
     Layout = "~/Areas/Admin/Views/Shared/AdminIndex.cshtml";
 }
 @section AdminHidden
 {
-    <input id="urlCreate" type="hidden" value="@Model.UrlCreate" />
-    <input id="urlDeleteConformation" type="hidden" value="@Model.UrlDeleteConfirmation" />
+    <input id="urlCreate" type="hidden" value="@Url.Action("Create")" />
+    <input id="urlDeleteConformation" type="hidden" value="@Url.Action("ConfirmDelete")" />
 }
 @section PageTitleText
 {
-    @Model.PageTitle
+    @AdminResources.PageTitleAdministratorUsers
 }
 @section ItemList
 {

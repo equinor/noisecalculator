@@ -1,6 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 
-namespace NoiseCalculator.UI.Web.Models
+namespace NoiseCalculator.UI.Web.Support
 {
     public class UserHelper
     {

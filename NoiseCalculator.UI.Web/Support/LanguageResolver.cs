@@ -1,6 +1,6 @@
 ﻿using NoiseCalculator.UI.Web.Resources;
 
-namespace NoiseCalculator.UI.Web.Models
+namespace NoiseCalculator.UI.Web.Support
 {
     public class LanguageResolver
     {

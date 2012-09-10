@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using NoiseCalculator.UI.Web.Models;
+using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Models
@@ -10,7 +10,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
         {
             IList<SelectOptionViewModel> languages = new List<SelectOptionViewModel>();
 
-            languages.Add(CreateLanguageSelectOption("-- Select One --", string.Empty, selectedCultureName));
+            languages.Add(CreateLanguageSelectOption("-- Select One --", "0", selectedCultureName));
             languages.Add(CreateLanguageSelectOption(LanguageResolver.GetLanguageName("nb-NO"), "nb-NO", selectedCultureName));
             languages.Add(CreateLanguageSelectOption(LanguageResolver.GetLanguageName("en-US"), "en-US", selectedCultureName));
 

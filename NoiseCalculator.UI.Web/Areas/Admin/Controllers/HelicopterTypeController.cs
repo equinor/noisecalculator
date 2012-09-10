@@ -1,121 +1,78 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
     public class HelicopterTypeController : Controller
     {
-        private readonly IDAO<HelicopterType, int> _helicopterTypeDAO;
+        private readonly IHelicopterTypeService _helicopterTypeService;
 
-        public HelicopterTypeController(IDAO<HelicopterType,int> helicopterTypeDAO)
+        public HelicopterTypeController(IHelicopterTypeService helicopterTypeService)
         {
-            _helicopterTypeDAO = helicopterTypeDAO;
+            _helicopterTypeService = helicopterTypeService;
         }
 
-        
+
+        [NoCache]
         public ActionResult Index()
         {
-            IEnumerable<HelicopterType> helicopterTypes = _helicopterTypeDAO.GetAll();
-
-            GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
-            foreach (var helicopterType in helicopterTypes)
-            {
-                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = helicopterType.Id, SystemName = helicopterType.Title });
-            }
-
-            viewModel.PageTitle = "Helicopter Type"; // <---- TRANSLATIION!
-            viewModel.UrlCreate = Url.Action("Create");
-            viewModel.UrlEdit = Url.Action("Edit");
-            viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-
+            GenericDefinitionIndexViewModel viewModel = _helicopterTypeService.Index();
             return View(viewModel);
         }
 
 
+        [NoCache]
         public ActionResult Create()
         {
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_CreateGenericDefinition", viewModel);
+            return PartialView("_CreateGenericDefinition", new GenericDefinitionViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(GenericDefinitionEditModel form)
+        public ActionResult Create(GenericDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
                 Response.StatusCode = 500;
-                return Json("FAIL!");
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            HelicopterType helicopterType = new HelicopterType();
-            helicopterType.Title = form.Title;
-
-            _helicopterTypeDAO.Store(helicopterType);
-            
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterType.Id;
-            viewModel.SystemName = helicopterType.Title;
-
+            GenericDefinitionViewModel viewModel = _helicopterTypeService.Create(editModel);
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
 
+        [NoCache]
         public ActionResult Edit(int id)
         {
-            HelicopterType helicopterType = _helicopterTypeDAO.Get(id);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterType.Id;
-            viewModel.SystemName = helicopterType.Title;
-            viewModel.HasTranslationSupport = false;
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericDefinitionViewModel viewModel = _helicopterTypeService.EditHelicopterTypeForm(id);
             return PartialView("_EditGenericDefinition", viewModel);
         }
 
-
         [HttpPost]
-        public ActionResult Edit(int id, GenericDefinitionEditModel form)
+        public ActionResult Edit(int id, GenericDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
-                return new EmptyResult();
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
-
-            HelicopterType helicopterType = _helicopterTypeDAO.Get(id);
-            helicopterType.Title = form.Title;
-
-            _helicopterTypeDAO.Store(helicopterType);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterType.Id;
-            viewModel.SystemName = helicopterType.Title;
-
+            
+            GenericDefinitionViewModel viewModel = _helicopterTypeService.Edit(id, editModel);
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
 
+        [NoCache]
         public ActionResult ConfirmDelete(int id)
         {
-            HelicopterType helicopterType = _helicopterTypeDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = helicopterType.Id.ToString();
-            viewModel.Title = helicopterType.Title;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _helicopterTypeService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
@@ -124,8 +81,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                HelicopterType helicopterWorkInterval = _helicopterTypeDAO.Load(id);
-                _helicopterTypeDAO.Delete(helicopterWorkInterval);
+                _helicopterTypeService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)

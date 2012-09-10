@@ -1,103 +1,71 @@
 ﻿using System;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
     public class NoiseProtectionController : Controller
     {
-        private readonly IDAO<NoiseProtection,int> _noiseProtectionDAO;
-        private readonly IDAO<NoiseProtectionDefinition, int> _noiseProtectionDefinitionDAO;
+        private readonly INoiseProtectionService _noiseProtectionService;
 
-        public NoiseProtectionController(IDAO<NoiseProtection, int> noiseProtectionDAO, IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
+        public NoiseProtectionController(INoiseProtectionService noiseProtectionService)
         {
-            _noiseProtectionDAO = noiseProtectionDAO;
-            _noiseProtectionDefinitionDAO = noiseProtectionDefinitionDAO;
+            _noiseProtectionService = noiseProtectionService;
         }
 
 
+        [NoCache]
         public ActionResult Create(int id)
         {
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(Thread.CurrentThread.CurrentCulture.Name);
-            viewModel.DefinitionId = id;
-            viewModel.FormActionUrl = Url.Action("Create");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericTranslationViewModel viewModel = _noiseProtectionService.CreateNoiseProtectionForm(id);
             return PartialView("_CreateGenericTranslation", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(GenericTranslationEditModel form)
+        public ActionResult Create(GenericTranslationEditModel editModel)
         {
-            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(form.DefinitionId);
-            
-            NoiseProtection noiseProtection = new NoiseProtection();
-            noiseProtection.NoiseProtectionDefinition = definition;
-            noiseProtection.Title = form.Title;
-            noiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
-            definition.NoiseProtections.Add(noiseProtection);
+            if (editModel.IsValid() == false)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
+            }
 
-            _noiseProtectionDefinitionDAO.Store(definition);
-            
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
-            viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
-            viewModel.Id = noiseProtection.Id;
-            viewModel.Title = noiseProtection.Title;
-
+            GenericTranslationViewModel viewModel = _noiseProtectionService.Create(editModel);
             return PartialView("_GenericTranslationTableRow", viewModel);
         }
 
+
+        [NoCache]
         public ActionResult Edit(int id)
         {
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
-
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
-            viewModel.Id = noiseProtection.Id;
-            viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
-            viewModel.Title = noiseProtection.Title;
-            viewModel.FormActionUrl = @Url.Action("Edit");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericTranslationViewModel viewModel = _noiseProtectionService.EditNoiseProtectionForm(id);
             return PartialView("_EditGenericTranslation", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(GenericTranslationEditModel form)
+        public ActionResult Edit(GenericTranslationEditModel editModel)
         {
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(form.Id);
-            noiseProtection.Title = form.Title;
-            noiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
+            if (editModel.IsValid() == false)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
+            }
 
-            _noiseProtectionDAO.Store(noiseProtection);
-
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(noiseProtection.CultureName);
-            viewModel.DefinitionId = noiseProtection.NoiseProtectionDefinition.Id;
-            viewModel.Id = noiseProtection.Id;
-            viewModel.Title = noiseProtection.Title;
-
+            GenericTranslationViewModel viewModel = _noiseProtectionService.Edit(editModel);
             return PartialView("_GenericTranslationTableRow", viewModel);
         }
 
-        // Refactor... Common CreateTranslationViewModel method
-
+        
+        [NoCache]
         public ActionResult ConfirmDelete(int id)
         {
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = "trans" + noiseProtection.Id;
-            viewModel.Title = noiseProtection.Title;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _noiseProtectionService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
@@ -106,8 +74,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                NoiseProtection noiseProtection = _noiseProtectionDAO.Load(id);
-                _noiseProtectionDAO.Delete(noiseProtection);
+                _noiseProtectionService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)

@@ -1,122 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
     public class HelicopterWorkIntervalController : Controller
     {
-        private IDAO<HelicopterWorkInterval, int> _helicopterWorkIntervalDAO;
+        private readonly IHelicopterWorkIntervalService _helicopterWorkIntervalService;
 
-        public HelicopterWorkIntervalController(IDAO<HelicopterWorkInterval,int> helicopterWorkIntervalDAO)
+        public HelicopterWorkIntervalController(IHelicopterWorkIntervalService helicopterWorkIntervalService)
         {
-            _helicopterWorkIntervalDAO = helicopterWorkIntervalDAO;
+            _helicopterWorkIntervalService = helicopterWorkIntervalService;
         }
 
 
+        [NoCache]
         public ActionResult Index()
         {
-            IEnumerable<HelicopterWorkInterval> helicopterWorkIntervals = _helicopterWorkIntervalDAO.GetAll();
-
-            GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
-            foreach (var helicopterWorkInterval in helicopterWorkIntervals)
-            {
-                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = helicopterWorkInterval.Id, SystemName = helicopterWorkInterval.Title });
-            }
-
-            viewModel.PageTitle = "Helicopter Work Interval"; // <---- TRANSLATIION!
-            viewModel.UrlCreate = Url.Action("Create");
-            viewModel.UrlEdit = Url.Action("Edit");
-            viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericDefinitionIndexViewModel viewModel = _helicopterWorkIntervalService.Index();
             return View(viewModel);
         }
 
+
+        [NoCache]
         public ActionResult Create()
         {
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_CreateGenericDefinition", viewModel);
+            return PartialView("_CreateGenericDefinition", new GenericDefinitionViewModel());
         }
 
 
         [HttpPost]
-        public ActionResult Create(GenericDefinitionEditModel form)
+        public ActionResult Create(GenericDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
                 Response.StatusCode = 500;
-                return Json("FAIL!");
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            HelicopterWorkInterval helicopterWorkInterval = new HelicopterWorkInterval();
-            helicopterWorkInterval.Title = form.Title;
-            
-            _helicopterWorkIntervalDAO.Store(helicopterWorkInterval);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterWorkInterval.Id;
-            viewModel.SystemName = helicopterWorkInterval.Title;
-
+            GenericDefinitionViewModel viewModel = _helicopterWorkIntervalService.Create(editModel);
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
 
+        [NoCache]
         public ActionResult Edit(int id)
         {
-            HelicopterWorkInterval helicopterWorkInterval = _helicopterWorkIntervalDAO.Get(id);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterWorkInterval.Id;
-            viewModel.SystemName = helicopterWorkInterval.Title;
-            viewModel.HasTranslationSupport = false;
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericDefinitionViewModel viewModel = _helicopterWorkIntervalService.EditHelicopterTypeForm(id);
             return PartialView("_EditGenericDefinition", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, GenericDefinitionEditModel form)
+        public ActionResult Edit(int id, GenericDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
-                return new EmptyResult();
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            HelicopterWorkInterval helicopterWorkInterval = _helicopterWorkIntervalDAO.Get(id);
-            helicopterWorkInterval.Title = form.Title;
-
-            _helicopterWorkIntervalDAO.Store(helicopterWorkInterval);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = helicopterWorkInterval.Id;
-            viewModel.SystemName = helicopterWorkInterval.Title;
-
+            GenericDefinitionViewModel viewModel = _helicopterWorkIntervalService.Edit(id, editModel);
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
 
+        [NoCache]
         public ActionResult ConfirmDelete(int id)
         {
-            HelicopterWorkInterval helicopterWorkInterval = _helicopterWorkIntervalDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = helicopterWorkInterval.Id.ToString();
-            viewModel.Title = helicopterWorkInterval.Title;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _helicopterWorkIntervalService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
@@ -125,8 +82,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                HelicopterWorkInterval helicopterWorkInterval = _helicopterWorkIntervalDAO.Load(id);
-                _helicopterWorkIntervalDAO.Delete(helicopterWorkInterval);
+                _helicopterWorkIntervalService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)

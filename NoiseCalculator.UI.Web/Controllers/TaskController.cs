@@ -7,7 +7,7 @@ using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
-using NoiseCalculator.UI.Web.Models;
+using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Controllers

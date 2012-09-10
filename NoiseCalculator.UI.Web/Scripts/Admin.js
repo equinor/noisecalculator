@@ -155,8 +155,8 @@ function submitForm() {
             }
         },
         error: function (jqXHR) {
-            alert("error!");
-            //showValidationError(jqXHR);
+            //alert("error!");
+            showValidationError(jqXHR);
         }
     });
 }
@@ -281,8 +281,8 @@ function submitTranslationForm() {
                 hideTranslationDialog();
             }
         },
-        error: function (result) {
-            var feil = "Feilmelding!";
+        error: function (jqXHR) {
+            showValidationError(jqXHR);
         }
     });
 }

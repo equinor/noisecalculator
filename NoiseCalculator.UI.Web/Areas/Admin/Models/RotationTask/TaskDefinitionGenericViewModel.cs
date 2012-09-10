@@ -10,17 +10,17 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
 
         public IList<RotationTaskListItemViewModel> RotationTasks { get; set; }
 
-        public string UrlCreateTranslation { get; set; }
-        public string UrlEditTranslation { get; set; }
-        public string UrlDeleteTranslationConfirmation { get; set; }
+        //public string UrlCreateTranslation { get; set; }
+        //public string UrlEditTranslation { get; set; }
+        //public string UrlDeleteTranslationConfirmation { get; set; }
 
 
         public TaskDefinitionRotationViewModel()
         {
             RotationTasks = new List<RotationTaskListItemViewModel>();
-            UrlCreateTranslation = string.Empty;
-            UrlEditTranslation = string.Empty;
-            UrlDeleteTranslationConfirmation = string.Empty;
+            //UrlCreateTranslation = string.Empty;
+            //UrlEditTranslation = string.Empty;
+            //UrlDeleteTranslationConfirmation = string.Empty;
         }
     }
 }

@@ -1,19 +1,20 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericDefinitionIndexViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.GenericDefinitionIndexViewModel
 
 @{
-    ViewBag.Title = @Model.PageTitle;
+    ViewBag.Title = AdminResources.PageTitleHelicopterNoiseProtection;
     Layout = "~/Areas/Admin/Views/Shared/AdminIndex.cshtml";
 }
 
 @section AdminHidden
 {
-    <input id="urlCreate" type="hidden" value="@Model.UrlCreate" />
-    <input id="urlEdit" type="hidden" value="@Model.UrlEdit" />
-    <input id="urlDeleteConformation" type="hidden" value="@Model.UrlDeleteConfirmation" />
+    <input id="urlCreate" type="hidden" value="@Url.Action("Create")" />
+    <input id="urlEdit" type="hidden" value="@Url.Action("Edit")" />
+    <input id="urlDeleteConformation" type="hidden" value="@Url.Action("ConfirmDelete")" />
 }
 @section PageTitleText
 {
-    @Model.PageTitle
+    @AdminResources.PageTitleHelicopterNoiseProtection
 }
 @section ItemList
 {

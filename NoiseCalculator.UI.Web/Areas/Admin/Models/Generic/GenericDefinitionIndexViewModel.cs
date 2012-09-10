@@ -4,11 +4,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
 {
     public class GenericDefinitionIndexViewModel
     {
-        public string PageTitle { get; set; }        
+        //public string PageTitle { get; set; }        
         public IList<GenericDefinitionViewModel> Definitions { get; private set; }
-        public string UrlCreate { get; set; }
-        public string UrlEdit { get; set; }
-        public string UrlDeleteConfirmation { get; set; }
+        //public string UrlCreate { get; set; }
+        //public string UrlEdit { get; set; }
+        //public string UrlDeleteConfirmation { get; set; }
 
         public GenericDefinitionIndexViewModel()
         {

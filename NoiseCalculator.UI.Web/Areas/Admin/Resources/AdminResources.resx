@@ -138,25 +138,25 @@
   <data name="ColumnRemove" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="ContextMenuAdministratorUsers" xml:space="preserve">
+  <data name="PageTitleAdministratorUsers" xml:space="preserve">
     <value>Administrator Users</value>
   </data>
-  <data name="ContextMenuHelicopterNoiseProtection" xml:space="preserve">
+  <data name="PageTitleHelicopterNoiseProtection" xml:space="preserve">
     <value>Helictoper: Noise Protection</value>
   </data>
-  <data name="ContextMenuHelicopterTasks" xml:space="preserve">
+  <data name="PageTitleHelicopterTasks" xml:space="preserve">
     <value>Helicopter: Tasks</value>
   </data>
-  <data name="ContextMenuHelicopterTypes" xml:space="preserve">
+  <data name="PageTitleHelicopterTypes" xml:space="preserve">
     <value>Helicopter: Types</value>
   </data>
-  <data name="ContextMenuHelictoperWorkInterval" xml:space="preserve">
+  <data name="PageTitleHelictoperWorkInterval" xml:space="preserve">
     <value>Helictoper: Work Interval</value>
   </data>
-  <data name="ContextMenuNoiseProtection" xml:space="preserve">
+  <data name="PageTitleNoiseProtection" xml:space="preserve">
     <value>Noise Protection</value>
   </data>
-  <data name="ContextMenuTasks" xml:space="preserve">
+  <data name="PageTitleTasks" xml:space="preserve">
     <value>Tasks</value>
   </data>
   <data name="DeleteConfirmationWindowTitle" xml:space="preserve">
@@ -272,5 +272,41 @@
   </data>
   <data name="TaskFormWorkTimeAsLabel" xml:space="preserve">
     <value>Work Time As</value>
+  </data>
+  <data name="ValidationAdministratorEditModelUsername" xml:space="preserve">
+    <value>Username is required.</value>
+  </data>
+  <data name="ValidationDefinitionIdRequired" xml:space="preserve">
+    <value>Definition Id is required.</value>
+  </data>
+  <data name="ValidationHelicopterTaskEditModelPercentage" xml:space="preserve">
+    <value>Percentage must be provided.</value>
+  </data>
+  <data name="ValidationLanguageRequired" xml:space="preserve">
+    <value>Language is required.</value>
+  </data>
+  <data name="ValidationRoleRequired" xml:space="preserve">
+    <value>Role is required.</value>
+  </data>
+  <data name="ValidationRotationTaskEditModelIAssistantTaskRequired" xml:space="preserve">
+    <value>Assistant task is required.</value>
+  </data>
+  <data name="ValidationRotationTaskEditModelIOperatorTaskRequired" xml:space="preserve">
+    <value>Operator task is required.</value>
+  </data>
+  <data name="ValidationTaskEditModelAllowedExposureRequired" xml:space="preserve">
+    <value>Allowed exposure is required.</value>
+  </data>
+  <data name="ValidationTaskEditModelNoiseLevelRequired" xml:space="preserve">
+    <value>Noise level is required.</value>
+  </data>
+  <data name="ValidationTaskEditModelNoiseProtectionRequired" xml:space="preserve">
+    <value>Noise protection is required.</value>
+  </data>
+  <data name="ValidationTitleRequired" xml:space="preserve">
+    <value>Title is required.</value>
+  </data>
+  <data name="ContextMenuNoiseCalculatorPage" xml:space="preserve">
+    <value>To Noise Calculator</value>
   </data>
 </root>

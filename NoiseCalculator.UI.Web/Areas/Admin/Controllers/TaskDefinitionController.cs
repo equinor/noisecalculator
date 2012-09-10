@@ -1,51 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Domain.Enums;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
     public class TaskDefinitionController : Controller
     {
-        private readonly ITaskDefinitionDAO _taskDefinitionDAO;
+        private readonly ITaskDefinitionService _taskDefinitionService;
+        private readonly IGenericTaskDefinitionService _genericTaskDefinitionService;
 
-        public TaskDefinitionController(ITaskDefinitionDAO taskDefinitionDAO)
+        public TaskDefinitionController(ITaskDefinitionService taskDefinitionService, IGenericTaskDefinitionService genericTaskDefinitionService)
         {
-            _taskDefinitionDAO = taskDefinitionDAO;
+            _taskDefinitionService = taskDefinitionService;
+            _genericTaskDefinitionService = genericTaskDefinitionService;
         }
 
 
+        [NoCache]
         public ActionResult Index()
         {
-            IEnumerable<TaskDefinition> definitions = _taskDefinitionDAO.GetAllOrdered();
-
-            TaskDefinitionIndexViewModel viewModel = new TaskDefinitionIndexViewModel();
-            foreach (var definition in definitions)
-            {
-                TaskDefinitionListItemViewModel taskDefinitionListItemView = new TaskDefinitionListItemViewModel()
-                    {
-                        Id = definition.Id,
-                        SystemName = definition.SystemName,
-                        RoleType = definition.RoleType.ToString()
-                    };
-                viewModel.Definitions.Add(taskDefinitionListItemView);
-            }
-
-            viewModel.PageTitle = "Tasks Definitions"; // <---- TRANSLATIION!
-            viewModel.UrlCreate = Url.Action("Create");
-            viewModel.UrlEditGeneric = Url.Action("EditTaskDefinition", "GenericTask");
-            viewModel.UrlEditRotation = Url.Action("EditTaskDefinition", "RotationTask");
-            viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            TaskDefinitionIndexViewModel viewModel = _taskDefinitionService.Index();
             return View(viewModel);
         }
 
@@ -57,39 +38,23 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(CreateTaskDefinitionEditModel form)
+        public ActionResult Create(CreateTaskDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
                 Response.StatusCode = 500;
-                return Json("FAIL!");
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            TaskDefinition definition = new TaskDefinition();
-            definition.SystemName = form.Title.ToUpper();
-            definition.RoleType = (RoleTypeEnum) Enum.Parse(typeof (RoleTypeEnum), form.RoleType);
-            _taskDefinitionDAO.Store(definition);
-
-            TaskDefinitionListItemViewModel viewModel = new TaskDefinitionListItemViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-            viewModel.RoleType = definition.RoleType.ToString();
-            
+            TaskDefinitionListItemViewModel viewModel = _taskDefinitionService.Create(editModel);
             return PartialView("_TaskDefinitionTableRow", viewModel);
         }
 
 
+        [NoCache]
         public ActionResult ConfirmDelete(int id)
         {
-            TaskDefinition definintion = _taskDefinitionDAO.Get(id);
-            
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = definintion.Id.ToString();
-            viewModel.Title = definintion.SystemName;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _taskDefinitionService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
@@ -99,8 +64,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                TaskDefinition noiseProtectionDefinition = _taskDefinitionDAO.Load(id);
-                _taskDefinitionDAO.Delete(noiseProtectionDefinition);
+                _taskDefinitionService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)
@@ -108,6 +72,20 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 Response.StatusCode = 500;
                 return Json(ex.ToString());
             }
+        }
+
+
+        [HttpPost]
+        public ActionResult EditGenericTaskDefinition(int id, GenericDefinitionEditModel editModel)
+        {
+            if (editModel.IsValid() == false)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
+            }
+
+            TaskDefinitionListItemViewModel viewModel = _genericTaskDefinitionService.Edit(id, editModel);
+            return PartialView("_TaskDefinitionTableRow", viewModel);
         }
     }
 }

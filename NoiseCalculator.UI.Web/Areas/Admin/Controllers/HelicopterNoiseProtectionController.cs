@@ -1,110 +1,83 @@
 ﻿using System;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
     public class HelicopterNoiseProtectionController : Controller
     {
-        private readonly IDAO<HelicopterNoiseProtection, int> _helicopterNoiseProtectionDAO;
-        private readonly IDAO<HelicopterNoiseProtectionDefinition, int> _helicopterNoiseProtectionDefinitionDAO;
+        private readonly IHelicopterNoiseProtectionService _helicopterNoiseProtectionService;
 
-        public HelicopterNoiseProtectionController(IDAO<HelicopterNoiseProtection, int> helicopterNoiseProtectionDAO, IDAO<HelicopterNoiseProtectionDefinition, int> helicopterNoiseProtectionDefinitionDAO)
+        public HelicopterNoiseProtectionController(IHelicopterNoiseProtectionService helicopterNoiseProtectionService)
         {
-            _helicopterNoiseProtectionDAO = helicopterNoiseProtectionDAO;
-            _helicopterNoiseProtectionDefinitionDAO = helicopterNoiseProtectionDefinitionDAO;
+            _helicopterNoiseProtectionService = helicopterNoiseProtectionService;
         }
 
+
+        [NoCache]
         public ActionResult Create(int id)
         {
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(Thread.CurrentThread.CurrentCulture.Name);
-            viewModel.DefinitionId = id;
-            viewModel.FormActionUrl = Url.Action("Create");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericTranslationViewModel viewModel = _helicopterNoiseProtectionService.CreateHelicopterNoiseProtectionForm(id);
             return PartialView("_CreateGenericTranslation", viewModel);
         }
 
+
         [HttpPost]
-        public ActionResult Create(GenericTranslationEditModel form)
+        public ActionResult Create(GenericTranslationEditModel editModel)
         {
-            HelicopterNoiseProtectionDefinition definition = _helicopterNoiseProtectionDefinitionDAO.Get(form.DefinitionId);
-            
-            HelicopterNoiseProtection helicopterNoiseProtection = new HelicopterNoiseProtection();
-            helicopterNoiseProtection.HelicopterNoiseProtectionDefinition = definition;
-            helicopterNoiseProtection.Title = form.Title;
-            helicopterNoiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
-            definition.HelicopterNoiseProtections.Add(helicopterNoiseProtection);
+            if (editModel.IsValid() == false)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
+            }
 
-            _helicopterNoiseProtectionDefinitionDAO.Store(definition);
-            
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(helicopterNoiseProtection.CultureName);
-            viewModel.DefinitionId = helicopterNoiseProtection.HelicopterNoiseProtectionDefinition.Id;
-            viewModel.Id = helicopterNoiseProtection.Id;
-            viewModel.Title = helicopterNoiseProtection.Title;
-
+            GenericTranslationViewModel viewModel = _helicopterNoiseProtectionService.Create(editModel);
             return PartialView("_GenericTranslationTableRow", viewModel);
         }
 
+
+        [NoCache]
         public ActionResult Edit(int id)
         {
-            HelicopterNoiseProtection helicopterNoiseProtection = _helicopterNoiseProtectionDAO.Get(id);
-
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(helicopterNoiseProtection.CultureName);
-            viewModel.Id = helicopterNoiseProtection.Id;
-            viewModel.DefinitionId = helicopterNoiseProtection.HelicopterNoiseProtectionDefinition.Id;
-            viewModel.Title = helicopterNoiseProtection.Title;
-            viewModel.FormActionUrl = Url.Action("Edit");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericTranslationViewModel viewModel = _helicopterNoiseProtectionService.EditHelicopterNoiseProtiectionForm(id);
             return PartialView("_EditGenericTranslation", viewModel);
         }
 
+
         [HttpPost]
-        public ActionResult Edit(GenericTranslationEditModel form)
+        public ActionResult Edit(GenericTranslationEditModel editModel)
         {
-            HelicopterNoiseProtection helicopterNoiseProtection = _helicopterNoiseProtectionDAO.Get(form.Id);
-            helicopterNoiseProtection.Title = form.Title;
-            helicopterNoiseProtection.CultureName = form.SelectedCultureName; // Add validation - REQUIRED
+            if (editModel.IsValid() == false)
+            {
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
+            }
 
-            _helicopterNoiseProtectionDAO.Store(helicopterNoiseProtection);
-
-            GenericTranslationViewModel viewModel = new GenericTranslationViewModel(helicopterNoiseProtection.CultureName);
-            viewModel.DefinitionId = helicopterNoiseProtection.HelicopterNoiseProtectionDefinition.Id;
-            viewModel.Id = helicopterNoiseProtection.Id;
-            viewModel.Title = helicopterNoiseProtection.Title;
-
+            GenericTranslationViewModel viewModel = _helicopterNoiseProtectionService.Edit(editModel);
             return PartialView("_GenericTranslationTableRow", viewModel);
         }
 
+
+        [NoCache]
         public ActionResult ConfirmDelete(int id)
         {
-            HelicopterNoiseProtection helicopterNoiseProtection = _helicopterNoiseProtectionDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = "trans" + helicopterNoiseProtection.Id;
-            viewModel.Title = helicopterNoiseProtection.Title;
-            viewModel.UrlDeleteAction = Url.Action("DeleteTranslation");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _helicopterNoiseProtectionService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
+
         [HttpPost]
-        public ActionResult DeleteTranslation(int id)
+        public ActionResult Delete(int id)
         {
             try
             {
-                HelicopterNoiseProtection helicopterNoiseProtection = _helicopterNoiseProtectionDAO.Get(id);
-                _helicopterNoiseProtectionDAO.Delete(helicopterNoiseProtection);
+                _helicopterNoiseProtectionService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)

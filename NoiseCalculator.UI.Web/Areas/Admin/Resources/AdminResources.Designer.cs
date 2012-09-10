@@ -124,65 +124,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Administrator Users.
+        ///   Looks up a localized string similar to To Noise Calculator.
         /// </summary>
-        public static string ContextMenuAdministratorUsers {
+        public static string ContextMenuNoiseCalculatorPage {
             get {
-                return ResourceManager.GetString("ContextMenuAdministratorUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Helictoper: Noise Protection.
-        /// </summary>
-        public static string ContextMenuHelicopterNoiseProtection {
-            get {
-                return ResourceManager.GetString("ContextMenuHelicopterNoiseProtection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Helicopter: Tasks.
-        /// </summary>
-        public static string ContextMenuHelicopterTasks {
-            get {
-                return ResourceManager.GetString("ContextMenuHelicopterTasks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Helicopter: Types.
-        /// </summary>
-        public static string ContextMenuHelicopterTypes {
-            get {
-                return ResourceManager.GetString("ContextMenuHelicopterTypes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Helictoper: Work Interval.
-        /// </summary>
-        public static string ContextMenuHelictoperWorkInterval {
-            get {
-                return ResourceManager.GetString("ContextMenuHelictoperWorkInterval", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Noise Protection.
-        /// </summary>
-        public static string ContextMenuNoiseProtection {
-            get {
-                return ResourceManager.GetString("ContextMenuNoiseProtection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tasks.
-        /// </summary>
-        public static string ContextMenuTasks {
-            get {
-                return ResourceManager.GetString("ContextMenuTasks", resourceCulture);
+                return ResourceManager.GetString("ContextMenuNoiseCalculatorPage", resourceCulture);
             }
         }
         
@@ -318,6 +264,69 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string HelicopterTaskColumnWorkInterval {
             get {
                 return ResourceManager.GetString("HelicopterTaskColumnWorkInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrator Users.
+        /// </summary>
+        public static string PageTitleAdministratorUsers {
+            get {
+                return ResourceManager.GetString("PageTitleAdministratorUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helictoper: Noise Protection.
+        /// </summary>
+        public static string PageTitleHelicopterNoiseProtection {
+            get {
+                return ResourceManager.GetString("PageTitleHelicopterNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter: Tasks.
+        /// </summary>
+        public static string PageTitleHelicopterTasks {
+            get {
+                return ResourceManager.GetString("PageTitleHelicopterTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helicopter: Types.
+        /// </summary>
+        public static string PageTitleHelicopterTypes {
+            get {
+                return ResourceManager.GetString("PageTitleHelicopterTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helictoper: Work Interval.
+        /// </summary>
+        public static string PageTitleHelictoperWorkInterval {
+            get {
+                return ResourceManager.GetString("PageTitleHelictoperWorkInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Protection.
+        /// </summary>
+        public static string PageTitleNoiseProtection {
+            get {
+                return ResourceManager.GetString("PageTitleNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string PageTitleTasks {
+            get {
+                return ResourceManager.GetString("PageTitleTasks", resourceCulture);
             }
         }
         
@@ -525,6 +534,105 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string TaskFormWorkTimeAsLabel {
             get {
                 return ResourceManager.GetString("TaskFormWorkTimeAsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is required..
+        /// </summary>
+        public static string ValidationAdministratorEditModelUsername {
+            get {
+                return ResourceManager.GetString("ValidationAdministratorEditModelUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Definition Id is required..
+        /// </summary>
+        public static string ValidationDefinitionIdRequired {
+            get {
+                return ResourceManager.GetString("ValidationDefinitionIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage must be provided..
+        /// </summary>
+        public static string ValidationHelicopterTaskEditModelPercentage {
+            get {
+                return ResourceManager.GetString("ValidationHelicopterTaskEditModelPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language is required..
+        /// </summary>
+        public static string ValidationLanguageRequired {
+            get {
+                return ResourceManager.GetString("ValidationLanguageRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role is required..
+        /// </summary>
+        public static string ValidationRoleRequired {
+            get {
+                return ResourceManager.GetString("ValidationRoleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assistant task is required..
+        /// </summary>
+        public static string ValidationRotationTaskEditModelIAssistantTaskRequired {
+            get {
+                return ResourceManager.GetString("ValidationRotationTaskEditModelIAssistantTaskRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator task is required..
+        /// </summary>
+        public static string ValidationRotationTaskEditModelIOperatorTaskRequired {
+            get {
+                return ResourceManager.GetString("ValidationRotationTaskEditModelIOperatorTaskRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowed exposure is required..
+        /// </summary>
+        public static string ValidationTaskEditModelAllowedExposureRequired {
+            get {
+                return ResourceManager.GetString("ValidationTaskEditModelAllowedExposureRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise level is required..
+        /// </summary>
+        public static string ValidationTaskEditModelNoiseLevelRequired {
+            get {
+                return ResourceManager.GetString("ValidationTaskEditModelNoiseLevelRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise protection is required..
+        /// </summary>
+        public static string ValidationTaskEditModelNoiseProtectionRequired {
+            get {
+                return ResourceManager.GetString("ValidationTaskEditModelNoiseProtectionRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title is required..
+        /// </summary>
+        public static string ValidationTitleRequired {
+            get {
+                return ResourceManager.GetString("ValidationTitleRequired", resourceCulture);
             }
         }
     }

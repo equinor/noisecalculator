@@ -3,7 +3,7 @@
 @model NoiseCalculator.UI.Web.Areas.Admin.Models.Generic.DeleteConfirmationViewModel
 
 <input id="dialogTitleConfirmDelete" type="hidden" value="@AdminResources.DeleteConfirmationWindowTitle" />
-<input id="urlDeleteAction" type="hidden" value="@Model.UrlDeleteAction" />
+<input id="urlDeleteAction" type="hidden" value="@Url.Action("Delete")" />
 <input id="idToDelete" type="hidden" value="@Model.Id" />
     
 <p>

@@ -1,134 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     public class NoiseProtectionDefinitionController : Controller
     {
-        private readonly IDAO<NoiseProtectionDefinition, int> _noiseProtectionDefinitionDAO;
+        private readonly INoiseProtectionDefinitionService _noiseProtectionDefinitionService;
 
-        public NoiseProtectionDefinitionController(IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO)
+        public NoiseProtectionDefinitionController(INoiseProtectionDefinitionService noiseProtectionDefinitionService)
         {
-            _noiseProtectionDefinitionDAO = noiseProtectionDefinitionDAO;
+            _noiseProtectionDefinitionService = noiseProtectionDefinitionService;
         }
 
 
+        [NoCache]
         public ActionResult Index()
         {
-            IEnumerable<NoiseProtectionDefinition> definitions = _noiseProtectionDefinitionDAO.GetAll();
-
-            GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
-            foreach (var definition in definitions)
-            {
-                viewModel.Definitions.Add(new GenericDefinitionViewModel { Id = definition.Id, SystemName = definition.SystemName });
-            }
-
-            viewModel.PageTitle = "Noise Protection"; // <---- TRANSLATIION!
-            viewModel.UrlCreate = Url.Action("Create");
-            viewModel.UrlEdit = Url.Action("Edit");
-            viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            GenericDefinitionIndexViewModel viewModel = _noiseProtectionDefinitionService.Index();
             return View(viewModel);
         }
 
+
+        [NoCache]
         public ActionResult Create()
         {
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_CreateGenericDefinition", viewModel);
+            return PartialView("_CreateGenericDefinition", new GenericDefinitionViewModel());
         }
 
 
         [HttpPost]
-        public ActionResult Create(GenericDefinitionEditModel form)
+        public ActionResult Create(GenericDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
                 Response.StatusCode = 500;
-                return Json("FAIL!");
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            NoiseProtectionDefinition definition = new NoiseProtectionDefinition();
-            definition.SystemName = form.Title;
-
-            _noiseProtectionDefinitionDAO.Store(definition);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-
+            GenericDefinitionViewModel viewModel = _noiseProtectionDefinitionService.Create(editModel);
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
+
+        [NoCache]
         public ActionResult Edit(int id)
         {
-            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-            viewModel.UrlCreateTranslation = string.Format("{0}/{1}", Url.Action("Create", "NoiseProtection"), definition.Id);
+            GenericDefinitionViewModel viewModel = _noiseProtectionDefinitionService.EditNoiseProtectionForm(id);
+            viewModel.UrlCreateTranslation = Url.Action("Create", "NoiseProtection");
             viewModel.UrlEditTranslation = Url.Action("Edit", "NoiseProtection");
             viewModel.UrlDeleteTranslationConfirmation = Url.Action("ConfirmDelete", "NoiseProtection");
-            viewModel.HasTranslationSupport = true;
-
-            foreach (NoiseProtection noiseProtection in definition.NoiseProtections)
-            {
-                GenericTranslationViewModel translationViewModel
-                    = new GenericTranslationViewModel(noiseProtection.CultureName)
-                    {
-                        Id = noiseProtection.Id,
-                        Title = noiseProtection.Title
-                    };
-
-                viewModel.Translations.Add(translationViewModel);
-            }
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            
             return PartialView("_EditGenericDefinition", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, GenericDefinitionEditModel form)
+        public ActionResult Edit(int id, GenericDefinitionEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Title))
+            if (editModel.IsValid() == false)
             {
-                return new EmptyResult();
+                Response.StatusCode = 500;
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            NoiseProtectionDefinition definition = _noiseProtectionDefinitionDAO.Get(id);
-            definition.SystemName = form.Title;
-
-            _noiseProtectionDefinitionDAO.Store(definition);
-
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel();
-            viewModel.Id = definition.Id;
-            viewModel.SystemName = definition.SystemName;
-
+            GenericDefinitionViewModel viewModel = _noiseProtectionDefinitionService.Edit(id, editModel);
             return PartialView("_GenericDefinitionTableRow", viewModel);
         }
 
 
+        [NoCache]
         public ActionResult ConfirmDelete(int id)
         {
-            NoiseProtectionDefinition definintion = _noiseProtectionDefinitionDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = definintion.Id.ToString();
-            viewModel.Title = definintion.SystemName;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _noiseProtectionDefinitionService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
@@ -138,8 +85,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                NoiseProtectionDefinition noiseProtectionDefinition = _noiseProtectionDefinitionDAO.Load(id);
-                _noiseProtectionDefinitionDAO.Delete(noiseProtectionDefinition);
+                _noiseProtectionDefinitionService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)

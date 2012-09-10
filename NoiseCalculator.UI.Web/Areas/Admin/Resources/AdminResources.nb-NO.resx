@@ -145,33 +145,8 @@
     <value>Fjern</value>
     <comment>Remove</comment>
   </data>
-  <data name="ContextMenuAdministratorUsers" xml:space="preserve">
-    <value>Administratorbrukere</value>
-    <comment>Administrator Users</comment>
-  </data>
-  <data name="ContextMenuHelicopterNoiseProtection" xml:space="preserve">
-    <value>Helikopter: Støybeskyttelse</value>
-    <comment>Helictoper Noise Protection</comment>
-  </data>
-  <data name="ContextMenuHelicopterTasks" xml:space="preserve">
-    <value>Helikopter: Oppgaver</value>
-    <comment>Helicopter Task</comment>
-  </data>
-  <data name="ContextMenuHelicopterTypes" xml:space="preserve">
-    <value>Helikopter: Typer</value>
-    <comment>Helicopter Type</comment>
-  </data>
-  <data name="ContextMenuHelictoperWorkInterval" xml:space="preserve">
-    <value>Helikopter: Arbeidstider</value>
-    <comment>Helictoper Work Interval</comment>
-  </data>
-  <data name="ContextMenuNoiseProtection" xml:space="preserve">
-    <value>Arbeidstid</value>
-    <comment>Noise Protection</comment>
-  </data>
-  <data name="ContextMenuTasks" xml:space="preserve">
-    <value>Oppgaver</value>
-    <comment>Tasks</comment>
+  <data name="ContextMenuNoiseCalculatorPage" xml:space="preserve">
+    <value>Til Støykalkulator</value>
   </data>
   <data name="DeleteConfirmationWindowTitle" xml:space="preserve">
     <value>Bekreft Fjerning</value>
@@ -230,7 +205,35 @@
     <comment>Percentage</comment>
   </data>
   <data name="HelicopterTaskColumnWorkInterval" xml:space="preserve">
-    <value>Work Interval</value>
+    <value>Arbeidstid</value>
+  </data>
+  <data name="PageTitleAdministratorUsers" xml:space="preserve">
+    <value>Administratorbrukere</value>
+    <comment>Administrator Users</comment>
+  </data>
+  <data name="PageTitleHelicopterNoiseProtection" xml:space="preserve">
+    <value>Helikopter: Støybeskyttelse</value>
+    <comment>Helictoper Noise Protection</comment>
+  </data>
+  <data name="PageTitleHelicopterTasks" xml:space="preserve">
+    <value>Helikopter: Oppgaver</value>
+    <comment>Helicopter Task</comment>
+  </data>
+  <data name="PageTitleHelicopterTypes" xml:space="preserve">
+    <value>Helikopter: Typer</value>
+    <comment>Helicopter Type</comment>
+  </data>
+  <data name="PageTitleHelictoperWorkInterval" xml:space="preserve">
+    <value>Helikopter: Arbeidstider</value>
+    <comment>Helictoper Work Interval</comment>
+  </data>
+  <data name="PageTitleNoiseProtection" xml:space="preserve">
+    <value>Hørselsvern</value>
+    <comment>Noise Protection</comment>
+  </data>
+  <data name="PageTitleTasks" xml:space="preserve">
+    <value>Oppgaver</value>
+    <comment>Tasks</comment>
   </data>
   <data name="RotationTaskColumnAssistantTask" xml:space="preserve">
     <value>Hjelpemann Oppgave</value>
@@ -265,7 +268,7 @@
     <comment>Language</comment>
   </data>
   <data name="RotationTaskLabelOperatorTask" xml:space="preserve">
-    <value>Opperatør Oppgave</value>
+    <value>Operatør</value>
     <comment>Operator Task</comment>
   </data>
   <data name="RotationTaskLabelTitle" xml:space="preserve">
@@ -318,5 +321,49 @@
   <data name="TaskFormRegularWorkTimeLabel" xml:space="preserve">
     <value>Arbeidstid</value>
     <comment>Time</comment>
+  </data>
+  <data name="ValidationAdministratorEditModelUsername" xml:space="preserve">
+    <value>Brukernavn må oppgis.</value>
+    <comment>Username is required.</comment>
+  </data>
+  <data name="ValidationDefinitionIdRequired" xml:space="preserve">
+    <value>Definition Id er påkrevet.</value>
+    <comment>Definition Id is required.</comment>
+  </data>
+  <data name="ValidationHelicopterTaskEditModelPercentage" xml:space="preserve">
+    <value>Prosent må oppgis.</value>
+    <comment>Percentage must be provided.</comment>
+  </data>
+  <data name="ValidationLanguageRequired" xml:space="preserve">
+    <value>Språk må velges.</value>
+    <comment>Language is required.</comment>
+  </data>
+  <data name="ValidationRoleRequired" xml:space="preserve">
+    <value>Rolle må fylles ut.</value>
+    <comment>Role is required.</comment>
+  </data>
+  <data name="ValidationRotationTaskEditModelIAssistantTaskRequired" xml:space="preserve">
+    <value>Assistentoppgave må velges.</value>
+    <comment>Assistant task is required.</comment>
+  </data>
+  <data name="ValidationRotationTaskEditModelIOperatorTaskRequired" xml:space="preserve">
+    <value>Operatøroppgave må velges.</value>
+    <comment>Operator task is required.</comment>
+  </data>
+  <data name="ValidationTaskEditModelAllowedExposureRequired" xml:space="preserve">
+    <value>Tillatt eksponering må fylles ut.</value>
+    <comment>Allowed exposure is required.</comment>
+  </data>
+  <data name="ValidationTaskEditModelNoiseLevelRequired" xml:space="preserve">
+    <value>Støynivå må fylles ut.</value>
+    <comment>Noise level is required.</comment>
+  </data>
+  <data name="ValidationTaskEditModelNoiseProtectionRequired" xml:space="preserve">
+    <value>Høreselsvern må fylles ut.</value>
+    <comment>Noise protection is required.</comment>
+  </data>
+  <data name="ValidationTitleRequired" xml:space="preserve">
+    <value>Tittel må fylles ut.</value>
+    <comment>Title is required.</comment>
   </data>
 </root>

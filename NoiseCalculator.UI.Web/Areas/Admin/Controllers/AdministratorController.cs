@@ -1,83 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
-using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Administrator;
 using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
-using NoiseCalculator.UI.Web.Models;
+using NoiseCalculator.UI.Web.Support;
+using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
 {
     [CustomAuthorize]
     public class AdministratorController : Controller
     {
-        private readonly IAdministratorDAO _adminDAO;
+        private readonly IAdministratorService _administratorService;
 
-        public AdministratorController(IAdministratorDAO adminDAO)
+        public AdministratorController(IAdministratorService administratorService)
         {
-            _adminDAO = adminDAO;
+            _administratorService = administratorService;
         }
 
+        [NoCache]
         public ActionResult Index()
         {
-            IEnumerable<Administrator> administrators = _adminDAO.GetAll();
-
-            AdministratorIndexViewModel viewModel = new AdministratorIndexViewModel();
-            foreach (var administrator in administrators)
-            {
-                string username = UserHelper.CreateUsernameWithoutDomain(administrator.Username);
-                viewModel.Administrators.Add(new AdministratorListItemViewModel { Username =  username});
-            }
-
-            viewModel.PageTitle = "Administrators"; // <---- TRANSLATIION!
-            viewModel.UrlCreate = Url.Action("Create");
-            viewModel.UrlDeleteConfirmation = Url.Action("ConfirmDelete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            AdministratorIndexViewModel viewModel = _administratorService.Index();
             return View(viewModel);
         }
 
+
+        [NoCache]
         public ActionResult Create()
         {
-            AdministratorViewModel viewModel = new AdministratorViewModel();
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_CreateAdministrator", viewModel);
+            return PartialView("_CreateAdministrator", new AdministratorViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(AdministratorEditModel form)
+        public ActionResult Create(AdministratorEditModel editModel)
         {
-            if (string.IsNullOrEmpty(form.Username))
+            if (editModel.IsValid() == false)
             {
                 Response.StatusCode = 500;
-                return Json("FAIL!");
+                return PartialView("_ValidationErrorSummary", new ValidationErrorSummaryViewModel(editModel.GetValidationErrors()));
             }
 
-            Administrator administrator = new Administrator(form.Username.ToUpper());
-            _adminDAO.Store(administrator);
-
-            AdministratorListItemViewModel viewModel = new AdministratorListItemViewModel();
-            viewModel.Username = form.Username.ToUpper();
-
+            AdministratorListItemViewModel viewModel = _administratorService.Create(editModel);
             return PartialView("_AdministratorTableRow", viewModel);
         }
 
+
+        [NoCache]
         public ActionResult ConfirmDelete(string id) // <-- For the Administrator entity, the id is the username
         {
-            Administrator administrator = _adminDAO.Get(id);
-            DeleteConfirmationViewModel viewModel = new DeleteConfirmationViewModel();
-            viewModel.Id = administrator.Username;
-            viewModel.Title = administrator.Username;
-            viewModel.UrlDeleteAction = Url.Action("Delete");
-
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+            DeleteConfirmationViewModel viewModel = _administratorService.DeleteConfirmationForm(id);
             return PartialView("_DeleteConfirmation", viewModel);
         }
 
@@ -86,8 +60,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         {
             try
             {
-                Administrator administrator = _adminDAO.Load(id);
-                _adminDAO.Delete(administrator);
+                _administratorService.Delete(id);
                 return new EmptyResult();
             }
             catch (Exception ex)

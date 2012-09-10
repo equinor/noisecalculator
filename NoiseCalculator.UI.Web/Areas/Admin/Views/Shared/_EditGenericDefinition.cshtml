@@ -4,7 +4,7 @@
 
 <form id="adminForm" action="@Url.Action("Edit")" method="POST" style="margin-top: 10px;">
     
-    <input type="hidden" id="urlCreateTranslation" value="@Model.UrlCreateTranslation" />
+    <input type="hidden" id="urlCreateTranslation" value="@Model.UrlCreateTranslation/@Model.Id" />
     <input type="hidden" id="urlEditTranslation" value="@Model.UrlEditTranslation" />
     <input type="hidden" id="urlDeleteTranslationConformation" value="@Model.UrlDeleteTranslationConfirmation" />
     <input type="hidden" id="definitionId" value="@Model.Id" />

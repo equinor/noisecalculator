@@ -1,21 +1,19 @@
+using System;
+using System.Web;
 using System.Web.Mvc;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
 using Ninject.Web.Mvc.FilterBindingSyntax;
 using NoiseCalculator.NinjectBootstrapper;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
+using NoiseCalculator.UI.Web.Ninject;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NoiseCalculator.UI.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NoiseCalculator.UI.Web.App_Start.NinjectWebCommon), "Stop")]
 
 namespace NoiseCalculator.UI.Web.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -59,6 +57,7 @@ namespace NoiseCalculator.UI.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load<NoiseCalculatorModule>();
+            kernel.Load<NoiseCalculatorWebModule>();
 
             kernel.BindFilter<CustomAuthorizeFilter>(FilterScope.Controller, 0).WhenControllerHas<CustomAuthorizeAttribute>();
         }        

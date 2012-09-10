@@ -10,9 +10,9 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
 
         public IList<TaskListItemViewModel> Tasks { get; set; }
 
-        public string UrlCreateTranslation { get; set; }
-        public string UrlEditTranslation { get; set; }
-        public string UrlDeleteTranslationConfirmation { get; set; }
+        //public string UrlCreateTranslation { get; set; }
+        //public string UrlEditTranslation { get; set; }
+        //public string UrlDeleteTranslationConfirmation { get; set; }
 
         
         public TaskDefinitionGenericViewModel()

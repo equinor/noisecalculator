@@ -4,7 +4,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Administrator
 {
     public class AdministratorIndexViewModel
     {
-        public string PageTitle { get; set; }        
+        //public string PageTitle { get; set; }        
         public IList<AdministratorListItemViewModel> Administrators { get; private set; }
         public string UrlCreate { get; set; }
         //public string UrlEdit { get; set; }

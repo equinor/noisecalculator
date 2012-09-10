@@ -63,6 +63,7 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net40-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -76,6 +77,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationServices\Admin\Implementations\AdministratorService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\GenericTaskDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\GenericTaskService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterNoiseProtectionDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterNoiseProtectionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterTaskService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterTypeService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterWorkIntervalService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\NoiseProtectionDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\NoiseProtectionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\RotationTaskDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\RotationTaskService.cs" />
+    <Compile Include="ApplicationServices\Admin\Implementations\TaskDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IGenericTaskDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IGenericTaskService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterNoiseProtectionDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterTaskService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterWorkIntervalService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\INoiseProtectionDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\INoiseProtectionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IAdministratorService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterNoiseProtectionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterTypeService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IRotationTaskDefinitionService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\IRotationTaskService.cs" />
+    <Compile Include="ApplicationServices\Admin\Interfaces\ITaskDefinitionService.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministratorController.cs" />
@@ -89,33 +116,34 @@
     <Compile Include="Areas\Admin\Controllers\RotationTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\GenericTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskDefinitionController.cs" />
+    <Compile Include="Areas\Admin\EditModels\AdministratorEditModel.cs" />
+    <Compile Include="Areas\Admin\EditModels\CreateTaskDefinitionEditModel.cs" />
+    <Compile Include="Areas\Admin\EditModels\EditModelBase.cs" />
+    <Compile Include="Areas\Admin\EditModels\GenericDefinitionEditModel.cs" />
+    <Compile Include="Areas\Admin\EditModels\GenericTranslationEditModel.cs" />
+    <Compile Include="Areas\Admin\EditModels\HelicopterTaskEditModel.cs" />
+    <Compile Include="Areas\Admin\EditModels\RotationTaskEditModel.cs" />
+    <Compile Include="Areas\Admin\EditModels\TaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\Administrator\AdministratorIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Administrator\AdministratorListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Administrator\AdministratorViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\Administrator\AdministratorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Models\GenericTask\TaskDefinitionGenericViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Generic\DeleteConfirmationViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\Generic\GenericDefinitionEditModel.cs" />
     <Compile Include="Areas\Admin\Models\Generic\GenericDefinitionIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Generic\GenericDefinitionViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\Generic\GenericTranslationEditModel.cs" />
     <Compile Include="Areas\Admin\Models\Generic\GenericTranslationViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HelicopterTask\HelicopterTaskListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LanguageListBuilder.cs" />
-    <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\RotationTaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RotationTask\TaskDefinitionGenericViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\TaskDefinition\CreateTaskDefinitionEditModel.cs" />
     <Compile Include="Areas\Admin\Models\TaskDefinition\TaskDefinitionListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TaskDefinition\TaskDefinitionIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TaskDefinition\NewTaskDefinitionViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\GenericTask\TaskEditModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericTask\TaskViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GenericTask\TaskListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Resources\AdminResources.Designer.cs">
@@ -136,8 +164,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LanguageResolver.cs" />
-    <Compile Include="Models\UserHelper.cs" />
+    <Compile Include="Ninject\NoiseCalculatorWebModule.cs" />
+    <Compile Include="Support\LanguageResolver.cs" />
+    <Compile Include="Support\NoCacheAttribute.cs" />
+    <Compile Include="Support\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\TaskResources.nb-NO.Designer.cs">
       <DependentUpon>TaskResources.nb-NO.resx</DependentUpon>
@@ -238,7 +268,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\Admin\Views\RotationTask\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_RotationTaskItemListTable.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_RotationTaskTableRow.cshtml" />
     <Content Include="Content\help\Bruksanvisning Knottologi.ppt" />
@@ -254,12 +283,13 @@
     <Content Include="Areas\Admin\Views\TaskDefinition\_CreateTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\TaskDefinition\_TaskDefinitionItemListTable.cshtml" />
     <Content Include="Areas\Admin\Views\TaskDefinition\_TaskDefinitionTableRow.cshtml" />
-    <Content Include="Areas\Admin\Views\RotationTask\_EditTaskDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\RotationTask\_EditRotationTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_CreateRotationTask.cshtml" />
     <Content Include="Areas\Admin\Views\RotationTask\_EditRotationTask.cshtml" />
     <Content Include="Areas\Admin\Views\NoiseProtectionDefinition\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.0-vsdoc.js" />
+    <Content Include="Scripts\NoiseCalculatorCommon.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js">
       <DependentUpon>jquery-1.8.0.js</DependentUpon>
@@ -316,7 +346,7 @@
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_EditHelicopterTask.cshtml" />
     <Content Include="Areas\Admin\Views\GenericTask\_CreateTask.cshtml" />
-    <Content Include="Areas\Admin\Views\GenericTask\_EditTaskDefinition.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericTask\_EditGenericTaskDefinition.cshtml" />
     <Content Include="Areas\Admin\Views\GenericTask\_TaskTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\GenericTask\_TaskForm.cshtml" />
     <Content Include="Areas\Admin\Views\GenericTask\_EditTask.cshtml" />
