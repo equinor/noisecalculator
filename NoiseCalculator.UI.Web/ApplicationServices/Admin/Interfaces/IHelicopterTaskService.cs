@@ -1,6 +1,6 @@
 ﻿using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask;
 
 namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces
 {

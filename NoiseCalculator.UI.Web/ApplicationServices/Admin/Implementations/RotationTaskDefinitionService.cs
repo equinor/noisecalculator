@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.RotationTask;
 using NoiseCalculator.UI.Web.Support;
 
 namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations

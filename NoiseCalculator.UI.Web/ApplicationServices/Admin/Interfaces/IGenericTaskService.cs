@@ -1,6 +1,6 @@
 ﻿using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask;
 
 namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces
 {

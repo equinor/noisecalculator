@@ -6,8 +6,8 @@ using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition;
 
 namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 {

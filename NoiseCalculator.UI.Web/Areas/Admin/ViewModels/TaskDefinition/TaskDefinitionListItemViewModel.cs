@@ -1,4 +1,4 @@
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition
 {
     public class TaskDefinitionListItemViewModel
     {

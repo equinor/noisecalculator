@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 

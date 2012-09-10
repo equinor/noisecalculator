@@ -1,4 +1,4 @@
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic
 {
     public class DeleteConfirmationViewModel
     {

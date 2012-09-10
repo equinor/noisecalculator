@@ -3,8 +3,9 @@ using System.Web.Mvc;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.TaskDefinition;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition;
 using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 

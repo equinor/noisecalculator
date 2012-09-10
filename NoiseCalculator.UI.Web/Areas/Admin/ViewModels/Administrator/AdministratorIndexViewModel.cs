@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Administrator
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Administrator
 {
     public class AdministratorIndexViewModel
     {

@@ -7,6 +7,7 @@ using Ninject.Web.Common;
 using Ninject.Web.Mvc.FilterBindingSyntax;
 using NoiseCalculator.NinjectBootstrapper;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels;
 using NoiseCalculator.UI.Web.Ninject;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NoiseCalculator.UI.Web.App_Start.NinjectWebCommon), "Start")]

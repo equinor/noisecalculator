@@ -4,7 +4,7 @@ using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
-using NoiseCalculator.UI.Web.Areas.Admin.Models.Generic;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
 
 namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 {

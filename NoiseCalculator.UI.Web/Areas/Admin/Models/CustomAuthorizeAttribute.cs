@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Support;

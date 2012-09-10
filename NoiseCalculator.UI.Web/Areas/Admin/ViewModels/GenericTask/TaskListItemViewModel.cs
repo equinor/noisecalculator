@@ -1,4 +1,4 @@
-﻿namespace NoiseCalculator.UI.Web.Areas.Admin.Models.GenericTask
+﻿namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask
 {
     public class TaskListItemViewModel
     {

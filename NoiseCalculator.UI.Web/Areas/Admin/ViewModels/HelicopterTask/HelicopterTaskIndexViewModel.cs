@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.HelicopterTask
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask
 {
     public class HelicopterTaskIndexViewModel
     {

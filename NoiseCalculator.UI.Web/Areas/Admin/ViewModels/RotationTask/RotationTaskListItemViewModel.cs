@@ -1,4 +1,4 @@
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.RotationTask
 {
     public class RotationTaskListItemViewModel
     {

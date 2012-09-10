@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.Generic
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic
 {
     public class GenericTranslationViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NoiseCalculator.UI.Web.ViewModels;
 
-namespace NoiseCalculator.UI.Web.Areas.Admin.Models.RotationTask
+namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.RotationTask
 {
     public class RotationTaskViewModel
     {
