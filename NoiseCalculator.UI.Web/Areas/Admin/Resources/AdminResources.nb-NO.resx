@@ -145,9 +145,6 @@
     <value>Fjern</value>
     <comment>Remove</comment>
   </data>
-  <data name="ContextMenuNoiseCalculatorPage" xml:space="preserve">
-    <value>Til Støykalkulator</value>
-  </data>
   <data name="DeleteConfirmationWindowTitle" xml:space="preserve">
     <value>Bekreft Fjerning</value>
     <comment>Confirm Removal</comment>
@@ -206,6 +203,9 @@
   </data>
   <data name="HelicopterTaskColumnWorkInterval" xml:space="preserve">
     <value>Arbeidstid</value>
+  </data>
+  <data name="NoiseCalculatorLink" xml:space="preserve">
+    <value>Støykalkulator</value>
   </data>
   <data name="PageTitleAdministratorUsers" xml:space="preserve">
     <value>Administratorbrukere</value>

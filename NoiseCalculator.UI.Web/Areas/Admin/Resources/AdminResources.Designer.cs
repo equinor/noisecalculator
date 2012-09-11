@@ -124,15 +124,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To Noise Calculator.
-        /// </summary>
-        public static string ContextMenuNoiseCalculatorPage {
-            get {
-                return ResourceManager.GetString("ContextMenuNoiseCalculatorPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Confirm Removal.
         /// </summary>
         public static string DeleteConfirmationWindowTitle {
@@ -264,6 +255,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string HelicopterTaskColumnWorkInterval {
             get {
                 return ResourceManager.GetString("HelicopterTaskColumnWorkInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Calculator.
+        /// </summary>
+        public static string NoiseCalculatorLink {
+            get {
+                return ResourceManager.GetString("NoiseCalculatorLink", resourceCulture);
             }
         }
         

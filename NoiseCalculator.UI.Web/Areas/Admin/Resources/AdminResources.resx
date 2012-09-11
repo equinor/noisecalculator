@@ -306,7 +306,7 @@
   <data name="ValidationTitleRequired" xml:space="preserve">
     <value>Title is required.</value>
   </data>
-  <data name="ContextMenuNoiseCalculatorPage" xml:space="preserve">
-    <value>To Noise Calculator</value>
+  <data name="NoiseCalculatorLink" xml:space="preserve">
+    <value>Noise Calculator</value>
   </data>
 </root>
