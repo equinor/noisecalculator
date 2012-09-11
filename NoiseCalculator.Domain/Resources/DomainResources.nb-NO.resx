@@ -127,9 +127,6 @@
   <data name="FooterDynamicNoiseProtection" xml:space="preserve">
     <value>Følgende betingelser ang. hørselsvernet gjelder ved utføring av støyende arbeidsoppgaver. Hørselsvernet skal være godt vedlikeholdt og brukes korrekt. Ved bruk av "universalpropper" skal det være gitt individuell opplæring i bruk og innsetting. Ved bruk av formstøpte ørepropper skal det være gitt opplæring i innsetting. Ref: GL0169, tabell 4-1.</value>
   </data>
-  <data name="FooterDynamicUseNoisyWorkWhenTaskIsMissing" xml:space="preserve">
-    <value>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.</value>
-  </data>
   <data name="FooterDynamicValidForAreaNoiseUpTo90dBA" xml:space="preserve">
     <value>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller arbeidet utføres i  områder med mye klang, feks tanker.</value>
   </data>
@@ -138,6 +135,9 @@
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.</value>
+  </data>
+  <data name="FooterUseNoisyWorkWhenTaskIsMissing" xml:space="preserve">
+    <value>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.</value>
   </data>
   <data name="NoiseLevelStatusTextCritical" xml:space="preserve">
     <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt.</value>
@@ -152,9 +152,5 @@
   <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
     <value>Beregnet støyeksponering er akseptabel.</value>
     <comment>Noise level is below the upper limt and is considered safe</comment>
-  </data>
-  <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
-    <value>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</value>
-    <comment>Noise level is approaching allowed limits</comment>
   </data>
 </root>
