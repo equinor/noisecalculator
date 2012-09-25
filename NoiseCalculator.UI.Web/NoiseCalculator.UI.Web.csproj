@@ -289,6 +289,7 @@
     <Content Include="Areas\Admin\Views\NoiseProtectionDefinition\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Debug to C-Drive Publish folder.pubxml" />
+    <None Include="Properties\PublishProfiles\Release to C-Drive Publish folder.pubxml" />
     <None Include="Scripts\jquery-1.8.0-vsdoc.js" />
     <Content Include="Scripts\NoiseCalculatorCommon.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
