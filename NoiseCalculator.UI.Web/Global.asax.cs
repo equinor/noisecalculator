@@ -10,7 +10,7 @@ namespace NoiseCalculator.UI.Web
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -34,6 +34,10 @@ namespace NoiseCalculator.UI.Web
         {
             AreaRegistration.RegisterAllAreas();
 
+            // Make sure we don't use the Webforms view engine in any way.
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+            
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
