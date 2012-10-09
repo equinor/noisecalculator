@@ -19,6 +19,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .And(x => x.CreatedDate == createdDate.Date)
                 .Fetch(x => x.Role).Eager
                 .OrderBy(x => x.Id).Asc
+                .JoinQueryOver(x => x.Task)
                 .List<SelectedTask>();
 
             return selectedTasks;
