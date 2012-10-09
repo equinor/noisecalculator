@@ -14,8 +14,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         public IEnumerable<TaskDefinition> GetAllOrdered()
         {
             IEnumerable<TaskDefinition> entities = _session.QueryOver<TaskDefinition>()
-                .OrderBy(x => x.RoleType).Asc
-                .ThenBy(x => x.SystemName).Asc
+                .OrderBy(x => x.SystemName).Asc
                 .List<TaskDefinition>();
             
             return entities;
