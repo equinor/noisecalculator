@@ -1,5 +1,6 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask.TaskViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask.TaskViewModel
 
-<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" style="margin-top: 10px;">
+<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" title="@AdminResources.DialogTitleCreateTask">
     @Html.Partial("_TaskForm", Model)
 </form>
