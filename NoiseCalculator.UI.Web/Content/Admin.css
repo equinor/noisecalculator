@@ -5,6 +5,14 @@
     padding: 0px;
 }*/
 
+#adminForm {
+    margin-top: 10px;
+}
+
+#adminTranslationForm {
+    margin-top: 10px;
+}
+
 h2 {
     margin: 0px;
     padding: 0px;
