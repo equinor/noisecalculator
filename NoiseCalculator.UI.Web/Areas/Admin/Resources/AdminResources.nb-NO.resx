@@ -149,6 +149,48 @@
     <value>Bekreft Fjerning</value>
     <comment>Confirm Removal</comment>
   </data>
+  <data name="DialogTitleCreateAdministrator" xml:space="preserve">
+    <value>Legg Til Ny</value>
+  </data>
+  <data name="DialogTitleCreateGenericDefinition" xml:space="preserve">
+    <value>Legg Til Ny Definisjon</value>
+  </data>
+  <data name="DialogTitleCreateGenericTranslation" xml:space="preserve">
+    <value>Legg Til Ny</value>
+  </data>
+  <data name="DialogTitleCreateHelicopterTask" xml:space="preserve">
+    <value>Legg Til Ny</value>
+  </data>
+  <data name="DialogTitleCreateRotationTask" xml:space="preserve">
+    <value>Legg Til Ny</value>
+  </data>
+  <data name="DialogTitleCreateTask" xml:space="preserve">
+    <value>Legg Til Ny</value>
+  </data>
+  <data name="DialogTitleCreateTaskDefinition" xml:space="preserve">
+    <value>Legg Til Ny Definisjon</value>
+  </data>
+  <data name="DialogTitleEditGenericDefinition" xml:space="preserve">
+    <value>Rediger Definisjon</value>
+  </data>
+  <data name="DialogTitleEditGenericTaskDefinition" xml:space="preserve">
+    <value>Rediger Definisjon</value>
+  </data>
+  <data name="DialogTitleEditGenericTranslation" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="DialogTitleEditHelicopterTask" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="DialogTitleEditRotationTask" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="DialogTitleEditRotationTaskDefinition" xml:space="preserve">
+    <value>Rediger Definisjon</value>
+  </data>
+  <data name="DialogTitleEditTask" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
   <data name="GenericDefinitionColumnDefinitionName" xml:space="preserve">
     <value>Definisjonsnavn</value>
     <comment>Definition Name</comment>
@@ -158,12 +200,18 @@
     <comment>Title</comment>
   </data>
   <data name="GenericTaskAllowedExposure" xml:space="preserve">
-    <value>Tillatt eksponering</value>
-    <comment>Allowed Exposure</comment>
+    <value>Maks Operasjonstid</value>
+    <comment>Tillatt eksponering</comment>
+  </data>
+  <data name="GenericTaskDecibelLabel" xml:space="preserve">
+    <value>dBA</value>
   </data>
   <data name="GenericTaskLanguage" xml:space="preserve">
     <value>Språk</value>
     <comment>Language</comment>
+  </data>
+  <data name="GenericTaskMinutesLabel" xml:space="preserve">
+    <value>min</value>
   </data>
   <data name="GenericTaskNoiseLevel" xml:space="preserve">
     <value>Støynivå</value>
@@ -194,7 +242,7 @@
     <comment>Helicopter</comment>
   </data>
   <data name="HelicopterTaskColumnNoiseProtectionDefinition" xml:space="preserve">
-    <value>Høreselsvern</value>
+    <value>Hørselsvern</value>
     <comment>Noise Protection</comment>
   </data>
   <data name="HelicopterTaskColumnPercentage" xml:space="preserve">
@@ -212,7 +260,7 @@
     <comment>Administrator Users</comment>
   </data>
   <data name="PageTitleHelicopterNoiseProtection" xml:space="preserve">
-    <value>Helikopter: Støybeskyttelse</value>
+    <value>Helikopter: Hørselsvern</value>
     <comment>Helictoper Noise Protection</comment>
   </data>
   <data name="PageTitleHelicopterTasks" xml:space="preserve">
@@ -235,6 +283,18 @@
     <value>Oppgaver</value>
     <comment>Tasks</comment>
   </data>
+  <data name="RoleTypeAreaNoise" xml:space="preserve">
+    <value>Områdestøy</value>
+  </data>
+  <data name="RoleTypeHelideck" xml:space="preserve">
+    <value>Helideck</value>
+  </data>
+  <data name="RoleTypeRegular" xml:space="preserve">
+    <value>Vanlig</value>
+  </data>
+  <data name="RoleTypeRotation" xml:space="preserve">
+    <value>Rotasjon</value>
+  </data>
   <data name="RotationTaskColumnAssistantTask" xml:space="preserve">
     <value>Hjelpemann Oppgave</value>
     <comment>Assistant Task</comment>
@@ -244,7 +304,7 @@
     <comment>Language</comment>
   </data>
   <data name="RotationTaskColumnOperatorTask" xml:space="preserve">
-    <value>Opperatør</value>
+    <value>Operatør</value>
     <comment>Operator Task</comment>
   </data>
   <data name="RotationTaskColumnTitle" xml:space="preserve">
@@ -292,7 +352,7 @@
     <comment>Title</comment>
   </data>
   <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
-    <value>Høreselsvern</value>
+    <value>Hørselsvern</value>
     <comment>Noise Protection</comment>
   </data>
   <data name="TaskFormHelideckHelicopterTypeLabel" xml:space="preserve">
@@ -300,7 +360,7 @@
     <comment>Helicopter</comment>
   </data>
   <data name="TaskFormHelideckHelicopterWorkIntervalLabel" xml:space="preserve">
-    <value>Work Interval</value>
+    <value>Arbaidstid</value>
   </data>
   <data name="TaskFormRegularAssistantLabel" xml:space="preserve">
     <value>Hjelpemann</value>
@@ -359,7 +419,7 @@
     <comment>Noise level is required.</comment>
   </data>
   <data name="ValidationTaskEditModelNoiseProtectionRequired" xml:space="preserve">
-    <value>Høreselsvern må fylles ut.</value>
+    <value>Hørselsvern må fylles ut.</value>
     <comment>Noise protection is required.</comment>
   </data>
   <data name="ValidationTitleRequired" xml:space="preserve">

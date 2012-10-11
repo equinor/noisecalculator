@@ -133,6 +133,132 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        public static string DialogTitleCreateAdministrator {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateAdministrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Definition.
+        /// </summary>
+        public static string DialogTitleCreateGenericDefinition {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateGenericDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        public static string DialogTitleCreateGenericTranslation {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateGenericTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        public static string DialogTitleCreateHelicopterTask {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateHelicopterTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        public static string DialogTitleCreateRotationTask {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateRotationTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        public static string DialogTitleCreateTask {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Definition.
+        /// </summary>
+        public static string DialogTitleCreateTaskDefinition {
+            get {
+                return ResourceManager.GetString("DialogTitleCreateTaskDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Definition.
+        /// </summary>
+        public static string DialogTitleEditGenericDefinition {
+            get {
+                return ResourceManager.GetString("DialogTitleEditGenericDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Definition.
+        /// </summary>
+        public static string DialogTitleEditGenericTaskDefinition {
+            get {
+                return ResourceManager.GetString("DialogTitleEditGenericTaskDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string DialogTitleEditGenericTranslation {
+            get {
+                return ResourceManager.GetString("DialogTitleEditGenericTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string DialogTitleEditHelicopterTask {
+            get {
+                return ResourceManager.GetString("DialogTitleEditHelicopterTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string DialogTitleEditRotationTask {
+            get {
+                return ResourceManager.GetString("DialogTitleEditRotationTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Definition.
+        /// </summary>
+        public static string DialogTitleEditRotationTaskDefinition {
+            get {
+                return ResourceManager.GetString("DialogTitleEditRotationTaskDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string DialogTitleEditTask {
+            get {
+                return ResourceManager.GetString("DialogTitleEditTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Definition Name.
         /// </summary>
         public static string GenericDefinitionColumnDefinitionName {
@@ -151,11 +277,20 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allowed Exposure.
+        ///   Looks up a localized string similar to Max Operational Time.
         /// </summary>
         public static string GenericTaskAllowedExposure {
             get {
                 return ResourceManager.GetString("GenericTaskAllowedExposure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dBA.
+        /// </summary>
+        public static string GenericTaskDecibelLabel {
+            get {
+                return ResourceManager.GetString("GenericTaskDecibelLabel", resourceCulture);
             }
         }
         
@@ -165,6 +300,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string GenericTaskLanguage {
             get {
                 return ResourceManager.GetString("GenericTaskLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to min.
+        /// </summary>
+        public static string GenericTaskMinutesLabel {
+            get {
+                return ResourceManager.GetString("GenericTaskMinutesLabel", resourceCulture);
             }
         }
         
@@ -327,6 +471,42 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string PageTitleTasks {
             get {
                 return ResourceManager.GetString("PageTitleTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area Noise.
+        /// </summary>
+        public static string RoleTypeAreaNoise {
+            get {
+                return ResourceManager.GetString("RoleTypeAreaNoise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helideck.
+        /// </summary>
+        public static string RoleTypeHelideck {
+            get {
+                return ResourceManager.GetString("RoleTypeHelideck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular.
+        /// </summary>
+        public static string RoleTypeRegular {
+            get {
+                return ResourceManager.GetString("RoleTypeRegular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotation.
+        /// </summary>
+        public static string RoleTypeRotation {
+            get {
+                return ResourceManager.GetString("RoleTypeRotation", resourceCulture);
             }
         }
         

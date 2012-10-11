@@ -169,7 +169,8 @@
     <value>Title</value>
   </data>
   <data name="GenericTaskAllowedExposure" xml:space="preserve">
-    <value>Allowed Exposure</value>
+    <value>Max Operational Time</value>
+    <comment>Maks Operasjonstid</comment>
   </data>
   <data name="GenericTaskLanguage" xml:space="preserve">
     <value>Language</value>
@@ -308,5 +309,65 @@
   </data>
   <data name="NoiseCalculatorLink" xml:space="preserve">
     <value>Noise Calculator</value>
+  </data>
+  <data name="DialogTitleCreateTaskDefinition" xml:space="preserve">
+    <value>Add New Definition</value>
+  </data>
+  <data name="DialogTitleEditGenericDefinition" xml:space="preserve">
+    <value>Edit Definition</value>
+  </data>
+  <data name="DialogTitleEditGenericTranslation" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DialogTitleCreateAdministrator" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="DialogTitleCreateGenericDefinition" xml:space="preserve">
+    <value>Add New Definition</value>
+  </data>
+  <data name="DialogTitleCreateGenericTranslation" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="DialogTitleCreateHelicopterTask" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="DialogTitleCreateRotationTask" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="DialogTitleCreateTask" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="DialogTitleEditGenericTaskDefinition" xml:space="preserve">
+    <value>Edit Definition</value>
+  </data>
+  <data name="DialogTitleEditHelicopterTask" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DialogTitleEditRotationTask" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DialogTitleEditRotationTaskDefinition" xml:space="preserve">
+    <value>Edit Definition</value>
+  </data>
+  <data name="DialogTitleEditTask" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="GenericTaskDecibelLabel" xml:space="preserve">
+    <value>dBA</value>
+  </data>
+  <data name="GenericTaskMinutesLabel" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="RoleTypeAreaNoise" xml:space="preserve">
+    <value>Area Noise</value>
+  </data>
+  <data name="RoleTypeHelideck" xml:space="preserve">
+    <value>Helideck</value>
+  </data>
+  <data name="RoleTypeRegular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="RoleTypeRotation" xml:space="preserve">
+    <value>Rotation</value>
   </data>
 </root>
