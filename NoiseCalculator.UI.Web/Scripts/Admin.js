@@ -173,7 +173,7 @@ function replaceExistingItemWithSameId(result) {
 function showDialogNew() {
     $("#dialogDiv").load($("#urlCreate").val(), function () {
         $("#dialogDiv").dialog({
-            title: "Add New",
+            title: $("#adminForm").attr("title"),
             modal: true,
             resizable: false,
             width: 'auto',
@@ -214,7 +214,7 @@ function showDialogEdit(eventNode) {
 
             $dialogDiv.dialog({
                 modal: true,
-                title: 'Edit Definition',
+                title: $("#adminForm").attr("title"),
                 resizable: false,
                 hide: { effect: 'fade', duration: 300 },
                 width: 'auto',
@@ -239,7 +239,7 @@ function hideTranslationDialog() {
 function showTranslationDialogNew() {
     $("#translationDialogDiv").load($("#urlCreateTranslation").val(), function () {
         $("#translationDialogDiv").dialog({
-            title: "Add Translation",
+            title: $("#adminForm").attr("title"),
             modal: true,
             resizable: false,
             width: 'auto',
@@ -256,7 +256,7 @@ function showTranslationDialogEdit(editTranslationButton) {
     // Oppdater url element til å benytter translation Edit URL
     $("#translationDialogDiv").load($("#urlEditTranslation").val() + '/' + parsedId, function () {
         $("#translationDialogDiv").dialog({
-            title: "Edit Translation",
+            title: $("#adminForm").attr("title"),
             modal: true,
             resizable: false,
             hide: { effect: 'fade', duration: 300 },
