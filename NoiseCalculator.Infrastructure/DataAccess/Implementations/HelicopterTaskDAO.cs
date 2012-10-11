@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NHibernate;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -34,6 +35,22 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .SingleOrDefault<HelicopterTask>();
 
             return helicopterTask;
+        }
+
+        public IEnumerable<HelicopterTask> GetAllOrderedByTypeAndWorkInterval()
+        {
+            const string query = @"
+                SELECT
+                    task
+                FROM
+                    HelicopterTask as task
+                    JOIN task.HelicopterType as type
+                ORDER BY
+                    type.Title asc, task.Percentage asc";
+
+            var helicopterTasks = _session.CreateQuery(query).List<HelicopterTask>();
+
+            return helicopterTasks;
         }
     }
 }

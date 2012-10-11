@@ -7,5 +7,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
     {
         HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId);
         HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId, int workIntervalId);
+        IEnumerable<HelicopterTask> GetAllOrderedByTypeAndWorkInterval();
     }
 }
