@@ -45,8 +45,9 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 FROM
                     HelicopterTask as task
                     JOIN task.HelicopterType as type
+                    JOIN task.HelicopterWorkInterval as interval
                 ORDER BY
-                    type.Title asc, task.Percentage asc";
+                    type.Title asc, interval.Title asc, task.Percentage asc";
 
             var helicopterTasks = _session.CreateQuery(query).List<HelicopterTask>();
 
