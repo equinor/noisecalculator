@@ -19,7 +19,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public GenericDefinitionIndexViewModel Index()
         {
-            IEnumerable<HelicopterWorkInterval> helicopterWorkIntervals = _helicopterWorkIntervalDAO.GetAll();
+            IEnumerable<HelicopterWorkInterval> helicopterWorkIntervals = _helicopterWorkIntervalDAO.GetAllOrderedBy(x => x.Title);
 
             GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
             foreach (var helicopterWorkInterval in helicopterWorkIntervals)

@@ -21,7 +21,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public AdministratorIndexViewModel Index()
         {
-            IEnumerable<Administrator> administrators = _adminDAO.GetAll();
+            IEnumerable<Administrator> administrators = _adminDAO.GetAllOrderedBy(x => x.Username);
 
             AdministratorIndexViewModel viewModel = new AdministratorIndexViewModel();
             foreach (var administrator in administrators)

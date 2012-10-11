@@ -20,7 +20,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public GenericDefinitionIndexViewModel Index()
         {
-            IEnumerable<HelicopterNoiseProtectionDefinition> definitions = _helicopterNoiseProtectionDefinitionDAO.GetAll();
+            IEnumerable<HelicopterNoiseProtectionDefinition> definitions = _helicopterNoiseProtectionDefinitionDAO.GetAllOrderedBy(x => x.SystemName);
 
             GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
             foreach (var definition in definitions)

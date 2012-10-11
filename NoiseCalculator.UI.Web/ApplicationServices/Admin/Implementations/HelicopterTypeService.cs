@@ -20,7 +20,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public GenericDefinitionIndexViewModel Index()
         {
-            IEnumerable<HelicopterType> helicopterTypes = _helicopterTypeDAO.GetAll();
+            IEnumerable<HelicopterType> helicopterTypes = _helicopterTypeDAO.GetAllOrderedBy(x => x.Title);
 
             GenericDefinitionIndexViewModel viewModel = new GenericDefinitionIndexViewModel();
             foreach (var helicopterType in helicopterTypes)

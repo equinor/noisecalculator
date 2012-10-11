@@ -13,9 +13,9 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 {
     public class TaskDefinitionService : ITaskDefinitionService
     {
-        private readonly ITaskDefinitionDAO _taskDefinitionDAO;
+        private readonly IDAO<TaskDefinition,int> _taskDefinitionDAO;
 
-        public TaskDefinitionService(ITaskDefinitionDAO taskDefinitionDAO)
+        public TaskDefinitionService(IDAO<TaskDefinition, int> taskDefinitionDAO)
         {
             _taskDefinitionDAO = taskDefinitionDAO;
         }
@@ -23,7 +23,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public TaskDefinitionIndexViewModel Index()
         {
-            IEnumerable<TaskDefinition> definitions = _taskDefinitionDAO.GetAllOrdered();
+            IEnumerable<TaskDefinition> definitions = _taskDefinitionDAO.GetAllOrderedBy(x => x.SystemName);
 
             TaskDefinitionIndexViewModel viewModel = new TaskDefinitionIndexViewModel();
             foreach (var definition in definitions)
