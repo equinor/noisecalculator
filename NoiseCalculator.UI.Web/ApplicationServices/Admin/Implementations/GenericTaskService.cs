@@ -7,7 +7,6 @@ using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
-using NoiseCalculator.UI.Web.Areas.Admin.ViewModels;
 using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask;
 using NoiseCalculator.UI.Web.Resources;
@@ -63,13 +62,15 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
         {
             TaskDefinition definition = _taskDefinitionDAO.Get(editModel.DefinitionId);
 
+            TimeSpan allowedExposureTime = new TimeSpanFactory().CreateFromStrings(editModel.Hours, editModel.Minutes);
+
             Task task = new Task()
             {
                 Title = editModel.Title,
                 Role = _roleDAO.Get(editModel.RoleId),
                 NoiseProtection = _noiseProtectionDAO.Get(editModel.NoiseProtectionId),
                 NoiseLevelGuideline = Int32.Parse(editModel.NoiseLevelGuideline),
-                AllowedExposureMinutes = Int32.Parse(editModel.AllowedExposureMinutes),
+                AllowedExposureMinutes = Convert.ToInt32(allowedExposureTime.TotalMinutes),
                 TaskDefinition = definition,
                 CultureName = editModel.SelectedCultureName,
             };
@@ -99,7 +100,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 {
                     roles.Add(new SelectOptionViewModel(role.Title, role.Id.ToString(CultureInfo.InvariantCulture))
                         {
-                            IsSelected = (role.Id == task.Role.Id)
+                            IsSelected = (role.RoleDefinition.Id == task.Role.RoleDefinition.Id)
                         });
                 }
             }
@@ -107,8 +108,14 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             noiseProtections.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
             foreach (NoiseProtection noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
-                noiseProtections.Add(new SelectOptionViewModel(noiseProtection.Title, noiseProtection.Id.ToString()) { IsSelected = (noiseProtection.Id == task.NoiseProtection.Id) });
+                var selectOption = new SelectOptionViewModel(noiseProtection.Title, noiseProtection.Id.ToString(CultureInfo.InvariantCulture))
+                    {
+                        IsSelected = (noiseProtection.NoiseProtectionDefinition.Id == task.NoiseProtection.NoiseProtectionDefinition.Id)
+                    };
+                noiseProtections.Add(selectOption);
             }
+
+            TimeSpan allowedExposureTime = new TimeSpanFactory().CreateFromMinutes(task.AllowedExposureMinutes);
 
             IList<SelectOptionViewModel> languages = new LanguageListBuilder().CreateSelectedLanguageList(task.CultureName);
             TaskViewModel viewModel = new TaskViewModel(languages)
@@ -116,7 +123,8 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 Id = task.Id,
                 Title = task.Title,
                 NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
-                AllowedExposureMinutes = task.AllowedExposureMinutes.ToString(CultureInfo.InvariantCulture),
+                Hours = allowedExposureTime.Hours.ToString(CultureInfo.InvariantCulture),
+                Minutes = allowedExposureTime.Minutes.ToString(CultureInfo.InvariantCulture),
                 DefinitionId = task.TaskDefinition.Id,
                 Roles = roles,
                 NoiseProtections = noiseProtections
@@ -129,9 +137,11 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
         {
             Task task = _taskDAO.Get(editModel.Id);
 
+            TimeSpan allowedExposureTime = new TimeSpanFactory().CreateFromStrings(editModel.Hours, editModel.Minutes);
+
             task.Title = editModel.Title;
             task.NoiseLevelGuideline = Int32.Parse(editModel.NoiseLevelGuideline);
-            task.AllowedExposureMinutes = Int32.Parse(editModel.AllowedExposureMinutes);
+            task.AllowedExposureMinutes = Convert.ToInt32(allowedExposureTime.TotalMinutes);
             task.Role = _roleDAO.Get(editModel.RoleId);
             task.NoiseProtection = _noiseProtectionDAO.Get(editModel.NoiseProtectionId);
 
