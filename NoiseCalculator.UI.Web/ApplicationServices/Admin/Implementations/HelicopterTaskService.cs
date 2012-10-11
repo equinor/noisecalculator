@@ -32,7 +32,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public HelicopterTaskIndexViewModel Index()
         {
-            IEnumerable<HelicopterTask> helicopterTasks = _helicopterTaskDAO.GetAll();
+            IEnumerable<HelicopterTask> helicopterTasks = _helicopterTaskDAO.GetAllOrderedByTypeAndWorkInterval();
 
             HelicopterTaskIndexViewModel viewModel = new HelicopterTaskIndexViewModel();
             foreach (var helicopterTask in helicopterTasks)
@@ -59,7 +59,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             viewModel.Helicopters.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
             foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
             {
-                viewModel.Helicopters.Add(new SelectOptionViewModel(type.Title, type.Id.ToString()));
+                viewModel.Helicopters.Add(new SelectOptionViewModel(type.Title, type.Id.ToString(CultureInfo.InvariantCulture)));
             }
 
             viewModel.NoiseProtectionDefinitions.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
@@ -71,7 +71,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             viewModel.WorkIntervals.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
             foreach (var workInterval in _helicopterWorkIntervalDAO.GetAll())
             {
-                viewModel.WorkIntervals.Add(new SelectOptionViewModel(workInterval.Title, workInterval.Id.ToString()));
+                viewModel.WorkIntervals.Add(new SelectOptionViewModel(workInterval.Title, workInterval.Id.ToString(CultureInfo.InvariantCulture)));
             }
 
             return viewModel;
@@ -114,7 +114,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             viewModel.Helicopters.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
             foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
             {
-                viewModel.Helicopters.Add(new SelectOptionViewModel(type.Title, type.Id.ToString())
+                viewModel.Helicopters.Add(new SelectOptionViewModel(type.Title, type.Id.ToString(CultureInfo.InvariantCulture))
                 {
                     IsSelected = (type.Id == helicopterTask.HelicopterType.Id)
                 });
@@ -132,7 +132,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             viewModel.WorkIntervals.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
             foreach (var workInterval in _helicopterWorkIntervalDAO.GetAll())
             {
-                viewModel.WorkIntervals.Add(new SelectOptionViewModel(workInterval.Title, workInterval.Id.ToString())
+                viewModel.WorkIntervals.Add(new SelectOptionViewModel(workInterval.Title, workInterval.Id.ToString(CultureInfo.InvariantCulture))
                 {
                     IsSelected = (workInterval.Id == helicopterTask.HelicopterWorkInterval.Id)
                 });
