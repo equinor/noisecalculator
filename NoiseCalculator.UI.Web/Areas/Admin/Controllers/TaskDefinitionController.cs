@@ -31,6 +31,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         }
 
 
+        [NoCache]
         public ActionResult Create()
         {
             return PartialView("_CreateTaskDefinition", new NewTaskDefinitionViewModel());
