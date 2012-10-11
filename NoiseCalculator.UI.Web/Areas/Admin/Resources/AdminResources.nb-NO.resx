@@ -360,7 +360,7 @@
     <comment>Helicopter</comment>
   </data>
   <data name="TaskFormHelideckHelicopterWorkIntervalLabel" xml:space="preserve">
-    <value>Arbaidstid</value>
+    <value>Arbeidstid</value>
   </data>
   <data name="TaskFormRegularAssistantLabel" xml:space="preserve">
     <value>Hjelpemann</value>
