@@ -10,7 +10,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
         public int RoleId { get; set; }
         public int NoiseProtectionId { get; set; }
         public string NoiseLevelGuideline { get; set; }
-        public string AllowedExposureMinutes { get; set; }
+        public string Hours { get; set; }
+        public string Minutes { get; set; }
 
         public string SelectedCultureName { get; set; }
         public int DefinitionId { get; set; }
@@ -50,7 +51,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
                 validationErrors.Add(AdminResources.ValidationTaskEditModelNoiseLevelRequired);
             }
 
-            if (string.IsNullOrEmpty(AllowedExposureMinutes))
+            if (string.IsNullOrEmpty(Hours) && string.IsNullOrEmpty(Minutes))
             {
                 validationErrors.Add(AdminResources.ValidationTaskEditModelAllowedExposureRequired);
             }
