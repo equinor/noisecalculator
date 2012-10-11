@@ -10,7 +10,9 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask
         public IList<SelectOptionViewModel> Roles { get; set; }
         public IList<SelectOptionViewModel> NoiseProtections { get; set; }
         public string NoiseLevelGuideline { get; set; }
-        public string AllowedExposureMinutes { get; set; }
+        public string Hours { get; set; }
+        public string Minutes { get; set; }
+
         public IList<SelectOptionViewModel> Languages { get; private set; }
         public string SelectedCultureName { get; private set; }
         public int DefinitionId { get; set; }
@@ -21,7 +23,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask
             Roles = new List<SelectOptionViewModel>();
             NoiseProtections = new List<SelectOptionViewModel>();
             NoiseLevelGuideline = string.Empty;
-            AllowedExposureMinutes = string.Empty;
+            Hours = string.Empty;
+            Minutes = string.Empty;
         }
     }
 }
