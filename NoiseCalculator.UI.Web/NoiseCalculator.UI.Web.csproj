@@ -167,6 +167,7 @@
     <Compile Include="Ninject\NoiseCalculatorWebModule.cs" />
     <Compile Include="Support\LanguageResolver.cs" />
     <Compile Include="Support\NoCacheAttribute.cs" />
+    <Compile Include="Support\TimeSpanFactory.cs" />
     <Compile Include="Support\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\TaskResources.nb-NO.Designer.cs">
