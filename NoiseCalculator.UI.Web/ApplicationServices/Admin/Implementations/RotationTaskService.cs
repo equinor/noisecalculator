@@ -8,7 +8,6 @@ using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
-using NoiseCalculator.UI.Web.Areas.Admin.ViewModels;
 using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic;
 using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.RotationTask;
 using NoiseCalculator.UI.Web.Resources;
