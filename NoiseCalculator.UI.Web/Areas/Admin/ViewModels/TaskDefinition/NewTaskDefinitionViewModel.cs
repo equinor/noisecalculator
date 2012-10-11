@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NoiseCalculator.UI.Web.Areas.Admin.Resources;
 using NoiseCalculator.UI.Web.ViewModels;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition
@@ -18,11 +19,10 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition
 
         private void AddRoleTypes()
         {
-            // Translation must be added
-            RoleTypes.Add(new SelectOptionViewModel("Area Noise", "AreaNoise"));
-            RoleTypes.Add(new SelectOptionViewModel("Helideck", "Helideck"));
-            RoleTypes.Add(new SelectOptionViewModel("Regular", "Regular"){ IsSelected = true });
-            RoleTypes.Add(new SelectOptionViewModel("Rotation", "Rotation"));
+            RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeAreaNoise, "AreaNoise"));
+            RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeHelideck, "Helideck"));
+            RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeRegular, "Regular"){ IsSelected = true });
+            RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeRotation, "Rotation"));
         }
     }
 }
