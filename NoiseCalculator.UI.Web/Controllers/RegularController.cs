@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Resources;
+using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 
 
@@ -122,9 +123,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
             else
             {
-                int hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
-                int minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
-                TimeSpan timeSpan = new TimeSpan(0, hours, minutes, 0);
+                TimeSpan timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
@@ -194,9 +193,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (string.IsNullOrEmpty(viewModel.Percentage))
             {
-                int hours = string.IsNullOrEmpty(viewModel.Hours) ? 0 : int.Parse(viewModel.Hours);
-                int minutes = string.IsNullOrEmpty(viewModel.Minutes) ? 0 : int.Parse(viewModel.Minutes);
-                TimeSpan timeSpan = new TimeSpan(0, hours, minutes, 0);
+                TimeSpan timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
                 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
