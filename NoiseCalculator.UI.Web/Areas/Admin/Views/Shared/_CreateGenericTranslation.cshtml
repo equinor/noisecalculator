@@ -1,5 +1,6 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic.GenericTranslationViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.Generic.GenericTranslationViewModel
 
-<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" style="margin-top: 10px;">
+<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" title="@AdminResources.DialogTitleCreateGenericTranslation">
     @Html.Partial("_GenericTranslationForm", Model)
 </form>

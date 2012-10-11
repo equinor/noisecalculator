@@ -1,5 +1,6 @@
-﻿@model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.RotationTask.RotationTaskViewModel
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.RotationTask.RotationTaskViewModel
 
-<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" style="margin-top: 10px;">
+<form id="adminTranslationForm" action="@Url.Action("Create")" method="POST" title="@AdminResources.DialogTitleCreateRotationTask">
     @Html.Partial("_RotationTaskForm", Model)
 </form>
