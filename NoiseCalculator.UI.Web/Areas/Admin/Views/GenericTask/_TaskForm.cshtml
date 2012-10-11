@@ -1,4 +1,5 @@
 ﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@using NoiseCalculator.UI.Web.Resources
 @using NoiseCalculator.UI.Web.ViewModels
 @model NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask.TaskViewModel
 
@@ -6,7 +7,7 @@
 <input type="hidden" name="definitionId" value="@Model.DefinitionId" />
 
 <p>
-    <label for="selectedCultureName" class="label-130px">@AdminResources.GenericTaskLanguage</label>
+    <label for="selectedCultureName" class="label-170px">@AdminResources.GenericTaskLanguage</label>
     <select id="selectedCultureName" name="selectedCultureName" style="width: 180px;">
         @foreach (SelectOptionViewModel selectOption in Model.Languages)
         {
@@ -16,12 +17,12 @@
 </p>
 
 <p>
-    <label for="Title" class="label-130px">@AdminResources.GenericTaskTitle</label>
+    <label for="Title" class="label-170px">@AdminResources.GenericTaskTitle</label>
     <input id="Title" type="text" name="Title" style="width: 280px;" value="@Model.Title" />
 </p>
 
 <p>
-    <label for="roleId" class="label-130px">@AdminResources.GenericTaskRole</label>
+    <label for="roleId" class="label-170px">@AdminResources.GenericTaskRole</label>
     <select id="roleId" name="roleId" style="width: 180px;">
         @foreach (SelectOptionViewModel selectOption in Model.Roles)
         {
@@ -31,7 +32,7 @@
 </p>
 
 <p>
-    <label for="noiseProtectionId" class="label-130px">@AdminResources.GenericTaskNoiseProtection</label>
+    <label for="noiseProtectionId" class="label-170px">@AdminResources.GenericTaskNoiseProtection</label>
     <select id="noiseProtectionId" name="noiseProtectionId" style="width: 180px;">
         @foreach (SelectOptionViewModel selectOption in Model.NoiseProtections)
         {
@@ -41,19 +42,28 @@
 </p>
 
 <p>
-    <label for="NoiseLevelGuideline" class="label-130px">@AdminResources.GenericTaskNoiseLevel</label>
-    <input id="NoiseLevelGuideline" type="text" name="NoiseLevelGuideline" style="width: 280px;" value="@Model.NoiseLevelGuideline" />
+    <label for="NoiseLevelGuideline" class="label-170px">@AdminResources.GenericTaskNoiseLevel</label>
+    <input id="NoiseLevelGuideline" type="text" name="NoiseLevelGuideline" style="width: 40px;" value="@Model.NoiseLevelGuideline" />
+    <span>@AdminResources.GenericTaskDecibelLabel</span>
 </p>
 
+@*<p>
+    <label for="AllowedExposureMinutes" class="label-170px">@AdminResources.GenericTaskAllowedExposure</label>
+    <input id="AllowedExposureMinutes" type="text" name="AllowedExposureMinutes" style="width: 40px;" value="@Model.AllowedExposureMinutes" />
+    <span>@AdminResources.GenericTaskMinutesLabel</span>
+</p>*@
 <p>
-    <label for="AllowedExposureMinutes" class="label-130px">@AdminResources.GenericTaskAllowedExposure</label>
-    <input id="AllowedExposureMinutes" type="text" name="AllowedExposureMinutes" style="width: 280px;" value="@Model.AllowedExposureMinutes" />
+    <label for="AllowedExposureMinutes" class="label-170px">@AdminResources.GenericTaskAllowedExposure</label>
+    <input id="hours" name="hours" type="text" style="width: 20px; height: 13px;" value="@Model.Hours" />
+    @TaskResources.HoursUnit
+    <input id="minutes" name="minutes" type="text" style="width: 26px; height: 13px;" value="@Model.Minutes" />
+    @TaskResources.MinutesUnit
 </p>
 
 
     
 <p style="margin-top: 10px;">
-    <button id="submitTranslationButton" class="button" style="margin-left: 135px;">
+    <button id="submitTranslationButton" class="button" style="margin-left: 175px;">
         <img src="@Url.Content("~/Content/disk.png")" class="buttonIcon" />
         @AdminResources.ButtonSubmit
     </button>
