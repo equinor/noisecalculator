@@ -291,14 +291,7 @@
     <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Debug to C-Drive Publish folder.pubxml" />
     <None Include="Properties\PublishProfiles\Release to C-Drive Publish folder.pubxml" />
-    <None Include="Scripts\jquery-1.8.0-vsdoc.js" />
     <Content Include="Scripts\NoiseCalculatorCommon.js" />
-    <Content Include="Scripts\jquery-1.8.0.js" />
-    <Content Include="Scripts\jquery-1.8.0.min.js">
-      <DependentUpon>jquery-1.8.0.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery-ui-1.8.23.js" />
-    <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.maxlength.js" />
     <Content Include="Scripts\jquery.maxlength.min.js" />
