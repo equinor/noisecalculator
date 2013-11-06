@@ -81,4 +81,8 @@
     @if(Model.IsAdmin) {
         <a id="adminLink" href="@Url.Action("Index", "TaskDefinition", new { Area = "Admin"})">@TaskResources.AdminLinkText</a> @:-
     }
+    else
+    {
+        @Html.ActionLink("Login", "Index", "Login")
+    }
 }

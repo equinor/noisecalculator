@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.DomainServices;
@@ -32,10 +33,15 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public ActionResult Index()
         {
-            TaskIndexViewModel viewModel = new TaskIndexViewModel();
-            viewModel.IsAdmin = _administratorDAO.UserIsAdmin(UserHelper.CreateUsernameWithoutDomain(User.Identity.Name));
+            ViewBag.Message = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
+            var user = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
+            
+            var viewModel = new TaskIndexViewModel
+            {
+                IsAdmin = _administratorDAO.UserIsAdmin(UserHelper.CreateUsernameWithoutDomain(string.IsNullOrEmpty(user) ? Session.SessionID : user))
+            };
 
-            foreach (SelectedTask selectedTask in _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now))
+            foreach (var selectedTask in _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now))
             {
                 viewModel.SelectedTasks.Add(new SelectedTaskViewModel(selectedTask));
             }
@@ -58,9 +64,9 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public ActionResult GetRemoveTaskConfirmationDialog(int id)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+            var selectedTask = _selectedTaskDAO.Get(id);
 
-            RemoveConfirmationViewModel viewModel = new RemoveConfirmationViewModel
+            var viewModel = new RemoveConfirmationViewModel
                                                         {
                                                             Title = selectedTask.Title,
                                                             Role = selectedTask.Role,
@@ -93,7 +99,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             try
             {
                 // OPTIMIZE OPTIMIZE OPTIMIZE OPTIMIZE
-                foreach (SelectedTask selectedTask in _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now))
+                foreach (var selectedTask in _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now))
                 {
                     _selectedTaskDAO.Delete(selectedTask);
                 }
@@ -108,11 +114,11 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public JsonResult GetTotalPercentage()
         {
-            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now).ToList();
 
-            TotalNoiseDosageViewModel totalNoiseDosage = new TotalNoiseDosageViewModel();
-            totalNoiseDosage.Percentage = selectedTasks.Sum(x => x.Percentage);
-            NoiseLevelEnum noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage.Percentage);
+            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now).ToList();
+
+            var totalNoiseDosage = new TotalNoiseDosageViewModel {Percentage = selectedTasks.Sum(x => x.Percentage)};
+            var noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage.Percentage);
             totalNoiseDosage.StatusText = _noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum);
 
             switch (noiseLevelEnum)

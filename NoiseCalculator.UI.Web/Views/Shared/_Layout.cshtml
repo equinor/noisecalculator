@@ -1,9 +1,11 @@
-﻿@using NoiseCalculator.UI.Web.Support
+﻿@using System.Security.Claims
+@using NoiseCalculator.UI.Web.Support
 @using NoiseCalculator.UI.Web.Resources
 <!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
+    <title>@ViewBag.username</title>
     <meta http-equiv="X-UA-Compatible" content="IE=8">
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
@@ -26,7 +28,7 @@
             <div style="color: White; text-align: right; position: absolute; right: 10px; top: 0px;" >
                 <span style="display: block;" >
                     @RenderSection("AdminLink", required: false)
-                    @TaskResources.LayoutUserLabel: <strong>@UserHelper.CreateUsernameWithoutDomain(User.Identity.Name)</strong>
+                    @TaskResources.LayoutUserLabel: <strong>@UserHelper.CreateUsernameWithoutDomain(ClaimsPrincipal.Current.Identity.Name)</strong>
                 </span>
                 
                 <img id="langNo" src="@Url.Content("~/Content/no.png")" width="22" height="16" alt="Norwegian" />

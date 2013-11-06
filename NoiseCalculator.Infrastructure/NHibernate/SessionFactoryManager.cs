@@ -16,7 +16,7 @@ namespace NoiseCalculator.Infrastructure.NHibernate
 
         public SessionFactoryManager()
         {
-            string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
             
             _configuration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
@@ -38,7 +38,7 @@ namespace NoiseCalculator.Infrastructure.NHibernate
 
         public void ExportSchema()
         {
-            SchemaExport schemaExporter = new SchemaExport(_configuration);
+            var schemaExporter = new SchemaExport(_configuration);
             schemaExporter.Create(false, true);
             //schemaExporter.SetOutputFile("C:\\appl\\sql.txt");
             //schemaExporter.Execute(true, false, false);

@@ -26,8 +26,8 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public ActionResult PdfReportCurrentTasks(ReportInfo reportInfo)
         {
-            reportInfo.CreatedBy = UserHelper.CreateUsernameWithoutDomain(User.Identity.Name);
-            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(User.Identity.Name, DateTime.Now);
+            reportInfo.CreatedBy = UserHelper.CreateUsernameWithoutDomain(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name);
+            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now);
 
             if (selectedTasks.Count() > 0)
             {

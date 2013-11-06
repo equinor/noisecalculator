@@ -30,6 +30,11 @@ namespace NoiseCalculator.UI.Web
 
         }
 
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            Session["init"] = 0;
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -60,6 +65,21 @@ namespace NoiseCalculator.UI.Web
                 // Modify current thread's cultures            
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
                 Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+            }
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            // User needs to be redirected back to the originally requested page.
+            // WSFAM will only parse the WSFed message and redirect back to the page there, 
+            // which is Login/?ReturnUrl=<OriginallyRequestedPage>.
+            // So the following code handles the last redirection step.
+            // This needs to be in EndRequest, because WsFAM calls Application.CompleteRequest after doing its redirect.
+            string wsFamRedirectLocation = HttpContext.Current.Response.RedirectLocation;
+            if (wsFamRedirectLocation != null && wsFamRedirectLocation.Contains("ReturnUrl") && User.Identity.IsAuthenticated)
+            {
+                HttpContext.Current.Response.RedirectLocation =
+                    HttpUtility.ParseQueryString(wsFamRedirectLocation.Split('?')[1])["ReturnUrl"];
             }
         }
     }

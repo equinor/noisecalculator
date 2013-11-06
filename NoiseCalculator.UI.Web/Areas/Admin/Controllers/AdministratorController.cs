@@ -20,7 +20,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
             _administratorService = administratorService;
         }
 
-        [NoCache]
+        [Authorize]
         public ActionResult Index()
         {
             AdministratorIndexViewModel viewModel = _administratorService.Index();

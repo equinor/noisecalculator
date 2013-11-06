@@ -3,7 +3,7 @@ using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
 {
-    public class HelicopterNoiseProtectionDefinitionMap : ClassMap<HelicopterNoiseProtectionDefinition>
+    public sealed class HelicopterNoiseProtectionDefinitionMap : ClassMap<HelicopterNoiseProtectionDefinition>
     {
         public HelicopterNoiseProtectionDefinitionMap()
         {

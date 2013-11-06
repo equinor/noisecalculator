@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
@@ -27,15 +28,15 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public PartialViewResult AddTaskRegular(int id)
         {
-            Task task = _taskDAO.GetFilteredByCurrentCulture(id);
+            var task = _taskDAO.GetFilteredByCurrentCulture(id);
 
-            RegularViewModel viewModel = new RegularViewModel
+            var viewModel = new RegularViewModel
             {
                 TaskId = task.Id,
                 Title = task.Title,
                 Role = task.Role.Title,
                 RoleType = task.Role.RoleType.ToString(),
-                NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(),
+                NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,
                 RadioTimeCheckedAttr = InputChecked
             };
@@ -48,16 +49,16 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
-            Task task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
+            var task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
 
-            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, task);
+            var validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            SelectedTask selectedTask = CreateSelectedTaskRegular(viewModel, task);
+            var selectedTask = CreateSelectedTaskRegular(viewModel, task);
             _selectedTaskDAO.Store(selectedTask);
 
             return PartialView("_SelectedTask", new SelectedTaskViewModel(selectedTask));
@@ -66,23 +67,23 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public PartialViewResult EditTaskRegular(int id)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+            var selectedTask = _selectedTaskDAO.Get(id);
 
-            RegularViewModel viewModel = new RegularViewModel
+            var viewModel = new RegularViewModel
             {
                 TaskId = selectedTask.Task.Id,
                 SelectedTaskId = selectedTask.Id,
                 Title = selectedTask.Task.Title,
                 Role = selectedTask.Task.Role.Title,
                 RoleType = selectedTask.Task.Role.RoleType.ToString(),
-                NoiseLevelGuideline = selectedTask.Task.NoiseLevelGuideline.ToString(),
+                NoiseLevelGuideline = selectedTask.Task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
                 NoiseLevelMeassured = selectedTask.NoiseLevel,
                 RadioNoiseMeassuredNoCheckedAttr = selectedTask.IsNoiseMeassured ? InputNotChecked : InputChecked,
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = InputChecked,
                 
-                Hours = selectedTask.Hours.ToString(),
-                Minutes = selectedTask.Minutes.ToString()
+                Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
+                Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -94,9 +95,9 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public PartialViewResult EditTaskRegular(int id, RegularViewModel viewModel)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+            var selectedTask = _selectedTaskDAO.Get(id);
 
-            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, selectedTask.Task);
+            var validationViewModel = ValidateInput(viewModel, selectedTask.Task);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
@@ -117,13 +118,13 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
             {
                 selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
-                TimeSpan timeSpan = selectedTask.Task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
+                var timeSpan = selectedTask.Task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
             }
             else
             {
-                TimeSpan timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
+                var timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
@@ -152,7 +153,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         
         private ValidationErrorSummaryViewModel ValidateInput(RegularViewModel viewModel, Task task)
         {
-            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+            var errorSummaryViewModel = new ValidationErrorSummaryViewModel();
 
             if (viewModel.NoiseLevelMeassured - task.NoiseLevelGuideline > 6)
             {
@@ -170,13 +171,13 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         private SelectedTask CreateSelectedTaskRegular(RegularViewModel viewModel, Task task)
         {
-            SelectedTask selectedTask = new SelectedTask
+            var selectedTask = new SelectedTask
             {
                 Title = task.Title,
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
                 Task = task,
-                CreatedBy = User.Identity.Name,
+                CreatedBy = string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name,
                 CreatedDate = DateTime.Now.Date
             };
 
@@ -193,7 +194,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             if (string.IsNullOrEmpty(viewModel.Percentage))
             {
-                TimeSpan timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
+                var timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
                 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
@@ -202,7 +203,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             else
             {
                 selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
-                TimeSpan timeSpan = task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
+                var timeSpan = task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
             }

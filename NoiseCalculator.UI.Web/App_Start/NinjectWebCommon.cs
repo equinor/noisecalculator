@@ -7,7 +7,6 @@ using Ninject.Web.Common;
 using Ninject.Web.Mvc.FilterBindingSyntax;
 using NoiseCalculator.NinjectBootstrapper;
 using NoiseCalculator.UI.Web.Areas.Admin.Models;
-using NoiseCalculator.UI.Web.Areas.Admin.ViewModels;
 using NoiseCalculator.UI.Web.Ninject;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NoiseCalculator.UI.Web.App_Start.NinjectWebCommon), "Start")]
@@ -17,7 +16,7 @@ namespace NoiseCalculator.UI.Web.App_Start
 {
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -26,7 +25,7 @@ namespace NoiseCalculator.UI.Web.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -34,7 +33,7 @@ namespace NoiseCalculator.UI.Web.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         /// <summary>

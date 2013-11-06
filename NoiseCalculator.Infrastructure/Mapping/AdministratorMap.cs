@@ -3,7 +3,7 @@ using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.Infrastructure.Mapping
 {
-    public class AdministratorMap : ClassMap<Administrator>
+    public sealed class AdministratorMap : ClassMap<Administrator>
     {
         public AdministratorMap()
         {

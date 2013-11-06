@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
@@ -79,7 +80,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Minutes = helicopterTask.GetMaximumAllowedMinutes(),
                 Task = task,
                 HelicopterTaskId = helicopterTask.Id,
-                CreatedBy = User.Identity.Name,
+                CreatedBy = string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name,
                 CreatedDate = DateTime.Now.Date,
                 IsNoiseMeassured = false
             };

@@ -104,7 +104,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
                 Task = task,
-                CreatedBy = User.Identity.Name,
+                CreatedBy = string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name,
                 CreatedDate = DateTime.Now.Date
             };
 

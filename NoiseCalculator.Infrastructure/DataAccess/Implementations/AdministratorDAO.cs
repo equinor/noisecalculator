@@ -12,14 +12,9 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
 
         public bool UserIsAdmin(string username)
         {
-            Administrator admin = _session.Get<Administrator>(username);
+            var admin = _session.Get<Administrator>(username);
 
-            if(admin == null)
-            {
-                return false;
-            }
-
-            return true;
+            return admin != null;
         }
     }
 }

@@ -20,7 +20,12 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            string usernameWithoutDomain = UserHelper.CreateUsernameWithoutDomain(HttpContext.Current.User.Identity.Name);
+            var username = HttpContext.Current.User.Identity.Name;
+
+            if (string.IsNullOrEmpty(username))
+                username = HttpContext.Current.Session.SessionID;
+
+            string usernameWithoutDomain = UserHelper.CreateUsernameWithoutDomain(username);
             if (_administratorDAO.UserIsAdmin(usernameWithoutDomain) == false)
             {
                 //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "action", "AccessDenied" }, { "controller", "Error" } });
