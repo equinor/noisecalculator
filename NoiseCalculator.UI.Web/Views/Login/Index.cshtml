@@ -10,19 +10,13 @@
                 <h2>@ViewBag.Message</h2>
             </hgroup>
             <p>
-                This page builds a sign in message that is sent to the Local STS using WS-Federation
-                that will return the user to the page they originally requested after authentication
-                is successful. For a more complete explanation of how the sample works, please refer 
-                to the readme.html file in the VS solution or to the sample’s <a href="http://code.msdn.microsoft.com/Claims-Aware-MVC-523e079b">online description</a>.
+                If you are connecting from Statoil domain, you may sign-in using the Login button.
             </p>
         </div>
     </section>
 }
-<p>
-    Click the log in button below to access the page you requested.
-</p>
 
-@using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "http://noisecalculatortest.azurewebsites.net/" }))
+@using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "http://noisecalculator.azurewebsites.net/" }))
 {
     @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
     <fieldset>
