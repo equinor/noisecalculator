@@ -33,7 +33,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             {
                 reportInfo.Footnotes = _footnotesService.CalculateFootnotes(selectedTasks);
 
-                Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDF(selectedTasks, reportInfo);
+                Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDFPdfSharp(selectedTasks, reportInfo);
                 HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
                 return new FileStreamResult(memoryStream, "application/pdf");
             }

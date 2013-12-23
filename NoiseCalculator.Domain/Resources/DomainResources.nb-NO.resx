@@ -153,4 +153,8 @@
     <value>Beregnet støyeksponering er akseptabel.</value>
     <comment>Noise level is below the upper limt and is considered safe</comment>
   </data>
+	<data name="NoiseLevelStatusTextWarning" xml:space="preserve">
+    <value>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</value>
+    <comment>Calculated noise exposure is acceptable, but is approaching maximum allowed exposure.</comment>
+  </data>
 </root>

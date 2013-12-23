@@ -381,4 +381,16 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Work time is distributed on operator and assistant.</value>
     <comment>Arbeidstid fordeles likt på operatør og hjelpemann.</comment>
   </data>
+  <data name="SingleSignOn" xml:space="preserve">
+    <value>Sign in</value>
+    <comment>Logg inn</comment>
+  </data>
+  <data name="SingleSignOnText" xml:space="preserve">
+    <value>Log in with Statoil ID</value>
+    <comment>Logg på med Statoil ID</comment>
+  </data>
+  <data name="SingleSignOnDesc" xml:space="preserve">
+    <value>Log in to Noise Calculator using your Statoil ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in.</value>
+    <comment>Logg på Støykalkulator med din Statoil ID. Prøver du dette fra en enhet som ikke er koblet mot Statoil sitt domene, vil du ikke kunne logge på.</comment>
+  </data>
 </root>

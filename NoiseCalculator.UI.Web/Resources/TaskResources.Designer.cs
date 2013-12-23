@@ -529,6 +529,33 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign in.
+        /// </summary>
+        public static string SingleSignOn {
+            get {
+                return ResourceManager.GetString("SingleSignOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in to Noise Calculator using your Statoil ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in..
+        /// </summary>
+        public static string SingleSignOnDesc {
+            get {
+                return ResourceManager.GetString("SingleSignOnDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in with Statoil ID.
+        /// </summary>
+        public static string SingleSignOnText {
+            get {
+                return ResourceManager.GetString("SingleSignOnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Task.
         /// </summary>
         public static string TaskDialogAddTitle {

@@ -27,7 +27,7 @@ namespace MvcApplication.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Message = "The page prepares the authentication request";
+            ViewBag.UserName = "";
             return View();
         }
 

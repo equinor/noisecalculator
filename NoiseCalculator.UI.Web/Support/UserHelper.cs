@@ -22,7 +22,7 @@ namespace NoiseCalculator.UI.Web.Support
 
         public static string CreateUsernameWithoutDomain2(ClaimsPrincipal user)
         {
-            if (!user.Identity.IsAuthenticated) return "Not identified";
+            if (!user.Identity.IsAuthenticated) return "";
             var claimsPrincipal = user;
             var claimName = claimsPrincipal.FindFirst(ClaimTypes.Email);
             return claimName != null ? claimName.Value : "Name is not set";

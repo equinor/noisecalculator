@@ -33,7 +33,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
+            ViewBag.UserName = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
             var user = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
             
             var viewModel = new TaskIndexViewModel

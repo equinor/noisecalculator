@@ -1,4 +1,6 @@
-﻿@{
+﻿@using NoiseCalculator.UI.Web.Areas.Admin.Resources
+@using NoiseCalculator.UI.Web.Resources
+@{
     ViewBag.Title = "Login Page";
     ViewBag.FormAction = "SignIn";
 }
@@ -6,21 +8,22 @@
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
+                <h1>@TaskResources.SingleSignOn</h1>
             </hgroup>
-            <p>
-                If you are connecting from Statoil domain, you may sign-in using the Login button.
-            </p>
+            <p>@TaskResources.SingleSignOnDesc</p>
         </div>
+        <br/>
+        <br/>
     </section>
 }
 
 @using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "http://noisecalculator.azurewebsites.net/" }))
 {
     @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
-    <fieldset>
-        <legend>Log in Form</legend>
-        <input type="submit" value="Log in" />
-    </fieldset>
+    <input type="submit" value="@TaskResources.SingleSignOnText" />
+}
+
+@section AdminLink
+{
+    <a id="adminLink" href="@Url.Action("Index", "Task", new {area = ""})">@AdminResources.NoiseCalculatorLink</a> -
 }

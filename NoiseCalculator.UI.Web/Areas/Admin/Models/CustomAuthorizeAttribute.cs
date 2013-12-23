@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
@@ -20,8 +21,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            var username = HttpContext.Current.User.Identity.Name;
-
+            var username = UserHelper.CreateUsernameWithoutDomain2(HttpContext.Current.User as ClaimsPrincipal);
+            
             if (string.IsNullOrEmpty(username))
                 username = HttpContext.Current.Session.SessionID;
 

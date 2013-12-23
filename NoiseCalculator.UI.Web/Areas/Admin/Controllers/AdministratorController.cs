@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Security.Claims;
 using System.Web.Mvc;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
@@ -23,6 +25,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            ViewBag.UserName = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
             AdministratorIndexViewModel viewModel = _administratorService.Index();
             return View(viewModel);
         }
