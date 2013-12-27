@@ -35,10 +35,11 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             ViewBag.UserName = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
             var user = UserHelper.CreateUsernameWithoutDomain2(User as ClaimsPrincipal);
-            
+
             var viewModel = new TaskIndexViewModel
             {
-                IsAdmin = _administratorDAO.UserIsAdmin(UserHelper.CreateUsernameWithoutDomain(string.IsNullOrEmpty(user) ? Session.SessionID : user))
+                IsAdmin = _administratorDAO.UserIsAdmin(UserHelper.CreateUsernameWithoutDomain(string.IsNullOrEmpty(user) ? Session.SessionID : user)),
+                IsLoggedIn = !string.IsNullOrEmpty(user)
             };
 
             foreach (var selectedTask in _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now))

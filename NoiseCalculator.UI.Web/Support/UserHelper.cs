@@ -7,25 +7,35 @@ namespace NoiseCalculator.UI.Web.Support
     {
         public static string CreateUsernameWithoutDomain(string username)
         {
-            string shortName = username;
+            var shortName = username;
 
             if(!string.IsNullOrEmpty(username) && username.Contains("\\"))
             {
                 shortName = username.Split('\\')[1].ToUpper();
             }
 
-            if (!string.IsNullOrEmpty(username) && username.Contains("@"))
+            if (!string.IsNullOrEmpty(shortName) && shortName.Contains("@"))
                 return shortName.Substring(0, shortName.IndexOf("@", System.StringComparison.Ordinal));
 
-            return username;
+            return shortName;
         }
 
         public static string CreateUsernameWithoutDomain2(ClaimsPrincipal user)
         {
             if (!user.Identity.IsAuthenticated) return "";
             var claimsPrincipal = user;
-            var claimName = claimsPrincipal.FindFirst(ClaimTypes.Email);
-            return claimName != null ? claimName.Value : "Name is not set";
+            var claimName = claimsPrincipal.FindFirst(ClaimTypes.Name);
+
+            string shortName = null;
+            var username = claimName.Value;
+
+            if (!string.IsNullOrEmpty(username) && username.Contains("\\"))
+                shortName = username.Split('\\')[1].ToUpper();
+
+            if (!string.IsNullOrEmpty(shortName) && shortName.Contains("@"))
+                return shortName.Substring(0, shortName.IndexOf("@", System.StringComparison.Ordinal));
+
+            return shortName;
         }
 
         public static string CreateDomainUsernameInUppercase(string username)

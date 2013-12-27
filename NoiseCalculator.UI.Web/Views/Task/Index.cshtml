@@ -81,7 +81,7 @@
     @if(Model.IsAdmin) {
         <a id="adminLink" href="@Url.Action("Index", "TaskDefinition", new { Area = "Admin"})">@TaskResources.AdminLinkText</a> @:-
     }
-    else
+    else if (!Model.IsLoggedIn)
     {
         @Html.ActionLink(TaskResources.SingleSignOn, "Index", "Login", null, new {@style="color:white;"}) @:-
     }

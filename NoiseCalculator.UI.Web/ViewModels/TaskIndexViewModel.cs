@@ -11,5 +11,6 @@ namespace NoiseCalculator.UI.Web.ViewModels
 
         public IList<SelectedTaskViewModel> SelectedTasks { get; private set; }
         public bool IsAdmin { get; set; }
+        public bool IsLoggedIn { get; set; }
     }
 }

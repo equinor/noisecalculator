@@ -27,19 +27,20 @@ namespace NoiseCalculator.UI.Web.Controllers
         public ActionResult PdfReportCurrentTasks(ReportInfo reportInfo)
         {
             reportInfo.CreatedBy = UserHelper.CreateUsernameWithoutDomain(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name);
-            IEnumerable<SelectedTask> selectedTasks = _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now);
+            if (reportInfo.CreatedBy != reportInfo.CreatedBy.ToUpper())
+                reportInfo.CreatedBy = "";
+            var selectedTasks = _selectedTaskDAO.GetAllChronologically(string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name, DateTime.Now);
 
-            if (selectedTasks.Count() > 0)
-            {
-                reportInfo.Footnotes = _footnotesService.CalculateFootnotes(selectedTasks);
+            var tasks = selectedTasks as IList<SelectedTask> ?? selectedTasks.ToList();
 
-                Stream memoryStream = _pdfExporter.GenerateSelectedTasksPDFPdfSharp(selectedTasks, reportInfo);
-                HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
-                return new FileStreamResult(memoryStream, "application/pdf");
-            }
+            if (!tasks.Any()) return RedirectToAction("Index", "Task");
+            reportInfo.Footnotes = _footnotesService.CalculateFootnotes(tasks);
+
+            var memoryStream = _pdfExporter.GenerateSelectedTasksPDFPdfSharp(tasks, reportInfo);
+            HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");
+            return new FileStreamResult(memoryStream, "application/pdf");
 
             // No tasks found - Redirect to main page
-            return RedirectToAction("Index", "Task");
         }
 
     }
