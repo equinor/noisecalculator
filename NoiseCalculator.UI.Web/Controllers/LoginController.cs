@@ -42,7 +42,7 @@ namespace MvcApplication.Controllers
         [HttpGet]
         public ActionResult SignIn(string returnUrl)
         {
-            // WSFAM will only parse the WSFed message and redirect back to the page there, 
+            // WSFAM will only parse the WSFed message and redirect back to the page there,
             // which is Login/?ReturnUrl=<OriginallyRequestedPage>
             // So let's handle that redirect
             return Redirect(returnUrl);
