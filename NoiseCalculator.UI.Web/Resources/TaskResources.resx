@@ -233,8 +233,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Task work time must be specified, either as hours/minutes or percentage of daily dosage</value>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>The Noise calculator is based on “GL0169 Method for handling hazardous noise” and is in compliance with “TR0926 Working environment”</value>
-    <comment>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926:"Working Environment"</comment>
+    <value>This noise calculator is developed by Statoil and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format.</value>
+    <comment>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format</comment>
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Add tasks to calculate your noise exposure</value>
@@ -390,7 +390,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <comment>Logg på med Statoil ID</comment>
   </data>
   <data name="SingleSignOnDesc" xml:space="preserve">
-    <value>Log in to Noise Calculator using your Statoil ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in.</value>
-    <comment>Logg på Støykalkulator med din Statoil ID. Prøver du dette fra en enhet som ikke er koblet mot Statoil sitt domene, vil du ikke kunne logge på.</comment>
+    <value>Sign in to Noise Calculator using your Statoil ID. </value>
+    <comment>Logg inn på Støykalkulator med din Statoil ID. </comment>
   </data>
 </root>

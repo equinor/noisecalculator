@@ -24,18 +24,9 @@ namespace NoiseCalculator.UI.Web.Support
         {
             if (!user.Identity.IsAuthenticated) return "";
             var claimsPrincipal = user;
-            var claimName = claimsPrincipal.FindFirst(ClaimTypes.Name);
-
-            string shortName = null;
-            var username = claimName.Value;
-
-            if (!string.IsNullOrEmpty(username) && username.Contains("\\"))
-                shortName = username.Split('\\')[1].ToUpper();
-
-            if (!string.IsNullOrEmpty(shortName) && shortName.Contains("@"))
-                return shortName.Substring(0, shortName.IndexOf("@", System.StringComparison.Ordinal));
-
-            return shortName;
+            var claimName = claimsPrincipal.FindFirst(ClaimTypes.Email);
+            
+            return claimName.Value ?? "";
         }
 
         public static string CreateDomainUsernameInUppercase(string username)

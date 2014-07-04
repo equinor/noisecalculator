@@ -134,8 +134,8 @@
     <comment>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller dersom når arbeidet utføres i  områder med mye klang, feks tanker.</comment>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>The Noise calculator is based on “GL0169 Method for handling hazardous noise” and is in compliance with “TR0926 Working environment”</value>
-    <comment>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926:"Working Environment"</comment>
+    <value>This noise calculator is developed by Statoil and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format.</value>
+    <comment>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format</comment>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>Single hearing protection means ear muffs or ear plugs. Double hearing protection means ear muffs and ear plugs used at the same time</value>

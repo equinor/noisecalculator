@@ -408,7 +408,7 @@
     <comment>Log in with Statoil ID</comment>
   </data>
   <data name="SingleSignOnDesc" xml:space="preserve">
-    <value>Logg på Støykalkulator med din Statoil ID. Prøver du dette fra en enhet som ikke er koblet mot Statoil sitt domene, vil du ikke kunne logge på.</value>
+    <value>Logg på Støykalkulator med din Statoil ID. </value>
     <comment>Log in to Noisecalculator using your Statoil ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in.</comment>
   </data>
 </root>

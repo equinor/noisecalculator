@@ -131,7 +131,7 @@
     <value>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller arbeidet utføres i  områder med mye klang, feks tanker.</value>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926: "Working Environment"</value>
+    <value>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format.</value>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.</value>
@@ -153,7 +153,7 @@
     <value>Beregnet støyeksponering er akseptabel.</value>
     <comment>Noise level is below the upper limt and is considered safe</comment>
   </data>
-	<data name="NoiseLevelStatusTextWarning" xml:space="preserve">
+  <data name="NoiseLevelStatusTextWarning" xml:space="preserve">
     <value>Beregnet støyeksponering er akseptabel, men nærmer seg maks tillatt eksponering.</value>
     <comment>Calculated noise exposure is acceptable, but is approaching maximum allowed exposure.</comment>
   </data>
