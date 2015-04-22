@@ -1,4 +1,5 @@
 ﻿@using NoiseCalculator.UI.Web.Resources
+@using NoiseCalculator.UI.Web.ViewModels
 @model NoiseCalculator.UI.Web.ViewModels.RegularViewModel
 
 <input id="taskId" type="hidden" value="@Model.TaskId" />
@@ -27,6 +28,13 @@
         <input id="noiseMeasuredYes" type="radio" name="group1" @Model.RadioNoiseMeassuredYesCheckedAttr />
         <label id="noiseMeasuredYesLabel" for="noiseMeasuredYes">@TaskResources.Yes</label>
     </span>
+
+    <span style="width: 30px; display: inline-block;"></span>
+
+    <span style="width: 190px; display: inline-block;">
+        <label>@TaskResources.TaskFormButtonPressedLabel</label>
+    </span>
+
 </p>
 
 <p>
@@ -36,6 +44,35 @@
         <input id="noiseLevelMeassured" type="text" style="width: 30px; height: 13px;" value="@Model.NoiseLevelMeassured" />
         dBA
     </span>
+
+    <span style="width: 30px; display: inline-block;"></span>
+    
+    <span style="width: 190px; display: inline-block;">
+        <span style="float: right;">
+            <input id="buttonPressed" type="text" style="width: 30px; height: 13px;" value="@Model.ButtonPressed" /> %
+        </span>
+    </span>
+</p>
+
+<br />
+
+<p>
+    <label for="BackgroundNoise" class="label-130px">@TaskResources.TaskFormBackgroundNoiseLabel</label>
+    <input id="backgroundNoise" type="text" style="width: 30px; height: 13px;" value="@Model.BackgroundNoise" />
+     dBA
+    <span style="width: 40px;"></span>
+    <label style="width: 200px;">@TaskResources.TaskFormBackgroundNoiseReasonLabel</label>
+</p>
+
+<p>
+    <label for="NoiseProtection" class="label-130px">@TaskResources.SelectedTaskNoiseProtectionLabel</label>
+    @*<span id="NoiseProtection">: @Model.NoiseProtection</span>*@
+    <select id="noiseProtectionId" name="noiseProtectionId" style="width: 180px;">: 
+        @foreach (SelectListItem item in Model.NoiseProtection)
+        {
+            <option value="@item.Value" @(item.Selected ? "SELECTED" : string.Empty)>@item.Text</option>
+        }
+    </select>
 </p>
 
 <p style="margin-top: 10px;">

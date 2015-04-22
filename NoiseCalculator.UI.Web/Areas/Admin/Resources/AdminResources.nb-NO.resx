@@ -203,6 +203,14 @@
     <value>Maks Operasjonstid</value>
     <comment>Tillatt eksponering</comment>
   </data>
+  <data name="GenericTaskButtonPressed" xml:space="preserve">
+    <value>Knappen inne</value>
+    <comment>Typisk verdi i prosent for bruk av utstyret for oppgaven</comment>
+  </data>
+  <data name="GenericTaskBackgroundNoise" xml:space="preserve">
+    <value>Bakgrunnsstøy</value>
+    <comment>Områdestøy når utstyr ikke er i bruk</comment>
+  </data>
   <data name="GenericTaskDecibelLabel" xml:space="preserve">
     <value>dBA</value>
   </data>
@@ -368,7 +376,7 @@
   </data>
   <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
     <value>Feltmåling</value>
-    <comment>Noise Measured</comment>
+    <comment>På arbeidssted målt ved øret med utstyr i bruk ("knappen inne").</comment>
   </data>
   <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
     <value>Operatør</value>

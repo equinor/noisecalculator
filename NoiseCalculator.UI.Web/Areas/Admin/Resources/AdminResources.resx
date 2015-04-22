@@ -172,6 +172,14 @@
     <value>Max Operational Time</value>
     <comment>Maks Operasjonstid</comment>
   </data>
+  <data name="GenericTaskButtonPressed" xml:space="preserve">
+    <value>Button pressed</value>
+    <comment>Typical value in percentage for use of equipment for the task</comment>
+  </data>
+  <data name="GenericTaskBackgroundNoise" xml:space="preserve">
+    <value>Backgroundnoise</value>
+    <comment>Backgroundnoise when the equipment is not in use</comment>
+  </data>
   <data name="GenericTaskLanguage" xml:space="preserve">
     <value>Language</value>
   </data>

@@ -16,6 +16,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.GenericTask
         public IList<SelectOptionViewModel> Languages { get; private set; }
         public string SelectedCultureName { get; private set; }
         public int DefinitionId { get; set; }
+        public int ButtonPressed { get; set; }
+        public int BackgroundNoise { get; set; }
 
         public TaskViewModel(IList<SelectOptionViewModel> languages)
         {

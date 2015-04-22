@@ -230,7 +230,17 @@
     <comment>Assistant</comment>
   </data>
   <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
-    <value>Feltmåling</value>
+    <value>Feltmåling med "knappen inne"</value>
+    <comment>Noise Measured</comment>
+  </data>
+  <data name="TaskFormBackgroundNoiseLabel" xml:space="preserve">
+    <value>Bakgrunnsstøy</value>
+  </data>
+  <data name="TaskFormBackgroundNoiseReasonLabel" xml:space="preserve">
+    <value>(Fyll inn hvis over 80dBA)</value>
+  </data>
+  <data name="TaskFormButtonPressedLabel" xml:space="preserve">
+    <value>% av arbeidstiden med "knappen inne"</value>
     <comment>Noise Measured</comment>
   </data>
   <data name="TaskFormRegularOperatorLabel" xml:space="preserve">

@@ -18,18 +18,20 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         private readonly ITaskDAO _taskDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
+        private readonly INoiseProtectionDAO _noiseProtectionDAO;
 
 
-        public RegularController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO)
+        public RegularController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, INoiseProtectionDAO noiseProtectionDAO)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
+            _noiseProtectionDAO = noiseProtectionDAO;
         }
 
         public PartialViewResult AddTaskRegular(int id)
         {
             var task = _taskDAO.GetFilteredByCurrentCulture(id);
-
+            
             var viewModel = new RegularViewModel
             {
                 TaskId = task.Id,
@@ -38,8 +40,21 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RoleType = task.Role.RoleType.ToString(),
                 NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,
-                RadioTimeCheckedAttr = InputChecked
+                RadioTimeCheckedAttr = InputChecked,
+                ButtonPressed = task.ButtonPressed,
+                BackgroundNoise = task.BackgroundNoise
             };
+
+            viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
+            foreach (NoiseProtection noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            {
+                SelectListItem selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                if (viewModel.NoiseProtectionId == noiseProtection.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.NoiseProtection.Add(selectListItem);
+            }
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
@@ -50,7 +65,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
             var task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
-
+            
             var validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
@@ -81,6 +96,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RadioNoiseMeassuredNoCheckedAttr = selectedTask.IsNoiseMeassured ? InputNotChecked : InputChecked,
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = InputChecked,
+                ButtonPressed = selectedTask.ButtonPressed,
+                BackgroundNoise = selectedTask.BackgroundNoise,
                 
                 Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
@@ -103,6 +120,16 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
+
+            if (viewModel.ButtonPressed == 0)
+                selectedTask.ButtonPressed = selectedTask.Task.ButtonPressed;
+            else if (viewModel.ButtonPressed >= selectedTask.Task.ButtonPressed)
+                selectedTask.ButtonPressed = viewModel.ButtonPressed;
+
+            if (viewModel.BackgroundNoise == 0)
+                selectedTask.BackgroundNoise = selectedTask.Task.BackgroundNoise;
+            else if (viewModel.BackgroundNoise >= selectedTask.Task.BackgroundNoise)
+                selectedTask.BackgroundNoise = viewModel.BackgroundNoise;
 
             if(viewModel.NoiseLevelMeassured == 0)
             {
@@ -128,7 +155,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
-                selectedTask.Percentage = (int)selectedTask.Task.CalculatePercentage(selectedTask.NoiseLevel, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
+                selectedTask.Percentage = (int)selectedTask.Task.CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
             }
 
             _selectedTaskDAO.Store(selectedTask);
@@ -176,10 +203,22 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = task.Title,
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
+                ButtonPressed = task.ButtonPressed,
+                BackgroundNoise = task.BackgroundNoise,
                 Task = task,
                 CreatedBy = string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name,
                 CreatedDate = DateTime.Now.Date
             };
+
+            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+            if (noiseProtection != null)
+                selectedTask.NoiseProtection = noiseProtection.Title;
+
+            if (viewModel.ButtonPressed != task.ButtonPressed)
+                selectedTask.ButtonPressed = viewModel.ButtonPressed;
+
+            if (viewModel.BackgroundNoise != task.BackgroundNoise)
+                selectedTask.BackgroundNoise = viewModel.BackgroundNoise;
 
             if (viewModel.NoiseLevelMeassured > task.NoiseLevelGuideline)
             {
@@ -198,7 +237,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
-                selectedTask.Percentage = (int)task.CalculatePercentage(selectedTask.NoiseLevel, timeSpan);
+                selectedTask.Percentage = (int)task.CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, timeSpan);
             }
             else
             {

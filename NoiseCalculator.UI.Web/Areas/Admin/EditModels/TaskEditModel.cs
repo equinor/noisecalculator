@@ -15,6 +15,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
 
         public string SelectedCultureName { get; set; }
         public int DefinitionId { get; set; }
+        public int ButtonPressed { get; set; }
+        public int BackgroundNoise { get; set; }
 
 
         public bool IsValid()

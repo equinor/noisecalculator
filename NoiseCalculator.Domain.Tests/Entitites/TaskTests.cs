@@ -17,7 +17,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             TimeSpan actualExposure = new TimeSpan(0, 0, 90, 0);
             
             // Act
-            decimal calculatedPercentage = task.CalculatePercentage(task.NoiseLevelGuideline, actualExposure);
+            decimal calculatedPercentage = task.CalculatePercentage(task.NoiseLevelGuideline, task.ButtonPressed, actualExposure);
 
             // Assert
             Assert.AreEqual(25, calculatedPercentage);
@@ -32,7 +32,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int actualNoiseLevel = 112;
 
             // Act
-            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, actualExposure);
+            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, task.ButtonPressed, actualExposure);
 
             // Assert
             Assert.AreEqual(50, calculatedPercentage);
@@ -47,7 +47,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int actualNoiseLevel = 113;
 
             // Act
-            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, actualExposure);
+            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, task.ButtonPressed, actualExposure);
 
             // Assert
             Assert.AreEqual(62.5m, calculatedPercentage);
@@ -62,7 +62,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int actualNoiseLevel = 114;
 
             // Act
-            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, actualExposure);
+            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, task.ButtonPressed, actualExposure);
 
             // Assert
             Assert.AreEqual(83.3m, Math.Round(calculatedPercentage, 1));
@@ -77,7 +77,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int actualNoiseLevel = 115;
 
             // Act
-            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, actualExposure);
+            decimal calculatedPercentage = task.CalculatePercentage(actualNoiseLevel, task.ButtonPressed, actualExposure);
 
             // Assert
             Assert.AreEqual(100, calculatedPercentage);
@@ -91,7 +91,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             TimeSpan actualExposure = new TimeSpan(0, 0, 180, 0);
 
             // Act
-            decimal calculatedPercentage = task.CalculatePercentage(task.NoiseLevelGuideline, actualExposure);
+            decimal calculatedPercentage = task.CalculatePercentage(task.NoiseLevelGuideline, task.ButtonPressed, actualExposure);
 
             // Assert
             Assert.AreEqual(50, calculatedPercentage);

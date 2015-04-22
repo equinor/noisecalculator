@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.Support;
+using AuthorizationContext = System.Web.Mvc.AuthorizationContext;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.Models
 {   
@@ -26,7 +27,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Models
             if (string.IsNullOrEmpty(username))
                 username = HttpContext.Current.Session.SessionID;
 
-            string usernameWithoutDomain = UserHelper.CreateUsernameWithoutDomain(username);
+            var usernameWithoutDomain = UserHelper.CreateUsernameWithoutDomain(username);
             if (_administratorDAO.UserIsAdmin(usernameWithoutDomain) == false)
             {
                 //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "action", "AccessDenied" }, { "controller", "Error" } });

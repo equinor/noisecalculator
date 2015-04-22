@@ -8,6 +8,8 @@
         public string NoiseProtection { get; set; }
         public int NoiseLevelGuideline { get; set; }
         public int AllowedExposureMinutes { get; set; }
+        public int ButtonPressed { get; set; }
+        public int BackgroundNoise { get; set; }
         public string Language { get; set; }
     }
 }

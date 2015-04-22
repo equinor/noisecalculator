@@ -1,4 +1,7 @@
-﻿namespace NoiseCalculator.UI.Web.ViewModels
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+
+namespace NoiseCalculator.UI.Web.ViewModels
 {
     public class RegularViewModel
     {
@@ -20,6 +23,10 @@
         public string Percentage { get; set; }
 
         public string RotationDiplayStyle { get; set; }
+        public int ButtonPressed { get; set; }
+        public int BackgroundNoise { get; set; }
+        public int NoiseProtectionId { get; set; }
+        public IList<SelectListItem> NoiseProtection { get; set; }
 
 
         public RegularViewModel()
@@ -33,6 +40,7 @@
             RadioTimeCheckedAttr = string.Empty;
             RadioPercentageCheckedAttr = string.Empty;
             RotationDiplayStyle = "style=\"display: none;\"";
+            NoiseProtection = new List<SelectListItem>();
         }
     }
 }

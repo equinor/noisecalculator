@@ -24,7 +24,7 @@ namespace NoiseCalculator.UI.Web.Support
         {
             if (!user.Identity.IsAuthenticated) return "";
             var claimsPrincipal = user;
-            var claimName = claimsPrincipal.FindFirst(ClaimTypes.Email);
+            var claimName = claimsPrincipal.FindFirst(ClaimTypes.Name);
             
             return claimName.Value ?? "";
         }

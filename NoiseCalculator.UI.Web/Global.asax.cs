@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
+using System.IdentityModel.Tokens;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -38,6 +40,13 @@ namespace NoiseCalculator.UI.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            // ....
+
+            string configPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Web.config";
+            string metadataAddress =
+                            ConfigurationManager.AppSettings["ida:FederationMetadataLocation"];
+            ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath); 
 
             // Make sure we don't use the Webforms view engine in any way.
             ViewEngines.Engines.Clear();

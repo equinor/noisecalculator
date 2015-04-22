@@ -65,9 +65,9 @@ namespace NoiseCalculator.UI.Web.Controllers
 
 
             TimeSpan timeSpan = new TimeSpan(CreateTimeSpan(viewModel.Hours, viewModel.Minutes).Ticks / 2);
-                
-            int percentageOperator = (int)rotation.OperatorTask.CalculatePercentage(selectedTaskOperator.NoiseLevel, timeSpan);
-            int percentageAssistant = (int)rotation.AssistantTask.CalculatePercentage(selectedTaskAssistant.NoiseLevel, timeSpan);
+
+            int percentageOperator = (int)rotation.OperatorTask.CalculatePercentage(selectedTaskOperator.NoiseLevel, selectedTaskAssistant.ButtonPressed, selectedTaskAssistant.BackgroundNoise, timeSpan);
+            int percentageAssistant = (int)rotation.AssistantTask.CalculatePercentage(selectedTaskAssistant.NoiseLevel, selectedTaskAssistant.ButtonPressed, selectedTaskAssistant.BackgroundNoise, timeSpan);
                 
             selectedTaskOperator.AddWorkTime(timeSpan, percentageOperator);
             selectedTaskAssistant.AddWorkTime(timeSpan, percentageAssistant);

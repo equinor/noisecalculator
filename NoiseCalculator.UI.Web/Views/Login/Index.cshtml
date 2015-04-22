@@ -13,11 +13,12 @@
             <p>@TaskResources.SingleSignOnDesc</p>
         </div>
         <br/>
+        testtestetstest
         <br/>
     </section>
 }
 
-@using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "http://noisecalculator.azurewebsites.net/" }))
+@using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "https://noisecalculatordev.azurewebsites.net/" }))
 {
     @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
     <input type="submit" value="@TaskResources.SingleSignOnText" />

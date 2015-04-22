@@ -360,7 +360,17 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Work Interval</value>
   </data>
   <data name="TaskFormRegularNoiseMeasuredLabel" xml:space="preserve">
-    <value>Noise Measured</value>
+    <value>Noise Measured with "button pressed"</value>
+  </data>
+  <data name="TaskFormBackgroundNoiseLabel" xml:space="preserve">
+    <value>Background noise</value>
+  </data>
+  <data name="TaskFormBackgroundNoiseReasonLabel" xml:space="preserve">
+    <value>(Fill if value is over 80 dBA)</value>
+  </data>
+  <data name="TaskFormButtonPressedLabel" xml:space="preserve">
+    <value>% of work time with "button pressed"</value>
+    <comment>Noise Measured</comment>
   </data>
   <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
     <value>Operator</value>

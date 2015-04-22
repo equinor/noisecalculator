@@ -13,6 +13,8 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public string Hours { get; set; }
         public string Minutes { get; set; }
         public string Percentage { get; set; }
+        public string ButtonPressed { get; set; }
+        public string BackgroundNoise { get; set; }
 
         public int TaskId { get; set; }
         public int HelicopterTaskId { get; set; }
@@ -29,6 +31,8 @@ namespace NoiseCalculator.UI.Web.ViewModels
             Hours = selectedTask.Hours.ToString();
             Minutes = selectedTask.Minutes.ToString();
             RoleType = selectedTask.Task.Role.RoleType.ToString();
+            ButtonPressed = selectedTask.ButtonPressed.ToString();
+            BackgroundNoise = selectedTask.BackgroundNoise.ToString();
 
             if (selectedTask.HelicopterTaskId > 0)
             {
@@ -46,5 +50,6 @@ namespace NoiseCalculator.UI.Web.ViewModels
                 }
             }
         }
+
     }
 }

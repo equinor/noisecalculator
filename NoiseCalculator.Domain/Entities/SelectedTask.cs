@@ -18,8 +18,10 @@ namespace NoiseCalculator.Domain.Entities
 
         public virtual Task Task { get; set; }
         public virtual int HelicopterTaskId { get; set; }
+        public virtual int ButtonPressed { get; set; }
+        public virtual int BackgroundNoise { get; set; }
 
-        
+
         public virtual void AddWorkTime(TimeSpan timeSpan, int percentage)
         {
             Hours = timeSpan.Hours;

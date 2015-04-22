@@ -455,6 +455,9 @@ function submitRegularForm() {
     var formData = {
         TaskId: $("#taskId").val(),
         NoiseLevelMeassured: $("#noiseLevelMeassured").val(),
+        ButtonPressed: $("#buttonPressed").val(),
+        BackgroundNoise: $("#backgroundNoise").val(),
+        NoiseProtectionId: $('#noiseProtectionId').val(),
         Hours: $("#hours").val(),
         Minutes: $("#minutes").val(),
         Percentage: $("#percentage").val()

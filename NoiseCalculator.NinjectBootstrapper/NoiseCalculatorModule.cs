@@ -4,6 +4,8 @@ using Ninject.Web.Common;
 using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Infrastructure.DataAccess.Implementations;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.Infrastructure.Identity.Implementations;
+using NoiseCalculator.Infrastructure.Identity.Interfaces;
 using NoiseCalculator.Infrastructure.NHibernate;
 using NoiseCalculator.Infrastructure.Pdf;
 
@@ -34,6 +36,8 @@ namespace NoiseCalculator.NinjectBootstrapper
 
             // Domain Services
             Bind<IFootnotesService>().To<FootnotesService>();
+            Bind<IDirectoryService>().To<AzureActiveDirectoryService>();
+            Bind<IIdentityProvider>().To<ClaimsIdentityProvider>();
         }
     }
 }
