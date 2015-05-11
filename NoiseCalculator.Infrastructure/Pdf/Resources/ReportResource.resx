@@ -124,7 +124,13 @@
     <value>Date: {0}</value>
   </data>
   <data name="HeadingNoiseLevel" xml:space="preserve">
-    <value>Noise Level (dBA)</value>
+    <value>Noise Level</value>
+  </data>
+  <data name="HeadingButtonPressed" xml:space="preserve">
+    <value>eng: % Knappen inne</value>
+  </data>
+  <data name="HeadingBackgroundNoise" xml:space="preserve">
+    <value>eng: Bakgrunnsstøy</value>
   </data>
   <data name="HeadingNoiseProtection" xml:space="preserve">
     <value>Noise Protection</value>
@@ -137,6 +143,9 @@
   </data>
   <data name="HeadingWorkTime" xml:space="preserve">
     <value>Work Time</value>
+  </data>
+  <data name="HeadingPercentage" xml:space="preserve">
+    <value>% Daily dose</value>
   </data>
   <data name="NoiseMeassured" xml:space="preserve">
     <value>measured</value>
@@ -154,8 +163,11 @@
   <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
     <value>N/A</value>
   </data>
+  <data name="TotalPercentageTextFormatString" xml:space="preserve">
+    <value>Total of Allowed Daily Dosage:</value>
+  </data>
   <data name="TotalPercentageFormatString" xml:space="preserve">
-    <value>Total: {0}%</value>
+    <value>{0}%</value>
   </data>
   <data name="UserFormatString" xml:space="preserve">
     <value>Username: {0}</value>

@@ -133,8 +133,8 @@
     <value>Noise Calculator</value>
   </data>
   <data name="IndexTotalDailyDosageLabel" xml:space="preserve">
-    <value>Percentage of daily noise dosage</value>
-    <comment>Prosent av daglig støydose</comment>
+    <value>Percentage of allowed daily noise dosage</value>
+    <comment>Prosent av tillatt daglig støydose</comment>
   </data>
   <data name="LayoutUserLabel" xml:space="preserve">
     <value>User</value>
@@ -163,6 +163,12 @@
   <data name="SelectedTaskNoiseProtectionLabel" xml:space="preserve">
     <value>Noise Protection</value>
   </data>
+  <data name="SelectedTaskButtonPressedLabel" xml:space="preserve">
+    <value>% Button pressed</value>
+  </data>
+  <data name="SelectedTaskBackgroundNoiseLabel" xml:space="preserve">
+    <value>Background noise</value>
+  </data>
   <data name="SelectedTaskPercentageDailyDosageLabel" xml:space="preserve">
     <value>% Daily Dosage</value>
   </data>
@@ -177,6 +183,10 @@
   </data>
   <data name="TaskDialogButtonUseTask" xml:space="preserve">
     <value>Use Task</value>
+  </data>
+  <data name="TaskDialogInfoUseTask" xml:space="preserve">
+    <value>If a task is missing, use a general task with the same noise level. Please report this for evaluation.
+</value>
   </data>
   <data name="TaskDialogAddTitle" xml:space="preserve">
     <value>Add Task</value>
@@ -371,6 +381,17 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="TaskFormButtonPressedLabel" xml:space="preserve">
     <value>% of work time with "button pressed"</value>
     <comment>Noise Measured</comment>
+  </data>
+  <data name="TaskFormRegularNoiseMeasuredInfo" xml:space="preserve">
+    <value>eng: På arbeidssted målt ved øret med utstyr i bruk ("knappen inne“).</value>
+  </data>
+  <data name="TaskFormBackgroundNoiseInfo" xml:space="preserve">
+    <value>eng: Områdestøy når utstyr ikke er i bruk. Områdestøynivå hentes enten fra støykart (bruk høyeste nivå i området) eller fra feltmåling på arbeidsstedet. Dersom feltet ikke fylles ut eller er lavere enn 80 dBA anses områdestøyen som så lav at den ikke påvirker støydosen.
+</value>
+  </data>
+  <data name="TaskFormButtonPressedInfo" xml:space="preserve">
+    <value>eng: Tallet som vises er den andelen av en typisk arbeidssyklus der operatøren eksponeres for støy fra utstyret. En typisk arbeidssyklus inkluderer forberedelser og avslutning på arbeidsstedet, bruk av utstyret ("knappen inne“) og forflytninger i løpet av arbeidet. Lengre pauser er ikke en del av en typisk arbeidssyklus. Tallet kan endres. 
+</value>
   </data>
   <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
     <value>Operator</value>

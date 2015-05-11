@@ -250,7 +250,7 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Percentage of daily noise dosage.
+        ///   Looks up a localized string similar to Percentage of allowed daily noise dosage.
         /// </summary>
         public static string IndexTotalDailyDosageLabel {
             get {
@@ -448,6 +448,24 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background noise.
+        /// </summary>
+        public static string SelectedTaskBackgroundNoiseLabel {
+            get {
+                return ResourceManager.GetString("SelectedTaskBackgroundNoiseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Button pressed.
+        /// </summary>
+        public static string SelectedTaskButtonPressedLabel {
+            get {
+                return ResourceManager.GetString("SelectedTaskButtonPressedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string SelectedTaskEditLabel {
@@ -583,6 +601,26 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If a task is missing, use a general task with the same noise level. Please report this for evaluation.
+        ///.
+        /// </summary>
+        public static string TaskDialogInfoUseTask {
+            get {
+                return ResourceManager.GetString("TaskDialogInfoUseTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eng: Områdestøy når utstyr ikke er i bruk. Områdestøynivå hentes enten fra støykart (bruk høyeste nivå i området) eller fra feltmåling på arbeidsstedet. Dersom feltet ikke fylles ut eller er lavere enn 80 dBA anses områdestøyen som så lav at den ikke påvirker støydosen.
+        ///.
+        /// </summary>
+        public static string TaskFormBackgroundNoiseInfo {
+            get {
+                return ResourceManager.GetString("TaskFormBackgroundNoiseInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background noise.
         /// </summary>
         public static string TaskFormBackgroundNoiseLabel {
@@ -606,6 +644,16 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string TaskFormButtonClose {
             get {
                 return ResourceManager.GetString("TaskFormButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eng: Tallet som vises er den andelen av en typisk arbeidssyklus der operatøren eksponeres for støy fra utstyret. En typisk arbeidssyklus inkluderer forberedelser og avslutning på arbeidsstedet, bruk av utstyret (&quot;knappen inne“) og forflytninger i løpet av arbeidet. Lengre pauser er ikke en del av en typisk arbeidssyklus. Tallet kan endres. 
+        ///.
+        /// </summary>
+        public static string TaskFormButtonPressedInfo {
+            get {
+                return ResourceManager.GetString("TaskFormButtonPressedInfo", resourceCulture);
             }
         }
         
@@ -669,6 +717,15 @@ namespace NoiseCalculator.UI.Web.Resources {
         public static string TaskFormRegularAssistantLabel {
             get {
                 return ResourceManager.GetString("TaskFormRegularAssistantLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eng: På arbeidssted målt ved øret med utstyr i bruk (&quot;knappen inne“)..
+        /// </summary>
+        public static string TaskFormRegularNoiseMeasuredInfo {
+            get {
+                return ResourceManager.GetString("TaskFormRegularNoiseMeasuredInfo", resourceCulture);
             }
         }
         

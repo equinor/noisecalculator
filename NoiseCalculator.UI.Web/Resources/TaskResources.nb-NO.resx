@@ -138,8 +138,8 @@
     <comment>My Tasks</comment>
   </data>
   <data name="IndexTotalDailyDosageLabel" xml:space="preserve">
-    <value>Prosent av daglig støydose</value>
-    <comment>Total Daily Dosage</comment>
+    <value>Prosent av tillatt daglig støydose</value>
+    <comment>Total of Allowed Daily Dosage</comment>
   </data>
   <data name="LayoutUserLabel" xml:space="preserve">
     <value>Bruker</value>
@@ -242,6 +242,17 @@
   <data name="TaskFormButtonPressedLabel" xml:space="preserve">
     <value>% av arbeidstiden med "knappen inne"</value>
     <comment>Noise Measured</comment>
+  </data>
+  <data name="TaskFormRegularNoiseMeasuredInfo" xml:space="preserve">
+    <value>På arbeidssted målt ved øret med utstyr i bruk ("knappen inne“).</value>
+  </data>
+  <data name="TaskFormBackgroundNoiseInfo" xml:space="preserve">
+    <value>Områdestøy når utstyr ikke er i bruk. Områdestøynivå hentes enten fra støykart (bruk høyeste nivå i området) eller fra feltmåling på arbeidsstedet. Dersom feltet ikke fylles ut eller er lavere enn 80 dBA anses områdestøyen som så lav at den ikke påvirker støydosen.
+</value>
+  </data>
+  <data name="TaskFormButtonPressedInfo" xml:space="preserve">
+    <value>Tallet som vises er den andelen av en typisk arbeidssyklus der operatøren eksponeres for støy fra utstyret. En typisk arbeidssyklus inkluderer forberedelser og avslutning på arbeidsstedet, bruk av utstyret ("knappen inne“) og forflytninger i løpet av arbeidet. Lengre pauser er ikke en del av en typisk arbeidssyklus. Tallet kan endres. 
+</value>
   </data>
   <data name="TaskFormRegularOperatorLabel" xml:space="preserve">
     <value>Operatør</value>
@@ -420,5 +431,15 @@
   <data name="SingleSignOnDesc" xml:space="preserve">
     <value>Logg på Støykalkulator med din Statoil ID. </value>
     <comment>Log in to Noisecalculator using your Statoil ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in.</comment>
+  </data>
+  <data name="SelectedTaskBackgroundNoiseLabel" xml:space="preserve">
+    <value>Bakgrunnsstøy</value>
+  </data>
+  <data name="SelectedTaskButtonPressedLabel" xml:space="preserve">
+    <value>% Knappen inne</value>
+  </data>
+  <data name="TaskDialogInfoUseTask" xml:space="preserve">
+    <value>Dersom en støyende arbeidsoppgave mangler i oversikten skal man bruke "ikke-støyende arbeid" med tilsvarende støynivå. Meld fra til yrkeshygieniker slik at arbeidsoppgaven kan risikovurderes og legges inn.
+</value>
   </data>
 </root>

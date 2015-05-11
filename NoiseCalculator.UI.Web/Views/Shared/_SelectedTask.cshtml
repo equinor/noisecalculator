@@ -9,7 +9,7 @@
         @TaskResources.SelectedTaskEditLabel
     </div>
 
-    <div class="taskGrouping" style="width: 460px; max-width: 460px;">
+    <div class="taskGrouping" style="width: 330px; max-width: 330px;">
         <p>
             <label for="Task" class="label-small60">@TaskResources.TaskTitleLabel</label>
             <span id="Task" style="font-weight: bold;">: @Model.Title</span>
@@ -21,7 +21,7 @@
         </p>
     </div>
 
-    <div class="taskGrouping" style="width: 320px; max-width: 320px;">
+    <div class="taskGrouping" style="width: 260px; max-width: 260px;">
         <p>
             <label for="NoiseProtection" class="label-normal120">@TaskResources.SelectedTaskNoiseProtectionLabel</label>
             <span id="NoiseProtection" style="font-weight: bold;">: @Model.NoiseProtection</span>
@@ -30,6 +30,18 @@
         <p>
             <label for="NoiseLevel" class="label-normal120">@TaskResources.SelectedTaskNoiseLevelLabel</label>
             <span id="NoiseLevel" style="font-weight: bold;">: @Model.NoiseLevel</span>
+        </p>
+    </div>
+
+    <div class="taskGrouping" style="width: 190px; max-width: 190px;">
+        <p>
+            <label for="NoiseProtection" class="label-130px">@TaskResources.SelectedTaskButtonPressedLabel</label>
+            <span id="NoiseProtection" style="font-weight: bold;">: @Model.ButtonPressed</span>
+        </p>
+
+        <p>
+            <label for="NoiseLevel" class="label-130px">@TaskResources.SelectedTaskBackgroundNoiseLabel</label>
+            <span id="NoiseLevel" style="font-weight: bold;">: @Model.BackgroundNoise</span>
         </p>
     </div>
 

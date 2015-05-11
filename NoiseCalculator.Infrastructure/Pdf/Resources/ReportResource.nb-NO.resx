@@ -124,8 +124,14 @@
     <value>Dato: {0}</value>
   </data>
   <data name="HeadingNoiseLevel" xml:space="preserve">
-    <value>Støynivå (dBA)</value>
+    <value>Støynivå</value>
     <comment>Noise Level</comment>
+  </data>
+  <data name="HeadingButtonPressed" xml:space="preserve">
+    <value>% Knappen inne</value>
+  </data>
+  <data name="HeadingBackgroundNoise" xml:space="preserve">
+    <value>Bakgrunns-støy</value>
   </data>
   <data name="HeadingNoiseProtection" xml:space="preserve">
     <value>Hørselsvern</value>
@@ -141,6 +147,10 @@
   </data>
   <data name="HeadingWorkTime" xml:space="preserve">
     <value>Arbeidstid</value>
+    <comment>Work Time</comment>
+  </data>
+  <data name="HeadingPercentage" xml:space="preserve">
+    <value>% Daglig dose</value>
     <comment>Work Time</comment>
   </data>
   <data name="NoiseMeassured" xml:space="preserve">
@@ -159,8 +169,12 @@
   <data name="SelectedTaskNoiseLevelNotApplicable" xml:space="preserve">
     <value>Ikke aktuellt</value>
   </data>
+  <data name="TotalPercentageTextFormatString" xml:space="preserve">
+    <value>Prosent av tillatt daglig støydose:</value>
+    <comment>Total: {0}%</comment>
+  </data>
   <data name="TotalPercentageFormatString" xml:space="preserve">
-    <value>Totalt: {0}%</value>
+    <value>{0}%</value>
     <comment>Total: {0}%</comment>
   </data>
   <data name="UserFormatString" xml:space="preserve">

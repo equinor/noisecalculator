@@ -11,7 +11,7 @@ namespace NoiseCalculator.Domain.DomainServices
         public IEnumerable<string> CalculateFootnotes(IEnumerable<SelectedTask> selectedTasks)
         {
             List<string> footnotes = GetStaticFootnotes();
-            footnotes.AddRange(CalculateDynamicFootnotes(selectedTasks));
+            //footnotes.AddRange(CalculateDynamicFootnotes(selectedTasks));
             
             return footnotes;
         }
@@ -20,10 +20,9 @@ namespace NoiseCalculator.Domain.DomainServices
         {
             List<string> staticFootnotes = new List<string>
                 {
-                    DomainResources.FooterGL0169,
-                    DomainResources.FooterNoiseProtectionDefinition,
-                    DomainResources.FooterUseNoisyWorkWhenTaskIsMissing,
-                    DomainResources.Footer80dBA
+                    DomainResources.FooterCalculations,
+                    DomainResources.FooterNoiseProtection,
+                    DomainResources.FooterContact
                 };
 
             return staticFootnotes;

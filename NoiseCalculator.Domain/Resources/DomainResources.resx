@@ -121,6 +121,17 @@
     <value>If the calculated noise dosage is 100 % the employee must remain in areas where the noise level is below 80 dBA for the rest of the day and not perform any work that produces noise above 80 dBA. The employee must also avoid areas with impulse noise (sudden bangs), and work that produces impulse noise.</value>
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</comment>
   </data>
+  <data name="FooterCalculations" xml:space="preserve">
+    <value>&lt;b&gt;Om beregningene:&lt;/b&gt;&lt;br&gt;Metodikk for risikovurdering av støyeksponering er gitt i GL0169 "Støy - retningslinjer for kartlegging og tiltak“ og er hjemlet i TR0926 "Working Environment“.&lt;br&gt;&lt;br&gt;
+Når beregnet støyeksponering viser 100% er beregnet støydose 80 dBA innenfor oppgitt hørselvern. &lt;br&gt;&lt;br&gt;
+Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</value>
+  </data>
+  <data name="FooterContact" xml:space="preserve">
+    <value>&lt;b&gt;Kontakt yrkeshygieniker: &lt;/b&gt;&lt;br&gt;
+- dersom det er usikkerhet rundt beregningene&lt;br&gt;
+- dersom ønsket arbeidsoppgave ikke finnes i listen&lt;br&gt;
+- ved spørsmål om støydemping</value>
+  </data>
   <data name="FooterDynamicCorrectionForMeasuredNoiseLevel" xml:space="preserve">
     <value>The calculation of noise exposure has taken breaks (like moving to a new location) into account and made corrections to the measured noise levels share of a normal work cycle. The provided work time shall reflect the total time spent on the task, including the non-noisy work. If there are considerable changes in the normal work cycle, contact an industrial hygienist.</value>
     <comment>I beregning av støyeksponering er det tatt hensyn til pauser i deg støyende arbeider (forflyttning osv.) og gjort en korreksjon for målt støynivås andel av en normal arbeidssyklus. Oppgitt arbeidstid skal gjennspeile den totale tiden brukt til arbeidsoppgaven, inkludert ikke-støyende arbeid. Ved store endringer i normal arbeidssyklus ta kontakt med yrkeshygieniker.</comment>
@@ -136,6 +147,12 @@
   <data name="FooterGL0169" xml:space="preserve">
     <value>This noise calculator is developed by Statoil and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format.</value>
     <comment>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format</comment>
+  </data>
+  <data name="FooterNoiseProtection" xml:space="preserve">
+    <value>&lt;b&gt;Om hørselsvern:&lt;/b&gt;&lt;br&gt;Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.&lt;br&gt;&lt;br&gt;Følgende betingelser angående hørselsvern gjelder ved utføring av støyende arbeidsoppgaver: &lt;br&gt;
+- Hørselsvernet skal være godt vedlikeholdt og brukes korrekt &lt;br&gt;
+- Ved bruk av "universalpropper" og formstøpte ørepropper skal det være gitt individuell opplæring i bruk og innsetting&lt;br&gt;
+- Det bør verifiseres at ørepropper gir minimum 12 dB demping</value>
   </data>
   <data name="FooterNoiseProtectionDefinition" xml:space="preserve">
     <value>Single hearing protection means ear muffs or ear plugs. Double hearing protection means ear muffs and ear plugs used at the same time</value>

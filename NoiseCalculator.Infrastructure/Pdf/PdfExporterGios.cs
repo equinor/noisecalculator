@@ -267,21 +267,27 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 switch (i)
                 {
                     case 0: // Oppgave
-                        noiseTable.AddColumn(Unit.FromCentimeter(10.7));
+                        noiseTable.AddColumn(Unit.FromCentimeter(7.0));
                         break;
                     case 1: // Rolle
                         noiseTable.AddColumn(Unit.FromCentimeter(3));
                         break;
                     case 2: // Hørselsvern
-                        noiseTable.AddColumn(Unit.FromCentimeter(5.8));
+                        noiseTable.AddColumn(Unit.FromCentimeter(4.1));
                         break;
                     case 3: // Støynivå
                         noiseTable.AddColumn(Unit.FromCentimeter(2.4));
                         break;
-                    case 4: // Arbeidstid
+                    case 4: // % Knappen inne
                         noiseTable.AddColumn(Unit.FromCentimeter(2.7));
                         break;
-                    case 5: // %
+                    case 5: // Bakgrunnsstøy
+                        noiseTable.AddColumn(Unit.FromCentimeter(2.7));
+                        break;
+                    case 6: // Arbeidstid
+                        noiseTable.AddColumn(Unit.FromCentimeter(2.7));
+                        break;
+                    case 7: // %
                         noiseTable.AddColumn(Unit.FromCentimeter(1.4));
                         break;
                 }
@@ -341,13 +347,13 @@ namespace NoiseCalculator.Infrastructure.Pdf
             leftSummary.Width = "20cm";
             leftSummary.Height = "1.2cm";
 
-            // Status
-            var statusText = leftSummary.AddParagraph();
-            statusText.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 10.5)
+            // TotalpercentageText
+            var totalPercentageText = leftSummary.AddParagraph();
+            totalPercentageText.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 10.5)
             {
                 Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
             };
-            statusText.AddFormattedText(_noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum), TextFormat.Bold);
+            totalPercentageText.AddFormattedText(ReportResource.TotalPercentageTextFormatString, TextFormat.Bold);
 
             // Right textFrame for placing texts
 
@@ -366,16 +372,34 @@ namespace NoiseCalculator.Infrastructure.Pdf
             totalPercentage.Format.Alignment = ParagraphAlignment.Center;
 
 
+            // Status
+            var statusText = section.AddParagraph();
+            statusText.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 10.5)
+            {
+                Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
+            };
+            statusText.AddFormattedText(_noiseLevelService.GetNoiseLevelStatusText(noiseLevelEnum), TextFormat.Bold);
+
             foreach (var footNoteText in reportInfo.Footnotes)
             {
+                var footNoteHeader = section.AddParagraph();
                 var footNote = section.AddParagraph();
 
                 footNote.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 8)
                 {
                     Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
                 };
-
-                footNote.AddFormattedText(string.Format("* {0}", footNoteText));
+                footNoteHeader.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 8)
+                {
+                    Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black),
+                    Bold = true
+                };
+                
+                var textHeader = footNoteText.Substring(0, footNoteText.IndexOf("<br/>", StringComparison.Ordinal)).Replace("<b>", "").Replace("</b>", "");
+                var text = footNoteText.Substring(footNoteText.IndexOf("<br/>", StringComparison.Ordinal) + 5).Replace("<br/><br/>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
+                
+                footNoteHeader.AddFormattedText(string.Format(Environment.NewLine + "* {0}", textHeader));
+                footNote.AddFormattedText(string.Format("{0}", text));
                 var spaceBetween1 = section.AddTextFrame();
                 spaceBetween1.Height = "0.1cm";
             }
@@ -449,19 +473,22 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
         private DataTable GenerateDataTable(IEnumerable<SelectedTask> selectedTasks)
         {
-            const string percentageHeading = "%";
-
             string titleHeading = ReportResource.HeadingTitle;
             string roleHeading = ReportResource.HeadingRole;
             string noiseProtectionHeading = ReportResource.HeadingNoiseProtection;
             string noiseLevelHeading = ReportResource.HeadingNoiseLevel;
+            string buttonPressedHeading = ReportResource.HeadingButtonPressed;
+            string backgroundNoiseHeading = ReportResource.HeadingBackgroundNoise;
             string workTimeHeading = ReportResource.HeadingWorkTime;
+            string percentageHeading = ReportResource.HeadingPercentage;
 
             DataTable dt = new DataTable();
             dt.Columns.Add(titleHeading);
             dt.Columns.Add(roleHeading);
             dt.Columns.Add(noiseProtectionHeading);
             dt.Columns.Add(noiseLevelHeading);
+            dt.Columns.Add(buttonPressedHeading);
+            dt.Columns.Add(backgroundNoiseHeading);
             dt.Columns.Add(workTimeHeading);
             dt.Columns.Add(percentageHeading);
 
@@ -507,6 +534,8 @@ namespace NoiseCalculator.Infrastructure.Pdf
                     }
                 }
 
+                dr[buttonPressedHeading] = string.Format("{0}%", selectedTask.ButtonPressed); 
+                dr[backgroundNoiseHeading] = string.Format("{0} dBA", selectedTask.BackgroundNoise);
                 dr[workTimeHeading] = string.Format(ReportResource.WorkTimeFormatString, selectedTask.Hours, selectedTask.Minutes);
                 dr[percentageHeading] = selectedTask.Percentage;
 

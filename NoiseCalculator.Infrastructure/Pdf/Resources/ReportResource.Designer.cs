@@ -79,7 +79,25 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Noise Level (dBA).
+        ///   Looks up a localized string similar to eng: Bakgrunnsstøy.
+        /// </summary>
+        internal static string HeadingBackgroundNoise {
+            get {
+                return ResourceManager.GetString("HeadingBackgroundNoise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eng: % Knappen inne.
+        /// </summary>
+        internal static string HeadingButtonPressed {
+            get {
+                return ResourceManager.GetString("HeadingButtonPressed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Noise Level.
         /// </summary>
         internal static string HeadingNoiseLevel {
             get {
@@ -93,6 +111,15 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         internal static string HeadingNoiseProtection {
             get {
                 return ResourceManager.GetString("HeadingNoiseProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Daily dose.
+        /// </summary>
+        internal static string HeadingPercentage {
+            get {
+                return ResourceManager.GetString("HeadingPercentage", resourceCulture);
             }
         }
         
@@ -169,11 +196,20 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total: {0}%.
+        ///   Looks up a localized string similar to {0}%.
         /// </summary>
         internal static string TotalPercentageFormatString {
             get {
                 return ResourceManager.GetString("TotalPercentageFormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total of Allowed Daily Dosage:.
+        /// </summary>
+        internal static string TotalPercentageTextFormatString {
+            get {
+                return ResourceManager.GetString("TotalPercentageTextFormatString", resourceCulture);
             }
         }
         
