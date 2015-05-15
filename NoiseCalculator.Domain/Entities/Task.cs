@@ -22,7 +22,7 @@ namespace NoiseCalculator.Domain.Entities
             var adjustmentFactorForMeassuredNoise = CalculateAdjustmentFactorForMeassuredNoise(actualNoiseLevel);
 
             var noiseProtectionDampening = 18;
-            var timeInFullShift = 720;
+            const double timeInFullShift = 720;
 
             // Støynivå => 10* LOG(10^(støydef/10) + 10^(bakgrunnsstøy/10)
             var noiseLevel = 10*
@@ -35,7 +35,7 @@ namespace NoiseCalculator.Domain.Entities
             // Norm verdi med hørselsvern
             var normValueWithNoiseProtection = normalizedValue - noiseProtectionDampening;
 
-            var percentMinutes = (double)((double)actualExposure.TotalMinutes/(double)timeInFullShift);
+            var percentMinutes = (double)((double)actualExposure.TotalMinutes/timeInFullShift);
 
             // Eksponering i db => 10 * LOG (Time in minutes / Time in full shift * 10 ^ (Noise - noiseprotection / 10)
             var exposure = 10 *

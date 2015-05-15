@@ -204,6 +204,7 @@
     <Compile Include="Models\TenantRegistrationModels.cs" />
     <Compile Include="Ninject\NoiseCalculatorWebModule.cs" />
     <Compile Include="Presenters\UserPresenter.cs" />
+    <Compile Include="Resources\TaskResources.Designer.cs" />
     <Compile Include="Support\LanguageResolver.cs" />
     <Compile Include="Support\NoCacheAttribute.cs" />
     <Compile Include="Support\TimeSpanFactory.cs" />
@@ -213,11 +214,6 @@
       <DependentUpon>TaskResources.nb-NO.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\TaskResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TaskResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\DatabaseIssuerNameRegistry.cs" />
     <Compile Include="ViewModels\RemoveConfirmationViewModel.cs" />
@@ -333,12 +329,16 @@
     <Content Include="Areas\Admin\Views\RotationTask\_EditRotationTask.cshtml" />
     <Content Include="Areas\Admin\Views\NoiseProtectionDefinition\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterNoiseProtectionDefinition\Index.cshtml" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\IndexController.js" />
     <Content Include="Views\Login\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Debug to C-Drive Publish folder.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculatorDev.pubxml" />
     <None Include="Properties\PublishProfiles\Release to C-Drive Publish folder.pubxml" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -451,8 +451,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TaskResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TaskResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>TaskResources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

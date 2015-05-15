@@ -2,11 +2,11 @@
 @using NoiseCalculator.UI.Web.Support
 @using NoiseCalculator.UI.Web.Resources
 <!DOCTYPE html>
-<html>
+<html data-ng-app="noiseCalcApp">
 <head>
     <title>@ViewBag.Title</title>
     <title>@ViewBag.username</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="X-UA-Compatible">
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
     @RenderSection("Stylesheets", required: false)
@@ -15,8 +15,9 @@
     <script src="@Url.Content("~/Scripts/jquery.cookie.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/json2.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/NoiseCalculatorCommon.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
 </head>
-<body>
+<body ng-controller="IndexController">
     <div class="header">
         <div style="position: relative;">
             <img id="headerLogo" src="@Url.Content("~/Content/statoil_vertical_neg_80x40.png")" />
@@ -35,7 +36,7 @@
                 <img id="langEn" src="@Url.Content("~/Content/gb.png")" width="22" height="16" alt="English" />
                 <input id="currentLangTwoCharCode" type="hidden" value="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName" />
             </div>
-            <br clear="all"/>
+            <br style="clear: both;" />
         </div>
         
         @RenderSection("ContextMenu", required: false)
@@ -45,9 +46,6 @@
         @RenderBody()
     </div>
 
-    <div id="footer">
-        <ul id="footerTexts"></ul>
-    </div>
 
     <div id="helpDialog" title="@TaskResources.IndexHelpTitle">@Html.Partial("_Help")</div>
     

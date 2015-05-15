@@ -129,6 +129,9 @@
     <value>Legg Til Oppgave</value>
     <comment>Add Task</comment>
   </data>
+  <data name="IndexButtonStartCalculator" xml:space="preserve">
+    <value>Start kalkulatoren</value>
+  </data>
   <data name="IndexButtonCreatePdf" xml:space="preserve">
     <value>Utskrift</value>
     <comment>Print PDF</comment>
@@ -316,6 +319,21 @@
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Legg til arbeidsoppgaver for å beregne din støyeksponering</value>
   </data>
+  <data name="IndexStartTitle" xml:space="preserve">
+    <value>Beregning av støyeksponering</value>
+  </data>
+  <data name="IndexStartText1" xml:space="preserve">
+    <value>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det.
+</value></data>
+  <data name="IndexStartText2" xml:space="preserve">
+    <value>Støykalkulatoren beregner støydose og tillatt arbeidstid ved opphold i støyende områder og/eller ved arbeid med støyende utstyr. 
+</value></data>
+  <data name="IndexStartText3" xml:space="preserve">
+    <value>Støykalkulatoren er basert på dokumenterte risikovurderinger av aktuelle arbeidsoppgaver og er gyldig for 12 timers arbeidsdag. 
+</value></data>
+  <data name="IndexStartText4" xml:space="preserve">
+    <value>Det er mulig å ta en utskrift av vurderingen i pdf format, både ved planlegging av jobber, som dokumentasjon på eksponering i etterkant av utført arbeid og som dokumentasjon ved tilløp til arbeidsrelatert sykdom.
+</value></data>
   <data name="Footer80dBA" xml:space="preserve">
     <value>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</value>
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstaker kan heller ikke utføre arbeid som gir støy over 80 dBA.</comment>

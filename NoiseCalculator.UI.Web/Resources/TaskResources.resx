@@ -126,6 +126,9 @@
   <data name="IndexButtonAddTask" xml:space="preserve">
     <value>Add Task</value>
   </data>
+  <data name="IndexButtonStartCalculator" xml:space="preserve">
+    <value>Start calculator</value>
+  </data>
   <data name="IndexButtonCreatePdf" xml:space="preserve">
     <value>Print</value>
   </data>
@@ -250,6 +253,21 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Add tasks to calculate your noise exposure</value>
     <comment>Legg til arbeidsoppgaver for å beregne din støyeksponering</comment>
   </data>
+  <data name="IndexStartTitle" xml:space="preserve">
+    <value>Calculate noise exposure</value>
+  </data>
+  <data name="IndexStartText1" xml:space="preserve">
+    <value>eng: Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det.
+</value></data>
+  <data name="IndexStartText2" xml:space="preserve">
+    <value>eng: Støykalkulatoren beregner støydose og tillatt arbeidstid ved opphold i støyende områder og/eller ved arbeid med støyende utstyr. 
+</value></data>
+  <data name="IndexStartText3" xml:space="preserve">
+    <value>eng: Støykalkulatoren er basert på dokumenterte risikovurderinger av aktuelle arbeidsoppgaver og er gyldig for 12 timers arbeidsdag. 
+</value></data>
+  <data name="IndexStartText4" xml:space="preserve">
+    <value>eng: Det er mulig å ta en utskrift av vurderingen i pdf format, både ved planlegging av jobber, som dokumentasjon på eksponering i etterkant av utført arbeid og som dokumentasjon ved tilløp til arbeidsrelatert sykdom.
+</value></data>
   <data name="Footer80dBA" xml:space="preserve">
     <value>If the calculated noise dosage is 100 % the employee must remain in areas where the noise level is below 80 dBA for the rest of the day and not perform any work that produces noise above 80 dBA. The employee must also avoid areas with impulse noise (sudden bangs), and work that produces impulse noise.</value>
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</comment>
