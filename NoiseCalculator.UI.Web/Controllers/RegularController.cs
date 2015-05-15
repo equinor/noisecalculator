@@ -41,8 +41,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,
                 RadioTimeCheckedAttr = InputChecked,
-                ButtonPressed = task.ButtonPressed,
-                BackgroundNoise = task.BackgroundNoise
+                ButtonPressed = task.ButtonPressed
             };
 
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
@@ -97,7 +96,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = InputChecked,
                 ButtonPressed = selectedTask.ButtonPressed,
-                BackgroundNoise = selectedTask.BackgroundNoise,
+                //BackgroundNoise = selectedTask.BackgroundNoise,
                 
                 Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
