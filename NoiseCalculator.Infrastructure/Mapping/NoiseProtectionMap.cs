@@ -11,6 +11,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
 
             Map(x => x.Title);
             Map(x => x.CultureName);
+            Map(x => x.NoiseDampening);
 
             References(x => x.NoiseProtectionDefinition).Nullable();
         }

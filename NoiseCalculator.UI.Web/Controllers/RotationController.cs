@@ -16,20 +16,22 @@ namespace NoiseCalculator.UI.Web.Controllers
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly IRotationDAO _rotationDAO;
         private readonly ITaskDAO _taskDAO;
-        
-        public RotationController(ITaskDAO taskDAO, IRotationDAO rotationDAO, ISelectedTaskDAO selectedTaskDAO)
+        private readonly INoiseProtectionDAO _noiseProtectionDAO;
+
+        public RotationController(ITaskDAO taskDAO, IRotationDAO rotationDAO, ISelectedTaskDAO selectedTaskDAO, INoiseProtectionDAO noiseProtectionDAO)
         {
             _taskDAO = taskDAO;
             _rotationDAO = rotationDAO;
             _selectedTaskDAO = selectedTaskDAO;
+            _noiseProtectionDAO = noiseProtectionDAO;
         }
 
         public PartialViewResult AddTaskRotation(int id)
         {
-            Task task = _taskDAO.Get(id);
-            Rotation rotation = _rotationDAO.GetByTaskId(id);
+            var task = _taskDAO.Get(id);
+            var rotation = _rotationDAO.GetByTaskId(id);
 
-            RotationViewModel viewModel = new RotationViewModel()
+            var viewModel = new RotationViewModel()
             {
                 RotationId = rotation.Id,
                 Title = task.Title,
@@ -50,34 +52,33 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public PartialViewResult AddTaskRotation(RotationViewModel viewModel)
         {
-            Rotation rotation = _rotationDAO.Get(viewModel.RotationId);
+            var rotation = _rotationDAO.Get(viewModel.RotationId);
 
-            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel, rotation);
+            var validationViewModel = ValidateInput(viewModel, rotation);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            SelectedTask selectedTaskOperator = CreateSelectedTask(viewModel.OperatorNoiseLevelMeasured, rotation.OperatorTask);
-            SelectedTask selectedTaskAssistant = CreateSelectedTask(viewModel.AssistantNoiseLevelMeasured, rotation.AssistantTask);
+            var selectedTaskOperator = CreateSelectedTask(viewModel.OperatorNoiseLevelMeasured, rotation.OperatorTask);
+            var selectedTaskAssistant = CreateSelectedTask(viewModel.AssistantNoiseLevelMeasured, rotation.AssistantTask);
+            
+            var noiseProtectionAssistant = _noiseProtectionDAO.Get(selectedTaskAssistant.NoiseProtectionId);
+            var noiseProtectionOperator = _noiseProtectionDAO.Get(selectedTaskOperator.NoiseProtectionId);
+            
+            var timeSpan = new TimeSpan(CreateTimeSpan(viewModel.Hours, viewModel.Minutes).Ticks / 2);
 
-
-
-            TimeSpan timeSpan = new TimeSpan(CreateTimeSpan(viewModel.Hours, viewModel.Minutes).Ticks / 2);
-
-            int percentageOperator = (int)rotation.OperatorTask.CalculatePercentage(selectedTaskOperator.NoiseLevel, selectedTaskAssistant.ButtonPressed, selectedTaskAssistant.BackgroundNoise, timeSpan);
-            int percentageAssistant = (int)rotation.AssistantTask.CalculatePercentage(selectedTaskAssistant.NoiseLevel, selectedTaskAssistant.ButtonPressed, selectedTaskAssistant.BackgroundNoise, timeSpan);
+            var percentageOperator = (int)Math.Round(rotation.OperatorTask.CalculatePercentage(selectedTaskOperator.NoiseLevel, selectedTaskOperator.ButtonPressed, selectedTaskOperator.BackgroundNoise, noiseProtectionOperator, timeSpan));
+            var percentageAssistant = (int)Math.Round(rotation.AssistantTask.CalculatePercentage(selectedTaskAssistant.NoiseLevel, selectedTaskAssistant.ButtonPressed, selectedTaskAssistant.BackgroundNoise, noiseProtectionAssistant, timeSpan));
                 
             selectedTaskOperator.AddWorkTime(timeSpan, percentageOperator);
             selectedTaskAssistant.AddWorkTime(timeSpan, percentageAssistant);
-
-
-
+            
             _selectedTaskDAO.Store(selectedTaskOperator);
             _selectedTaskDAO.Store(selectedTaskAssistant);
 
-            SelectedTasksRotationViewModel selectedTaskRotationViewModel =
+            var selectedTaskRotationViewModel =
                 new SelectedTasksRotationViewModel
                 {
                     OperatorSelectedTaskViewModel = new SelectedTaskViewModel(selectedTaskOperator),
@@ -90,22 +91,23 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         private TimeSpan CreateTimeSpan(string hoursString, string minutesString)
         {
-            int hours = string.IsNullOrEmpty(hoursString) ? 0 : int.Parse(hoursString);
-            int minutes = string.IsNullOrEmpty(minutesString) ? 0 : int.Parse(minutesString);
+            var hours = string.IsNullOrEmpty(hoursString) ? 0 : int.Parse(hoursString);
+            var minutes = string.IsNullOrEmpty(minutesString) ? 0 : int.Parse(minutesString);
             return new TimeSpan(0, hours, minutes, 0);
         }
 
 
         private SelectedTask CreateSelectedTask(int noiseLevelMeasured, Task task)
         {
-            SelectedTask selectedTask = new SelectedTask
+            var selectedTask = new SelectedTask
             {
                 Title = task.Title,
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
                 Task = task,
                 CreatedBy = string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name,
-                CreatedDate = DateTime.Now.Date
+                CreatedDate = DateTime.Now.Date,
+                NoiseProtectionId = task.NoiseProtection.Id
             };
 
             if (noiseLevelMeasured > task.NoiseLevelGuideline)
@@ -125,28 +127,23 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         private ValidationErrorSummaryViewModel ValidateInput(RotationViewModel viewModel, Rotation rotation)
         {
-            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+            var errorSummaryViewModel = new ValidationErrorSummaryViewModel();
 
             if (viewModel.OperatorNoiseLevelMeasured - rotation.OperatorTask.NoiseLevelGuideline > 6)
-            {
-                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineOperator);
-            }
+                errorSummaryViewModel.ValidationErrors.Add(
+                    TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineOperator);
 
             if (viewModel.AssistantNoiseLevelMeasured - rotation.AssistantTask.NoiseLevelGuideline > 6)
-            {
-                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineAssistant);
-            }
+                errorSummaryViewModel.ValidationErrors.Add(
+                    TaskResources.ValidationErrorNoiseLevelToHighAboveGuidlineAssistant);
 
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
-            {
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequiredRotation);
-            }
 
-            TimeSpan timeSpan = CreateTimeSpan(viewModel.Hours, viewModel.Minutes);
-            if(timeSpan.TotalHours > 6)
-            {
+            var timeSpan = CreateTimeSpan(viewModel.Hours, viewModel.Minutes);
+
+            if (timeSpan.TotalHours > 6)
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorRotationMaximum6Hours);
-            }
 
             return errorSummaryViewModel;
         }

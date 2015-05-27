@@ -45,9 +45,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             };
 
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
-            foreach (NoiseProtection noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
-                SelectListItem selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
                 if (viewModel.NoiseProtectionId == noiseProtection.Id)
                 {
                     selectListItem.Selected = true;
@@ -141,10 +141,12 @@ namespace NoiseCalculator.UI.Web.Controllers
                 selectedTask.IsNoiseMeassured = true;
             }
 
+            var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
             {
                 selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
-                var timeSpan = selectedTask.Task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
+                var timeSpan = selectedTask.Task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, noiseProtection, selectedTask.Percentage);
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
             }
@@ -154,7 +156,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
-                selectedTask.Percentage = (int)selectedTask.Task.CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0));
+                selectedTask.Percentage = (int)Math.Round(selectedTask.Task.CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, noiseProtection, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0)));
             }
 
             _selectedTaskDAO.Store(selectedTask);
@@ -209,7 +211,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 CreatedDate = DateTime.Now.Date
             };
 
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+            var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+
             if (noiseProtection != null)
                 selectedTask.NoiseProtection = noiseProtection.Title;
 
@@ -236,12 +239,12 @@ namespace NoiseCalculator.UI.Web.Controllers
                 
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
-                selectedTask.Percentage = (int)task.CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, timeSpan);
+                selectedTask.Percentage = (int)Math.Round(task.CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, noiseProtection, timeSpan));
             }
             else
             {
                 selectedTask.Percentage = string.IsNullOrEmpty(viewModel.Percentage) ? 0 : int.Parse(viewModel.Percentage);
-                var timeSpan = task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.Percentage);
+                var timeSpan = task.CalculateTimeSpan(selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, noiseProtection, selectedTask.Percentage);
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
             }

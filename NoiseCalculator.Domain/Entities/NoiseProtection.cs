@@ -6,5 +6,6 @@ namespace NoiseCalculator.Domain.Entities
         public virtual NoiseProtectionDefinition NoiseProtectionDefinition { get; set; }
         public virtual string Title { get; set; }
         public virtual string CultureName { get; set; }
+        public virtual int NoiseDampening { get; set; }
     }
 }

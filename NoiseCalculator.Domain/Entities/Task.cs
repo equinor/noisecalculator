@@ -17,11 +17,9 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int BackgroundNoise { get; set; }
 
 
-        public virtual decimal CalculatePercentage(int actualNoiseLevel, int buttonPressed, int backgroundNoise, TimeSpan actualExposure )
+        public virtual decimal CalculatePercentage(int actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
         {
-            var adjustmentFactorForMeassuredNoise = CalculateAdjustmentFactorForMeassuredNoise(actualNoiseLevel);
-
-            var noiseProtectionDampening = 18;
+            var noiseProtectionDampening = noiseProtection.NoiseDampening;
             const double timeInFullShift = 720;
 
             // Støynivå => 10* LOG(10^(støydef/10) + 10^(bakgrunnsstøy/10)
@@ -35,7 +33,7 @@ namespace NoiseCalculator.Domain.Entities
             // Norm verdi med hørselsvern
             var normValueWithNoiseProtection = normalizedValue - noiseProtectionDampening;
 
-            var percentMinutes = (double)((double)actualExposure.TotalMinutes/timeInFullShift);
+            var percentMinutes = actualExposure.TotalMinutes/timeInFullShift;
 
             // Eksponering i db => 10 * LOG (Time in minutes / Time in full shift * 10 ^ (Noise - noiseprotection / 10)
             var exposure = 10 *
@@ -48,49 +46,29 @@ namespace NoiseCalculator.Domain.Entities
             return (decimal)calcPerc;
         }
 
-        public virtual TimeSpan CalculateTimeSpan(int actualNoiseLevel, int percentage)
+        public virtual TimeSpan CalculateTimeSpan(int actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
         {
-            decimal adjustmentFactorForMeassuredNoise = CalculateAdjustmentFactorForMeassuredNoise(actualNoiseLevel);
-            decimal result = ( percentage * (AllowedExposureMinutes * adjustmentFactorForMeassuredNoise) ) / 100;
-            TimeSpan timeSpan = new TimeSpan(0, 0, (int)Math.Round(result), 0);
+            var noiseProtectionDampening = noiseProtection.NoiseDampening;
+            const double timeInFullShift = 720;
+
+            // Støynivå => 10* LOG(10^(støydef/10) + 10^(bakgrunnsstøy/10)
+            var noiseLevel = 10 *
+                             Math.Log((Math.Pow(10, ((double)actualNoiseLevel / 10)) +
+                                      Math.Pow(10, ((double)backgroundNoise / 10))), 10.0);
+
+            // Norm verdi => 10 * LOG (10^(støynivå/10)) * knappen inne / 100)
+            var normalizedValue = 10 * Math.Log((Math.Pow(10, (noiseLevel / 10))) * ((double)buttonPressed / 100), 10.0);
+
+            // Norm verdi med hørselsvern
+            var normValueWithNoiseProtection = normalizedValue - noiseProtectionDampening;
+
+            var allowedExposure = ((double)percentage / 100) * timeInFullShift *
+                                     ((Math.Pow(10, (80/10)))/Math.Pow(10, normValueWithNoiseProtection/10));
+
+            var timeSpan = new TimeSpan(0, 0, (int)Math.Round(allowedExposure), 0);
             
             return timeSpan;
         }
 
-        private decimal CalculateAdjustmentFactorForMeassuredNoise(int actualNoiseLevel)
-        {
-            decimal adjustmentFactorForMeassuredNoise = 1;
-
-            if (actualNoiseLevel > NoiseLevelGuideline)
-            {
-                // dBA above guideline
-                int noiseLevelDelta = (actualNoiseLevel - NoiseLevelGuideline);
-
-                switch (noiseLevelDelta)
-                {
-                    case 3:
-                        {
-                            adjustmentFactorForMeassuredNoise = 0.5m;
-                            break;
-                        }
-                    case 4:
-                        {
-                            adjustmentFactorForMeassuredNoise = 0.4m;
-                            break;
-                        }
-                    case 5:
-                        {
-                            adjustmentFactorForMeassuredNoise = 0.3m;
-                            break;
-                        }
-                    case 6:
-                        {
-                            adjustmentFactorForMeassuredNoise = 0.25m;
-                            break;
-                        }
-                }
-            }
-            return adjustmentFactorForMeassuredNoise;
-        }
     }
 }
