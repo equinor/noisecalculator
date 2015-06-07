@@ -79,5 +79,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Controllers
                 return Json(ex.ToString());
             }
         }
+
+        public ActionResult Index()
+        {
+            GenericDefinitionIndexViewModel viewModel = _helicopterWorkCategoryService.Index();
+            return View("Index", viewModel);
+        }
     }
 }

@@ -466,6 +466,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Helictoper: Work Categories.
+        /// </summary>
+        public static string PageTitleHelicopterWorkCategories {
+            get {
+                return ResourceManager.GetString("PageTitleHelicopterWorkCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Helictoper: Work Interval.
         /// </summary>
         public static string PageTitleHelictoperWorkInterval {
@@ -473,16 +482,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
                 return ResourceManager.GetString("PageTitleHelictoperWorkInterval", resourceCulture);
             }
         }
-
-
-        public static string PageTitleHelicopterWorkCategory
-        {
-            get
-            {
-                return ResourceManager.GetString("PageTitleHelicopterWorkCategory", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Noise Protection.
         /// </summary>
@@ -842,7 +842,5 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
                 return ResourceManager.GetString("ValidationTitleRequired", resourceCulture);
             }
         }
-
-        public static object GenericTaskPercentageLabel { get { return "%"; } }
     }
 }

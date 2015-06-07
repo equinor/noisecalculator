@@ -10,6 +10,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces
         GenericDefinitionViewModel Edit(int id, GenericDefinitionEditModel editModel);
         DeleteConfirmationViewModel DeleteConfirmationForm(int id);
         void Delete(int id);
+        GenericDefinitionIndexViewModel Index();
     }
 
 }

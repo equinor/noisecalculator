@@ -283,6 +283,9 @@
     <value>Helikopter: Arbeidstider</value>
     <comment>Helictoper Work Interval</comment>
   </data>
+  <data name="PageTitleHelicopterWorkCategories" xml:space="preserve">
+    <value>Helikopter: Arbeidskategorier</value>
+  </data>
   <data name="PageTitleNoiseProtection" xml:space="preserve">
     <value>Hørselsvern</value>
     <comment>Noise Protection</comment>

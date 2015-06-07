@@ -153,6 +153,9 @@
   <data name="PageTitleHelictoperWorkInterval" xml:space="preserve">
     <value>Helictoper: Work Interval</value>
   </data>
+  <data name="PageTitleHelicopterWorkCategories" xml:space="preserve">
+    <value>Helictoper: Work Categories</value>
+  </data>
   <data name="PageTitleNoiseProtection" xml:space="preserve">
     <value>Noise Protection</value>
   </data>

@@ -17,6 +17,7 @@ namespace NoiseCalculator.UI.Web.Ninject
             Bind<IHelicopterTaskService>().To<HelicopterTaskService>();
             Bind<IHelicopterTypeService>().To<HelicopterTypeService>();
             Bind<IHelicopterWorkIntervalService>().To<HelicopterWorkIntervalService>();
+            Bind<IHelicopterWorkCategoryService>().To<HelicopterWorkCategoryService>();
             Bind<INoiseProtectionDefinitionService>().To<NoiseProtectionDefinitionService>();
             Bind<INoiseProtectionService>().To<NoiseProtectionService>();
             Bind<IRotationTaskDefinitionService>().To<RotationTaskDefinitionService>();

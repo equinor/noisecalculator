@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Globalization;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
@@ -21,14 +18,14 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public GenericDefinitionViewModel Create(GenericDefinitionEditModel editModel)
         {
-            HelicopterWorkCategory helicopterWorkCategory = new HelicopterWorkCategory
+            var helicopterWorkCategory = new HelicopterWorkCategory
             {
                 Title = editModel.Title
             };
 
             _helicopterWorkCategoryDAO.Store(helicopterWorkCategory);
 
-            GenericDefinitionViewModel viewModel = new GenericDefinitionViewModel
+            var viewModel = new GenericDefinitionViewModel
             {
                 Id = helicopterWorkCategory.Id,
                 SystemName = helicopterWorkCategory.Title
@@ -39,22 +36,68 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public GenericDefinitionViewModel EditHelicopterWorkCategoryForm(int id)
         {
-            throw new NotImplementedException();
+            var helicopterWorkCategory = _helicopterWorkCategoryDAO.Get(id);
+
+            var viewModel = new GenericDefinitionViewModel
+            {
+                Id = helicopterWorkCategory.Id,
+                SystemName = helicopterWorkCategory.Title,
+                HasTranslationSupport = false
+            };
+
+            return viewModel;
         }
 
         public GenericDefinitionViewModel Edit(int id, GenericDefinitionEditModel editModel)
         {
-            throw new NotImplementedException();
+            var helicopterWorkCategory = _helicopterWorkCategoryDAO.Get(id);
+            helicopterWorkCategory.Title = editModel.Title;
+
+            _helicopterWorkCategoryDAO.Store(helicopterWorkCategory);
+
+            var viewModel = new GenericDefinitionViewModel
+            {
+                Id = helicopterWorkCategory.Id,
+                SystemName = helicopterWorkCategory.Title
+            };
+
+            return viewModel;
         }
 
         public DeleteConfirmationViewModel DeleteConfirmationForm(int id)
         {
-            throw new NotImplementedException();
+            var helicopterWorkCategory = _helicopterWorkCategoryDAO.Get(id);
+
+            var viewModel = new DeleteConfirmationViewModel
+            {
+                Id = helicopterWorkCategory.Id.ToString(CultureInfo.InvariantCulture),
+                Title = helicopterWorkCategory.Title
+            };
+
+            return viewModel;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var helicopterWorkCategory = _helicopterWorkCategoryDAO.Load(id);
+            _helicopterWorkCategoryDAO.Delete(helicopterWorkCategory);
+        }
+
+        public GenericDefinitionIndexViewModel Index()
+        {
+            var helicopterWorkCategories = _helicopterWorkCategoryDAO.GetAllOrderedBy(x => x.Title);
+
+            var viewModel = new GenericDefinitionIndexViewModel();
+            foreach (var helicopterWorkInterval in helicopterWorkCategories)
+            {
+                viewModel.Definitions.Add(new GenericDefinitionViewModel
+                {
+                    Id = helicopterWorkInterval.Id,
+                    SystemName = helicopterWorkInterval.Title
+                });
+            }
+
+            return viewModel;
         }
     }
 

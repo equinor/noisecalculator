@@ -100,6 +100,7 @@
     <Compile Include="Identity\Interfaces\IDirectoryService.cs" />
     <Compile Include="Identity\Interfaces\IIdentityProvider.cs" />
     <Compile Include="Mapping\AdministratorMap.cs" />
+    <Compile Include="Mapping\HelicopterWorkCategoryMap.cs" />
     <Compile Include="Mapping\RoleDefinitionMap.cs" />
     <Compile Include="Mapping\NoiseProtectionDefinitionMap.cs" />
     <Compile Include="Mapping\RotationMap.cs" />
