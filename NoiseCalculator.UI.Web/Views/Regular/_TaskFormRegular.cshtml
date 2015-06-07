@@ -70,7 +70,7 @@
     <select id="noiseProtectionId" name="noiseProtectionId" style="width: 180px;">: 
         @foreach (SelectListItem item in Model.NoiseProtection)
         {
-            <option value="@item.Value" @(item.Selected ? "SELECTED" : string.Empty)>@item.Text</option>
+            <option value="@item.Value" @((item.Value == Model.NoiseProtectionId.ToString()) ? "selected" : string.Empty)>@item.Text</option>
         }
     </select>
 </p>

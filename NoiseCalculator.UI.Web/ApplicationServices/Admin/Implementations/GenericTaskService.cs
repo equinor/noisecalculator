@@ -73,7 +73,6 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 AllowedExposureMinutes = Convert.ToInt32(allowedExposureTime.TotalMinutes),
                 TaskDefinition = definition,
                 ButtonPressed = editModel.ButtonPressed,
-                BackgroundNoise = editModel.BackgroundNoise,
                 CultureName = editModel.SelectedCultureName,
             };
 
@@ -147,7 +146,6 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             task.Role = _roleDAO.Get(editModel.RoleId);
             task.NoiseProtection = _noiseProtectionDAO.Get(editModel.NoiseProtectionId);
             task.ButtonPressed = editModel.ButtonPressed;
-            task.BackgroundNoise = editModel.BackgroundNoise;
 
             _taskDAO.Store(task);
 
@@ -188,7 +186,6 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 NoiseLevelGuideline = task.NoiseLevelGuideline,
                 AllowedExposureMinutes = task.AllowedExposureMinutes,
                 ButtonPressed = task.ButtonPressed,
-                BackgroundNoise = task.BackgroundNoise,
                 Language = LanguageResolver.GetLanguageName(task.CultureName)
             };
 

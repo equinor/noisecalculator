@@ -55,6 +55,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 viewModel.NoiseProtection.Add(selectListItem);
             }
 
+            viewModel.NoiseProtection[1].Selected = true;
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_CreateRegularTask", viewModel);
@@ -92,16 +94,27 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RoleType = selectedTask.Task.Role.RoleType.ToString(),
                 NoiseLevelGuideline = selectedTask.Task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
                 NoiseLevelMeassured = selectedTask.NoiseLevel,
+                NoiseProtectionId = selectedTask.NoiseProtectionId,
                 RadioNoiseMeassuredNoCheckedAttr = selectedTask.IsNoiseMeassured ? InputNotChecked : InputChecked,
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = InputChecked,
                 ButtonPressed = selectedTask.ButtonPressed,
-                //BackgroundNoise = selectedTask.BackgroundNoise,
-                
+                BackgroundNoise = selectedTask.BackgroundNoise,
                 Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
 
+            viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
+            foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            {
+                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                if (noiseProtection.Id == selectedTask.NoiseProtectionId)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.NoiseProtection.Add(selectListItem);
+            }
+            
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_EditRegularTask", viewModel);
@@ -119,15 +132,10 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
+            
+            selectedTask.ButtonPressed = viewModel.ButtonPressed;
 
-            if (viewModel.ButtonPressed == 0)
-                selectedTask.ButtonPressed = selectedTask.Task.ButtonPressed;
-            else if (viewModel.ButtonPressed >= selectedTask.Task.ButtonPressed)
-                selectedTask.ButtonPressed = viewModel.ButtonPressed;
-
-            if (viewModel.BackgroundNoise == 0)
-                selectedTask.BackgroundNoise = selectedTask.Task.BackgroundNoise;
-            else if (viewModel.BackgroundNoise >= selectedTask.Task.BackgroundNoise)
+            if (viewModel.BackgroundNoise != 0)
                 selectedTask.BackgroundNoise = viewModel.BackgroundNoise;
 
             if(viewModel.NoiseLevelMeassured == 0)
@@ -142,6 +150,12 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+
+            if (noiseProtection != null)
+            {
+                selectedTask.NoiseProtection = noiseProtection.Title;
+                selectedTask.NoiseProtectionId = noiseProtection.Id;
+            }
 
             if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes))
             {
@@ -183,15 +197,9 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             var errorSummaryViewModel = new ValidationErrorSummaryViewModel();
 
-            if (viewModel.NoiseLevelMeassured - task.NoiseLevelGuideline > 6)
-            {
-                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseLevelToHighAboveGuidline);
-            }
-
-            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) && string.IsNullOrEmpty(viewModel.Percentage))
-            {
+            if (string.IsNullOrEmpty(viewModel.Hours) && string.IsNullOrEmpty(viewModel.Minutes) &&
+                string.IsNullOrEmpty(viewModel.Percentage))
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
-            }
 
             return errorSummaryViewModel;
         }
@@ -204,22 +212,19 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = task.Title,
                 Role = task.Role.Title,
                 NoiseProtection = task.NoiseProtection.Title,
+                NoiseProtectionId = task.NoiseProtection.Id,
                 ButtonPressed = task.ButtonPressed,
-                BackgroundNoise = task.BackgroundNoise,
                 Task = task,
                 CreatedBy = string.IsNullOrEmpty(User.Identity.Name) ? Session.SessionID : User.Identity.Name,
                 CreatedDate = DateTime.Now.Date
             };
 
             var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+            selectedTask.NoiseProtection = noiseProtection.Title;
+            
+            selectedTask.ButtonPressed = viewModel.ButtonPressed;
 
-            if (noiseProtection != null)
-                selectedTask.NoiseProtection = noiseProtection.Title;
-
-            if (viewModel.ButtonPressed != task.ButtonPressed)
-                selectedTask.ButtonPressed = viewModel.ButtonPressed;
-
-            if (viewModel.BackgroundNoise != task.BackgroundNoise)
+            if (viewModel.BackgroundNoise != 0)
                 selectedTask.BackgroundNoise = viewModel.BackgroundNoise;
 
             if (viewModel.NoiseLevelMeassured > task.NoiseLevelGuideline)

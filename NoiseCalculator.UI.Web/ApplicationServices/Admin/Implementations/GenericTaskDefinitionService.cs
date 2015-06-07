@@ -39,7 +39,6 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                         NoiseLevelGuideline = task.NoiseLevelGuideline,
                         AllowedExposureMinutes = task.AllowedExposureMinutes,
                         ButtonPressed = task.ButtonPressed,
-                        BackgroundNoise = task.BackgroundNoise,
                         Language = LanguageResolver.GetLanguageName(task.CultureName)
                     };
 

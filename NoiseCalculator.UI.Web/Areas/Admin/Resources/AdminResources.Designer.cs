@@ -473,7 +473,16 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
                 return ResourceManager.GetString("PageTitleHelictoperWorkInterval", resourceCulture);
             }
         }
-        
+
+
+        public static string PageTitleHelicopterWorkCategory
+        {
+            get
+            {
+                return ResourceManager.GetString("PageTitleHelicopterWorkCategory", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Noise Protection.
         /// </summary>
