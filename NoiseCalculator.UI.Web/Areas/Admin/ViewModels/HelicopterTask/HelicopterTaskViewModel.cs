@@ -8,8 +8,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask
         public int Id { get; set; }
         public IList<SelectOptionViewModel> Helicopters { get; set; }
         public IList<SelectOptionViewModel> NoiseProtectionDefinitions { get; set; }
-        public IList<SelectOptionViewModel> WorkIntervals { get; set; }
-        public int Percentage { get; set; }
+        public int ButtonPressed { get; set; }
+        public int FixedTime { get; set; }
         
         public string UrlCreateTranslation { get; set; }
         public string UrlEditTranslation { get; set; }
@@ -20,7 +20,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask
         {
             Helicopters = new List<SelectOptionViewModel>();
             NoiseProtectionDefinitions = new List<SelectOptionViewModel>();
-            WorkIntervals = new List<SelectOptionViewModel>();
+            ButtonPressed = 100;
+            FixedTime = 0;
 
             UrlCreateTranslation = string.Empty;
             UrlEditTranslation = string.Empty;

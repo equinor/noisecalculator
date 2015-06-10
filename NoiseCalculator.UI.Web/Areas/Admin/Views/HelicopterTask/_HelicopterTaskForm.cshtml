@@ -27,20 +27,21 @@
 </p>
 
 <p>
-    <label for="HelicopterWorkIntervalId" class="label-170px">@AdminResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
+    <label for="Percentage" class="label-170px">@AdminResources.TaskFormRegularPercentageLabel</label>
     :
-    <select id="HelicopterWorkIntervalId" name="HelicopterWorkIntervalId" class="helicopterDropDown" >
-        @foreach (SelectOptionViewModel selectOption in Model.WorkIntervals)
-        {
-            <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
-        }
-    </select>
+    <input id="Percentage" name="Percentage" type="text" value="@Model.ButtonPressed" />
 </p>
 
 <p>
     <label for="Percentage" class="label-170px">@AdminResources.TaskFormRegularPercentageLabel</label>
     :
-    <input id="Percentage" name="Percentage" type="text" value="@Model.Percentage" />
+    <input id="Percentage" name="Percentage" type="text" value="@Model.FixedTime" />
+</p>
+
+<p>
+    <label for="ButtonPressed" class="label-170px">@AdminResources.GenericTaskButtonPressed</label>
+    <input id="ButtonPressed" type="text" name="ButtonPressed" style="width: 40px;" value="@Model.ButtonPressed" />
+    <span>@AdminResources.GenericTaskPercentageLabel</span>
 </p>
 
 <p style="margin-top: 10px;">

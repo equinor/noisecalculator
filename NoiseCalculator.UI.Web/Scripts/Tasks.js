@@ -516,8 +516,7 @@ function submitHelideckForm() {
     var formData = {
         TaskId: $("#TaskId").val(),
         HelicopterId: $("#HelicopterId").val(),
-        NoiseProtectionId: $("#NoiseProtectionId").val(),
-        WorkIntervalId: $("#WorkIntervalId").val()
+        NoiseProtectionId: $("#NoiseProtectionId").val()
     };
 
     $.ajax({

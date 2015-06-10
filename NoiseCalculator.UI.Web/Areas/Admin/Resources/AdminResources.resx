@@ -381,4 +381,13 @@
   <data name="RoleTypeRotation" xml:space="preserve">
     <value>Rotation</value>
   </data>
+  <data name="GenericTaskPercentageLabel" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="HelicopterTaskColumnButtonPressed" xml:space="preserve">
+    <value>Button pressed</value>
+  </data>
+  <data name="HelicopterTaskColumnFixedTime" xml:space="preserve">
+    <value>Time allocated</value>
+  </data>
 </root>

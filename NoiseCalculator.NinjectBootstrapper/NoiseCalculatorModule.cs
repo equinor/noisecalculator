@@ -21,7 +21,6 @@ namespace NoiseCalculator.NinjectBootstrapper
 
             Bind(typeof (IDAO<,>)).To(typeof (GenericDAO<,>));
             Bind<IAdministratorDAO>().To<AdministratorDAO>();
-            Bind<IHelicopterNoiseProtectionDAO>().To<HelicopterNoiseProtectionDAO>();
             Bind<IHelicopterTaskDAO>().To<HelicopterTaskDAO>();
             Bind<INoiseProtectionDAO>().To<NoiseProtectionDAO>();
             Bind<IRoleDAO>().To<RoleDAO>();

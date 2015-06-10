@@ -35,14 +35,3 @@
     }
     </select>
 </p>
-
-<p>
-    <label for="WorkIntervalId" class="label-130px">@TaskResources.TaskFormHelideckHelicopterWorkIntervalLabel</label>
-    :
-    <select id="WorkIntervalId" class="helicopterDropDown" >
-    @foreach (SelectListItem item in Model.WorkIntervals)
-    {
-        <option value="@item.Value" @(item.Selected ? "SELECTED" : string.Empty)>@item.Text</option>
-    }
-    </select>
-</p>

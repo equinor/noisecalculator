@@ -437,4 +437,10 @@
     <value>Tittel må fylles ut.</value>
     <comment>Title is required.</comment>
   </data>
+  <data name="HelicopterTaskColumnButtonPressed" xml:space="preserve">
+    <value>Knappen inne</value>
+  </data>
+  <data name="HelicopterTaskColumnFixedTime" xml:space="preserve">
+    <value>Tid allokert</value>
+  </data>
 </root>

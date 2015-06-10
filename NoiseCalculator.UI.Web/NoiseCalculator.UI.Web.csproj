@@ -101,12 +101,9 @@
     <Compile Include="ApplicationServices\Admin\Implementations\AdministratorService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\GenericTaskDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\GenericTaskService.cs" />
-    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterNoiseProtectionDefinitionService.cs" />
-    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterNoiseProtectionService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\HelicopterTaskService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\HelicopterTypeService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\HelicopterWorkCategoryService.cs" />
-    <Compile Include="ApplicationServices\Admin\Implementations\HelicopterWorkIntervalService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\NoiseProtectionDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\NoiseProtectionService.cs" />
     <Compile Include="ApplicationServices\Admin\Implementations\RotationTaskDefinitionService.cs" />
@@ -114,13 +111,10 @@
     <Compile Include="ApplicationServices\Admin\Implementations\TaskDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IGenericTaskDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IGenericTaskService.cs" />
-    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterNoiseProtectionDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterTaskService.cs" />
-    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterWorkIntervalService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\INoiseProtectionDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\INoiseProtectionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IAdministratorService.cs" />
-    <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterNoiseProtectionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterTypeService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IRotationTaskDefinitionService.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IRotationTaskService.cs" />
@@ -128,12 +122,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministratorController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HelicopterNoiseProtectionDefinitionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HelicopterWorkCategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HelicopterWorkIntervalController.cs" />
     <Compile Include="ApplicationServices\Admin\Interfaces\IHelicopterWorkCategoryService.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\NoiseProtectionDefinitionController.cs" />
@@ -379,7 +370,6 @@
     <Content Include="Areas\Admin\Views\Shared\_EditGenericTranslation.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_GenericItemListTable.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterType\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HelicopterWorkInterval\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskTableRow.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterTask\_HelicopterTaskItemListTable.cshtml" />
@@ -410,7 +400,9 @@
     <Content Include="Views\Rotation\_CreateTask.cshtml" />
     <Content Include="Views\Shared\_Help.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\HelicopterWorkInterval\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoiseCalculator.Domain\NoiseCalculator.Domain.csproj">
       <Project>{93549C74-B611-4DAB-9B2E-4C7724DD9F10}</Project>

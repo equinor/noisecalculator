@@ -88,12 +88,12 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             var helicopterWorkCategories = _helicopterWorkCategoryDAO.GetAllOrderedBy(x => x.Title);
 
             var viewModel = new GenericDefinitionIndexViewModel();
-            foreach (var helicopterWorkInterval in helicopterWorkCategories)
+            foreach (var helicopterWorkCategory in helicopterWorkCategories)
             {
                 viewModel.Definitions.Add(new GenericDefinitionViewModel
                 {
-                    Id = helicopterWorkInterval.Id,
-                    SystemName = helicopterWorkInterval.Title
+                    Id = helicopterWorkCategory.Id,
+                    SystemName = helicopterWorkCategory.Title
                 });
             }
 

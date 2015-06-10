@@ -53,11 +53,6 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
                 validationErrors.Add(AdminResources.ValidationTaskEditModelNoiseLevelRequired);
             }
 
-            if (string.IsNullOrEmpty(Hours) && string.IsNullOrEmpty(Minutes))
-            {
-                validationErrors.Add(AdminResources.ValidationTaskEditModelAllowedExposureRequired);
-            }
-
             if (string.IsNullOrEmpty(SelectedCultureName) || SelectedCultureName == "0")
             {
                 validationErrors.Add(AdminResources.ValidationLanguageRequired);

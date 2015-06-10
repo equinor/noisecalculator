@@ -11,33 +11,33 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
         }
 
-        public HelicopterTask Get(int helicopterId, HelicopterNoiseProtectionDefinition noiseProtectionDefinition, int workIntervalId)
+        public HelicopterTask Get(int helicopterId, NoiseProtectionDefinition noiseProtectionDefinition)
         {
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
                 .Where(x => x.HelicopterType.Id == helicopterId)
-                .And(x => x.HelicopterWorkInterval.Id == workIntervalId)
-                .And(x => x.HelicopterNoiseProtectionDefinition == noiseProtectionDefinition)
+                .And(x => x.NoiseProtectionDefinition == noiseProtectionDefinition)
                 .Fetch(x => x.HelicopterType).Eager
-                .Fetch(x => x.HelicopterWorkInterval).Eager
+                .Fetch(x => x.ButtonPressed).Eager
+                .Fetch(x => x.FixedTime).Eager
                 .SingleOrDefault<HelicopterTask>();
 
             return helicopterTask;
         }
 
-        public HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId, int workIntervalId)
+        public HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId)
         {
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
                 .Where(x => x.HelicopterType.Id == helicopterId)
-                .And(x => x.HelicopterWorkInterval.Id == workIntervalId)
-                .And(x => x.HelicopterNoiseProtectionDefinition.Id == noiseProtectionDefinitionId)
+                .And(x => x.NoiseProtectionDefinition.Id == noiseProtectionDefinitionId)
                 .Fetch(x => x.HelicopterType).Eager
-                .Fetch(x => x.HelicopterWorkInterval).Eager
+                .Fetch(x => x.ButtonPressed).Eager
+                .Fetch(x => x.FixedTime).Eager
                 .SingleOrDefault<HelicopterTask>();
 
             return helicopterTask;
         }
 
-        public IEnumerable<HelicopterTask> GetAllOrderedByTypeAndWorkInterval()
+        public IEnumerable<HelicopterTask> GetAllOrderedByType()
         {
             const string query = @"
                 SELECT
@@ -45,9 +45,8 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 FROM
                     HelicopterTask as task
                     JOIN task.HelicopterType as type
-                    JOIN task.HelicopterWorkInterval as interval
                 ORDER BY
-                    type.Title asc, interval.Title asc, task.Percentage asc";
+                    type.Title asc";
 
             var helicopterTasks = _session.CreateQuery(query).List<HelicopterTask>();
 

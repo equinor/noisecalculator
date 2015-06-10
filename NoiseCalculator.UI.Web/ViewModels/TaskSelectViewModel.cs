@@ -1,20 +1,18 @@
-﻿using NoiseCalculator.Domain.Entities;
+﻿using System.Collections.Generic;
+using NoiseCalculator.Domain.Entities;
 
 namespace NoiseCalculator.UI.Web.ViewModels
 {
     public class TaskSelectViewModel
     {
-        public int Id { get; private set; }
-        public string Title { get; private set; }
-        public string Role { get; private set; }
-        public string RoleType { get; private set; }
+        public IEnumerable<Task> Tasks { get; set; }
+        public IEnumerable<TaskDefinition> TaskDefinitions { get; set; }
         
-        public TaskSelectViewModel(Task task)
+        public TaskSelectViewModel(IEnumerable<Task> tasks, IEnumerable<TaskDefinition> taskDefinitions)
         {
-            Id = task.Id;
-            Title = task.Title;
-            Role = task.Role.Title;
-            RoleType = task.Role.RoleType.ToString();
+            Tasks = tasks;
+            TaskDefinitions = taskDefinitions;
         }
+
     }
 }

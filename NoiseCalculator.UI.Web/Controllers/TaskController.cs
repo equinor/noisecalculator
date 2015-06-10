@@ -16,18 +16,21 @@ namespace NoiseCalculator.UI.Web.Controllers
     public class TaskController : Controller
     {
         private readonly ITaskDAO _taskDAO;
+        private readonly ITaskDefinitionDAO _taskDefinitionDAO;
         private readonly ISelectedTaskDAO _selectedTaskDAO;
         private readonly INoiseLevelService _noiseLevelService;
         private readonly IAdministratorDAO _administratorDAO;
         private readonly IFootnotesService _footnotesService;
 
-        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, INoiseLevelService noiseLevelService, IAdministratorDAO administratorDAO, IFootnotesService footnotesService)
+        public TaskController(ITaskDAO taskDAO, ISelectedTaskDAO selectedTaskDAO, INoiseLevelService noiseLevelService, IAdministratorDAO administratorDAO, 
+            IFootnotesService footnotesService, ITaskDefinitionDAO taskDefinitionDAO)
         {
             _taskDAO = taskDAO;
             _selectedTaskDAO = selectedTaskDAO;
             _noiseLevelService = noiseLevelService;
             _administratorDAO = administratorDAO;
             _footnotesService = footnotesService;
+            _taskDefinitionDAO = taskDefinitionDAO;
         }
         
 
@@ -55,13 +58,15 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public PartialViewResult AddTask()
         {
-            IEnumerable<TaskSelectViewModel> tasks = _taskDAO.GetAllOrdered().Select(task => new TaskSelectViewModel(task));
+            var tasks = _taskDAO.GetAllOrdered();
+            var taskDefinitions = _taskDefinitionDAO.GetAllOrdered();
+
+            var taskSelectViewModel = new TaskSelectViewModel(tasks, taskDefinitions);
             
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            return PartialView("_TaskDialog", tasks);
+            
+            return PartialView("_TaskDialog", taskSelectViewModel);
         }
-
 
         public ActionResult GetRemoveTaskConfirmationDialog(int id)
         {

@@ -16,13 +16,11 @@ namespace NoiseCalculator.UI.Web.Controllers
             _userPresenter = userPresenter;
         }
 
-
         public ActionResult Execute()
         {
             var user = _identityProvider.GetCurrentUser();
             var userDto = _userPresenter.Present(user);
             return JsonHelper.SerializeObjectToContentResult(userDto);
         }
-
     }
 }

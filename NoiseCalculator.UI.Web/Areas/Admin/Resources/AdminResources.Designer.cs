@@ -349,6 +349,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        public static string GenericTaskPercentageLabel {
+            get {
+                return ResourceManager.GetString("GenericTaskPercentageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role.
         /// </summary>
         public static string GenericTaskRole {
@@ -381,6 +390,24 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string HeadingTranslations {
             get {
                 return ResourceManager.GetString("HeadingTranslations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button pressed.
+        /// </summary>
+        public static string HelicopterTaskColumnButtonPressed {
+            get {
+                return ResourceManager.GetString("HelicopterTaskColumnButtonPressed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time allocated.
+        /// </summary>
+        public static string HelicopterTaskColumnFixedTime {
+            get {
+                return ResourceManager.GetString("HelicopterTaskColumnFixedTime", resourceCulture);
             }
         }
         

@@ -94,8 +94,8 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
 
         public void Delete(int id)
         {
-            HelicopterType helicopterWorkInterval = _helicopterTypeDAO.Load(id);
-            _helicopterTypeDAO.Delete(helicopterWorkInterval);
+            HelicopterType helicopterType = _helicopterTypeDAO.Load(id);
+            _helicopterTypeDAO.Delete(helicopterType);
         }
     }
 }

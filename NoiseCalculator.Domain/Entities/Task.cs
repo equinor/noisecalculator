@@ -30,7 +30,7 @@ namespace NoiseCalculator.Domain.Entities
                                       Math.Pow(10, ((double)backgroundNoise/10))), 10.0);
 
             // Norm verdi => 10 * LOG (10^(støynivå/10)) * knappen inne / 100)
-            var normalizedValue = 10 * Math.Log((Math.Pow(10, (noiseLevel/10)) * ((double)buttonPressed / 100)) + Math.Pow(10, ((double)backgroundNoise / 10) * ((100 - (double)buttonPressed)/100)), 10.0);
+            var normalizedValue = 10 * Math.Log((Math.Pow(10, (noiseLevel/10)) * ((double)buttonPressed / 100)) + Math.Pow(10, ((double)backgroundNoise / 10)) * (((100 - (double)buttonPressed)/100)), 10.0);
 
             // Norm verdi med hørselsvern
             var normValueWithNoiseProtection = normalizedValue - noiseProtectionDampening;
@@ -61,7 +61,7 @@ namespace NoiseCalculator.Domain.Entities
                                       Math.Pow(10, ((double)backgroundNoise / 10))), 10.0);
 
             // Norm verdi => 10 * LOG (10^(støynivå/10)) * knappen inne / 100) +  10 ^(bakgrunnsstøy/10) * (100 - knappen inne)/100);
-            var normalizedValue = 10 * Math.Log((Math.Pow(10, (noiseLevel / 10)) * ((double)buttonPressed / 100)) + Math.Pow(10, ((double)backgroundNoise / 10) * ((100 - (double)buttonPressed)/100)), 10.0);
+            var normalizedValue = 10 * Math.Log((Math.Pow(10, (noiseLevel / 10)) * ((double)buttonPressed / 100)) + Math.Pow(10, ((double)backgroundNoise / 10)) * (((100 - (double)buttonPressed)/100)), 10.0);
 
             // Norm verdi med hørselsvern
             var normValueWithNoiseProtection = normalizedValue - noiseProtectionDampening;
