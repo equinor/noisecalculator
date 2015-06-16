@@ -17,6 +17,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             IEnumerable<Task> entities = _session.QueryOver<Task>()
                 .Where(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
                 .Fetch(x => x.Role).Eager
+                .Fetch(x => x.TaskDefinition).Eager
                 .OrderBy(x => x.SortOrder).Desc
                 .ThenBy(x => x.Title).Asc
                 .List<Task>();
@@ -24,11 +25,11 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return entities;
         }
 
-        public IEnumerable<Task> GetAllByTaskDefinitionOrdered(string systemName)
+        public IEnumerable<Task> GetAllByTaskDefinitionIdOrdered(int id)
         {
             IEnumerable<Task> entities = _session.QueryOver<Task>()
                 .Where(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
-                .And(x=> x.TaskDefinition.SystemName == systemName)
+                .And(x => x.TaskDefinition.Id == id)
                 .Fetch(x => x.Role).Eager
                 .OrderBy(x => x.SortOrder).Desc
                 .ThenBy(x => x.Title).Asc
@@ -36,5 +37,6 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
 
             return entities;
         }
+
     }
 }

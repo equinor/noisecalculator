@@ -451,3 +451,14 @@ p
     #helpDialog li a:hover {
         color: #7777a5;
     }
+
+    .zero {
+    height:0;
+    line-height: 0;
+    font-size: 0;
+    padding-top:0;
+    padding-bottom: 0;
+    border:none;
+    margin-top:0;
+    margin-bottom: 0;
+}

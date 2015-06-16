@@ -11,27 +11,14 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
         }
 
-        public HelicopterTask Get(int helicopterId, NoiseProtectionDefinition noiseProtectionDefinition)
+        public HelicopterTask Get(int helicopterId, int taskId)
         {
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
                 .Where(x => x.HelicopterType.Id == helicopterId)
-                .And(x => x.NoiseProtectionDefinition == noiseProtectionDefinition)
+                .And(x => x.Task.Id == taskId)
                 .Fetch(x => x.HelicopterType).Eager
-                .Fetch(x => x.ButtonPressed).Eager
-                .Fetch(x => x.FixedTime).Eager
-                .SingleOrDefault<HelicopterTask>();
-
-            return helicopterTask;
-        }
-
-        public HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId)
-        {
-            HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
-                .Where(x => x.HelicopterType.Id == helicopterId)
-                .And(x => x.NoiseProtectionDefinition.Id == noiseProtectionDefinitionId)
-                .Fetch(x => x.HelicopterType).Eager
-                .Fetch(x => x.ButtonPressed).Eager
-                .Fetch(x => x.FixedTime).Eager
+                .Fetch(x => x.NoiseLevel).Eager
+                .Fetch(x=> x.Task).Eager
                 .SingleOrDefault<HelicopterTask>();
 
             return helicopterTask;

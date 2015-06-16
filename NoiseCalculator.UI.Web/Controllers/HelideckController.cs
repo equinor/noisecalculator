@@ -43,8 +43,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = task.Title,
                 Role = task.Role.Title,
                 RoleType = RoleTypeEnum.Helideck.ToString(),
-                ButtonPressed = task.ButtonPressed,
-                FixedTime = task.AllowedExposureMinutes
+                NoiseLevel = task.NoiseLevelGuideline
             };
 
             AppendHelideckMasterData(viewModel);
@@ -67,8 +66,8 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             NoiseProtection noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
-            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, noiseProtection.NoiseProtectionDefinition);
-
+            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, task.Id);
+            
             SelectedTask selectedTask = new SelectedTask
             {
                 NoiseLevel = task.NoiseLevelGuideline,
@@ -77,7 +76,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = string.Format("{0} - {1}", task.Title, helicopterTask.HelicopterType.Title),
                 Role = task.Role.Title,
                 NoiseProtection = noiseProtection.Title,
-                Percentage = (int)CalculatePercentage(task.NoiseLevelGuideline, task.ButtonPressed, 0, noiseProtection, new TimeSpan(0, 0, task.AllowedExposureMinutes, 0)),
+                Percentage = (int)CalculatePercentage(helicopterTask.NoiseLevel, task.ButtonPressed, 0, noiseProtection, new TimeSpan(0, 0, task.AllowedExposureMinutes, 0)),
                 Minutes = task.AllowedExposureMinutes,
                 Task = task,
                 HelicopterTaskId = helicopterTask.Id,
@@ -92,7 +91,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        public virtual decimal CalculatePercentage(int actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure)
+        public virtual decimal CalculatePercentage(decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure)
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
             const double timeInFullShift = 720;
@@ -139,8 +138,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Role = selectedTask.Task.Role.Title,
                 RoleType = RoleTypeEnum.Helideck.ToString(),
                 HelicopterId = helicopterTask.HelicopterType.Id,
-                ButtonPressed = helicopterTask.ButtonPressed,
-                FixedTime = selectedTask.Minutes
+                NoiseLevel = helicopterTask.NoiseLevel
             };
 
             AppendHelideckMasterData(viewModel);
@@ -171,13 +169,13 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (taskValuesHaveBeenChanged)
             {
                 NoiseProtection newNoiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
-                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, newNoiseProtection.NoiseProtectionDefinition);
+                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, selectedTask.Task.Id);
 
                 selectedTask.Title = string.Format("{0} - {1}", selectedTask.Task.Title, newHelicopterTask.HelicopterType.Title);
                 selectedTask.NoiseProtection = newNoiseProtection.Title;
                 selectedTask.Percentage =
                     (int)
-                        CalculatePercentage(selectedTask.NoiseLevel, selectedTask.ButtonPressed, 80,
+                        CalculatePercentage(newHelicopterTask.NoiseLevel, selectedTask.ButtonPressed, 80,
                             newNoiseProtection, new TimeSpan(0, 0, selectedTask.Minutes, 0));
                 selectedTask.Minutes = selectedTask.Minutes;
                 selectedTask.HelicopterTaskId = newHelicopterTask.Id;

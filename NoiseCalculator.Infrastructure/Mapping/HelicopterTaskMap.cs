@@ -9,11 +9,11 @@ namespace NoiseCalculator.Infrastructure.Mapping
         {
             Id(x => x.Id);
 
-            Map(x => x.ButtonPressed);
-            Map(x => x.FixedTime);
+            Map(x => x.NoiseLevel);
 
             References(x => x.HelicopterType);
             References(x => x.NoiseProtectionDefinition);
+            References(x => x.Task);
         }
     }
 }

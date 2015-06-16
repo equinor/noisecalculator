@@ -8,7 +8,7 @@ namespace NoiseCalculator.Domain.Entities
         public virtual string Title { get; set; }
         public virtual string Role { get; set; }
         public virtual string NoiseProtection { get; set; }
-        public virtual int NoiseLevel { get; set; }
+        public virtual decimal NoiseLevel { get; set; }
         public virtual int Hours { get; set; }
         public virtual int Minutes { get; set; }
         public virtual int Percentage { get; set; }

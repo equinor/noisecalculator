@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NoiseCalculator.UI.Web.Areas.Admin.Resources;
 using NoiseCalculator.UI.Web.Resources;
 
 namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
@@ -8,9 +7,8 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
     {
         public int Id { get; set; }
         public int HelicopterTypeId { get; set; }
-        public int NoiseProtectionDefinitionId { get; set; }
-        public int ButtonPressed { get; set; }
-        public int FixedTime { get; set; }
+        public decimal NoiseLevel { get; set; }
+        public int TaskId { get; set; }
 
         public bool IsValid()
         {
@@ -31,10 +29,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
                 validationErrors.Add(TaskResources.ValidationErrorHelicopterTypeRequired);
             }
 
-            if (NoiseProtectionDefinitionId == 0)
+            if (TaskId == 0)
             {
                 validationErrors.Add(TaskResources.ValidationErrorHelicopterNoiseLevelRequired);
             }
+
             
             return validationErrors;
         }

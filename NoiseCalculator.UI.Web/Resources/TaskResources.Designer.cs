@@ -969,5 +969,7 @@ namespace NoiseCalculator.UI.Web.Resources {
                 return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
+
+        public static string ValidationErrorTaskRequired { get; set; }
     }
 }

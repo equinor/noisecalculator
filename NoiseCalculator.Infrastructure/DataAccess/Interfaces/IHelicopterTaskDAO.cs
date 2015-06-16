@@ -5,8 +5,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
 {
     public interface IHelicopterTaskDAO : IDAO<HelicopterTask, int>
     {
-        HelicopterTask Get(int helicopterId, NoiseProtectionDefinition noiseProtectionDefinition);
-        HelicopterTask Get(int helicopterId, int noiseProtectionDefinitionId);
+        HelicopterTask Get(int helicopterId, int taskId);
         IEnumerable<HelicopterTask> GetAllOrderedByType();
     }
 }

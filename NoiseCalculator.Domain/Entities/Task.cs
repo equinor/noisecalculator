@@ -9,15 +9,14 @@ namespace NoiseCalculator.Domain.Entities
         public virtual string Title { get; set; }
         public virtual Role Role { get; set; }
         public virtual NoiseProtection NoiseProtection { get; set; }
-        public virtual int NoiseLevelGuideline { get; set; }
+        public virtual decimal NoiseLevelGuideline { get; set; }
         public virtual int AllowedExposureMinutes { get; set; }
         public virtual string CultureName { get; set; }
         public virtual int SortOrder { get; set; }
         public virtual int ButtonPressed { get; set; }
         public virtual int NoiseProtectionId { get; set; }
 
-
-        public virtual decimal CalculatePercentage(int actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
+        public virtual decimal CalculatePercentage(decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
             const double timeInFullShift = 720;
@@ -48,7 +47,7 @@ namespace NoiseCalculator.Domain.Entities
             return (decimal)calcPerc;
         }
 
-        public virtual TimeSpan CalculateTimeSpan(int actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
+        public virtual TimeSpan CalculateTimeSpan(decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
             const double timeInFullShift = 720;

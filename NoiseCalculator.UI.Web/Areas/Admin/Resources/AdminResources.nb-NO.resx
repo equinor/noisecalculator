@@ -253,9 +253,11 @@
     <value>Hørselsvern</value>
     <comment>Noise Protection</comment>
   </data>
-  <data name="HelicopterTaskColumnPercentage" xml:space="preserve">
-    <value>Prosent</value>
-    <comment>Percentage</comment>
+  <data name="HelicopterTaskColumnTask" xml:space="preserve">
+    <value>Oppgave</value>
+  </data>
+  <data name="HelicopterNoiseLevelColumnTask" xml:space="preserve">
+    <value>Støynivå</value>
   </data>
   <data name="HelicopterTaskColumnWorkInterval" xml:space="preserve">
     <value>Arbeidstid</value>
@@ -366,6 +368,9 @@
     <value>Hørselsvern</value>
     <comment>Noise Protection</comment>
   </data>
+  <data name="TaskFormHelideckTaskLabel" xml:space="preserve">
+    <value>Oppgave</value>
+  </data>
   <data name="TaskFormHelideckHelicopterTypeLabel" xml:space="preserve">
     <value>Helikopter</value>
     <comment>Helicopter</comment>
@@ -437,8 +442,8 @@
     <value>Tittel må fylles ut.</value>
     <comment>Title is required.</comment>
   </data>
-  <data name="HelicopterTaskColumnButtonPressed" xml:space="preserve">
-    <value>Knappen inne</value>
+  <data name="HelicopterTaskColumnNoiseLevel" xml:space="preserve">
+    <value>Støynivå</value>
   </data>
   <data name="HelicopterTaskColumnFixedTime" xml:space="preserve">
     <value>Tid allokert</value>

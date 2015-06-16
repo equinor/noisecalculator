@@ -4,8 +4,7 @@
     {
         public int Id { get; set; }
         public string Helicopter { get; set; }
-        public string NoiseProtectionDefinition { get; set; }
-        public int ButtonPressed { get; set; }
-        public int FixedTime { get; set; }
+        public string Task { get; set; }
+        public decimal NoiseLevel { get; set; }
     }
 }

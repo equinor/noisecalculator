@@ -54,9 +54,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 }
                 viewModel.NoiseProtection.Add(selectListItem);
             }
-
-            viewModel.NoiseProtection[1].Selected = true;
-
+            
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_CreateRegularTask", viewModel);

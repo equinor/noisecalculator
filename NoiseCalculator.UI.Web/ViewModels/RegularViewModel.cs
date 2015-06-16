@@ -14,7 +14,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public string RadioNoiseMeassuredNoCheckedAttr { get; set; }
         public string RadioNoiseMeassuredYesCheckedAttr { get; set; }
         
-        public int NoiseLevelMeassured { get; set; }
+        public decimal NoiseLevelMeassured { get; set; }
         public string RadioTimeCheckedAttr { get; set; }
         public string RadioPercentageCheckedAttr { get; set; }
         

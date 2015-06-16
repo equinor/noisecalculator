@@ -210,8 +210,11 @@
   <data name="HelicopterTaskColumnNoiseProtectionDefinition" xml:space="preserve">
     <value>Noise Protection</value>
   </data>
-  <data name="HelicopterTaskColumnPercentage" xml:space="preserve">
-    <value>Percentage</value>
+  <data name="HelicopterTaskColumnTask" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="HelicopterNoiseLevelColumnTask" xml:space="preserve">
+    <value>NoiseLevel</value>
   </data>
   <data name="HelicopterTaskColumnWorkInterval" xml:space="preserve">
     <value>Work Interval</value>
@@ -260,6 +263,9 @@
   </data>
   <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
     <value>Noise Protection</value>
+  </data>
+  <data name="TaskFormHelideckTaskLabel" xml:space="preserve">
+    <value>Task</value>
   </data>
   <data name="TaskFormHelideckHelicopterTypeLabel" xml:space="preserve">
     <value>Helicopter</value>
@@ -384,8 +390,8 @@
   <data name="GenericTaskPercentageLabel" xml:space="preserve">
     <value>%</value>
   </data>
-  <data name="HelicopterTaskColumnButtonPressed" xml:space="preserve">
-    <value>Button pressed</value>
+  <data name="HelicopterTaskColumnNoiseLevel" xml:space="preserve">
+    <value>Noise level</value>
   </data>
   <data name="HelicopterTaskColumnFixedTime" xml:space="preserve">
     <value>Time allocated</value>

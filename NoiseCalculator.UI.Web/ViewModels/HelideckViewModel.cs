@@ -5,7 +5,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
 {
     public class HelideckViewModel
     {
-        public int ActualNoiseLevel { get; set; }
+        public decimal ActualNoiseLevel { get; set; }
         public int TaskId { get; set; }
         public int SelectedTaskId { get; set; }
         public string Title { get; set; }
@@ -16,8 +16,8 @@ namespace NoiseCalculator.UI.Web.ViewModels
 
         public IList<SelectListItem> Helicopters { get; set; }
         public IList<SelectListItem> NoiseProtection { get; set; }
-        public int ButtonPressed { get; set; }
-        public int FixedTime { get; set; }
+        public IList<SelectListItem> Task { get; set; }
+        public decimal NoiseLevel { get; set; }
 
 
         public HelideckViewModel()

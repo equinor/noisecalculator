@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -8,6 +9,7 @@ using NoiseCalculator.Domain.DomainServices;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
 
@@ -58,16 +60,34 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public PartialViewResult AddTask()
         {
-            var tasks = _taskDAO.GetAllOrdered();
-            var taskDefinitions = _taskDefinitionDAO.GetAllOrdered();
+            var viewModel = new TaskSelectViewModel();
 
-            var taskSelectViewModel = new TaskSelectViewModel(tasks, taskDefinitions);
+            viewModel.TaskDefinitions.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
+            foreach (var tDef in _taskDefinitionDAO.GetAllOrdered())
+            {
+                var selectListItem = new SelectListItem { Text = tDef.SystemName, Value = tDef.Id.ToString(CultureInfo.InvariantCulture) };
+                if (viewModel.TaskDefinitionId == tDef.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.TaskDefinitions.Add(selectListItem);
+            }
+
+            //foreach (var task in _taskDAO.GetAllOrdered())
+            //{
+            //    var selectListItem = new SelectListItem { Text = task.Title, Value = task.Id.ToString(CultureInfo.InvariantCulture) };
+            //    if (viewModel.TaskId == task.Id)
+            //    {
+            //        selectListItem.Selected = true;
+            //    }
+            //    viewModel.Tasks.Add(selectListItem);
+            //}
             
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            
-            return PartialView("_TaskDialog", taskSelectViewModel);
-        }
 
+            return PartialView("_TaskDialog", viewModel);
+        }
+        
         public ActionResult GetRemoveTaskConfirmationDialog(int id)
         {
             var selectedTask = _selectedTaskDAO.Get(id);
@@ -82,6 +102,23 @@ namespace NoiseCalculator.UI.Web.Controllers
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_RemoveTaskConfirmation", viewModel);
+        }
+
+        [HttpPost]
+        public JsonResult GetTasks(int id)
+        {
+            var viewModel = new TaskSelectViewModel();
+
+            foreach (var task in _taskDAO.GetAllByTaskDefinitionIdOrdered(id))
+            {
+                var selectListItem = new SelectListItem { Text = task.Title, Value = task.Id.ToString(CultureInfo.InvariantCulture) };
+                if (viewModel.TaskId == task.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.Tasks.Add(selectListItem);
+            }
+            return Json(viewModel);
         }
 
         [HttpPost]

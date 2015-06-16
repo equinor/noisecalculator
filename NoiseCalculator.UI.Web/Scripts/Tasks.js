@@ -129,6 +129,11 @@ function openTaskDialog() {
 
 
 function bindTaskDialogEvents() {
+    $("#taskDefSelect").change(function (event) {
+        event.preventDefault();
+        getTaskList();
+    });
+
     $("#taskSelect").dblclick(function (event) {
         event.preventDefault();
         getCreateTaskForm();
@@ -137,6 +142,31 @@ function bindTaskDialogEvents() {
     $("#useTask").click(function (event) {
         event.preventDefault();
         getCreateTaskForm();
+    });
+}
+
+function getTaskList() {
+    var taskDefSelected = $("#taskDefSelect option:selected").val().split('-');
+    
+    $("#taskSelect").empty();
+    $.ajax({
+        type: "POST",
+        url: getTasksUrl,
+        dataType: "json",
+        cache: false,
+        data: { id: $("#taskDefSelect").val() },
+        success: function(tasks) {
+            // states contains the JSON formatted list
+            // of states passed from the controller
+            $.each(tasks.Tasks, function (i, task) {
+                $("#taskSelect").append('<option value="'
+                    + task.Value + '">'
+                    + task.Text + '</option>');
+            });
+        },
+        error: function(ex) {
+            alert('Failed to retrieve tasks.' + ex);
+        }
     });
 }
 
@@ -322,7 +352,6 @@ function updateTotalPercentage() {
         }
     });
 }
-
 
 function removeTask(taskDiv) {
     var selectedTaskId = taskDiv.attr("id");

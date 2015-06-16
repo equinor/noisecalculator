@@ -97,7 +97,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
 
 
-        private SelectedTask CreateSelectedTask(int noiseLevelMeasured, Task task)
+        private SelectedTask CreateSelectedTask(decimal noiseLevelMeasured, Task task)
         {
             var selectedTask = new SelectedTask
             {

@@ -16,10 +16,10 @@
 </p>
 
 <p>
-    <label for="HelicopterNoiseProtectionDefinitionId" class="label-170px">@AdminResources.TaskFormHelideckHelicopterNoiseProtectionLabel</label>
+    <label for="TaskId" class="label-170px">@AdminResources.TaskFormHelideckTaskLabel</label>
     :
-    <select id="HelicopterNoiseProtectionDefinitionId" name="HelicopterNoiseProtectionDefinitionId" class="helicopterDropDown">
-        @foreach (SelectOptionViewModel selectOption in Model.NoiseProtectionDefinitions)
+    <select id="TaskId" name="TaskId" class="helicopterDropDown">
+        @foreach (SelectOptionViewModel selectOption in Model.Tasks)
         {
             <option value="@selectOption.Value" @selectOption.SelectedAttribute>@selectOption.Text</option>
         }
@@ -27,21 +27,9 @@
 </p>
 
 <p>
-    <label for="Percentage" class="label-170px">@AdminResources.TaskFormRegularPercentageLabel</label>
-    :
-    <input id="Percentage" name="Percentage" type="text" value="@Model.ButtonPressed" />
-</p>
-
-<p>
-    <label for="Percentage" class="label-170px">@AdminResources.TaskFormRegularPercentageLabel</label>
-    :
-    <input id="Percentage" name="Percentage" type="text" value="@Model.FixedTime" />
-</p>
-
-<p>
-    <label for="ButtonPressed" class="label-170px">@AdminResources.GenericTaskButtonPressed</label>
-    <input id="ButtonPressed" type="text" name="ButtonPressed" style="width: 40px;" value="@Model.ButtonPressed" />
-    <span>@AdminResources.GenericTaskPercentageLabel</span>
+    <label for="NoiseLevel" class="label-170px">@AdminResources.GenericTaskNoiseLevel</label>
+    <input id="NoiseLevel" type="text" name="NoiseLevel" style="width: 40px;" value="@Model.NoiseLevel" />
+    <span>@AdminResources.GenericTaskDecibelLabel</span>
 </p>
 
 <p style="margin-top: 10px;">

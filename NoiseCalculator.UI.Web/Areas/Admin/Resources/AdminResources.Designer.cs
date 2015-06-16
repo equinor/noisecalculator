@@ -394,11 +394,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Button pressed.
+        ///   Looks up a localized string similar to NoiseLevel.
         /// </summary>
-        public static string HelicopterTaskColumnButtonPressed {
+        public static string HelicopterNoiseLevelColumnTask {
             get {
-                return ResourceManager.GetString("HelicopterTaskColumnButtonPressed", resourceCulture);
+                return ResourceManager.GetString("HelicopterNoiseLevelColumnTask", resourceCulture);
             }
         }
         
@@ -421,6 +421,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Noise level.
+        /// </summary>
+        public static string HelicopterTaskColumnNoiseLevel {
+            get {
+                return ResourceManager.GetString("HelicopterTaskColumnNoiseLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Noise Protection.
         /// </summary>
         public static string HelicopterTaskColumnNoiseProtectionDefinition {
@@ -430,11 +439,11 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Percentage.
+        ///   Looks up a localized string similar to Task.
         /// </summary>
-        public static string HelicopterTaskColumnPercentage {
+        public static string HelicopterTaskColumnTask {
             get {
-                return ResourceManager.GetString("HelicopterTaskColumnPercentage", resourceCulture);
+                return ResourceManager.GetString("HelicopterTaskColumnTask", resourceCulture);
             }
         }
         
@@ -714,6 +723,15 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.Resources {
         public static string TaskFormHelideckHelicopterWorkIntervalLabel {
             get {
                 return ResourceManager.GetString("TaskFormHelideckHelicopterWorkIntervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        public static string TaskFormHelideckTaskLabel {
+            get {
+                return ResourceManager.GetString("TaskFormHelideckTaskLabel", resourceCulture);
             }
         }
         
