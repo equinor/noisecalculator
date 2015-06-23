@@ -9,8 +9,9 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition
         public int Id { get; set; }
         public string SystemName { get; set; }
         public IList<SelectOptionViewModel> RoleTypes { get; set; }
+        public string SystemNameEN { get; set; }
 
-        
+
         public NewTaskDefinitionViewModel()
         {
             RoleTypes = new List<SelectOptionViewModel>();

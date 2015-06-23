@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.DomainServices;
@@ -63,25 +64,33 @@ namespace NoiseCalculator.UI.Web.Controllers
             var viewModel = new TaskSelectViewModel();
 
             viewModel.TaskDefinitions.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
-            foreach (var tDef in _taskDefinitionDAO.GetAllOrdered())
+
+
+            if (Thread.CurrentThread.CurrentCulture.Equals(new CultureInfo("nb-NO")))
             {
-                var selectListItem = new SelectListItem { Text = tDef.SystemName, Value = tDef.Id.ToString(CultureInfo.InvariantCulture) };
-                if (viewModel.TaskDefinitionId == tDef.Id)
+                foreach (var tDef in _taskDefinitionDAO.GetAllOrderedByCurrentCulture())
                 {
-                    selectListItem.Selected = true;
+                    var selectListItem = new SelectListItem { Text = tDef.SystemName, Value = tDef.Id.ToString(CultureInfo.InvariantCulture) };
+                    if (viewModel.TaskDefinitionId == tDef.Id)
+                    {
+                        selectListItem.Selected = true;
+                    }
+                    viewModel.TaskDefinitions.Add(selectListItem);
                 }
-                viewModel.TaskDefinitions.Add(selectListItem);
+            }
+            else
+            {
+                foreach (var tDef in _taskDefinitionDAO.GetAllOrderedByENCulture())
+                {
+                    var selectListItem = new SelectListItem { Text = tDef.SystemNameEN, Value = tDef.Id.ToString(CultureInfo.InvariantCulture) };
+                    if (viewModel.TaskDefinitionId == tDef.Id)
+                    {
+                        selectListItem.Selected = true;
+                    }
+                    viewModel.TaskDefinitions.Add(selectListItem);
+                }
             }
 
-            //foreach (var task in _taskDAO.GetAllOrdered())
-            //{
-            //    var selectListItem = new SelectListItem { Text = task.Title, Value = task.Id.ToString(CultureInfo.InvariantCulture) };
-            //    if (viewModel.TaskId == task.Id)
-            //    {
-            //        selectListItem.Selected = true;
-            //    }
-            //    viewModel.Tasks.Add(selectListItem);
-            //}
             
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
@@ -108,16 +117,37 @@ namespace NoiseCalculator.UI.Web.Controllers
         public JsonResult GetTasks(int id)
         {
             var viewModel = new TaskSelectViewModel();
-
+            
             foreach (var task in _taskDAO.GetAllByTaskDefinitionIdOrdered(id))
             {
-                var selectListItem = new SelectListItem { Text = task.Title, Value = task.Id.ToString(CultureInfo.InvariantCulture) };
+                var taskText = task.Title;
+                var taskValue = task.Id.ToString(CultureInfo.InvariantCulture) + "-" + task.Role.RoleType + "-" +
+                                task.TaskDefinition.SystemName;
+                var selectListItem = new SelectListItem { Text = taskText, Value = taskValue };
                 if (viewModel.TaskId == task.Id)
                 {
                     selectListItem.Selected = true;
                 }
                 viewModel.Tasks.Add(selectListItem);
             }
+
+            // Hack for helideck tasks
+            if (viewModel.Tasks.Count == 0)
+            {
+                foreach (var task in _taskDAO.GetAllHelideckByTaskDefinitionIdOrdered(id))
+                {
+                    var taskText = task.Title;
+                    var taskValue = task.Id.ToString(CultureInfo.InvariantCulture) + "-" + task.Role.RoleType + "-" +
+                                    task.TaskDefinition.SystemName;
+                    var selectListItem = new SelectListItem { Text = taskText, Value = taskValue };
+                    if (viewModel.TaskId == task.Id)
+                    {
+                        selectListItem.Selected = true;
+                    }
+                    viewModel.Tasks.Add(selectListItem);
+                }
+            }
+
             return Json(viewModel);
         }
 

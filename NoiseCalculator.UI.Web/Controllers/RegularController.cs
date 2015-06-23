@@ -39,6 +39,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Role = task.Role.Title,
                 RoleType = task.Role.RoleType.ToString(),
                 NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
+                NoiseProtectionId = task.NoiseProtection.Id,
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,
                 RadioTimeCheckedAttr = InputChecked,
                 ButtonPressed = task.ButtonPressed
@@ -47,7 +48,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
             foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
-                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString(CultureInfo.InvariantCulture) };
                 if (viewModel.NoiseProtectionId == noiseProtection.Id)
                 {
                     selectListItem.Selected = true;
@@ -82,7 +83,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult EditTaskRegular(int id)
         {
             var selectedTask = _selectedTaskDAO.Get(id);
-
+            
             var viewModel = new RegularViewModel
             {
                 TaskId = selectedTask.Task.Id,
@@ -105,8 +106,8 @@ namespace NoiseCalculator.UI.Web.Controllers
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
             foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
-                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
-                if (noiseProtection.Id == selectedTask.NoiseProtectionId)
+                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString(CultureInfo.InvariantCulture) };
+                if (viewModel.NoiseProtectionId == noiseProtection.Id)
                 {
                     selectListItem.Selected = true;
                 }
@@ -219,6 +220,7 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
             selectedTask.NoiseProtection = noiseProtection.Title;
+            selectedTask.NoiseProtectionId = noiseProtection.Id;
             
             selectedTask.ButtonPressed = viewModel.ButtonPressed;
 

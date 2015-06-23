@@ -333,8 +333,9 @@ namespace NoiseCalculator.Infrastructure.Pdf
             
             // Table to place the summary below the table of noise things
             var summaryTable = section.AddTable();
-            summaryTable.AddColumn("20cm");  // Left side texts here
-            summaryTable.AddColumn("6cm");   // Right side texts here
+            summaryTable.AddColumn("19cm");  // Left side texts here
+            summaryTable.AddColumn("5cm");   // Right side texts here
+            summaryTable.AddColumn("2cm");   // Percentage here
             summaryTable.TopPadding = "0.3cm";
             summaryTable.BottomPadding = "0.3cm";
 
@@ -348,23 +349,36 @@ namespace NoiseCalculator.Infrastructure.Pdf
             leftSummary.Height = "1.2cm";
 
             // TotalpercentageText
-            var totalPercentageText = leftSummary.AddParagraph();
-            totalPercentageText.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 10.5)
-            {
-                Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
-            };
-            totalPercentageText.AddFormattedText(ReportResource.TotalPercentageTextFormatString, TextFormat.Bold);
+            //var totalPercentageText = leftSummary.AddParagraph();
+            //totalPercentageText.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 10.5)
+            //{
+            //    Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
+            //};
+            //totalPercentageText.AddFormattedText(ReportResource.TotalPercentageTextFormatString, TextFormat.Bold);
 
             // Right textFrame for placing texts
 
             // Total percentage
             summaryRow.Cells[1].VerticalAlignment = VerticalAlignment.Bottom;
-            var totalPercentageBox = summaryRow.Cells[1].AddTextFrame();
+            var totalPercentageTextBox = summaryRow.Cells[1].AddTextFrame();
+            totalPercentageTextBox.FillFormat.Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(200, noiseLevelColor);
+            totalPercentageTextBox.Width = "5cm";
+            totalPercentageTextBox.Height = "1.2cm";
+            var totalPercentageText = totalPercentageTextBox.AddParagraph();
+            totalPercentageText.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 12)
+            {
+                Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
+            };
+            totalPercentageText.AddFormattedText(string.Format(ReportResource.TotalPercentageTextFormatString), TextFormat.Bold);
+            totalPercentageText.Format.Alignment = ParagraphAlignment.Center;
+
+            // percentage
+            var totalPercentageBox = summaryRow.Cells[2].AddTextFrame();
             totalPercentageBox.FillFormat.Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(200, noiseLevelColor);
-            totalPercentageBox.Width = "6cm";
+            totalPercentageBox.Width = "2cm";
             totalPercentageBox.Height = "1.2cm";
             var totalPercentage = totalPercentageBox.AddParagraph();
-            totalPercentage.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 20)
+            totalPercentage.Format.Font = new MigraDoc.DocumentObjectModel.Font("Verdana", 18)
             {
                 Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
             };
@@ -396,10 +410,13 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 };
                 
                 var textHeader = footNoteText.Substring(0, footNoteText.IndexOf("<br/>", StringComparison.Ordinal)).Replace("<b>", "").Replace("</b>", "");
-                var text = footNoteText.Substring(footNoteText.IndexOf("<br/>", StringComparison.Ordinal) + 5).Replace("<br/><br/>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
+                if (footNoteText.Length > footNoteText.IndexOf("<br/>", StringComparison.Ordinal) + 5)
+                {
+                    var text = footNoteText.Substring(footNoteText.IndexOf("<br/>", StringComparison.Ordinal) + 5).Replace("<br/><br/>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
                 
-                footNoteHeader.AddFormattedText(string.Format(Environment.NewLine + "* {0}", textHeader));
-                footNote.AddFormattedText(string.Format("{0}", text));
+                    footNoteHeader.AddFormattedText(string.Format(Environment.NewLine + "* {0}", textHeader));
+                    footNote.AddFormattedText(string.Format("{0}", text));
+                }
                 var spaceBetween1 = section.AddTextFrame();
                 spaceBetween1.Height = "0.1cm";
             }

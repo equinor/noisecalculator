@@ -32,7 +32,8 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 {
                     Id = definition.Id,
                     SystemName = definition.SystemName,
-                    RoleType = definition.RoleType.ToString()
+                    RoleType = definition.RoleType.ToString(),
+                    SystemNameEN = definition.SystemNameEN
                 };
                 viewModel.Definitions.Add(taskDefinitionListItemView);
             }
@@ -45,8 +46,9 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
         {
             TaskDefinition definition = new TaskDefinition
                 {
-                    SystemName = editModel.Title.ToUpper(),
-                    RoleType = (RoleTypeEnum) Enum.Parse(typeof (RoleTypeEnum), editModel.RoleType)
+                    SystemName = editModel.Title,
+                    RoleType = (RoleTypeEnum) Enum.Parse(typeof (RoleTypeEnum), editModel.RoleType),
+                    SystemNameEN = editModel.TitleEN
                 };
             _taskDefinitionDAO.Store(definition);
 
@@ -54,7 +56,8 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 {
                     Id = definition.Id, 
                     SystemName = definition.SystemName, 
-                    RoleType = definition.RoleType.ToString()
+                    RoleType = definition.RoleType.ToString(),
+                    SystemNameEN = definition.SystemNameEN
                 };
 
             return viewModel;

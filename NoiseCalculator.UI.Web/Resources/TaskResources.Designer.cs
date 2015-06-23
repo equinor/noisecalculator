@@ -642,6 +642,19 @@ namespace NoiseCalculator.UI.Web.Resources {
                 return ResourceManager.GetString("TaskDialogAddTitle", resourceCulture);
             }
         }
+
+        public static string TaskDialogCategories
+        {
+            get { return ResourceManager.GetString("TaskDialogCategories", resourceCulture); }
+        }
+
+        public static string TaskDialogTasks
+        {
+            get
+            {
+                return ResourceManager.GetString("TaskDialogTasks", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Use Task.

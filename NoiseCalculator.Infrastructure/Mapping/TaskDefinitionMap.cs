@@ -11,6 +11,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
 
             Map(x => x.SystemName);
             Map(x => x.RoleType);
+            Map(x => x.SystemNameEN);
 
             HasMany(x => x.Tasks)
                 .Cascade.AllDeleteOrphan();

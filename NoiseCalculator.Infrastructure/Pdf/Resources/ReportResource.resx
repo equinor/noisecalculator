@@ -127,10 +127,10 @@
     <value>Noise Level</value>
   </data>
   <data name="HeadingButtonPressed" xml:space="preserve">
-    <value>eng: % Knappen inne</value>
+    <value>% Button pressed</value>
   </data>
   <data name="HeadingBackgroundNoise" xml:space="preserve">
-    <value>eng: Bakgrunnsstøy</value>
+    <value>Background noise</value>
   </data>
   <data name="HeadingNoiseProtection" xml:space="preserve">
     <value>Noise Protection</value>

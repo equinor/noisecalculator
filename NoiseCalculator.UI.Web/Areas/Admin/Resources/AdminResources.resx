@@ -261,6 +261,9 @@
   <data name="TaskDefinitionLabelTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="TaskDefinitionENLabelTitle" xml:space="preserve">
+    <value>English title</value>
+  </data>
   <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
     <value>Noise Protection</value>
   </data>

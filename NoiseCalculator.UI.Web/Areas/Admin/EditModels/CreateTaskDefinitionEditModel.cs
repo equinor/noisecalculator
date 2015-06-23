@@ -7,6 +7,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
     {
         public string Title { get; set; }
         public string RoleType { get; set; }
+        public string TitleEN { get; set; }
 
         public bool IsValid()
         {

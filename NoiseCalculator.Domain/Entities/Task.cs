@@ -70,7 +70,12 @@ namespace NoiseCalculator.Domain.Entities
                                      ((Math.Pow(10, (80/10)))/Math.Pow(10, normValueWithNoiseProtection/10));
 
             var timeSpan = new TimeSpan(0, 0, (int)Math.Round(allowedExposure), 0);
-            
+
+            if (timeSpan.Days > 0)
+            {
+                timeSpan = new TimeSpan(0,0,1439,0);
+            }
+
             return timeSpan;
         }
 

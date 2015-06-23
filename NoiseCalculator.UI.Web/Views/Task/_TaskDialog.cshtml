@@ -5,7 +5,7 @@
 
 <input type="hidden" id="hiddenTaskDialogTitle" value="@TaskResources.TaskDialogAddTitle" />
 
-<span>Kategorier</span><br />
+<span>@TaskResources.TaskDialogCategories</span><br />
 <select id="taskDefSelect" size="1">
         @foreach (SelectListItem item in Model.TaskDefinitions)
               {
@@ -13,7 +13,7 @@
               }
 </select>
 
-<br /><br /><span>Oppgaver</span><br />
+<br /><br /><span>@TaskResources.TaskDialogTasks</span><br />
 <select id="taskSelect" size="10">
     @foreach (SelectListItem item in Model.Tasks)
     {

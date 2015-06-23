@@ -79,7 +79,7 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eng: Bakgrunnsstøy.
+        ///   Looks up a localized string similar to Background noise.
         /// </summary>
         internal static string HeadingBackgroundNoise {
             get {
@@ -88,7 +88,7 @@ namespace NoiseCalculator.Infrastructure.Pdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eng: % Knappen inne.
+        ///   Looks up a localized string similar to % Button pressed.
         /// </summary>
         internal static string HeadingButtonPressed {
             get {

@@ -364,6 +364,10 @@
     <value>Tittel</value>
     <comment>Title</comment>
   </data>
+  <data name="TaskDefinitionENLabelTitle" xml:space="preserve">
+    <value>Engelsk tittel</value>
+    <comment>Engelsk tittel</comment>
+  </data>
   <data name="TaskFormHelideckHelicopterNoiseProtectionLabel" xml:space="preserve">
     <value>Hørselsvern</value>
     <comment>Noise Protection</comment>
@@ -391,7 +395,7 @@
     <comment>Operator</comment>
   </data>
   <data name="TaskFormRegularPercentageLabel" xml:space="preserve">
-    <value>% av daglig støydose</value>
+    <value>% av daglig tillat støydose</value>
     <comment>% of daily noise dosage</comment>
   </data>
   <data name="TaskFormRegularWorkTimeLabel" xml:space="preserve">

@@ -70,9 +70,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;Om beregningene:&lt;/b&gt;&lt;br&gt;Metodikk for risikovurdering av støyeksponering er gitt i GL0169 &quot;Støy - retningslinjer for kartlegging og tiltak“ og er hjemlet i TR0926 &quot;Working Environment“.&lt;br&gt;&lt;br&gt;
-        ///Når beregnet støyeksponering viser 100% er beregnet støydose 80 dBA innenfor oppgitt hørselvern. &lt;br&gt;&lt;br&gt;
-        ///Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områ [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;b&gt;About the calculations:&lt;/b&gt;&lt;br/&gt;The method for risk assessment of noise exposure is described in GL0169 and enacted in TR0926&lt;br/&gt;&lt;br/&gt;When the calculated noise exposure shows 100%, the calculated exposure is 80 dBA inside the hearing protection &lt;br/&gt;&lt;br/&gt;If the calculated exposure is 100% (for a work activity) the employee shall not carry out noisy work operations or stay in areas with noise level above 80 dBA during the rest of that day. The employee cannot stay in areas with impulse noise (hammer, ban [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FooterCalculations {
             get {
@@ -81,10 +79,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;Kontakt yrkeshygieniker: &lt;/b&gt;&lt;br&gt;
-        ///- dersom det er usikkerhet rundt beregningene&lt;br&gt;
-        ///- dersom ønsket arbeidsoppgave ikke finnes i listen&lt;br&gt;
-        ///- ved spørsmål om støydemping.
+        ///   Looks up a localized string similar to &lt;b&gt;Contact occupational hygienist:&lt;/b&gt;&lt;br/&gt;-	In case of uncertainty regarding the calculations&lt;br/&gt;-	If the work operation does not exist in the list&lt;br/&gt;-	Regarding questions about sound reduction.
         /// </summary>
         internal static string FooterContact {
             get {
@@ -102,7 +97,10 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following conditions apply regarding the noise protection during noisy work. The noise protection shall be well maintained and used correctly. When using &quot;universal ear plugs&quot;, individual training shall be given regarding use and insertion. When using custom molded ear plugs, insertion training shall be given. Ref:GL0169, table 4-1..
+        ///   Looks up a localized string similar to The following conditions apply to the hearing protection used when performing noisy work operations:&lt;br/&gt;
+        ///The hearing protection shall be well maintained and used correctly. &lt;br/&gt;
+        ///When using disposable ear plugs, training in correct use and insertion shall be given &lt;br/&gt;
+        ///When using custom molded ear plugs, insertion training shall be given..
         /// </summary>
         internal static string FooterDynamicNoiseProtection {
             get {
@@ -111,7 +109,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The risk analysis for noisy work is valid for area noise less than or equal to 90 dBA. Perform field measurements when the area noise is above 90 dBA or if the work is carried out in areas with a lot of reverberation, for example in tanks..
+        ///   Looks up a localized string similar to The task based noise risk assessments are based on area noise levels up to 90 dBA. For noisy work tasks carried out in areas with noise levels above 90 dBA, or areas with a lot of reverberation (e.g. in tanks), field measured noise levels must be entered into the calculator..
         /// </summary>
         internal static string FooterDynamicValidForAreaNoiseUpTo90dBA {
             get {
@@ -129,10 +127,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;Om hørselsvern:&lt;/b&gt;&lt;br&gt;Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.&lt;br&gt;&lt;br&gt;Følgende betingelser angående hørselsvern gjelder ved utføring av støyende arbeidsoppgaver: &lt;br&gt;
-        ///- Hørselsvernet skal være godt vedlikeholdt og brukes korrekt &lt;br&gt;
-        ///- Ved bruk av &quot;universalpropper&quot; og formstøpte ørepropper skal det være gitt individuell opplæring i bruk og innsetting&lt;br&gt;
-        ///- Det bør verifiseres at ørepropper gir minimum 12 dB dempi [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;b&gt;About hearing protectors:&lt;/b&gt;&lt;br/&gt;Single hearing protection implies earplugs or earmuffs. Double hearing protection implies earmuffs and earplugs used at the same time. &lt;br&gt;&lt;br/&gt;The following conditions apply when carrying out noisy work operations: &lt;br/&gt;-	The hearing protection shall be well maintained and used correctly. &lt;br/&gt;-	When using disposable earplugs or custom moulded earplugs, individual training in their correct use and insertion shall be given &lt;br/&gt;-	It shoud be verified that earplugs give a [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FooterNoiseProtection {
             get {

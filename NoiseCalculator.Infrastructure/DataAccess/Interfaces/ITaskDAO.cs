@@ -7,6 +7,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Interfaces
     {
         IEnumerable<Task> GetAllOrdered();
         IEnumerable<Task> GetAllByTaskDefinitionIdOrdered(int id);
+        IEnumerable<Task> GetAllHelideckByTaskDefinitionIdOrdered(int id);
         //
     }
 }

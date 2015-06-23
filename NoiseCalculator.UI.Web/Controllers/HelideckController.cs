@@ -43,7 +43,8 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = task.Title,
                 Role = task.Role.Title,
                 RoleType = RoleTypeEnum.Helideck.ToString(),
-                NoiseLevel = task.NoiseLevelGuideline
+                NoiseLevel = task.NoiseLevelGuideline,
+                NoiseProtectionId = task.NoiseProtectionId
             };
 
             AppendHelideckMasterData(viewModel);
@@ -126,8 +127,6 @@ namespace NoiseCalculator.UI.Web.Controllers
             SelectedTask selectedTask = _selectedTaskDAO.Get(id);
             
             HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
-            NoiseProtection helicopterNoiseProtection = 
-                _noiseProtectionDAO.Get(helicopterTask.NoiseProtectionDefinition.Id);
 
             HelideckViewModel viewModel = new HelideckViewModel
             {

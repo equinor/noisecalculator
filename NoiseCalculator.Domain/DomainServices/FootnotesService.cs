@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Domain.Resources;
 
 namespace NoiseCalculator.Domain.DomainServices
@@ -10,15 +8,15 @@ namespace NoiseCalculator.Domain.DomainServices
     {
         public IEnumerable<string> CalculateFootnotes(IEnumerable<SelectedTask> selectedTasks)
         {
-            List<string> footnotes = GetStaticFootnotes();
+            var footnotes = GetStaticFootnotes();
             //footnotes.AddRange(CalculateDynamicFootnotes(selectedTasks));
             
             return footnotes;
         }
         
-        private List<string> GetStaticFootnotes()
+        private static IEnumerable<string> GetStaticFootnotes()
         {
-            List<string> staticFootnotes = new List<string>
+            var staticFootnotes = new List<string>
                 {
                     DomainResources.FooterCalculations,
                     DomainResources.FooterNoiseProtection,
@@ -28,25 +26,25 @@ namespace NoiseCalculator.Domain.DomainServices
             return staticFootnotes;
         }
 
-        private IEnumerable<string> CalculateDynamicFootnotes(IEnumerable<SelectedTask> selectedTasks)
-        {
-            bool hasNoisyWork = (selectedTasks.Any(x => x.Task.Role.RoleType != RoleTypeEnum.AreaNoise));
-            bool hasRegularTasks = (hasNoisyWork && selectedTasks.Any(x => x.HelicopterTaskId == 0));
+        //private IEnumerable<string> CalculateDynamicFootnotes(IEnumerable<SelectedTask> selectedTasks)
+        //{
+        //    var enumerable = selectedTasks as IList<SelectedTask> ?? selectedTasks.ToList();
+        //    var hasNoisyWork = (enumerable.Any(x => x.Task.Role.RoleType != RoleTypeEnum.AreaNoise));
+        //    var hasRegularTasks = (hasNoisyWork && enumerable.Any(x => x.HelicopterTaskId == 0));
 
-            IList<string> dynamicFootnotes = new List<string>();
+        //    IList<string> dynamicFootnotes = new List<string>();
 
-            if (hasNoisyWork)
-            {
-                dynamicFootnotes.Add(DomainResources.FooterDynamicNoiseProtection);
-                dynamicFootnotes.Add(DomainResources.FooterDynamicCorrectionForMeasuredNoiseLevel);
+        //    if (!hasNoisyWork) return dynamicFootnotes;
 
-                if (hasRegularTasks)
-                {
-                    dynamicFootnotes.Add(DomainResources.FooterDynamicValidForAreaNoiseUpTo90dBA);
-                }
-            }
+        //    dynamicFootnotes.Add(DomainResources.FooterDynamicNoiseProtection);
+        //    dynamicFootnotes.Add(DomainResources.FooterDynamicCorrectionForMeasuredNoiseLevel);
 
-            return dynamicFootnotes;
-        }
+        //    if (hasRegularTasks)
+        //    {
+        //        dynamicFootnotes.Add(DomainResources.FooterDynamicValidForAreaNoiseUpTo90dBA);
+        //    }
+
+        //    return dynamicFootnotes;
+        //}
     }
 }

@@ -38,5 +38,17 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             return entities;
         }
 
+        public IEnumerable<Task> GetAllHelideckByTaskDefinitionIdOrdered(int id)
+        {
+            IEnumerable<Task> entities = _session.QueryOver<Task>()
+                .Where(x => x.TaskDefinition.Id == id)
+                .Fetch(x => x.Role).Eager
+                .OrderBy(x => x.SortOrder).Desc
+                .ThenBy(x => x.Title).Asc
+                .List<Task>();
+
+            return entities;
+        }
+
     }
 }
