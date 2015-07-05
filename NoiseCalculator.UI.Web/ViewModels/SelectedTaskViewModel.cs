@@ -34,6 +34,11 @@ namespace NoiseCalculator.UI.Web.ViewModels
             ButtonPressed = selectedTask.ButtonPressed.ToString();
             BackgroundNoise = selectedTask.BackgroundNoise.ToString();
 
+            if (selectedTask.BackgroundNoise == 0)
+            {
+                BackgroundNoise = "<80";
+            }
+
             if (selectedTask.HelicopterTaskId > 0)
             {
                 NoiseLevel = TaskResources.SelectedTaskNoiseLevelNotApplicable;

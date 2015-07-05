@@ -98,7 +98,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = InputChecked,
                 ButtonPressed = selectedTask.ButtonPressed,
-                BackgroundNoise = selectedTask.BackgroundNoise,
+                BackgroundNoise = selectedTask.BackgroundNoise == 0 ? "<80": selectedTask.BackgroundNoise.ToString(CultureInfo.InvariantCulture),
                 Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
@@ -134,8 +134,13 @@ namespace NoiseCalculator.UI.Web.Controllers
             
             selectedTask.ButtonPressed = viewModel.ButtonPressed;
 
-            if (viewModel.BackgroundNoise != 0)
-                selectedTask.BackgroundNoise = viewModel.BackgroundNoise;
+            if (viewModel.BackgroundNoise != "<80")
+            {
+                int bNoise;
+                int.TryParse(viewModel.BackgroundNoise, out bNoise);
+                if (bNoise != 0)
+                    selectedTask.BackgroundNoise = bNoise;
+            }
 
             if(viewModel.NoiseLevelMeassured == 0)
             {
@@ -200,6 +205,11 @@ namespace NoiseCalculator.UI.Web.Controllers
                 string.IsNullOrEmpty(viewModel.Percentage))
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorWorkTimeRequired);
 
+            if (viewModel.NoiseProtectionId == 0)
+            {
+                errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorNoiseProtectionRequired);
+            }
+
             return errorSummaryViewModel;
         }
 
@@ -224,8 +234,13 @@ namespace NoiseCalculator.UI.Web.Controllers
             
             selectedTask.ButtonPressed = viewModel.ButtonPressed;
 
-            if (viewModel.BackgroundNoise != 0)
-                selectedTask.BackgroundNoise = viewModel.BackgroundNoise;
+            if (viewModel.BackgroundNoise != "<80")
+            {
+                int bNoise;
+                int.TryParse(viewModel.BackgroundNoise, out bNoise);
+                if (bNoise != 0)
+                    selectedTask.BackgroundNoise = bNoise;
+            }
 
             if (viewModel.NoiseLevelMeassured > task.NoiseLevelGuideline)
             {

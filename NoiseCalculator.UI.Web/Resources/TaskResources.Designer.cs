@@ -984,5 +984,6 @@ namespace NoiseCalculator.UI.Web.Resources {
         }
 
         public static string ValidationErrorTaskRequired { get; set; }
+        public static string ValidationErrorNoiseProtectionRequired { get; set; }
     }
 }

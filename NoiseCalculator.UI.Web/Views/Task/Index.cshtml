@@ -59,6 +59,7 @@
                 @foreach (SelectedTaskViewModel selectedTask in Model.SelectedTasks)
                 {
                     @Html.Partial("_SelectedTask", selectedTask);
+                    <span ng-bind="addedTask = true" ng-hide="true"></span>
                 }
             </div>
 
@@ -75,7 +76,7 @@
 
         </div>
 
-        <div id="addTask" class="button">
+        <div id="addTask" class="button" ng-click="addedTask = true">
             <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
             @TaskResources.IndexButtonAddTask
         </div>
@@ -102,7 +103,7 @@
     @Html.Partial("_ReportInfo")
     @Html.Partial("_RemoveAllConfirmation")
 
-    <div id="footer" ng-show="firstPageSeen">
+    <div id="footer" ng-show="firstPageSeen && addedTask">
         <ul id="footerTexts"></ul>
     </div>
 </div>

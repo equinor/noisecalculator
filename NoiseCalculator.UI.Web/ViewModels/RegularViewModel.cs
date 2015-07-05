@@ -24,7 +24,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
 
         public string RotationDiplayStyle { get; set; }
         public int ButtonPressed { get; set; }
-        public int BackgroundNoise { get; set; }
+        public string BackgroundNoise { get; set; }
         public int NoiseProtectionId { get; set; }
         public IList<SelectListItem> NoiseProtection { get; set; }
 
@@ -41,6 +41,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
             RadioPercentageCheckedAttr = string.Empty;
             RotationDiplayStyle = "style=\"display: none;\"";
             NoiseProtection = new List<SelectListItem>();
+            BackgroundNoise = "<80";
         }
     }
 }
