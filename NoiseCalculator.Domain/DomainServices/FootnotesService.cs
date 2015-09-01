@@ -13,6 +13,14 @@ namespace NoiseCalculator.Domain.DomainServices
             
             return footnotes;
         }
+
+        public IEnumerable<string> CalculateFootnotesForReport(IEnumerable<SelectedTask> selectedTasks)
+        {
+            var footnotes = GetStaticFootnotesForReport();
+            //footnotes.AddRange(CalculateDynamicFootnotes(selectedTasks));
+
+            return footnotes;
+        }
         
         private static IEnumerable<string> GetStaticFootnotes()
         {
@@ -21,6 +29,17 @@ namespace NoiseCalculator.Domain.DomainServices
                     DomainResources.FooterCalculations,
                     DomainResources.FooterNoiseProtection,
                     DomainResources.FooterContact
+                };
+
+            return staticFootnotes;
+        }
+
+        private static IEnumerable<string> GetStaticFootnotesForReport()
+        {
+            var staticFootnotes = new List<string>
+                {
+                    DomainResources.FooterCalculations,
+                    DomainResources.FooterNoiseProtection
                 };
 
             return staticFootnotes;

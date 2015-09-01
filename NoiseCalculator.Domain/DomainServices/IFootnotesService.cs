@@ -6,5 +6,6 @@ namespace NoiseCalculator.Domain.DomainServices
     public interface IFootnotesService
     {
         IEnumerable<string> CalculateFootnotes(IEnumerable<SelectedTask> selectedTasks);
+        IEnumerable<string> CalculateFootnotesForReport(IEnumerable<SelectedTask> selectedTasks);
     }
 }

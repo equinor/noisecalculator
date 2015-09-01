@@ -1,4 +1,5 @@
-﻿using NoiseCalculator.Domain.Entities;
+﻿using System.Globalization;
+using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.UI.Web.Resources;
 
 namespace NoiseCalculator.UI.Web.ViewModels
@@ -45,13 +46,19 @@ namespace NoiseCalculator.UI.Web.ViewModels
             }
             else
             {
+                var noiseLevelGuideLine = selectedTask.NoiseLevel.ToString(CultureInfo.InvariantCulture);
+
+                if (noiseLevelGuideLine.IndexOf(".", System.StringComparison.Ordinal) > 0)
+                    noiseLevelGuideLine = noiseLevelGuideLine.Substring(0, noiseLevelGuideLine.IndexOf(".", System.StringComparison.Ordinal));
+
+
                 if (selectedTask.IsNoiseMeassured)
                 {
-                    NoiseLevel = string.Format("{0} dBA {1}", selectedTask.NoiseLevel, TaskResources.SelectedTaskNoiseMeasured);
+                    NoiseLevel = string.Format("{0} dBA {1}", noiseLevelGuideLine, TaskResources.SelectedTaskNoiseMeasured);
                 }
                 else
                 {
-                    NoiseLevel = string.Format("{0} dBA", selectedTask.NoiseLevel.ToString());
+                    NoiseLevel = string.Format("{0} dBA", noiseLevelGuideLine);
                 }
             }
         }

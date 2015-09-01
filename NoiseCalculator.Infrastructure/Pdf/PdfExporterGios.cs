@@ -174,13 +174,13 @@ namespace NoiseCalculator.Infrastructure.Pdf
             var noiseLevelEnum = _noiseLevelService.CalculateNoiseLevelEnum(totalNoiseDosage);
             var noiseLevelColor = GetColorForNoiseLevelPdfSharp(noiseLevelEnum);
             var dataTable = GenerateDataTable(enumerable);
-            
+
             // Starting instantiate the document.
             var myPdfDocument = new PdfSharp.Pdf.PdfDocument();
 
             var page = myPdfDocument.AddPage();
             page.Orientation = PageOrientation.Landscape;
-            
+
             var doc = new Document();
 
             var section = doc.AddSection();
@@ -194,7 +194,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
                 Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black)
             };
             reportTitle.AddFormattedText(ReportResource.ReportTitle, TextFormat.Bold);
-            
+
             var spaceBetween = section.AddTextFrame();
             spaceBetween.Height = "0.2cm";
 
@@ -221,7 +221,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
             };
             reportPlantProfCom.AddFormattedText(string.Format(ReportResource.PlantFormatString, reportInfo.Plant), TextFormat.Bold);
             reportPlantProfCom.AddLineBreak();
-            
+
             // reportProfession
             reportPlantProfCom.AddFormattedText(string.Format(ReportResource.ProfessionFormatString, reportInfo.Group), TextFormat.Bold);
             reportPlantProfCom.AddLineBreak();
@@ -249,7 +249,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
             };
             reportCreaDate.AddFormattedText(string.Format(ReportResource.UserFormatString, reportInfo.CreatedBy), TextFormat.Bold);
             reportCreaDate.AddLineBreak();
-            
+
             // reportDate
             reportCreaDate.AddFormattedText(string.Format(ReportResource.DateFormatString, (reportInfo.Date.HasValue) ? reportInfo.Date.Value.ToString("dd.MM.yyyy") : string.Empty), TextFormat.Bold);
 
@@ -314,7 +314,6 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
             for (var i = 0; i < dataTable.Rows.Count; i++)
             {
-
                 var row1 = noiseTable.AddRow();
                 row1.TopPadding = 1.5;
 
@@ -324,13 +323,56 @@ namespace NoiseCalculator.Infrastructure.Pdf
 
                     row1.Cells[j].Format.Alignment = ParagraphAlignment.Left;
                     row1.Cells[j].Format.FirstLineIndent = 1;
-                    row1.Cells[j].AddParagraph(dataTable.Rows[i][j].ToString());
+
+                    // Column 3 and 5 should be output with modifications
+                    switch (j)
+                    {
+                        case 3: // NoiseLevel
+                            {
+                                bool isMeasured = false, isMeasuredNorw = false;
+                                var noiseLevelGuideLine = dataTable.Rows[i][j].ToString();
+
+                                if (noiseLevelGuideLine.Contains("measured"))
+                                    isMeasured = true;
+                                if (noiseLevelGuideLine.Contains("målt"))
+                                    isMeasuredNorw = true;
+
+                                if (noiseLevelGuideLine.IndexOf(",", StringComparison.Ordinal) > 0)
+                                    noiseLevelGuideLine = noiseLevelGuideLine.Substring(0,
+                                        noiseLevelGuideLine.IndexOf(",", StringComparison.Ordinal));
+                                if (noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal) > 0)
+                                    noiseLevelGuideLine = noiseLevelGuideLine.Substring(0,
+                                        noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal));
+
+                                int nLevel;
+                                if (int.TryParse(noiseLevelGuideLine, out nLevel))
+                                {
+                                    if (isMeasured)
+                                        row1.Cells[j].AddParagraph(noiseLevelGuideLine + " dBA measured");
+                                    else if (isMeasuredNorw)
+                                        row1.Cells[j].AddParagraph(noiseLevelGuideLine + " dBA målt");
+                                    else
+                                        row1.Cells[j].AddParagraph(noiseLevelGuideLine + " dBA");
+                                }
+                                else
+                                    row1.Cells[j].AddParagraph(noiseLevelGuideLine);
+                            }
+                            break;
+                        case 5:
+                            row1.Cells[j].AddParagraph(dataTable.Rows[i][j].ToString() == "0 dBA"
+                                ? "<80 dBA"
+                                : dataTable.Rows[i][j].ToString());
+                            break;
+                        default:
+                            row1.Cells[j].AddParagraph(dataTable.Rows[i][j].ToString());
+                            break;
+                    }
 
                     noiseTable.SetEdge(0, noiseTable.Rows.Count - 2, dataTable.Columns.Count, 1,
                          Edge.Box, BorderStyle.Single, 0.75);
                 }
             }
-            
+
             // Table to place the summary below the table of noise things
             var summaryTable = section.AddTable();
             summaryTable.AddColumn("19cm");  // Left side texts here
@@ -408,20 +450,20 @@ namespace NoiseCalculator.Infrastructure.Pdf
                     Color = MigraDoc.DocumentObjectModel.Color.FromRgbColor(0, Colors.Black),
                     Bold = true
                 };
-                
+
                 var textHeader = footNoteText.Substring(0, footNoteText.IndexOf("<br/>", StringComparison.Ordinal)).Replace("<b>", "").Replace("</b>", "");
                 if (footNoteText.Length > footNoteText.IndexOf("<br/>", StringComparison.Ordinal) + 5)
                 {
                     var text = footNoteText.Substring(footNoteText.IndexOf("<br/>", StringComparison.Ordinal) + 5).Replace("<br/><br/>", Environment.NewLine).Replace("<br/>", Environment.NewLine);
-                
+
                     footNoteHeader.AddFormattedText(string.Format(Environment.NewLine + "* {0}", textHeader));
                     footNote.AddFormattedText(string.Format("{0}", text));
                 }
                 var spaceBetween1 = section.AddTextFrame();
                 spaceBetween1.Height = "0.1cm";
             }
-            
-            var pdfRenderer = new PdfDocumentRenderer(false, PdfFontEmbedding.Always) {Document = doc};
+
+            var pdfRenderer = new PdfDocumentRenderer(false, PdfFontEmbedding.Always) { Document = doc };
             pdfRenderer.RenderDocument();
 
             myPdfDocument = pdfRenderer.PdfDocument;
@@ -551,7 +593,7 @@ namespace NoiseCalculator.Infrastructure.Pdf
                     }
                 }
 
-                dr[buttonPressedHeading] = string.Format("{0}%", selectedTask.ButtonPressed); 
+                dr[buttonPressedHeading] = string.Format("{0}%", selectedTask.ButtonPressed);
                 dr[backgroundNoiseHeading] = string.Format("{0} dBA", selectedTask.BackgroundNoise);
                 dr[workTimeHeading] = string.Format(ReportResource.WorkTimeFormatString, selectedTask.Hours, selectedTask.Minutes);
                 dr[percentageHeading] = selectedTask.Percentage;

@@ -34,7 +34,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             var tasks = selectedTasks as IList<SelectedTask> ?? selectedTasks.ToList();
 
             if (!tasks.Any()) return RedirectToAction("Index", "Task");
-            reportInfo.Footnotes = _footnotesService.CalculateFootnotes(tasks);
+            reportInfo.Footnotes = _footnotesService.CalculateFootnotesForReport(tasks);
 
             var memoryStream = _pdfExporter.GenerateSelectedTasksPDFPdfSharp(tasks, reportInfo);
             HttpContext.Response.AddHeader("content-disposition", "attachment; filename=MyTasks-" + DateTime.Now.Date.ToShortDateString() + ".pdf");

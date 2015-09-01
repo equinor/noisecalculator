@@ -31,14 +31,19 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTaskRegular(int id)
         {
             var task = _taskDAO.GetFilteredByCurrentCulture(id);
-            
+
+            var noiseLevelGuideLine = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture);
+
+            if (noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal) > 0)
+                noiseLevelGuideLine = noiseLevelGuideLine.Substring(0, noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal));
+
             var viewModel = new RegularViewModel
             {
                 TaskId = task.Id,
                 Title = task.Title,
                 Role = task.Role.Title,
                 RoleType = task.Role.RoleType.ToString(),
-                NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
+                NoiseLevelGuideline = noiseLevelGuideLine,
                 NoiseProtectionId = task.NoiseProtection.Id,
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,
                 RadioTimeCheckedAttr = InputChecked,
@@ -83,6 +88,12 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult EditTaskRegular(int id)
         {
             var selectedTask = _selectedTaskDAO.Get(id);
+
+            var noiseLevelGuideLine = selectedTask.Task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture);
+
+            if (noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal) > 0)
+                noiseLevelGuideLine = noiseLevelGuideLine.Substring(0, noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal));
+
             
             var viewModel = new RegularViewModel
             {
@@ -91,7 +102,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Title = selectedTask.Task.Title,
                 Role = selectedTask.Task.Role.Title,
                 RoleType = selectedTask.Task.Role.RoleType.ToString(),
-                NoiseLevelGuideline = selectedTask.Task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
+                NoiseLevelGuideline = noiseLevelGuideLine,
                 NoiseLevelMeassured = selectedTask.NoiseLevel,
                 NoiseProtectionId = selectedTask.NoiseProtectionId,
                 RadioNoiseMeassuredNoCheckedAttr = selectedTask.IsNoiseMeassured ? InputNotChecked : InputChecked,
