@@ -236,9 +236,18 @@ function bindRegularEvents() {
     
     // Meassured noise level is not applicable for non-noisy work in areas with noise
     if ($("#roleType").val() == "AreaNoise") {
-        $("#noiseLevelMeassuredSpan").hide();
-        $("#noiseMeasuredYesLabel").hide();
-        $("#noiseMeasuredYes").hide();
+        $("#buttonPressedLabel").hide();
+        $("#buttonPressed").hide();
+        $("#percentButtonPressed").hide();
+        $("#backgroundNoiseLabel").hide();
+        $("#backgroundNoise").hide();
+        $("#backgroundNoiseReasonLabel").hide();
+        $("#backgroundNoiseDba").hide();
+        if ($('#regularNoiseMeasuredLabel')[0].innerHTML.indexOf("Feltmåling") > -1) {
+            $('#regularNoiseMeasuredLabel')[0].innerHTML = "Feltmåling";
+        } else {
+            $('#regularNoiseMeasuredLabel')[0].innerHTML = "Noise measured";
+        }
     }
 }
 

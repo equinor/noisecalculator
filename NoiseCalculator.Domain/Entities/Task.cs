@@ -1,4 +1,5 @@
 using System;
+using NoiseCalculator.Domain.Enums;
 
 namespace NoiseCalculator.Domain.Entities
 {
@@ -16,9 +17,13 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int ButtonPressed { get; set; }
         public virtual int NoiseProtectionId { get; set; }
 
-        public virtual decimal CalculatePercentage(decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
+        public virtual decimal CalculatePercentage(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
+            // If area noise, the noise dampening should be 12,18,18,22 (registered in database is 14,20,20,24)
+            if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtectionDampening != 0)
+                noiseProtectionDampening = noiseProtectionDampening - 2;
+            
             const double timeInFullShift = 720;
             if (backgroundNoise == 0)
                 backgroundNoise = 80;
@@ -47,9 +52,13 @@ namespace NoiseCalculator.Domain.Entities
             return (decimal)calcPerc;
         }
 
-        public virtual TimeSpan CalculateTimeSpan(decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
+        public virtual TimeSpan CalculateTimeSpan(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
+            // If area noise, the noise dampening should be 12,18,18,22 (registered in database is 14,20,20,24)
+            if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtectionDampening != 0)
+                noiseProtectionDampening = noiseProtectionDampening - 2;
+
             const double timeInFullShift = 720;
             if (backgroundNoise == 0)
                 backgroundNoise = 80;
