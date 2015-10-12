@@ -35,16 +35,17 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         public PartialViewResult AddTaskHelideck(int id)
         {
-            Task task = _taskDAO.Get(id);
+            var task = _taskDAO.Get(id);
 
-            HelideckViewModel viewModel = new HelideckViewModel
+            var viewModel = new HelideckViewModel
             {
                 TaskId = task.Id,
                 Title = task.Title,
                 Role = task.Role.Title,
                 RoleType = RoleTypeEnum.Helideck.ToString(),
                 NoiseLevel = task.NoiseLevelGuideline,
-                NoiseProtectionId = task.NoiseProtectionId
+                NoiseProtectionId = task.NoiseProtection.Id,
+                NoiseProtectionDefinitionId = task.NoiseProtection.NoiseProtectionDefinition.Id
             };
 
             AppendHelideckMasterData(viewModel);
@@ -57,19 +58,19 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public ActionResult AddTaskHelideck(HelideckViewModel viewModel)
         {
-            Task task = _taskDAO.Get(viewModel.TaskId);
+            var task = _taskDAO.Get(viewModel.TaskId);
 
-            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
+            var validationViewModel = ValidateInput(viewModel);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
-            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, task.Id);
+            var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+            var helicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, task.Id);
             
-            SelectedTask selectedTask = new SelectedTask
+            var selectedTask = new SelectedTask
             {
                 NoiseLevel = task.NoiseLevelGuideline,
                 ButtonPressed = task.ButtonPressed,
@@ -124,11 +125,11 @@ namespace NoiseCalculator.UI.Web.Controllers
         }
         public PartialViewResult EditTaskHelideck(int id)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
+            var selectedTask = _selectedTaskDAO.Get(id);
             
-            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
+            var helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
 
-            HelideckViewModel viewModel = new HelideckViewModel
+            var viewModel = new HelideckViewModel
             {
                 NoiseProtectionId = selectedTask.NoiseProtectionId,
                 TaskId = selectedTask.Task.Id,
@@ -150,25 +151,25 @@ namespace NoiseCalculator.UI.Web.Controllers
         [HttpPost]
         public PartialViewResult EditTaskHelideck(int id, HelideckViewModel viewModel)
         {
-            SelectedTask selectedTask = _selectedTaskDAO.Get(id);
-            HelicopterTask helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
+            var selectedTask = _selectedTaskDAO.Get(id);
+            var helicopterTask = _helicopterTaskDAO.Get(selectedTask.HelicopterTaskId);
 
-            ValidationErrorSummaryViewModel validationViewModel = ValidateInput(viewModel);
+            var validationViewModel = ValidateInput(viewModel);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
 
-            NoiseProtection noiseProtection = _noiseProtectionDAO.Get(selectedTask.NoiseProtectionId);
+            var noiseProtection = _noiseProtectionDAO.Get(selectedTask.NoiseProtectionId);
             
-            bool taskValuesHaveBeenChanged = (viewModel.HelicopterId != helicopterTask.HelicopterType.Id
+            var taskValuesHaveBeenChanged = (viewModel.HelicopterId != helicopterTask.HelicopterType.Id
                                                 || (viewModel.NoiseProtectionId != noiseProtection.Id));
 
             if (taskValuesHaveBeenChanged)
             {
-                NoiseProtection newNoiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
-                HelicopterTask newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, selectedTask.Task.Id);
+                var newNoiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
+                var newHelicopterTask = _helicopterTaskDAO.Get(viewModel.HelicopterId, selectedTask.Task.Id);
 
                 selectedTask.Title = string.Format("{0} - {1}", selectedTask.Task.Title, newHelicopterTask.HelicopterType.Title);
                 selectedTask.NoiseProtection = newNoiseProtection.Title;
@@ -189,18 +190,14 @@ namespace NoiseCalculator.UI.Web.Controllers
 
         private ValidationErrorSummaryViewModel ValidateInput(HelideckViewModel viewModel)
         {
-            ValidationErrorSummaryViewModel errorSummaryViewModel = new ValidationErrorSummaryViewModel();
+            var errorSummaryViewModel = new ValidationErrorSummaryViewModel();
 
             if (viewModel.HelicopterId == 0)
-            {
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterTypeRequired);
-            }
 
             if (viewModel.NoiseProtectionId == 0)
-            {
                 errorSummaryViewModel.ValidationErrors.Add(TaskResources.ValidationErrorHelicopterNoiseLevelRequired);
-            }
-            
+
             return errorSummaryViewModel;
         }
 
@@ -208,24 +205,22 @@ namespace NoiseCalculator.UI.Web.Controllers
         private void AppendHelideckMasterData(HelideckViewModel viewModel)
         {
             viewModel.Helicopters.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
-            foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
+            foreach (var type in _helicopterTypeDAO.GetAll())
             {
-                SelectListItem selectListItem = new SelectListItem { Text = type.Title, Value = type.Id.ToString() };
+                var selectListItem = new SelectListItem { Text = type.Title, Value = type.Id.ToString() };
                 if (viewModel.HelicopterId == type.Id)
-                {
                     selectListItem.Selected = true;
-                }
+
                 viewModel.Helicopters.Add(selectListItem);
             }
 
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
-            foreach (NoiseProtection noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
-                SelectListItem selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
-                if (viewModel.NoiseProtectionId == noiseProtection.Id)
-                {
+                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                if (viewModel.NoiseProtectionDefinitionId == noiseProtection.NoiseProtectionDefinition.Id)
                     selectListItem.Selected = true;
-                }
+
                 viewModel.NoiseProtection.Add(selectListItem);
             }
 

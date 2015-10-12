@@ -31,7 +31,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
                 .Where(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
                 .And(x => x.TaskDefinition.Id == id)
                 .Fetch(x => x.Role).Eager
-                .OrderBy(x => x.SortOrder).Desc
+                .OrderBy(x => x.SortOrder).Asc
                 .ThenBy(x => x.Title).Asc
                 .List<Task>();
 

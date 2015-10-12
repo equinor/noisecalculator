@@ -26,6 +26,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public int ButtonPressed { get; set; }
         public string BackgroundNoise { get; set; }
         public int NoiseProtectionId { get; set; }
+        public int NoiseProtectionDefinitionId { get; set; }
         public IList<SelectListItem> NoiseProtection { get; set; }
 
 

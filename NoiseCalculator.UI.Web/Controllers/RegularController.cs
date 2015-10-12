@@ -48,14 +48,15 @@ namespace NoiseCalculator.UI.Web.Controllers
                 NoiseProtectionId = task.NoiseProtection.Id,
                 RadioNoiseMeassuredNoCheckedAttr = InputChecked,
                 RadioTimeCheckedAttr = InputChecked,
-                ButtonPressed = task.ButtonPressed
+                ButtonPressed = task.ButtonPressed,
+                NoiseProtectionDefinitionId = task.NoiseProtection.NoiseProtectionDefinition.Id
             };
 
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
             foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
                 var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString(CultureInfo.InvariantCulture) };
-                if (viewModel.NoiseProtectionId == noiseProtection.Id)
+                if (viewModel.NoiseProtectionDefinitionId == noiseProtection.NoiseProtectionDefinition.Id)
                 {
                     selectListItem.Selected = true;
                 }
@@ -119,7 +120,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
                 var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString(CultureInfo.InvariantCulture) };
-                if (viewModel.NoiseProtectionId == noiseProtection.Id)
+                if (viewModel.NoiseProtectionDefinitionId == noiseProtection.NoiseProtectionDefinition.Id)
                 {
                     selectListItem.Selected = true;
                 }

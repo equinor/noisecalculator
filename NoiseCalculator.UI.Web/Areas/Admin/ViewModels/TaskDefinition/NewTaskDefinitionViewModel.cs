@@ -22,6 +22,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.ViewModels.TaskDefinition
         {
             RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeAreaNoise, "AreaNoise"));
             RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeHelideck, "Helideck"));
+            RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeHelideck, "Helipassenger"));
             RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeRegular, "Regular"){ IsSelected = true });
             RoleTypes.Add(new SelectOptionViewModel(AdminResources.RoleTypeRotation, "Rotation"));
         }

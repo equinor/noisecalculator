@@ -5,6 +5,7 @@ namespace NoiseCalculator.Domain.Enums
         Regular,
         Helideck,
         Rotation,
-        AreaNoise
+        AreaNoise,
+        Helipassenger
     }
 }

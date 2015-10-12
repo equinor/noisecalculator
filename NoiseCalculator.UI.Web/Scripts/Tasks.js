@@ -188,6 +188,9 @@ function getCreateTaskForm() {
                 case "Helideck":
                     bindHelideckEvents();
                     break;
+                case "Helipassenger":
+                    bindHelideckEvents();
+                    break;
                 case "Rotation":
                     bindRotationEvents();
                     break;
@@ -201,6 +204,8 @@ function getCreateTaskForm() {
 function getCreateTaskFormUrl(roleType) {
     switch (roleType) {
         case "Helideck":
+            return createHelideckTaskFormUrl;
+        case "Helipassenger":
             return createHelideckTaskFormUrl;
         case "Rotation":
             return createRotationTaskFormUrl;
@@ -416,6 +421,9 @@ function editTask(taskDiv) {
                 case "Helideck":
                     bindHelideckEvents();
                     break;
+                case "Helipassenger":
+                    bindHelideckEvents();
+                    break;
                 default:
                     bindRegularEvents();
             }
@@ -435,6 +443,8 @@ function editTask(taskDiv) {
 function getEditTaskFormUrl(roleType) {
     switch (roleType) {
         case "Helideck":
+            return editHelideckTaskFormUrl;
+        case "Helipassenger":
             return editHelideckTaskFormUrl;
         default:
             return editRegularTaskFormUrl;

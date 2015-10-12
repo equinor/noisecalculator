@@ -13,6 +13,7 @@ namespace NoiseCalculator.UI.Web.ViewModels
         public string RoleType { get; set; } // Its Value is derived from the RoleTypeEnum
         public int HelicopterId { get; set; }
         public int NoiseProtectionId { get; set; }
+        public int NoiseProtectionDefinitionId { get; set; }
 
         public IList<SelectListItem> Helicopters { get; set; }
         public IList<SelectListItem> NoiseProtection { get; set; }
