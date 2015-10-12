@@ -120,7 +120,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
             {
                 var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString(CultureInfo.InvariantCulture) };
-                if (viewModel.NoiseProtectionDefinitionId == noiseProtection.NoiseProtectionDefinition.Id)
+                if (viewModel.NoiseProtectionId == noiseProtection.Id)
                 {
                     selectListItem.Selected = true;
                 }

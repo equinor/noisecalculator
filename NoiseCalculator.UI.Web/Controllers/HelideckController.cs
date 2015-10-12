@@ -141,7 +141,25 @@ namespace NoiseCalculator.UI.Web.Controllers
                 NoiseLevel = helicopterTask.NoiseLevel
             };
 
-            AppendHelideckMasterData(viewModel);
+            viewModel.Helicopters.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
+            foreach (var type in _helicopterTypeDAO.GetAll())
+            {
+                var selectListItem = new SelectListItem { Text = type.Title, Value = type.Id.ToString() };
+                if (viewModel.HelicopterId == type.Id)
+                    selectListItem.Selected = true;
+
+                viewModel.Helicopters.Add(selectListItem);
+            }
+
+            viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
+            foreach (var noiseProtection in _noiseProtectionDAO.GetAllFilteredByCurrentCulture())
+            {
+                var selectListItem = new SelectListItem { Text = noiseProtection.Title, Value = noiseProtection.Id.ToString() };
+                if (viewModel.NoiseProtectionId == noiseProtection.Id)
+                    selectListItem.Selected = true;
+
+                viewModel.NoiseProtection.Add(selectListItem);
+            }
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
