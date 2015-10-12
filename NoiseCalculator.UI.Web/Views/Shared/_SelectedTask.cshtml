@@ -14,7 +14,7 @@
             <label for="Task" class="label-small60">@TaskResources.TaskTitleLabel</label>
             <span id="Task" style="font-weight: bold;">: @Model.Title</span>
         </p>
-        
+
         <p>
             <label for="Role" class="label-small60">@TaskResources.TaskRoleLabel</label>
             <span id="Role" style="font-weight: bold;">: @Model.Role</span>
@@ -26,14 +26,14 @@
             <label for="NoiseProtection" class="label-normal120">@TaskResources.SelectedTaskNoiseProtectionLabel</label>
             <span id="NoiseProtection" style="font-weight: bold;">: @Model.NoiseProtection</span>
         </p>
-        
+
         <p>
             <label for="NoiseLevel" class="label-normal120">@TaskResources.SelectedTaskNoiseLevelLabel</label>
             <span id="NoiseLevel" style="font-weight: bold;">: @Model.NoiseLevel</span>
         </p>
     </div>
 
-    <div class="taskGrouping" style="width: 190px; max-width: 190px;">
+    <div class="taskGrouping" style="width: 190px; max-width: 190px;" ng-hide="'@Model.RoleType' == 'Helipassenger'">
         <p>
             <label for="NoiseProtection" class="label-130px">@TaskResources.SelectedTaskButtonPressedLabel</label>
             <span id="NoiseProtection" style="font-weight: bold;">: @Model.ButtonPressed</span>
@@ -44,19 +44,30 @@
             <span id="NoiseLevel" style="font-weight: bold;">: @Model.BackgroundNoise</span>
         </p>
     </div>
+    <div class="taskGrouping" style="width: 190px; max-width: 190px;" ng-show="'@Model.RoleType' == 'Helipassenger'">
+        <p>
+            <label for="NoiseProtection" class="label-130px"></label>
+            <span id="NoiseProtection" style="font-weight: bold;"></span>
+        </p>
+
+        <p>
+            <label for="NoiseLevel" class="label-130px"></label>
+            <span id="NoiseLevel" style="font-weight: bold;"></span>
+        </p>
+    </div>
 
     <div class="taskGrouping" style="width: 220px;">
         <p>
             <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
             <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
         </p>
-        
+
         <p>
             <label for="PercentDailyDosage" class="label-normal120">@TaskResources.SelectedTaskPercentageDailyDosageLabel</label>
             <span id="PercentDailyDosage" style="font-weight: bold;">: @Model.Percentage%</span>
         </p>
     </div>
-    
+
     <div class="taskListButton taskListRemove">
         <img src="@Url.Content("~/Content/cancel.png")" class="taskIcon" />
         @TaskResources.SelectedTaskRemoveLabel
