@@ -32,30 +32,37 @@
             <span id="NoiseLevel" style="font-weight: bold;">: @Model.NoiseLevel</span>
         </p>
     </div>
+    
+    @switch (@Model.RoleType)
+    {
+        case "Helipassenger":
+            <div class="taskGrouping" style="width: 190px; max-width: 190px;">
+                <p>
+                    <label for="NoiseProtection" class="label-130px"></label>
+                    <span id="NoiseProtection" style="font-weight: bold;"></span>
+                </p>
 
-    <div class="taskGrouping" style="width: 190px; max-width: 190px;" ng-hide="'@Model.RoleType' == 'Helipassenger'">
-        <p>
-            <label for="NoiseProtection" class="label-130px">@TaskResources.SelectedTaskButtonPressedLabel</label>
-            <span id="NoiseProtection" style="font-weight: bold;">: @Model.ButtonPressed</span>
-        </p>
+                <p>
+                    <label for="NoiseLevel" class="label-130px"></label>
+                    <span id="NoiseLevel" style="font-weight: bold;"></span>
+                </p>
+            </div>
+            break;
+        default:
+            <div class="taskGrouping" style="width: 190px; max-width: 190px;">
+                <p>
+                    <label for="NoiseProtection" class="label-130px">@TaskResources.SelectedTaskButtonPressedLabel</label>
+                    <span id="NoiseProtection" style="font-weight: bold;">: @Model.ButtonPressed</span>
+                </p>
 
-        <p>
-            <label for="NoiseLevel" class="label-130px">@TaskResources.SelectedTaskBackgroundNoiseLabel</label>
-            <span id="NoiseLevel" style="font-weight: bold;">: @Model.BackgroundNoise</span>
-        </p>
-    </div>
-    <div class="taskGrouping" style="width: 190px; max-width: 190px;" ng-show="'@Model.RoleType' == 'Helipassenger'">
-        <p>
-            <label for="NoiseProtection" class="label-130px"></label>
-            <span id="NoiseProtection" style="font-weight: bold;"></span>
-        </p>
-
-        <p>
-            <label for="NoiseLevel" class="label-130px"></label>
-            <span id="NoiseLevel" style="font-weight: bold;"></span>
-        </p>
-    </div>
-
+                <p>
+                    <label for="NoiseLevel" class="label-130px">@TaskResources.SelectedTaskBackgroundNoiseLabel</label>
+                    <span id="NoiseLevel" style="font-weight: bold;">: @Model.BackgroundNoise</span>
+                </p>
+            </div>
+            break;
+    }
+    
     <div class="taskGrouping" style="width: 220px;">
         <p>
             <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>

@@ -329,6 +329,7 @@
     <Content Include="Scripts\IndexController.js" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HelicopterWorkCategory\Index.cshtml" />
+    <Content Include="DatabaseScripts\NoiseCalculator20151013.bak" />
     <None Include="Properties\PublishProfiles\Debug to C-Drive Publish folder.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - Web Deploy.pubxml" />
