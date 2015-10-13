@@ -60,9 +60,14 @@ namespace NoiseCalculator.UI.Web.Controllers
                 {
                     selectListItem.Selected = true;
                 }
+                if (task.Role.RoleType.ToString() == "AreaNoise")
+                    if (!selectListItem.Selected)
+                        if (noiseProtection.NoiseProtectionDefinition.Id != 3)
+                            continue;
+
                 viewModel.NoiseProtection.Add(selectListItem);
             }
-            
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_CreateRegularTask", viewModel);
@@ -72,7 +77,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         public PartialViewResult AddTaskRegular(RegularViewModel viewModel)
         {
             var task = _taskDAO.GetFilteredByCurrentCulture(viewModel.TaskId);
-            
+
             var validationViewModel = ValidateInput(viewModel, task);
             if (validationViewModel.ValidationErrors.Count > 0)
             {
@@ -96,7 +101,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal) > 0)
                 noiseLevelGuideLine = noiseLevelGuideLine.Substring(0, noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal));
 
-            
+
             var viewModel = new RegularViewModel
             {
                 TaskId = selectedTask.Task.Id,
@@ -111,7 +116,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
                 RadioTimeCheckedAttr = InputChecked,
                 ButtonPressed = selectedTask.ButtonPressed,
-                BackgroundNoise = selectedTask.BackgroundNoise == 0 ? "<80": selectedTask.BackgroundNoise.ToString(CultureInfo.InvariantCulture),
+                BackgroundNoise = selectedTask.BackgroundNoise == 0 ? "<80" : selectedTask.BackgroundNoise.ToString(CultureInfo.InvariantCulture),
                 Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
             };
@@ -124,9 +129,13 @@ namespace NoiseCalculator.UI.Web.Controllers
                 {
                     selectListItem.Selected = true;
                 }
+                if (selectedTask.Task.Role.RoleType.ToString() == "AreaNoise")
+                    if (!selectListItem.Selected)
+                        if (noiseProtection.NoiseProtectionDefinition.Id != 3)
+                            continue;
                 viewModel.NoiseProtection.Add(selectListItem);
             }
-            
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             return PartialView("_EditRegularTask", viewModel);
@@ -144,7 +153,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 Response.StatusCode = 500;
                 return PartialView("_ValidationErrorSummary", validationViewModel);
             }
-            
+
             selectedTask.ButtonPressed = viewModel.ButtonPressed;
 
             if (viewModel.BackgroundNoise != "<80")
@@ -167,7 +176,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
 
             var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
-            
+
             if (noiseProtection != null)
             {
                 selectedTask.NoiseProtection = noiseProtection.Title;
@@ -209,7 +218,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             }
         }
 
-        
+
         private ValidationErrorSummaryViewModel ValidateInput(RegularViewModel viewModel, Task task)
         {
             var errorSummaryViewModel = new ValidationErrorSummaryViewModel();
@@ -242,10 +251,10 @@ namespace NoiseCalculator.UI.Web.Controllers
             };
 
             var noiseProtection = _noiseProtectionDAO.Get(viewModel.NoiseProtectionId);
-            
+
             selectedTask.NoiseProtection = noiseProtection.Title;
             selectedTask.NoiseProtectionId = noiseProtection.Id;
-            
+
             selectedTask.ButtonPressed = viewModel.ButtonPressed;
 
             if (viewModel.BackgroundNoise != "<80")
@@ -270,7 +279,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (string.IsNullOrEmpty(viewModel.Percentage))
             {
                 var timeSpan = new TimeSpanFactory().CreateFromStrings(viewModel.Hours, viewModel.Minutes);
-                
+
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
                 selectedTask.Percentage = (int)Math.Round(task.CalculatePercentage(task.TaskDefinition.RoleType.ToString(), selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, noiseProtection, timeSpan));

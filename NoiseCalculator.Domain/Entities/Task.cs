@@ -20,10 +20,28 @@ namespace NoiseCalculator.Domain.Entities
         public virtual decimal CalculatePercentage(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
-            // If area noise, the noise dampening should be 12,18,18,22 (registered in database is 14,20,20,24)
-            if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtectionDampening != 0)
-                noiseProtectionDampening = noiseProtectionDampening - 2;
-            
+
+            // Special handling for areanoise
+            if (roleType == RoleTypeEnum.AreaNoise.ToString())
+            {
+                if (actualNoiseLevel > 110)
+                    return 101;
+                if (actualNoiseLevel > 105)
+                    return (decimal)(actualExposure.TotalMinutes * 3.333333);
+                if (actualNoiseLevel > 100)
+                    return (decimal)(actualExposure.TotalMinutes * 0.833333);
+                if (actualNoiseLevel > 95)
+                    return (decimal)(actualExposure.TotalMinutes * 0.277777);
+                if (actualNoiseLevel > 90)
+                    if (noiseProtectionDampening == 30)
+                        return (decimal)(actualExposure.TotalMinutes * 0.138888);
+                    else
+                        return (decimal)(actualExposure.TotalMinutes * 0.277777);
+                if (actualNoiseLevel > 85)
+                    return (decimal)(actualExposure.TotalMinutes * 0.138888);
+                return (decimal)(actualExposure.TotalMinutes * 0.027712);
+            }
+
             const double timeInFullShift = 720;
             if (backgroundNoise == 0)
                 backgroundNoise = 80;
@@ -55,9 +73,24 @@ namespace NoiseCalculator.Domain.Entities
         public virtual TimeSpan CalculateTimeSpan(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
-            // If area noise, the noise dampening should be 12,18,18,22 (registered in database is 14,20,20,24)
-            if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtectionDampening != 0)
-                noiseProtectionDampening = noiseProtectionDampening - 2;
+
+            // Special handling for areanoise
+            if (roleType == RoleTypeEnum.AreaNoise.ToString())
+            {
+                if (actualNoiseLevel > 110)
+                    return new TimeSpan();
+                if (actualNoiseLevel > 105)
+                    return TimeSpan.FromMinutes(percentage / 3.333333);
+                if (actualNoiseLevel > 100)
+                    return TimeSpan.FromMinutes(percentage / 0.833333);
+                if (actualNoiseLevel > 95)
+                    return TimeSpan.FromMinutes(percentage / 0.277777);
+                if (actualNoiseLevel > 90)
+                    return noiseProtectionDampening == 30 ? TimeSpan.FromMinutes(percentage / 0.138888) : TimeSpan.FromMinutes(percentage / 0.277777);
+                if (actualNoiseLevel > 85) 
+                    return TimeSpan.FromMinutes(percentage/0.138888);
+                return TimeSpan.FromMinutes(percentage / 0.027712).Days > 0 ? new TimeSpan(0, 0, 1439, 0) : TimeSpan.FromMinutes(percentage/0.027712);
+            }
 
             const double timeInFullShift = 720;
             if (backgroundNoise == 0)

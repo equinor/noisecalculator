@@ -110,7 +110,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             var task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
             const int actualNoiseLevel = 109;
             const int percentage = 25;
-            const int buttonPressed = 0;
+            const int buttonPressed = 100;
             const int backgroundNoise = 0;
             var noiseProtection = new NoiseProtection();
             
@@ -128,7 +128,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             var task = new Task { AllowedExposureMinutes = 360, NoiseLevelGuideline = 109 };
             const int actualNoiseLevel = 112;
             const int percentage = 25;
-            const int buttonPressed = 0;
+            const int buttonPressed = 100;
             const int backgroundNoise = 0;
             var noiseProtection = new NoiseProtection();
 
