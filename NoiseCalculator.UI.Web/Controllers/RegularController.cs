@@ -38,6 +38,9 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal) > 0)
                 noiseLevelGuideLine = noiseLevelGuideLine.Substring(0, noiseLevelGuideLine.IndexOf(".", StringComparison.Ordinal));
 
+            if (task.SortOrder >= 1000)
+                return null;
+
             var viewModel = new RegularViewModel
             {
                 TaskId = task.Id,

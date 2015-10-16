@@ -44,7 +44,7 @@ namespace NoiseCalculator.Domain.Entities
 
             const double timeInFullShift = 720;
             if (backgroundNoise == 0)
-                backgroundNoise = 80;
+                backgroundNoise = 70;
 
             // Støynivå => 10* LOG(10^(støydef/10) + 10^(bakgrunnsstøy/10)
             var noiseLevel = 10*
@@ -94,7 +94,7 @@ namespace NoiseCalculator.Domain.Entities
 
             const double timeInFullShift = 720;
             if (backgroundNoise == 0)
-                backgroundNoise = 80;
+                backgroundNoise = 70;
             
             // Støynivå => 10* LOG(10^(støydef/10) + 10^(bakgrunnsstøy/10)
             var noiseLevel = 10 *
