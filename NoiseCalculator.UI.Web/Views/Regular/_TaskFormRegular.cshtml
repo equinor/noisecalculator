@@ -16,9 +16,9 @@
     <span id="Role">: @Model.Role</span>
 </p>
 
-<p style="margin-bottom: 2px; margin-top: 15px;">
+<p style="margin-bottom: 2px; margin-top: 15px;" id="regularNoiseAndButtonPressed">
     <label id="regularNoiseMeasuredLabel" class="label-130px">@TaskResources.TaskFormRegularNoiseMeasuredLabel<img src="@Url.Content("~/Content/help.png")" title="@TaskResources.TaskFormRegularNoiseMeasuredInfo"></img></label>
-    :
+    <span id="regularNoiseMeasuredLabelColon">:</span>
     <span class="span80">
         <input id="noiseMeasuredNo" type="radio" name="group1" value="false" @Model.RadioNoiseMeassuredNoCheckedAttr />
         <label for="noiseMeasuredNo">@TaskResources.No</label>
@@ -37,7 +37,7 @@
 
 </p>
 
-<p>
+<p id="regularNoiseAndButtonPressedValues">
     <label class="label-130px"></label>
     <span class="span80" id="noiseLevelGuidline" style="margin-left: 8px;"><span id="noiseLevelGuidlineValue">@Model.NoiseLevelGuideline</span> dBA</span>
     <span class="span80" id="noiseLevelMeassuredSpan">
@@ -46,7 +46,7 @@
     </span>
 
     <span style="width: 30px; display: inline-block;"></span>
-    
+
     <span style="width: 190px; display: inline-block;">
         <span style="float: right;">
             <input id="buttonPressed" type="text" style="width: 30px; height: 13px;" value="@Model.ButtonPressed" /><span id="percentButtonPressed">%</span>

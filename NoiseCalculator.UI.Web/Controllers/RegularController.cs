@@ -134,7 +134,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 }
                 if (selectedTask.Task.Role.RoleType.ToString() == "AreaNoise")
                     if (!selectListItem.Selected)
-                        if (noiseProtection.NoiseProtectionDefinition.Id != 3)
+                        if (noiseProtection.NoiseProtectionDefinition.Id != 3 && selectedTask.Task.NoiseProtection.Id != noiseProtection.Id)
                             continue;
                 viewModel.NoiseProtection.Add(selectListItem);
             }
@@ -162,9 +162,10 @@ namespace NoiseCalculator.UI.Web.Controllers
             if (viewModel.BackgroundNoise != "<80")
             {
                 int bNoise;
-                int.TryParse(viewModel.BackgroundNoise, out bNoise);
-                if (bNoise != 0)
+                if (int.TryParse(viewModel.BackgroundNoise, out bNoise))
                     selectedTask.BackgroundNoise = bNoise;
+                else if (string.IsNullOrEmpty(viewModel.BackgroundNoise))
+                    selectedTask.BackgroundNoise = 0;
             }
 
             if (viewModel.NoiseLevelMeassured == 0)

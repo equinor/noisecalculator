@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using NoiseCalculator.Domain.Entities;
+using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
 using NoiseCalculator.UI.Web.ApplicationServices.Admin.Interfaces;
 using NoiseCalculator.UI.Web.Areas.Admin.EditModels;
@@ -15,16 +17,13 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
     {
         private readonly IHelicopterTaskDAO _helicopterTaskDAO;
         private readonly IDAO<HelicopterType, int> _helicopterTypeDAO;
-        private readonly IDAO<NoiseProtectionDefinition, int> _noiseProtectionDefinitionDAO;
         private readonly IDAO<Task, int> _taskDAO;
 
         public HelicopterTaskService(IHelicopterTaskDAO helicopterTaskDAO,
-                                        IDAO<HelicopterType, int> helicopterTypeDAO,
-                                        IDAO<NoiseProtectionDefinition, int> noiseProtectionDefinitionDAO, IDAO<Task, int> taskDAO)
+                                        IDAO<HelicopterType, int> helicopterTypeDAO, IDAO<Task, int> taskDAO)
         {
             _helicopterTaskDAO = helicopterTaskDAO;
             _helicopterTypeDAO = helicopterTypeDAO;
-            _noiseProtectionDefinitionDAO = noiseProtectionDefinitionDAO;
             _taskDAO = taskDAO;
         }
 
@@ -59,13 +58,13 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             {
                 viewModel.Helicopters.Add(new SelectOptionViewModel(type.Title, type.Id.ToString(CultureInfo.InvariantCulture)));
             }
-            
+
             viewModel.Tasks.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
-            foreach (var task in _taskDAO.GetAll())
+            foreach (var task in _taskDAO.GetAll().Where(task => task.Role.RoleType == RoleTypeEnum.Helideck || task.Role.RoleType == RoleTypeEnum.Helipassenger))
             {
                 viewModel.Tasks.Add(new SelectOptionViewModel(task.Title, task.Id.ToString(CultureInfo.InvariantCulture)));
             }
-            
+
             return viewModel;
         }
 
@@ -102,16 +101,16 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 };
 
             viewModel.Helicopters.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
-            foreach (HelicopterType type in _helicopterTypeDAO.GetAll())
+            foreach (var type in _helicopterTypeDAO.GetAll())
             {
                 viewModel.Helicopters.Add(new SelectOptionViewModel(type.Title, type.Id.ToString(CultureInfo.InvariantCulture))
                 {
                     IsSelected = (type.Id == helicopterTask.HelicopterType.Id)
                 });
             }
-            
+
             viewModel.Tasks.Add(new SelectOptionViewModel(TaskResources.SelectOne, "0"));
-            foreach (var task in _taskDAO.GetAll())
+            foreach (var task in _taskDAO.GetAll().Where(task => task.Role.RoleType == RoleTypeEnum.Helideck || task.Role.RoleType == RoleTypeEnum.Helipassenger))
             {
                 viewModel.Tasks.Add(new SelectOptionViewModel(task.Title, task.Id.ToString(CultureInfo.InvariantCulture))
                 {
@@ -120,7 +119,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             }
 
             viewModel.NoiseLevel = helicopterTask.NoiseLevel;
-            
+
             return viewModel;
         }
 
@@ -151,7 +150,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             var helicopterTask = _helicopterTaskDAO.Get(id);
             var viewModel = new DeleteConfirmationViewModel
                 {
-                    Id = helicopterTask.Id.ToString(CultureInfo.InvariantCulture), 
+                    Id = helicopterTask.Id.ToString(CultureInfo.InvariantCulture),
                     Title = helicopterTask.ToString()
                 };
 
