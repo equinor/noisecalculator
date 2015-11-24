@@ -355,7 +355,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <comment>Valgfri informasjon til rapporten</comment>
   </data>
   <data name="IndexHelpTitle" xml:space="preserve">
-    <value>Help</value>
+    <value>Information</value>
   </data>
   <data name="HelpGL0169" xml:space="preserve">
     <value>Information On GL0169</value>
@@ -445,5 +445,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   </data>
   <data name="TaskDialogTasks" xml:space="preserve">
     <value>Tasks</value>
+  </data>
+  <data name="IndexHelpLink" xml:space="preserve">
+    <value>Content/help/Bruksanvisning Støykalkulator.ppt</value>
   </data>
 </root>

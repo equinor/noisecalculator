@@ -17,11 +17,7 @@ $(document).ready(function () {
     $("#addTask").click(function () {
         openTaskDialog();
     });
-
-    $("#helpButton").click(function() {
-        openHelpDialog();
-    });
-        
+    
     $("#removeAllTasks").click(function () {
         $("#removeAllConfirmDialog").dialog({
                 title: $("#removeAllConfirmDialog").attr("title"),

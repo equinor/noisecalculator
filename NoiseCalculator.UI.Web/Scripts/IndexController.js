@@ -14,6 +14,15 @@
                 $scope.firstPageSeen = true;
             }
 
+            $scope.english = false;
+
+            $scope.showEnglishInformation = function () {
+                $scope.english = true;
+            }
+
+            $scope.showNorwegianInformation = function () {
+                $scope.english = false;
+            }
         }
     ]);
 }(angular.module("noiseCalcApp")));

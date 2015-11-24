@@ -434,6 +434,10 @@ p
     border-bottom: 2px solid;
 }
 
+#helpLink:hover, #helpLink:visited, #helpLink:link, #helpLink:active {
+    text-decoration: none;
+}
+
 #helpDialog {
     border: 1px solid grey; 
     background-color: white; 

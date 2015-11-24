@@ -422,7 +422,7 @@
     <value>Valgfri informasjon til rapporten</value>
   </data>
   <data name="IndexHelpTitle" xml:space="preserve">
-    <value>Hjelp</value>
+    <value>Informasjon</value>
   </data>
   <data name="HelpGL0169" xml:space="preserve">
     <value>Informasjon om GL0169</value>
@@ -469,5 +469,8 @@
   </data>
   <data name="TaskDialogTasks" xml:space="preserve">
     <value>Oppgaver</value>
+  </data>
+  <data name="IndexHelpLink" xml:space="preserve">
+    <value>Content/help/Bruksanvisning Knottologi.ppt</value>
   </data>
 </root>

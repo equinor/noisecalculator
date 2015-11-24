@@ -28,7 +28,8 @@ namespace NoiseCalculator.Domain.DomainServices
                 {
                     DomainResources.FooterCalculations,
                     DomainResources.FooterNoiseProtection,
-                    DomainResources.FooterContact
+                    DomainResources.FooterContact,
+                    DomainResources.FooterNoisyEquipmentWithVibrations
                 };
 
             return staticFootnotes;
@@ -39,7 +40,8 @@ namespace NoiseCalculator.Domain.DomainServices
             var staticFootnotes = new List<string>
                 {
                     DomainResources.FooterCalculations,
-                    DomainResources.FooterNoiseProtection
+                    DomainResources.FooterNoiseProtection,
+                    DomainResources.FooterNoisyEquipmentWithVibrations
                 };
 
             return staticFootnotes;
