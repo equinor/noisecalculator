@@ -18,7 +18,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int backgroundNoise = 0;
             
             // Act
-            var calculatedPercentage = task.CalculatePercentage("", task.NoiseLevelGuideline, task.ButtonPressed, backgroundNoise, task.NoiseProtection, actualExposure);
+            var calculatedPercentage = task.CalculatePercentage("", task.NoiseLevelGuideline, task.ButtonPressed, backgroundNoise, "", task.NoiseProtection, actualExposure);
 
             // Assert
             Assert.AreEqual(25, calculatedPercentage);
@@ -34,7 +34,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int backgroundNoise = 0;
 
             // Act
-            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, task.NoiseProtection, actualExposure);
+            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, "", task.NoiseProtection, actualExposure);
 
             // Assert
             Assert.AreEqual(50, calculatedPercentage);
@@ -50,7 +50,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int backgroundNoise = 0;
 
             // Act
-            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, task.NoiseProtection, actualExposure);
+            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, "", task.NoiseProtection, actualExposure);
 
             // Assert
             Assert.AreEqual(62.5m, calculatedPercentage);
@@ -66,7 +66,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int backgroundNoise = 0;
 
             // Act
-            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, task.NoiseProtection, actualExposure);
+            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, "", task.NoiseProtection, actualExposure);
 
             // Assert
             Assert.AreEqual(83.3m, Math.Round(calculatedPercentage, 1));
@@ -82,7 +82,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int backgroundNoise = 0;
 
             // Act
-            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, task.NoiseProtection, actualExposure);
+            var calculatedPercentage = task.CalculatePercentage("", actualNoiseLevel, task.ButtonPressed, backgroundNoise, "", task.NoiseProtection, actualExposure);
 
             // Assert
             Assert.AreEqual(100, calculatedPercentage);
@@ -97,7 +97,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             const int backgroundNoise = 0;
 
             // Act
-            var calculatedPercentage = task.CalculatePercentage("",task.NoiseLevelGuideline, task.ButtonPressed, backgroundNoise, task.NoiseProtection, actualExposure);
+            var calculatedPercentage = task.CalculatePercentage("",task.NoiseLevelGuideline, task.ButtonPressed, backgroundNoise, "", task.NoiseProtection, actualExposure);
 
             // Assert
             Assert.AreEqual(50, calculatedPercentage);
@@ -115,7 +115,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             var noiseProtection = new NoiseProtection();
             
             // Act
-            var allowedTimeSpan = task.CalculateTimeSpan("",actualNoiseLevel, buttonPressed, backgroundNoise, noiseProtection, percentage);
+            var allowedTimeSpan = task.CalculateTimeSpan("",actualNoiseLevel, buttonPressed, backgroundNoise, "", noiseProtection, percentage);
 
             // Assert
             Assert.AreEqual(90, allowedTimeSpan.TotalMinutes);
@@ -133,7 +133,7 @@ namespace NoiseCalculator.Domain.Tests.Entitites
             var noiseProtection = new NoiseProtection();
 
             // Act
-            var allowedTimeSpan = task.CalculateTimeSpan("",actualNoiseLevel, buttonPressed, backgroundNoise, noiseProtection, percentage);
+            var allowedTimeSpan = task.CalculateTimeSpan("",actualNoiseLevel, buttonPressed, backgroundNoise, "", noiseProtection, percentage);
 
             // Assert
             Assert.AreEqual(45, allowedTimeSpan.TotalMinutes);

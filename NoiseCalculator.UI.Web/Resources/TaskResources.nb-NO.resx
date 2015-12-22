@@ -314,7 +314,7 @@
     <comment>Task work time must be specified, either as hours/minutes or percentage of daily dosage</comment>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>Dette verktøyet bygger på GL0169: "Støy - retningslinjer for kartlegging og tiltak" og er hjemlet i TR0926: "Working Environment"</value>
+    <value>Dette verktøyet bygger på GL0169 : “Noise control in operation“ og er hjemlet i TR0926: "Working Environment"</value>
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Legg til arbeidsoppgaver for å beregne din støyeksponering</value>
@@ -331,7 +331,7 @@
 </value>
   </data>
   <data name="IndexStartText3" xml:space="preserve">
-    <value>Støykalkulatoren er basert på dokumenterte risikovurderinger av aktuelle arbeidsoppgaver og er gyldig for 12 timers arbeidsdag. 
+    <value>Støykalkulatoren er basert på dokumenterte risikovurderinger av aktuelle arbeidsoppgaver og er gyldig både for 8- og 12-timers arbeidsdag. 
 </value>
   </data>
   <data name="IndexStartText4" xml:space="preserve">
@@ -471,6 +471,6 @@
     <value>Oppgaver</value>
   </data>
   <data name="IndexHelpLink" xml:space="preserve">
-    <value>Content/help/Bruksanvisning Knottologi.ppt</value>
+    <value>Content/help/Informasjon støykalkulator 2.0_norsk.ppt</value>
   </data>
 </root>

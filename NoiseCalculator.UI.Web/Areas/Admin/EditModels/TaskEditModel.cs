@@ -17,6 +17,7 @@ namespace NoiseCalculator.UI.Web.Areas.Admin.EditModels
         public int DefinitionId { get; set; }
         public int ButtonPressed { get; set; }
         public int BackgroundNoise { get; set; }
+        public string Frequency { get; set; }
 
 
         public bool IsValid()

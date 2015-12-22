@@ -12,10 +12,10 @@ namespace NoiseCalculator.Domain.DomainServices
             {
                 return NoiseLevelEnum.DangerOfWorkRelatedInjury;
             }
-            //if (percentageDailyDosage == 100)
-            //{
-            //    return NoiseLevelEnum.MaximumAllowedDosage;
-            //}
+            if (percentageDailyDosage == 100)
+            {
+                return NoiseLevelEnum.MaximumAllowedDosage;
+            }
             if (percentageDailyDosage > 100)
             {
                 return NoiseLevelEnum.Critical;

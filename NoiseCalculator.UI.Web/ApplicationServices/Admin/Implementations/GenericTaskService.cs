@@ -70,6 +70,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 Role = _roleDAO.Get(editModel.RoleId),
                 NoiseProtection = _noiseProtectionDAO.Get(editModel.NoiseProtectionId),
                 NoiseLevelGuideline = Convert.ToDecimal(editModel.NoiseLevelGuideline.Trim(), new CultureInfo("en-US")),
+                Frequency = editModel.Frequency,
                 AllowedExposureMinutes = Convert.ToInt32(allowedExposureTime.TotalMinutes),
                 TaskDefinition = definition,
                 ButtonPressed = editModel.ButtonPressed,
@@ -124,6 +125,7 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
                 Id = task.Id,
                 Title = task.Title,
                 NoiseLevelGuideline = task.NoiseLevelGuideline.ToString(CultureInfo.InvariantCulture),
+                Frequency = task.Frequency,
                 Hours = allowedExposureTime.Hours.ToString(CultureInfo.InvariantCulture),
                 Minutes = allowedExposureTime.Minutes.ToString(CultureInfo.InvariantCulture),
                 DefinitionId = task.TaskDefinition.Id,
@@ -147,6 +149,8 @@ namespace NoiseCalculator.UI.Web.ApplicationServices.Admin.Implementations
             task.Role = _roleDAO.Get(editModel.RoleId);
             task.NoiseProtection = _noiseProtectionDAO.Get(editModel.NoiseProtectionId);
             task.ButtonPressed = editModel.ButtonPressed;
+            task.Frequency = editModel.Frequency;
+
 
             _taskDAO.Store(task);
 

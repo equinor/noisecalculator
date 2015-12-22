@@ -203,13 +203,13 @@ namespace NoiseCalculator.UI.Web.Controllers
                     totalNoiseDosage.CssClass = "noiseLevelWarning";
                     break;
                 case NoiseLevelEnum.MaximumAllowedDosage:
-                    totalNoiseDosage.CssClass = "noiseLevelWarning";
+                    totalNoiseDosage.CssClass = "noiseLevelMaximumAllowedDosage";
                     break;
                 case NoiseLevelEnum.Critical:
                     totalNoiseDosage.CssClass = "noiseLevelCritical";
                     break;
                 case NoiseLevelEnum.DangerOfWorkRelatedInjury:
-                    totalNoiseDosage.CssClass = "noiseLevelCritical";
+                    totalNoiseDosage.CssClass = "noiseLevelDangerOfWorkRelatedInjury";
                     break;
             }
 

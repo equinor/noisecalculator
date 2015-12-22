@@ -189,6 +189,9 @@
   <data name="GenericTaskNoiseLevel" xml:space="preserve">
     <value>Noise Level</value>
   </data>
+  <data name="GenericTaskNoiseFrequencyLabel" xml:space="preserve">
+    <value>(L,M,H)</value>
+  </data>
   <data name="GenericTaskNoiseProtection" xml:space="preserve">
     <value>Noise Protection</value>
   </data>
@@ -398,5 +401,8 @@
   </data>
   <data name="HelicopterTaskColumnFixedTime" xml:space="preserve">
     <value>Time allocated</value>
+  </data>
+  <data name="GenericTaskNoiseFrequency" xml:space="preserve">
+    <value>Noise Frequency</value>
   </data>
 </root>

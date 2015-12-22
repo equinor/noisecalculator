@@ -70,7 +70,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;About the calculations:&lt;/b&gt;&lt;br/&gt;The method for risk assessment of noise exposure is described in GL0169 and enacted in TR0926&lt;br/&gt;&lt;br/&gt;When the calculated noise exposure shows 100%, the calculated exposure is 80 dBA inside the hearing protection &lt;br/&gt;&lt;br/&gt;If the calculated exposure is 100% (for a work activity) the employee shall not carry out noisy work operations or stay in areas with noise level above 80 dBA during the rest of that day. The employee cannot stay in areas with impulse noise (hammer, ban [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;b&gt;About the calculations:&lt;/b&gt;&lt;br/&gt;The method for risk assessment of noise exposure is described in GL0169 “Noise control in operation” and enacted in TR0926 “Working Environment”.&lt;br/&gt;&lt;br/&gt;If the calculated exposure is 100% (for a work activity) the employee shall not carry out noisy work operations or stay in areas with noise level above 80 dBA during the rest of that day. The employee cannot stay in areas with impulse noise (hammer, bang, crash) or carry out work that produces impulse noise..
         /// </summary>
         internal static string FooterCalculations {
             get {
@@ -127,7 +127,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;About hearing protectors:&lt;/b&gt;&lt;br/&gt;Single hearing protection implies earplugs or earmuffs. Double hearing protection implies earmuffs and earplugs used at the same time. &lt;br&gt;&lt;br/&gt;The following conditions apply when carrying out noisy work operations: &lt;br/&gt;-	The hearing protection shall be well maintained and used correctly. &lt;br/&gt;-	When using disposable earplugs or custom moulded earplugs, individual training in their correct use and insertion shall be given &lt;br/&gt;-	It shoud be verified that earplugs give a [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;b&gt;About hearing protectors:&lt;/b&gt;&lt;br/&gt;Single hearing protection implies earplugs or earmuffs. Double hearing protection implies earmuffs and earplugs used at the same time..
         /// </summary>
         internal static string FooterNoiseProtection {
             get {
@@ -145,7 +145,8 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;When using noisy equipment also involves exposure to vibrations&lt;/b&gt;&lt;br/&gt;- When using vibrating handheld equipment one must take account of the actual vibration level when assessing exposure and permitted working hours.&lt;br/&gt;- If different tasks during a work day involve different vibrating equipment, a vibration calculator must be used to calculate the total daily exposure. Statoil sets no guidelines for the vibration calculator used.&lt;br/&gt;- When evaluating permitted working hours, when there is simultaneo [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;b&gt;When using noisy equipment also involves exposure to vibrations&lt;/b&gt;&lt;br/&gt;
+        ///When evaluating permitted working hours, when there is simultaneous exposure to noise and vibration, the exposure allowing the shortest working hours is determinative. See more details in ”Information”..
         /// </summary>
         internal static string FooterNoisyEquipmentWithVibrations {
             get {
@@ -163,7 +164,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned..
+        ///   Looks up a localized string similar to Calculated noise exposure is not acceptable and the work cannot be executed as planned. Reduce the noise level and/or exposure duration..
         /// </summary>
         internal static string NoiseLevelStatusTextCritical {
             get {
@@ -172,7 +173,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is not akseptable and work can not be performed as planned. If the work has allready been performed it must be reported as &quot;Danger of Work Related Injury&quot;.
+        ///   Looks up a localized string similar to Calculated noise exposure is not acceptable and the work cannot be executed as planned. Reduce the noise level and/or exposure duration. If the work is already carried out it should be reported to the company doctor as a near miss incident of work related illness “Danger of Work Related Injury”..
         /// </summary>
         internal static string NoiseLevelStatusTextDangerOfWorkRelatedInjury {
             get {
@@ -181,7 +182,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is acceptable, but the employee can not be exposed for more noise this work day..
+        ///   Looks up a localized string similar to Calculated noise dose is acceptable. At 100% personnel shall only stay in areas with noise levels below 80 dBA for the rest of the day and not carry out work activities that result in noise that exceeds 80 dBA. Employees so affected shall keep away from areas with impulse noise and/or activities that result in impulse noise..
         /// </summary>
         internal static string NoiseLevelStatusTextMaximumAllowedDosage {
             get {
@@ -190,7 +191,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is acceptable..
+        ///   Looks up a localized string similar to Limited noise dose - acceptable..
         /// </summary>
         internal static string NoiseLevelStatusTextNormal {
             get {
@@ -199,7 +200,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise exposure is acceptable, but is approaching maximum allowed exposure..
+        ///   Looks up a localized string similar to Calculated noise dose is acceptable, consider measures to reduce noise dose..
         /// </summary>
         internal static string NoiseLevelStatusTextWarning {
             get {

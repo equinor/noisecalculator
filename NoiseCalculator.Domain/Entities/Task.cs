@@ -16,10 +16,20 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int SortOrder { get; set; }
         public virtual int ButtonPressed { get; set; }
         public virtual int NoiseProtectionId { get; set; }
+        public virtual string Frequency { get; set; }
 
-        public virtual decimal CalculatePercentage(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, TimeSpan actualExposure )
-        {
+        public virtual decimal CalculatePercentage(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, string frequency, NoiseProtection noiseProtection, TimeSpan actualExposure )
+        {   
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
+
+            if (frequency == "M" && noiseProtection.NoiseProtectionDefinition.Id == 1)
+                noiseProtectionDampening = 16;
+            if (frequency == "H" && noiseProtection.NoiseProtectionDefinition.Id == 1)
+                noiseProtectionDampening = 18;
+            if (frequency == "M" && noiseProtection.NoiseProtectionDefinition.Id == 2)
+                noiseProtectionDampening = 22;
+            if (frequency == "H" && noiseProtection.NoiseProtectionDefinition.Id == 2)
+                noiseProtectionDampening = 24;
 
             // Special handling for areanoise
             if (roleType == RoleTypeEnum.AreaNoise.ToString())
@@ -70,9 +80,18 @@ namespace NoiseCalculator.Domain.Entities
             return (decimal)calcPerc;
         }
 
-        public virtual TimeSpan CalculateTimeSpan(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, NoiseProtection noiseProtection, int percentage)
+        public virtual TimeSpan CalculateTimeSpan(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, string frequency, NoiseProtection noiseProtection, int percentage)
         {
             var noiseProtectionDampening = noiseProtection.NoiseDampening;
+
+            if (frequency == "M" && noiseProtection.NoiseProtectionDefinition.Id == 1)
+                noiseProtectionDampening = 16;
+            if (frequency == "H" && noiseProtection.NoiseProtectionDefinition.Id == 1)
+                noiseProtectionDampening = 18;
+            if (frequency == "M" && noiseProtection.NoiseProtectionDefinition.Id == 2)
+                noiseProtectionDampening = 22;
+            if (frequency == "H" && noiseProtection.NoiseProtectionDefinition.Id == 2)
+                noiseProtectionDampening = 24;
 
             // Special handling for areanoise
             if (roleType == RoleTypeEnum.AreaNoise.ToString())

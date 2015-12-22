@@ -221,6 +221,9 @@
   <data name="GenericTaskMinutesLabel" xml:space="preserve">
     <value>min</value>
   </data>
+  <data name="GenericTaskNoiseFrequencyLabel" xml:space="preserve">
+    <value>(L,M,H)</value>
+  </data>
   <data name="GenericTaskNoiseLevel" xml:space="preserve">
     <value>Støynivå</value>
     <comment>Noise Level</comment>
@@ -451,5 +454,8 @@
   </data>
   <data name="HelicopterTaskColumnFixedTime" xml:space="preserve">
     <value>Tid allokert</value>
+  </data>
+  <data name="GenericTaskNoiseFrequency" xml:space="preserve">
+    <value>Støyfrekvens</value>
   </data>
 </root>

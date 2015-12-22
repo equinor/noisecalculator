@@ -337,7 +337,16 @@ p
     background-color: yellow; 
 }
 
-.noiseLevelCritical
+.noiseLevelCritical {
+    background-color: red;
+}
+    
+.noiseLevelDangerOfWorkRelatedInjury
+{
+    background-color: red; 
+}
+
+.noiseLevelMaximumAllowedDosage
 {
     background-color: red; 
 }

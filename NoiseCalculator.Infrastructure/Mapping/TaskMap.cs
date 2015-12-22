@@ -15,6 +15,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.CultureName);
             Map(x => x.SortOrder);
             Map(x => x.ButtonPressed);
+            Map(x => x.Frequency);
 
             References(x => x.Role);
             References(x => x.NoiseProtection);
