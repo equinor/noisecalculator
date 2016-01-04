@@ -268,6 +268,9 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="IndexStartText4" xml:space="preserve">
     <value>It is possible to take a printout of the evaluation in pdf format, for planning of jobs, as documentation of exposure after work has been carried out, and as documentation in case of a developing work related illness</value>
   </data>
+  <data name="IndexStartText5" xml:space="preserve">
+    <value>When using noisy equipment also involves exposure to vibration: When evaluating permitted working hours, when there is simultaneous exposure to noise and vibration, the exposure allowing the shortest working hours is determinative. See more details in ”Information”.</value>
+  </data>
   <data name="Footer80dBA" xml:space="preserve">
     <value>If the calculated noise dosage is 100 % the employee must remain in areas where the noise level is below 80 dBA for the rest of the day and not perform any work that produces noise above 80 dBA. The employee must also avoid areas with impulse noise (sudden bangs), and work that produces impulse noise.</value>
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</comment>
@@ -447,6 +450,6 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Tasks</value>
   </data>
   <data name="IndexHelpLink" xml:space="preserve">
-    <value>Content/help/Information Noise Calculator 2.0_english.ppt</value>
+    <value>Content/help/Information Noise Calculator 2.0 Final.ppt</value>
   </data>
 </root>

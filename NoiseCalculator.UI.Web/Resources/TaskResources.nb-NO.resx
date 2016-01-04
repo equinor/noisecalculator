@@ -338,6 +338,9 @@
     <value>Det er mulig å ta en utskrift av vurderingen i pdf format, både ved planlegging av jobber, som dokumentasjon på eksponering i etterkant av utført arbeid og som dokumentasjon ved tilløp til arbeidsrelatert sykdom.
 </value>
   </data>
+  <data name="IndexStartText5" xml:space="preserve">
+    <value>Når bruk av støyende utstyr også innebærer eksponering for vibrasjoner: Ved vurdering av tillatt arbeidstid, når det er samtidig eksponering for støy og vibrasjoner, skal eksponeringen som tillater kortest arbeidstid være førende for gjennomføringen av arbeidsoperasjonen. Se mer detaljer i "Informasjon".</value>
+  </data>
   <data name="Footer80dBA" xml:space="preserve">
     <value>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.</value>
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstaker kan heller ikke utføre arbeid som gir støy over 80 dBA.</comment>
@@ -471,6 +474,6 @@
     <value>Oppgaver</value>
   </data>
   <data name="IndexHelpLink" xml:space="preserve">
-    <value>Content/help/Informasjon støykalkulator 2.0_norsk.ppt</value>
+    <value>Content/help/Informasjon støykalkulator 2.0 Final.ppt</value>
   </data>
 </root>

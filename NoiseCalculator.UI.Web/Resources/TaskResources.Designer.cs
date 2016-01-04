@@ -302,6 +302,17 @@ namespace NoiseCalculator.UI.Web.Resources {
                 return ResourceManager.GetString("IndexStartText4", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add tasks to calculate your noise exposure.
+        /// </summary>
+        public static string IndexStartText5
+        {
+            get
+            {
+                return ResourceManager.GetString("IndexStartText5", resourceCulture);
+            }
+        }
         /// <summary>
         ///   Looks up a localized string similar to Add tasks to calculate your noise exposure.
         /// </summary>

@@ -332,6 +332,8 @@
     <Content Include="DatabaseScripts\NoiseCalculator20151013.bak" />
     <Content Include="Content\help\Informasjon støykalkulator 2.0_norsk.ppt" />
     <Content Include="Content\help\Information Noise Calculator 2.0_english.ppt" />
+    <Content Include="Content\help\Information Noise Calculator 2.0 Final.ppt" />
+    <Content Include="Content\help\Informasjon støykalkulator 2.0 Final.ppt" />
     <None Include="Properties\PublishProfiles\Debug to C-Drive Publish folder.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - Web Deploy.pubxml" />

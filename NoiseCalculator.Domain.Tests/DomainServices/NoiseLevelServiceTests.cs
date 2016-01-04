@@ -19,7 +19,7 @@ namespace NoiseCalculator.Domain.Tests.DomainServices
             NoiseLevelEnum noiseLevelEnum = noiseLevelService.CalculateNoiseLevelEnum(percentageDailyDosage);
 
             // Assert
-            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Normal);
+            Assert.IsTrue(noiseLevelEnum == NoiseLevelEnum.Warning);
         }
 
         [TestMethod]
