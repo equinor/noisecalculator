@@ -17,23 +17,23 @@ $(document).ready(function () {
     $("#addTask").click(function () {
         openTaskDialog();
     });
-    
+
     $("#removeAllTasks").click(function () {
         $("#removeAllConfirmDialog").dialog({
-                title: $("#removeAllConfirmDialog").attr("title"),
-                modal: true,
-                resizable: false,
-                width: 'auto',
-                position: [250, 80]
-            });
-                
+            title: $("#removeAllConfirmDialog").attr("title"),
+            modal: true,
+            resizable: false,
+            width: 'auto',
+            position: [250, 80]
+        });
+
         $("#confirmRemoveAll").click(function () {
             removeAllTasks();
         });
 
         $("#cancelRemoveAll").click(function () {
             $("#removeAllConfirmDialog").dialog('close');
-        });  
+        });
     });
 
     /* Date picker in report info */
@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     $("#printAsPdf").click(function () {
         $("#comment").maxlength({ max: 75, showFeedback: true, feedbackTarget: '#maxlengthFeedback', feedbackText: '{c} ({m} max)' });
-        
+
         $("#reportInfo").dialog({
             modal: true,
             title: $("#reportInfo").attr("title"),
@@ -74,19 +74,19 @@ function setAllEvents() {
     var $mainContainer = $("#taskList");
 
     // Click remove task
-    $mainContainer.find(".taskListRemove").live("click", function() {
+    $mainContainer.find(".taskListRemove").live("click", function () {
         var $item = $(this).closest(".task");
 
         $("#deleteConfirmDialog")
             .empty()
-            .load(getRemoveTaskConfirmationUrl + "/" + $item.attr("id"), function() {
+            .load(getRemoveTaskConfirmationUrl + "/" + $item.attr("id"), function () {
 
-                $("#confirmRemove").click(function() {
+                $("#confirmRemove").click(function () {
                     removeTask($item);
                     closeRemoveConfirmDialog();
                 });
 
-                $("#cancelRemove").click(function() {
+                $("#cancelRemove").click(function () {
                     closeRemoveConfirmDialog();
                 });
 
@@ -101,7 +101,7 @@ function setAllEvents() {
     });
 
     // Click edit task
-    $mainContainer.find(".taskListEdit").live("click", function() {
+    $mainContainer.find(".taskListEdit").live("click", function () {
         var $item = $(this).closest(".task");
         editTask($item);
     });
@@ -134,7 +134,7 @@ function bindTaskDialogEvents() {
         event.preventDefault();
         getCreateTaskForm();
     });
-    
+
     $("#useTask").click(function (event) {
         event.preventDefault();
         getCreateTaskForm();
@@ -143,7 +143,7 @@ function bindTaskDialogEvents() {
 
 function getTaskList() {
     var taskDefSelected = $("#taskDefSelect option:selected").val().split('-');
-    
+
     $("#taskSelect").empty();
     $.ajax({
         type: "POST",
@@ -151,7 +151,7 @@ function getTaskList() {
         dataType: "json",
         cache: false,
         data: { id: $("#taskDefSelect").val() },
-        success: function(tasks) {
+        success: function (tasks) {
             // states contains the JSON formatted list
             // of states passed from the controller
             $.each(tasks.Tasks, function (i, task) {
@@ -160,41 +160,46 @@ function getTaskList() {
                     + task.Text + '</option>');
             });
         },
-        error: function(ex) {
+        error: function (ex) {
             alert('Failed to retrieve tasks.' + ex);
         }
     });
 }
 
 function getCreateTaskForm() {
-    var taskSelectValueSplitted = $("#taskSelect option:selected").val().split('-');
-    var taskId = taskSelectValueSplitted[0];
-    var roleType = taskSelectValueSplitted[1];
+    var taskSelectValueSplitted;
+    if ($("#taskSelect option:selected").val() !== undefined) {
+        taskSelectValueSplitted = $("#taskSelect option:selected").val().split('-');
+    }
+    if (taskSelectValueSplitted !== undefined) {
+        var taskId = taskSelectValueSplitted[0];
+        var roleType = taskSelectValueSplitted[1];
 
-    $.ajax({
-        type: "GET",
-        url: getCreateTaskFormUrl(roleType) + "/" + taskId,
-        dataType: "html",
-        cache: false,
-        success: function (result) {
-            $('#taskForm').empty();
-            $('#taskForm').html(result);
-            
-            switch (roleType) {
-                case "Helideck":
-                    bindHelideckEvents();
-                    break;
-                case "Helipassenger":
-                    bindHelideckEvents();
-                    break;
-                case "Rotation":
-                    bindRotationEvents();
-                    break;
-                default:
-                    bindRegularEvents();
+        $.ajax({
+            type: "GET",
+            url: getCreateTaskFormUrl(roleType) + "/" + taskId,
+            dataType: "html",
+            cache: false,
+            success: function (result) {
+                $('#taskForm').empty();
+                $('#taskForm').html(result);
+
+                switch (roleType) {
+                    case "Helideck":
+                        bindHelideckEvents();
+                        break;
+                    case "Helipassenger":
+                        bindHelideckEvents();
+                        break;
+                    case "Rotation":
+                        bindRotationEvents();
+                        break;
+                    default:
+                        bindRegularEvents();
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function getCreateTaskFormUrl(roleType) {
@@ -212,7 +217,7 @@ function getCreateTaskFormUrl(roleType) {
 
 function bindRegularEvents() {
     /* Set disabled state of noise level measured */
-    if($("#noiseMeasuredNo").is(":checked")) {
+    if ($("#noiseMeasuredNo").is(":checked")) {
         disableNoiseMeasuredInput();
     } else {
         enableNoiseMeasuredInput();
@@ -228,13 +233,13 @@ function bindRegularEvents() {
     $("#workTimeRadio").click(enableWorkTimeInput);
     $("#hours").click(enableWorkTimeInput);
     $("#minutes").click(enableWorkTimeInput);
-    
+
     $("#taskFormCloseButton").click(closeTaskDialog);
     $('#submitButton').click(function (event) {
         event.preventDefault();
         submitRegularForm();
     });
-    
+
     // Meassured noise level and more is not applicable for non-noisy work in areas with noise
     if ($("#roleType").val() == "AreaNoise") {
         $("#backgroundNoiseLabel").hide();
@@ -294,7 +299,7 @@ function bindRotationEvents() {
     // Refactor - Unscrew this, DRY - Create common code with the "regular task" use case,
     disableNoiseMeasuredInputRotationOperator();
     disableNoiseMeasuredInputRotationAssistant();
-    
+
     $("#noiseMeasuredYesOperator").click(enableNoiseMeasuredInputRotationOperator);
     $("#noiseLevelMeassuredOperator").click(enableNoiseMeasuredInputRotationOperator);
     $("#noiseMeasuredNoOperator").click(disableNoiseMeasuredInputRotationOperator);
@@ -313,7 +318,7 @@ function bindRotationEvents() {
 function addResultToTaskList($taskDiv) {
     $("#taskList").append($taskDiv);
     $taskDiv.fadeIn('slow');
-    
+
     closeTaskDialog();
     updateTotalPercentage();
 }
@@ -321,7 +326,7 @@ function addResultToTaskList($taskDiv) {
 function replaceTaskInTaskList(result) {
     var idOfResultDiv = $(result).attr("id");
     $("#" + idOfResultDiv).replaceWith(result);
-    
+
     closeTaskDialog();
     updateTotalPercentage();
 }
@@ -338,7 +343,7 @@ function updateTotalPercentage() {
             $("#totalDailyPercentageDiv").removeClass().addClass(result.CssClass);
 
             var numberOfResults = $("#taskList").find(".task").length;
-            
+
             if (numberOfResults > 0) {
                 $("#removeAllContainer").show();
             } else {
@@ -395,7 +400,7 @@ function removeAllTasks() {
 function editTask(taskDiv) {
     var selectedTaskId = taskDiv.attr("id");
     var roleType = $(taskDiv).find(".roleType").text();
-    
+
     /* Edit Dialog Task */
     $.ajax({
         type: "GET",
@@ -454,7 +459,7 @@ function enableNoiseMeasuredInput() {
     if ($("#noiseMeasuredYes").attr("checked") == undefined) {
         $("#noiseMeasuredYes").attr("checked", "checked");
         $("#noiseLevelMeassured").focus();
-    } 
+    }
 
     $("#noiseLevelMeassured").focus();
     $("#noiseLevelGuidline").attr("disabled", true);
@@ -469,7 +474,7 @@ function enablePercentageInput() {
     if ($("#percentRadio").attr("checked") == undefined) {
         $("#percentRadio").attr("checked", "checked");
     }
-    
+
     $("#percentage").focus();
 
     $("#hours").val("");
@@ -481,7 +486,7 @@ function enablePercentageInput() {
 function enableWorkTimeInput() {
     if ($("#workTimeRadio").attr("checked") == undefined) {
         $("#workTimeRadio").attr("checked", "checked");
-    } else if($("#minutes").is(":focus") == false) {
+    } else if ($("#minutes").is(":focus") == false) {
         $("#hours").focus();
     }
 

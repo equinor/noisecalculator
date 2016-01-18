@@ -70,7 +70,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;About the calculations:&lt;/b&gt;&lt;br/&gt;The method for risk assessment of noise exposure is described in GL0169 “Noise control in operation” and enacted in TR0926 “Working Environment”.&lt;br/&gt;&lt;br/&gt;If the calculated exposure is 100% (for a work activity) the employee shall not carry out noisy work operations or stay in areas with noise level above 80 dBA during the rest of that day. The employee cannot stay in areas with impulse noise (hammer, bang, crash) or carry out work that produces impulse noise..
+        ///   Looks up a localized string similar to &lt;b&gt;About the calculations:&lt;/b&gt;&lt;br/&gt;When carrying out noisy work operations, it is expected that routines with extra focus and knowledge are applied to both use and maintenance of hearing protection. With that background and that a detailed risk analysis of the noisy operation is carried out, the attenuation afforded by the hearing protection is evaluated as higher than for the case with normal work in noisy areas. This gives longer acceptable durations for noisy work than for work in noisy areas with the sa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FooterCalculations {
             get {

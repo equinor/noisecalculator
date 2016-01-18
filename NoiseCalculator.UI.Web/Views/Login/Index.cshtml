@@ -17,7 +17,7 @@
     </section>
 }
 
-@using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "https://noisecalculatordev.azurewebsites.net/" }))
+@using (Html.BeginForm((string)ViewBag.FormAction, "Login", new { ReturnUrl = "https://noisecalculator.azurewebsites.net/" }))
 {
     @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
     <input type="submit" value="@TaskResources.SingleSignOnText" />
