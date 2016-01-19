@@ -76,6 +76,9 @@ function setAllEvents() {
     // Click remove task
     $mainContainer.find(".taskListRemove").live("click", function () {
         var $item = $(this).closest(".task");
+        if ($item.attr("id") === undefined) {
+            $item = $(this).closest(".taskAreaNoise");
+        }
 
         $("#deleteConfirmDialog")
             .empty()

@@ -38,7 +38,8 @@ namespace NoiseCalculator.Domain.DomainServices
         {
             var staticFootnotes = new List<string>
                 {
-                    DomainResources.FooterCalculations,
+                    DomainResources.FooterCalculationsAreaNoiseForReport,
+                    DomainResources.FooterCalculationsForReport,
                     DomainResources.FooterNoiseProtection
                 };
 

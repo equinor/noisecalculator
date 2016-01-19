@@ -1,7 +1,7 @@
 ﻿@using NoiseCalculator.UI.Web.Resources
 @model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
 
-<div id="@Model.Id" class="task">
+<div id="@Model.Id" class="@("task" + (Model.RoleType == "AreaNoise" ? "AreaNoise" : ""))">
     <span class="roleType" style="display: none;">@Model.RoleType</span>
 
     <div class="taskListButton taskListEdit">

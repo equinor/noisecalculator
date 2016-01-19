@@ -135,7 +135,22 @@ input[type="submit"] {
     padding-top: 5px;
     padding-bottom: 2px;
     padding-right: 7px;
+    padding-left: 3px;
     color: white;
+}
+
+.taskAreaNoise
+{
+    margin-left: 3px;
+    margin-bottom: 10px;
+    background-color: #333; 
+    border: 3px solid white; 
+    padding-top: 5px;
+    padding-bottom: 2px;
+    padding-right: 7px;
+    padding-left: 3px;
+    color: white;
+    background-color: #1e90ff;
 }
 
 .taskIcon
