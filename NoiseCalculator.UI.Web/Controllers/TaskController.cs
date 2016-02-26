@@ -70,7 +70,7 @@ namespace NoiseCalculator.UI.Web.Controllers
             {
                 foreach (var tDef in _taskDefinitionDAO.GetAllOrderedByCurrentCulture())
                 {
-                    var selectListItem = new SelectListItem { Text = tDef.SystemName, Value = tDef.Id.ToString(CultureInfo.InvariantCulture) };
+                    var selectListItem = new SelectListItem { Text = tDef.SystemName.Replace("+", ""), Value = tDef.Id.ToString(CultureInfo.InvariantCulture) };
                     if (viewModel.TaskDefinitionId == tDef.Id)
                     {
                         selectListItem.Selected = true;

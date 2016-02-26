@@ -70,11 +70,8 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&quot;taskAreaNoise&quot;&gt;&lt;b&gt;About the calculations of WORK IN AREAS WITH NOISE &lt;/b&gt;&lt;br/&gt;
-        ///For work in areas with noise the calculations are in line with work time restrictions given in the noise maps.
-        ///&lt;/div&gt;
-        ///&lt;div class=&quot;task&quot;&gt;&lt;b&gt;About the calculations of RISK ASSESSED NOISY WORK OPERATIONS&lt;/b&gt;&lt;br/&gt;
-        ///When carrying out noisy work operations, it is expected that routines with extra focus and knowledge are applied to both use and maintenance of hearing protection. With that background and that a detailed ri [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;task&quot;&gt;&lt;b&gt;About the calculations of RISK ASSESSED NOISY WORK OPERATIONS&lt;/b&gt;&lt;br/&gt;
+        ///When carrying out noisy work operations, it is expected that routines with extra focus and knowledge are applied to both use and maintenance of hearing protection. With that background and that a detailed risk analysis of the noisy operation is carried out, the attenuation afforded by the hearing protection is evaluated as higher than for the case with normal work in noisy areas. This gives longer acceptable duratio [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FooterCalculations {
             get {
