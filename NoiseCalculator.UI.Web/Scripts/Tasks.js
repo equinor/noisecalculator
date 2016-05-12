@@ -106,6 +106,9 @@ function setAllEvents() {
     // Click edit task
     $mainContainer.find(".taskListEdit").live("click", function () {
         var $item = $(this).closest(".task");
+        if ($item.attr("id") === undefined) {
+            $item = $(this).closest(".taskAreaNoise");
+        }
         editTask($item);
     });
 }
@@ -518,7 +521,7 @@ function submitRegularForm() {
         success: function (result) {
             var $taskDiv = $("<div>").append(result);
 
-            if ($('#' + $taskDiv.find(".task").attr("id")).length > 0) {
+            if ($('#' + $taskDiv.find(".task").attr("id")).length > 0 || $('#' + $taskDiv.find(".task").attr("id")).length <= 0 && $('#' + $taskDiv.find(".taskAreaNoise").attr("id")).length > 0) {
                 replaceTaskInTaskList(result);
             } else {
                 addResultToTaskList($taskDiv);
