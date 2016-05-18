@@ -77,10 +77,21 @@
     }
     
     <div class="taskGrouping" style="width: 220px;">
-        <p>
-            <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
-            <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
-        </p>
+        @switch (@Model.RoleType)
+        {
+            case "Helipassenger":
+                <p>
+                    <label for="WorkTime" class="label-normal120"></label>
+                    <span id="WorkTime" style="font-weight: bold;"></span>
+                </p>
+                break;
+            default:
+                      <p>
+                          <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
+                          <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
+                      </p>
+                      break;
+              }
 
         <p>
             <label for="PercentDailyDosage" class="label-normal120">@TaskResources.SelectedTaskPercentageDailyDosageLabel</label>
