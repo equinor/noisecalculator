@@ -63,7 +63,7 @@ namespace NoiseCalculator.UI.Web.Controllers
         {
             var viewModel = new TaskSelectViewModel();
 
-            viewModel.TaskDefinitions.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
+            //viewModel.TaskDefinitions.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "1086" });
 
 
             if (Thread.CurrentThread.CurrentCulture.Equals(new CultureInfo("nb-NO")))
@@ -93,6 +93,20 @@ namespace NoiseCalculator.UI.Web.Controllers
 
             
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+
+            foreach (var task in _taskDAO.GetAllByTaskDefinitionIdOrdered(1086))
+            {
+                var taskText = task.Title;
+                var taskValue = task.Id.ToString(CultureInfo.InvariantCulture) + "-" + task.Role.RoleType + "-" +
+                                task.TaskDefinition.SystemName;
+                var selectListItem = new SelectListItem { Text = taskText, Value = taskValue };
+                if (viewModel.TaskId == task.Id)
+                {
+                    selectListItem.Selected = true;
+                }
+                viewModel.Tasks.Add(selectListItem);
+            }
 
             return PartialView("_TaskDialog", viewModel);
         }

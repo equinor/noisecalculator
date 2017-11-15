@@ -31,6 +31,17 @@ namespace NoiseCalculator.Domain.Entities
             if (frequency == "H" && noiseProtection.NoiseProtectionDefinition.Id == 2)
                 noiseProtectionDampening = 24;
 
+            
+
+            // Special handling for areanoise
+            if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtection.NoiseProtectionDefinition.Id == 3)
+            {
+                if (actualNoiseLevel > 110)
+                    return 101;
+                if (actualNoiseLevel > 105)
+                    return (decimal)(actualExposure.TotalMinutes * 0.138888);
+                return (decimal)(0);
+            }
             // Special handling for areanoise
             if (roleType == RoleTypeEnum.AreaNoise.ToString())
             {
@@ -43,10 +54,7 @@ namespace NoiseCalculator.Domain.Entities
                 if (actualNoiseLevel > 95)
                     return (decimal)(actualExposure.TotalMinutes * 0.277777);
                 if (actualNoiseLevel > 90)
-                    if (noiseProtectionDampening == 30)
-                        return (decimal)(actualExposure.TotalMinutes * 0.138888);
-                    else
-                        return (decimal)(actualExposure.TotalMinutes * 0.277777);
+                    return (decimal)(actualExposure.TotalMinutes * 0.277777);
                 if (actualNoiseLevel > 85)
                     return (decimal)(actualExposure.TotalMinutes * 0.138888);
                 return (decimal)(actualExposure.TotalMinutes * 0.027712);
@@ -94,6 +102,15 @@ namespace NoiseCalculator.Domain.Entities
                 noiseProtectionDampening = 24;
 
             // Special handling for areanoise
+            if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtection.NoiseProtectionDefinition.Id == 3)
+            {
+                if (actualNoiseLevel > 110)
+                    return new TimeSpan();
+                if (actualNoiseLevel > 105)
+                    return TimeSpan.FromMinutes(percentage / 0.138888);
+                return new TimeSpan(0, 0, 960, 0);
+            }
+            // Special handling for areanoise
             if (roleType == RoleTypeEnum.AreaNoise.ToString())
             {
                 if (actualNoiseLevel > 110)
@@ -105,10 +122,10 @@ namespace NoiseCalculator.Domain.Entities
                 if (actualNoiseLevel > 95)
                     return TimeSpan.FromMinutes(percentage / 0.277777);
                 if (actualNoiseLevel > 90)
-                    return noiseProtectionDampening == 30 ? TimeSpan.FromMinutes(percentage / 0.138888) : TimeSpan.FromMinutes(percentage / 0.277777);
+                    return TimeSpan.FromMinutes(percentage / 0.277777);
                 if (actualNoiseLevel > 85) 
                     return TimeSpan.FromMinutes(percentage/0.138888);
-                return TimeSpan.FromMinutes(percentage / 0.027712).Days > 0 ? new TimeSpan(0, 0, 1439, 0) : TimeSpan.FromMinutes(percentage/0.027712);
+                return TimeSpan.FromMinutes(percentage / 0.104166).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage/0.104166);
             }
 
             const double timeInFullShift = 720;
@@ -132,13 +149,13 @@ namespace NoiseCalculator.Domain.Entities
 
             var timeSpan = new TimeSpan(0, 0, (int)Math.Round(allowedExposure), 0);
 
-            if (timeSpan.Days > 0)
+            if (timeSpan.Hours > 16)
             {
-                timeSpan = new TimeSpan(0,0,1439,0);
+                timeSpan = new TimeSpan(0,16,0,0);
             }
 
             return timeSpan;
         }
-
+        
     }
 }

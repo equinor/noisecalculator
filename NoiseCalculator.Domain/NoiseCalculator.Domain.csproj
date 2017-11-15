@@ -59,6 +59,7 @@
     <Compile Include="Entities\TaskDefinition.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\NoiseLevelEnum.cs" />
+    <Compile Include="Enums\NoiseProtectionEnum.cs" />
     <Compile Include="Enums\RoleTypeEnum.cs" />
     <Compile Include="Resources\DomainResources.Designer.cs">
       <AutoGen>True</AutoGen>
