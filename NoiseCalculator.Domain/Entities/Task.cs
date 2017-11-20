@@ -17,6 +17,7 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int ButtonPressed { get; set; }
         public virtual int NoiseProtectionId { get; set; }
         public virtual string Frequency { get; set; }
+        public virtual bool UsePercentage { get; set; }
 
         public virtual decimal CalculatePercentage(string roleType, decimal actualNoiseLevel, int buttonPressed, int backgroundNoise, string frequency, NoiseProtection noiseProtection, TimeSpan actualExposure )
         {   

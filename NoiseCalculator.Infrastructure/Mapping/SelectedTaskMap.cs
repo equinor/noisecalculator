@@ -22,6 +22,7 @@ namespace NoiseCalculator.Infrastructure.Mapping
             Map(x => x.ButtonPressed);
             Map(x => x.BackgroundNoise);
             Map(x => x.NoiseProtectionId);
+            Map(x => x.UsePercentage);
 
             Map(x => x.HelicopterTaskId);
 

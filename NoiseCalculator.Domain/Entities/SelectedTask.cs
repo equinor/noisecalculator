@@ -21,6 +21,7 @@ namespace NoiseCalculator.Domain.Entities
         public virtual int ButtonPressed { get; set; }
         public virtual int BackgroundNoise { get; set; }
         public virtual int NoiseProtectionId { get; set; }
+        public virtual bool UsePercentage { get; set; }
 
 
         public virtual void AddWorkTime(TimeSpan timeSpan, int percentage)

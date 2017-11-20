@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
 using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
+using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask;
 using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
@@ -117,11 +118,13 @@ namespace NoiseCalculator.UI.Web.Controllers
                 NoiseProtectionId = selectedTask.NoiseProtectionId,
                 RadioNoiseMeassuredNoCheckedAttr = selectedTask.IsNoiseMeassured ? InputNotChecked : InputChecked,
                 RadioNoiseMeassuredYesCheckedAttr = selectedTask.IsNoiseMeassured ? InputChecked : InputNotChecked,
-                RadioTimeCheckedAttr = InputChecked,
+                RadioTimeCheckedAttr = selectedTask.UsePercentage ? InputNotChecked : InputChecked,
+                RadioPercentageCheckedAttr = selectedTask.UsePercentage ? InputChecked : InputNotChecked,
                 ButtonPressed = selectedTask.ButtonPressed,
                 BackgroundNoise = selectedTask.BackgroundNoise == 0 ? "<80" : selectedTask.BackgroundNoise.ToString(CultureInfo.InvariantCulture),
-                Hours = selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
-                Minutes = selectedTask.Minutes.ToString(CultureInfo.InvariantCulture)
+                Hours = selectedTask.UsePercentage ? "" : selectedTask.Hours.ToString(CultureInfo.InvariantCulture),
+                Minutes = selectedTask.UsePercentage ? "" : selectedTask.Minutes.ToString(CultureInfo.InvariantCulture),
+                Percentage = selectedTask.UsePercentage ? selectedTask.Percentage.ToString(CultureInfo.InvariantCulture) : ""
             };
 
             viewModel.NoiseProtection.Add(new SelectListItem { Text = TaskResources.SelectOne, Value = "0" });
@@ -193,6 +196,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 var timeSpan = selectedTask.Task.CalculateTimeSpan(selectedTask.Task.TaskDefinition.RoleType.ToString(), selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, selectedTask.Task.Frequency, noiseProtection, selectedTask.Percentage);
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
+                selectedTask.UsePercentage = true;
             }
             else
             {
@@ -201,6 +205,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
                 selectedTask.Percentage = (int)Math.Round(selectedTask.Task.CalculatePercentage(selectedTask.Task.TaskDefinition.RoleType.ToString(), selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, selectedTask.Task.Frequency, noiseProtection, new TimeSpan(0, selectedTask.Hours, selectedTask.Minutes, 0)));
+                selectedTask.UsePercentage = false;
             }
 
             _selectedTaskDAO.Store(selectedTask);
@@ -287,6 +292,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
                 selectedTask.Percentage = (int)Math.Round(task.CalculatePercentage(task.TaskDefinition.RoleType.ToString(), selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, selectedTask.Task.Frequency, noiseProtection, timeSpan));
+                selectedTask.UsePercentage = false;
             }
             else
             {
@@ -294,6 +300,7 @@ namespace NoiseCalculator.UI.Web.Controllers
                 var timeSpan = task.CalculateTimeSpan(task.TaskDefinition.RoleType.ToString(), selectedTask.NoiseLevel, selectedTask.ButtonPressed, selectedTask.BackgroundNoise, selectedTask.Task.Frequency, noiseProtection, selectedTask.Percentage);
                 selectedTask.Hours = timeSpan.Hours;
                 selectedTask.Minutes = timeSpan.Minutes;
+                selectedTask.UsePercentage = true;
             }
 
             return selectedTask;
