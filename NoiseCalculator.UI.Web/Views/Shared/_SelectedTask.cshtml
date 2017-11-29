@@ -87,8 +87,16 @@
                 break;
             default:
                       <p>
-                          <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
-                          <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
+                          @if (int.Parse(@Model.Hours) >= 16)
+                          {
+                              <label for="WorkTime" class="label-small80">@TaskResources.SelectedTaskWorkTimeLabel</label>
+                              <span id="WorkTime" style="font-weight: bold;">: @TaskResources.NoRestrictions</span>
+                          }
+                          else
+                          {
+                              <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
+                              <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
+                          }
                       </p>
                       break;
               }

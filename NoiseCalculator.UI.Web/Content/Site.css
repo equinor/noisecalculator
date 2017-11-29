@@ -200,6 +200,12 @@ p
     width: 60px; 
     display: inline-block;
 }
+
+.label-small80
+{
+    width: 80px; 
+    display: inline-block;
+}
     
 .label-normal120
 {

@@ -452,4 +452,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
   <data name="IndexHelpLink" xml:space="preserve">
     <value>Content/help/Information Noise Calculator 2.2.ppt</value>
   </data>
+  <data name="NoRestrictions" xml:space="preserve">
+    <value>No restriction</value>
+  </data>
 </root>

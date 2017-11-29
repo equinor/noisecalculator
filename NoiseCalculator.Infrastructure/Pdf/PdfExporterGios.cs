@@ -363,6 +363,30 @@ namespace NoiseCalculator.Infrastructure.Pdf
                                 ? "<80 dBA"
                                 : dataTable.Rows[i][j].ToString());
                             break;
+                        case 6:
+                            var worktime = dataTable.Rows[i][j].ToString();
+
+                            if (worktime.Contains("16 h") ||
+                                worktime.Contains("17 h") ||
+                                worktime.Contains("18 h") ||
+                                worktime.Contains("19 h") ||
+                                worktime.Contains("20 h") ||
+                                worktime.Contains("21 h") ||
+                                worktime.Contains("22 h") ||
+                                worktime.Contains("23 h"))
+                                row1.Cells[j].AddParagraph("No restriction");
+                            else if (worktime.Contains("16 t") ||
+                                worktime.Contains("17 t") ||
+                                worktime.Contains("18 t") ||
+                                worktime.Contains("19 t") ||
+                                worktime.Contains("20 t") ||
+                                worktime.Contains("21 t") ||
+                                worktime.Contains("22 t") ||
+                                worktime.Contains("23 t"))
+                                row1.Cells[j].AddParagraph("Ingen restriksjon");
+                            else
+                                row1.Cells[j].AddParagraph(worktime);
+                            break;
                         default:
                             row1.Cells[j].AddParagraph(dataTable.Rows[i][j].ToString());
                             break;
