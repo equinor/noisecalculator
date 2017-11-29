@@ -66,8 +66,20 @@ namespace NoiseCalculator.UI.Web.Controllers
                 }
                 if (task.Role.RoleType.ToString() == "AreaNoise")
                     if (!selectListItem.Selected)
-                        if (noiseProtection.NoiseProtectionDefinition.Id != 3)
+                        if (noiseProtection.NoiseProtectionDefinition.Id != 3) // Quietpro
                             continue;
+                if (task.TaskDefinition.Id == 1070 || //"Ultra-High Pressure (UHP) water jetting"
+                    task.TaskDefinition.Id == 1071 || //"Sponging"
+                    task.TaskDefinition.Id == 1074) //"Sandblasting"
+                {
+                    if (noiseProtection.NoiseProtectionDefinition.Id != 3 && // Quietpro
+                        noiseProtection.NoiseProtectionDefinition.Id != 6) // Skumpropp
+                        continue;
+                }
+                else if (noiseProtection.NoiseProtectionDefinition.Id == 6) // Skumpropp tas ikke med i vanlige operasjoner
+                {
+                    continue;
+                }
 
                 viewModel.NoiseProtection.Add(selectListItem);
             }
