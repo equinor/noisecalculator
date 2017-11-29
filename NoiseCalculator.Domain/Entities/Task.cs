@@ -146,11 +146,11 @@ namespace NoiseCalculator.Domain.Entities
 
             // Prosent * tid full skift * (10^(80/10))/(10^(Normalisert verdi med hørselsvern/10))
             var allowedExposure = ((double)percentage / 100) * timeInFullShift *
-                                     ((Math.Pow(10, (80/10)))/Math.Pow(10, normValueWithNoiseProtection/10));
+                                        ((Math.Pow(10, (80 / 10))) / Math.Pow(10, normValueWithNoiseProtection / 10));
 
             var timeSpan = new TimeSpan(0, 0, (int)Math.Round(allowedExposure), 0);
 
-            if (timeSpan.Hours > 16)
+            if (timeSpan.Days > 0 || timeSpan.Days == 0 && timeSpan.Hours >= 16)
             {
                 timeSpan = new TimeSpan(0,16,0,0);
             }

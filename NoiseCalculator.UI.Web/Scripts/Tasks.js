@@ -161,9 +161,15 @@ function getTaskList() {
             // states contains the JSON formatted list
             // of states passed from the controller
             $.each(tasks.Tasks, function (i, task) {
-                $("#taskSelect").append('<option value="'
-                    + task.Value + '">'
-                    + task.Text + '</option>');
+                if (tasks.Tasks.length === 1) {
+                    $("#taskSelect").append('<option selected value="'
+                        + task.Value + '">'
+                        + task.Text + '</option>');
+                } else {
+                    $("#taskSelect").append('<option value="'
+                        + task.Value + '">'
+                        + task.Text + '</option>');
+                }
             });
         },
         error: function (ex) {
