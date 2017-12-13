@@ -239,6 +239,10 @@ namespace NoiseCalculator.UI.Web.Controllers
                 if (viewModel.NoiseProtectionDefinitionId == noiseProtection.NoiseProtectionDefinition.Id)
                     selectListItem.Selected = true;
 
+                if (noiseProtection.NoiseProtectionDefinition.Id == 6 || noiseProtection.NoiseProtectionDefinition.Id == 7)
+                    // Skumpropp tas ikke med i helideck operasjoner
+                    continue;
+
                 viewModel.NoiseProtection.Add(selectListItem);
             }
 
