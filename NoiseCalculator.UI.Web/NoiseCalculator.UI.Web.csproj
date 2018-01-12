@@ -359,8 +359,12 @@
     <Content Include="Content\help\Information Noise Calculator 2.1 Final.ppt" />
     <Content Include="Content\help\Informasjon støykalkulator 2.2.ppt" />
     <Content Include="Content\help\Information Noise Calculator 2.2.ppt" />
+    <Content Include="Content\help\Informasjon støykalkulator 3.0.ppt" />
+    <Content Include="Content\help\Information Noise Calculator 3.0.ppt" />
     <None Include="Properties\PublishProfiles\Debug to C-Drive Publish folder.pubxml" />
+    <None Include="Properties\PublishProfiles\NoiseCalculator - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\NoiseCalculator - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculator Prod.pubxml" />
     <None Include="Properties\PublishProfiles\NoiseCalculatorDev - FTP.pubxml" />

@@ -355,6 +355,9 @@ function updateTotalPercentage() {
             $("#totalDailyPercentageDiv").removeClass().addClass(result.CssClass);
 
             var numberOfResults = $("#taskList").find(".task").length;
+            if (numberOfResults === 0) {
+                numberOfResults = $("#taskList").find(".taskAreaNoise").length;
+            }
 
             if (numberOfResults > 0) {
                 $("#removeAllContainer").show();
