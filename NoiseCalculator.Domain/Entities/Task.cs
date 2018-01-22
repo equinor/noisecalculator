@@ -38,9 +38,17 @@ namespace NoiseCalculator.Domain.Entities
             if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtection.NoiseProtectionDefinition.Id == 3)
             {
                 if (actualNoiseLevel > 110)
-                    return 101;
+                    return (decimal)(actualExposure.TotalMinutes * 0.441667);
                 if (actualNoiseLevel > 105)
                     return (decimal)(actualExposure.TotalMinutes * 0.138888);
+                if (actualNoiseLevel > 100)
+                    return (decimal)(actualExposure.TotalMinutes * 0.043750);
+                if (actualNoiseLevel > 95)
+                    return (decimal)(actualExposure.TotalMinutes * 0.013541);
+                if (actualNoiseLevel > 90)
+                    return (decimal)(actualExposure.TotalMinutes * 0.004167);
+                if (actualNoiseLevel > 85)
+                    return (decimal)(actualExposure.TotalMinutes * 0.001042);
                 return (decimal)(0);
             }
             // Special handling for areanoise
@@ -106,9 +114,17 @@ namespace NoiseCalculator.Domain.Entities
             if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtection.NoiseProtectionDefinition.Id == 3)
             {
                 if (actualNoiseLevel > 110)
-                    return new TimeSpan();
+                    return TimeSpan.FromMinutes(percentage / 0.441667);
                 if (actualNoiseLevel > 105)
                     return TimeSpan.FromMinutes(percentage / 0.138888);
+                if (actualNoiseLevel > 100)
+                    return TimeSpan.FromMinutes(percentage / 0.043750);
+                if (actualNoiseLevel > 95)
+                    return TimeSpan.FromMinutes(percentage / 0.013541);
+                if (actualNoiseLevel > 90)
+                    return TimeSpan.FromMinutes(percentage / 0.004167);
+                if (actualNoiseLevel > 85)
+                    return TimeSpan.FromMinutes(percentage / 0.001042);
                 return new TimeSpan(0, 0, 960, 0);
             }
             // Special handling for areanoise
