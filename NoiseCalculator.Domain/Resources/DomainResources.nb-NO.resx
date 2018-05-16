@@ -149,7 +149,7 @@ Ved utførelse av støyende arbeidsoperasjoner forventes det at det er innført 
     <value>Risikovurderingene av støyende arbeidsoppgaver gjelder for områdestøy opp til 90 dBA. Gjør verifiserende feltmåling når områdestøyen er over 90 dBA, eller arbeidet utføres i  områder med mye klang, feks tanker.</value>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format.</value>
+    <value>Denne støykalkulatoren er utviklet av Equinor og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format.</value>
   </data>
   <data name="FooterNoiseProtection" xml:space="preserve">
     <value>&lt;b&gt;Om hørselsvern:&lt;/b&gt;&lt;br/&gt;Med enkelt hørselsvern menes ørepropper eller øreklokker. Med dobbelt hørselsvern menes ørepropper og øreklokker brukt samtidig.</value>

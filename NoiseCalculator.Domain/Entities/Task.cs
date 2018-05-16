@@ -114,7 +114,7 @@ namespace NoiseCalculator.Domain.Entities
             if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtection.NoiseProtectionDefinition.Id == 3)
             {
                 if (actualNoiseLevel > 110)
-                    return TimeSpan.FromMinutes(percentage / 0.441667);
+                    return TimeSpan.FromMinutes(percentage / 0.438596);
                 if (actualNoiseLevel > 105)
                     return TimeSpan.FromMinutes(percentage / 0.138888);
                 if (actualNoiseLevel > 100)

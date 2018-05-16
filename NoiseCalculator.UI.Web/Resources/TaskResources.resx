@@ -246,8 +246,8 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Task work time must be specified, either as hours/minutes or percentage of daily dosage</value>
   </data>
   <data name="FooterGL0169" xml:space="preserve">
-    <value>This noise calculator is developed by Statoil and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format.</value>
-    <comment>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format</comment>
+    <value>This noise calculator is developed by Equinor and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format.</value>
+    <comment>Denne støykalkulatoren er utviklet av Equinor og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det. Verktøyet inkluderer arbeid i støyende omgivelser og/eller egenprodusert støy, og gir mulighet til å kombinere støydata med tiltakene oppholdstidsbegrensning og hørselvern. Det er også mulig å ta en utskrift av vurderingen i pdf format</comment>
   </data>
   <data name="IndexSubtitle" xml:space="preserve">
     <value>Add tasks to calculate your noise exposure</value>
@@ -257,7 +257,7 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Calculate noise exposure</value>
   </data>
   <data name="IndexStartText1" xml:space="preserve">
-    <value>This Noise calculator is developed by Statoil and available as a planning tool for whoever would like to use it.</value>
+    <value>This Noise calculator is developed by Equinor and available as a planning tool for whoever would like to use it.</value>
   </data>
   <data name="IndexStartText2" xml:space="preserve">
     <value>The Noise calculator calculates noise exposure and accepted working duration in noisy areas and/or noisy work operations</value>
@@ -436,12 +436,12 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <comment>Logg inn</comment>
   </data>
   <data name="SingleSignOnText" xml:space="preserve">
-    <value>Log in with Statoil ID</value>
-    <comment>Logg på med Statoil ID</comment>
+    <value>Log in with Equinor ID</value>
+    <comment>Logg på med Equinor ID</comment>
   </data>
   <data name="SingleSignOnDesc" xml:space="preserve">
-    <value>Sign in to Noise Calculator using your Statoil ID. </value>
-    <comment>Logg inn på Støykalkulator med din Statoil ID. </comment>
+    <value>Sign in to Noise Calculator using your Equinor ID. </value>
+    <comment>Logg inn på Støykalkulator med din Equinor ID. </comment>
   </data>
   <data name="TaskDialogCategories" xml:space="preserve">
     <value>Categories</value>

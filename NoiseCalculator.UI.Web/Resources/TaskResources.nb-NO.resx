@@ -323,7 +323,7 @@
     <value>Beregning av støyeksponering</value>
   </data>
   <data name="IndexStartText1" xml:space="preserve">
-    <value>Denne støykalkulatoren er utviklet av Statoil og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det.
+    <value>Denne støykalkulatoren er utviklet av Equinor og stilles til rådighet som et planleggingsverktøy for de som måtte ønske det.
 </value>
   </data>
   <data name="IndexStartText2" xml:space="preserve">
@@ -450,12 +450,12 @@
     <comment>Sign in</comment>
   </data>
   <data name="SingleSignOnText" xml:space="preserve">
-    <value>Logg på med Statoil ID</value>
-    <comment>Log in with Statoil ID</comment>
+    <value>Logg på med Equinor ID</value>
+    <comment>Log in with Equinor ID</comment>
   </data>
   <data name="SingleSignOnDesc" xml:space="preserve">
-    <value>Logg på Støykalkulator med din Statoil ID. </value>
-    <comment>Log in to Noisecalculator using your Statoil ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in.</comment>
+    <value>Logg på Støykalkulator med din Equinor ID. </value>
+    <comment>Log in to Noisecalculator using your Equinor ID. If you try this from a device that is not connected to the Statoil domain, you will not be able to sign in.</comment>
   </data>
   <data name="SelectedTaskBackgroundNoiseLabel" xml:space="preserve">
     <value>Bakgrunnsstøy</value>

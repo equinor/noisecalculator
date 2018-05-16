@@ -139,7 +139,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This noise calculator is developed by Statoil and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format..
+        ///   Looks up a localized string similar to This noise calculator is developed by Equinor and is available as a planning tool for those who wish to use it. The tool includes work in noisy conditions and/or noise produced, and provides a possiblity to combine noisedata with preventive measures such as limitation of time in noisy conditions and hearing protection. It is also possible to print the evaluation in pdf format..
         /// </summary>
         internal static string FooterGL0169 {
             get {
