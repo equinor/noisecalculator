@@ -1,7 +1,7 @@
 ﻿@using NoiseCalculator.UI.Web.Resources
 @model NoiseCalculator.UI.Web.ViewModels.SelectedTaskViewModel
 
-<div id="@Model.Id" class="@("task" + (Model.RoleType == "AreaNoise" ? "AreaNoise" : ""))">
+<div id="@Model.Id" class="@("task" + (Model.RoleType == "AreaNoise" ? "AreaNoise" : ""))" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">
     <span class="roleType" style="display: none;">@Model.RoleType</span>
 
     <div class="taskListButton taskListEdit">
@@ -11,25 +11,25 @@
 
     <div class="taskGrouping" style="width: 330px; max-width: 330px;">
         <p>
-            <label for="Task" class="label-small60">@TaskResources.TaskTitleLabel</label>
-            <span id="Task" style="font-weight: bold;">: @Model.Title</span>
+            <label for="Task" class="label-small60" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.TaskTitleLabel</label>
+            <span id="Task" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.Title</span>
         </p>
 
         <p>
-            <label for="Role" class="label-small60">@TaskResources.TaskRoleLabel</label>
-            <span id="Role" style="font-weight: bold;">: @Model.Role</span>
+            <label for="Role" class="label-small60" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.TaskRoleLabel</label>
+            <span id="Role" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.Role</span>
         </p>
     </div>
 
     <div class="taskGrouping" style="width: 260px; max-width: 260px;">
         <p>
-            <label for="NoiseProtection" class="label-normal120">@TaskResources.SelectedTaskNoiseProtectionLabel</label>
-            <span id="NoiseProtection" style="font-weight: bold;">: @Model.NoiseProtection</span>
+            <label for="NoiseProtection" class="label-normal120" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskNoiseProtectionLabel</label>
+            <span id="NoiseProtection" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.NoiseProtection</span>
         </p>
 
         <p>
-            <label for="NoiseLevel" class="label-normal120">@TaskResources.SelectedTaskNoiseLevelLabel</label>
-            <span id="NoiseLevel" style="font-weight: bold;">: @Model.NoiseLevel</span>
+            <label for="NoiseLevel" class="label-normal120" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskNoiseLevelLabel</label>
+            <span id="NoiseLevel" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.NoiseLevel</span>
         </p>
     </div>
     
@@ -38,39 +38,39 @@
         case "Helipassenger":
             <div class="taskGrouping" style="width: 190px; max-width: 190px;">
                 <p>
-                    <label for="NoiseProtection" class="label-130px"></label>
-                    <span id="NoiseProtection" style="font-weight: bold;"></span>
+                    <label for="NoiseProtection" class="label-130px" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></label>
+                    <span id="NoiseProtection" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></span>
                 </p>
 
                 <p>
-                    <label for="NoiseLevel" class="label-130px"></label>
-                    <span id="NoiseLevel" style="font-weight: bold;"></span>
+                    <label for="NoiseLevel" class="label-130px" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></label>
+                    <span id="NoiseLevel" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></span>
                 </p>
             </div>
             break;
         case "AreaNoise":
         <div class="taskGrouping" style="width: 190px; max-width: 190px;">
             <p>
-                <label for="NoiseProtection" class="label-130px"></label>
-                <span id="NoiseProtection" style="font-weight: bold;"></span>
+                <label for="NoiseProtection" class="label-130px" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></label>
+                <span id="NoiseProtection" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></span>
             </p>
 
             <p>
-                <label for="NoiseLevel" class="label-130px"></label>
-                <span id="NoiseLevel" style="font-weight: bold;"></span>
+                <label for="NoiseLevel" class="label-130px" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></label>
+                <span id="NoiseLevel" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></span>
             </p>
         </div>
             break;
         default:
             <div class="taskGrouping" style="width: 190px; max-width: 190px;">
                 <p>
-                    <label for="NoiseProtection" class="label-130px">@TaskResources.SelectedTaskButtonPressedLabel</label>
-                    <span id="NoiseProtection" style="font-weight: bold;">: @Model.ButtonPressed</span>
+                    <label for="NoiseProtection" class="label-130px" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskButtonPressedLabel</label>
+                    <span id="NoiseProtection" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.ButtonPressed</span>
                 </p>
 
                 <p>
-                    <label for="NoiseLevel" class="label-130px">@TaskResources.SelectedTaskBackgroundNoiseLabel</label>
-                    <span id="NoiseLevel" style="font-weight: bold;">: @Model.BackgroundNoise</span>
+                    <label for="NoiseLevel" class="label-130px" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskBackgroundNoiseLabel</label>
+                    <span id="NoiseLevel" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.BackgroundNoise</span>
                 </p>
             </div>
             break;
@@ -81,29 +81,29 @@
         {
             case "Helipassenger":
                 <p>
-                    <label for="WorkTime" class="label-normal120"></label>
-                    <span id="WorkTime" style="font-weight: bold;"></span>
+                    <label for="WorkTime" class="label-normal120" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></label>
+                    <span id="WorkTime" style="font-weight: bold;" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")"></span>
                 </p>
                 break;
             default:
                       <p>
                           @if (int.Parse(@Model.Hours) >= 16)
                           {
-                              <label for="WorkTime" class="label-small80">@TaskResources.SelectedTaskWorkTimeLabel</label>
-                              <span id="WorkTime" style="font-weight: bold;">: @TaskResources.NoRestrictions</span>
+                              <label for="WorkTime" class="label-small80" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskWorkTimeLabel</label>
+                              <span id="WorkTime" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @TaskResources.NoRestrictions</span>
                           }
                           else
                           {
-                              <label for="WorkTime" class="label-normal120">@TaskResources.SelectedTaskWorkTimeLabel</label>
-                              <span id="WorkTime" style="font-weight: bold;">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
+                              <label for="WorkTime" class="label-normal120" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskWorkTimeLabel</label>
+                              <span id="WorkTime" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">: @Model.Hours @TaskResources.HoursUnit @Model.Minutes @TaskResources.MinutesUnit</span>
                           }
                       </p>
                       break;
               }
 
         <p>
-            <label for="PercentDailyDosage" class="label-normal120">@TaskResources.SelectedTaskPercentageDailyDosageLabel</label>
-            <span id="PercentDailyDosage" style="font-weight: bold;">: @Model.Percentage%</span>
+            <label for="PercentDailyDosage" class="label-normal120" style="@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;")">@TaskResources.SelectedTaskPercentageDailyDosageLabel</label>
+            <span id="PercentDailyDosage" style="font-weight: bold;@(Model.RoleType =="AreaNoise" ? "color:black;" : "color:white;;")">: @Model.Percentage%</span>
         </p>
     </div>
 

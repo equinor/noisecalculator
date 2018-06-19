@@ -70,8 +70,8 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&quot;task&quot;&gt;&lt;b&gt;About the calculations of RISK ASSESSED NOISY WORK OPERATIONS&lt;/b&gt;&lt;br/&gt;
-        ///When carrying out noisy work operations, it is expected that routines with extra focus and knowledge are applied to both use and maintenance of hearing protection. With that background and that a detailed risk analysis of the noisy operation is carried out, the attenuation afforded by the hearing protection is evaluated as higher than for the case with normal work in noisy areas. This gives longer acceptable duratio [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;div class=&quot;task&quot;&gt;&lt;b&gt;About NOISY WORK OPERATIONS&lt;/b&gt;&lt;br/&gt;
+        ///When carrying out noisy work operations, it is expected to have good knowledge about use and maintenance of hearing protection. With that background, the attenuation afforded by the hearing protection is evaluated as higher than for the case with normal work in noisy areas. This gives longer acceptable durations for noisy work than for work in noisy areas with the same noise level.&lt;/div&gt;&lt;div class=&quot;taskAreaNoise&quot;&gt;&lt;b&gt;About the calculations of WORK IN [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FooterCalculations {
             get {
@@ -90,8 +90,8 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;About the calculations of RISK ASSESSED NOISY WORK OPERATIONS&lt;/b&gt;&lt;br/&gt;
-        ///When carrying out noisy work operations, it is expected that routines with extra focus and knowledge are applied to both use and maintenance of hearing protection. With that background and that a detailed risk analysis of the noisy operation is carried out, the attenuation afforded by the hearing protection is evaluated as higher than for the case with normal work in noisy areas. This gives longer acceptable durations for noisy work  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;b&gt;About NOISY WORK OPERATIONS&lt;/b&gt;&lt;br/&gt;
+        ///When carrying out noisy work operations, it is expected to have good knowledge about use and maintenance of hearing protection. With that background, the attenuation afforded by the hearing protection is evaluated as higher than for the case with normal work in noisy areas. This gives longer acceptable durations for noisy work than for work in noisy areas with the same noise level..
         /// </summary>
         internal static string FooterCalculationsForReport {
             get {
@@ -203,7 +203,7 @@ namespace NoiseCalculator.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculated noise dose is acceptable. At 100% personnel shall only stay in areas with noise levels below 80 dBA for the rest of the day and not carry out work activities that result in noise that exceeds 80 dBA. Employees so affected shall keep away from areas with impulse noise and/or activities that result in impulse noise..
+        ///   Looks up a localized string similar to Calculated noise dose is acceptable. If allowed exposure time is consumed, personnel shall only carry out work activities with noise levels below 80 dB(A) for the rest of the day.      Upon dose notice in QuietPro when working, the allowed exposure time is consumed, and personnel shall only carry out work activities with noise levels below 80 dB(A) for the rest of the day..
         /// </summary>
         internal static string NoiseLevelStatusTextMaximumAllowedDosage {
             get {

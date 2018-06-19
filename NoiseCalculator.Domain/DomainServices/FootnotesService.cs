@@ -27,8 +27,7 @@ namespace NoiseCalculator.Domain.DomainServices
             var staticFootnotes = new List<string>
                 {
                     DomainResources.FooterCalculations,
-                    DomainResources.FooterNoiseProtection,
-                    DomainResources.FooterContact
+                    DomainResources.FooterNoiseProtection
                 };
 
             return staticFootnotes;

@@ -33,16 +33,17 @@
 
     <div id="firstPage" ng-hide="firstPageSeen">
 
-        <h2 id="startSubTitle">@TaskResources.IndexStartTitle</h2>
-        <p style="max-width: 1000px" id="startText">@TaskResources.IndexStartText1</p><br/>
-        <p style="max-width: 1000px" id="startText">@TaskResources.IndexStartText2</p><br />
-        <p style="max-width: 1000px" id="startText">@TaskResources.IndexStartText3</p><br />
-        <p style="max-width: 1000px" id="startText">@TaskResources.IndexStartText4</p><br />
-        <p style="max-width: 1000px" id="startText">@TaskResources.IndexStartText5</p><br />
-
         <div id="startCalculator" class="button" ng-click="firstPageHasBeenSeen()">
             @TaskResources.IndexButtonStartCalculator
-        </div>       
+        </div>
+        <div>
+            <h2 style="max-width: 1000px; padding-left: 200px" id="startSubTitle">@TaskResources.IndexStartTitle</h2>
+            <p style="max-width: 1000px; padding-left: 200px" id="startText">@TaskResources.IndexStartText1</p><br />
+            <p style="max-width: 1000px; padding-left: 200px" id="startText">@TaskResources.IndexStartText2</p><br />
+            <p style="max-width: 1000px; padding-left: 200px" id="startText">@TaskResources.IndexStartText3</p><br />
+            <p style="max-width: 1000px; padding-left: 200px" id="startText">@TaskResources.IndexStartText4</p><br />
+            <p style="max-width: 1000px; padding-left: 200px" id="startText">@TaskResources.IndexStartText5</p><br />
+        </div>
 
     </div>
 
@@ -53,34 +54,37 @@
                 <h2 id="subTitle">@TaskResources.IndexSubtitle</h2>
                 <div id="printAsPdf" class="button">@TaskResources.IndexButtonCreatePdf</div>
             </div>
+            <div style="padding-top: 10px">
 
-            <div class="separatorDiv"></div>
+                <div class="separatorDiv"></div>
 
-            <div id="taskList">
-                @foreach (SelectedTaskViewModel selectedTask in Model.SelectedTasks)
-                {
-                    @Html.Partial("_SelectedTask", selectedTask);
-                    <span ng-bind="addedTask = true" ng-hide="true"></span>
-                }
-            </div>
-
-            <div id="removeAllContainer">
-                <div id="removeAllTasks" class="button" style="float: right;">
-                    <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
-                    @TaskResources.IndexButtonRemoveAll
+                <div id="taskList">
+                    @foreach (SelectedTaskViewModel selectedTask in Model.SelectedTasks)
+                    {
+                        @Html.Partial("_SelectedTask", selectedTask);
+                        <span ng-bind="addedTask = true" ng-hide="true"></span>
+                    }
                 </div>
 
-                <br style="clear: both;" />
+                <div id="removeAllContainer">
+                    <div id="removeAllTasks" class="button" style="float: right;">
+                        <img src="@Url.Content("~/Content/cancel.png")" class="buttonIcon" />
+                        @TaskResources.IndexButtonRemoveAll
+                    </div>
+
+                    <br style="clear: both;" />
+                </div>
+                <div class="separatorDiv"></div>
             </div>
 
-            <div class="separatorDiv"></div>
-
+            <div style="margin-top: 20px">
+                <div id="addTask" class="button" ng-click="addedTask = true">
+                    <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
+                    @TaskResources.IndexButtonAddTask
+                </div>
+            </div>
         </div>
 
-        <div id="addTask" class="button" ng-click="addedTask = true">
-            <img src="@Url.Content("~/Content/add.png")" class="buttonIcon" />
-            @TaskResources.IndexButtonAddTask
-        </div>
 
         <div style="float: right;">
 

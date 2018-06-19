@@ -122,8 +122,8 @@
     <comment>Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen. Arbeidstaker kan heller ikke utføre arbeid som gir støy over 80 dBA.</comment>
   </data>
   <data name="FooterCalculations" xml:space="preserve">
-    <value>&lt;div class="task"&gt;&lt;b&gt;Om beregningene av RISIKOVURDERTE STØYENDE ARBEIDSOPERASJONER&lt;/b&gt;&lt;br/&gt;
-Ved utførelse av støyende arbeidsoperasjoner forventes det at det er innført rutiner som sikrer skjerpet fokus og kunnskap både vedrørende bruk og vedlikehold av hørselsvern. På bakgrunn av dette og at det er gjennomført en detaljert risikovurdering for støyende arbeidsoperasjoner, vurderes demping av hørselvern høyere for disse støyende arbeidsoppgavene enn for vanlig arbeid i støysoner. Dette medfører at beregnet tillatt arbeidstid blir lengre for støyende arbeidsoppgaver, selv om arbeidet utføres i et område med høyt støynivå.&lt;/div&gt;&lt;div class="taskAreaNoise"&gt;&lt;b&gt;Om beregningene av ARBEID I STØYSONE (OMRÅDESTØY)&lt;/b&gt;&lt;br/&gt;
+    <value>&lt;div class="task"&gt;&lt;b&gt;Om STØYENDE ARBEIDSOPERASJONER&lt;/b&gt;&lt;br/&gt;
+Ved utførelse av støyende arbeidsoperasjoner forventes det god kunnskap om bruk og vedlikehold av hørselvern. Forutsatt dette vurderes demping av hørselvern høyere og dermed lenger tillatt arbeidstid for støyende arbeidsoperasjoner enn for vanlig arbeid i støysoner i samme støynivå.&lt;/div&gt;&lt;div class="taskAreaNoise"&gt;&lt;b&gt;Om beregningene av ARBEID I STØYSONE (OMRÅDESTØY)&lt;/b&gt;&lt;br/&gt;
 Ved utførelse av arbeid i støysoner er beregningene i tråd med oppholdstider gitt i støykartene.
 &lt;/div&gt;</value>
     <comment>&lt;b&gt;Om beregningene:&lt;/b&gt;&lt;br/&gt;Ved utførelse av støyende arbeidsoperasjoner forventes det at det er innført rutiner som sikrer skjerpet fokus og kunnskap både vedrørende bruk og vedlikehold av hørselsvern. På bakgrunn av dette og at det er gjennomført en detaljert risikovurdering for støyende arbeidsoperasjoner, vurderes demping av hørselvern høyere for disse støyende arbeidsoppgavene enn for vanlig arbeid i støysoner. Dette medfører at beregnet tillatt arbeidstid blir lengre for støyende arbeidsoppgaver, selv om arbeidet utføres i et område med høyt støynivå.&lt;br/&gt;&lt;br/&gt;Dersom beregnet støydose er 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy (smell), eller utføre arbeid som gir impulsstøy.&lt;br/&gt;&lt;br/&gt;Metodikk for risikovurdering av støyeksponering er gitt i GL0169 «Noise control in operation» og er hjemlet i TR0926 «Working Environment».</comment>
@@ -133,8 +133,8 @@ Ved utførelse av arbeid i støysoner er beregningene i tråd med oppholdstider 
 Ved utførelse av arbeid i støysoner er beregningene i tråd med oppholdstider gitt i støykartene.</value>
   </data>
   <data name="FooterCalculationsForReport" xml:space="preserve">
-    <value>&lt;b&gt;Om beregningene av RISIKOVURDERTE STØYENDE ARBEIDSOPERASJONER&lt;/b&gt;&lt;br/&gt;
-Ved utførelse av støyende arbeidsoperasjoner forventes det at det er innført rutiner som sikrer skjerpet fokus og kunnskap både vedrørende bruk og vedlikehold av hørselsvern. På bakgrunn av dette og at det er gjennomført en detaljert risikovurdering for støyende arbeidsoperasjoner, vurderes demping av hørselvern høyere for disse støyende arbeidsoppgavene enn for vanlig arbeid i støysoner. Dette medfører at beregnet tillatt arbeidstid blir lengre for støyende arbeidsoppgaver, selv om arbeidet utføres i et område med høyt støynivå.</value>
+    <value>&lt;b&gt;Om STØYENDE ARBEIDSOPERASJONER&lt;/b&gt;&lt;br/&gt;
+Ved utførelse av støyende arbeidsoperasjoner forventes det god kunnskap om bruk og vedlikehold av hørselvern. Forutsatt dette vurderes demping av hørselvern høyere og dermed lenger tillatt arbeidstid for støyende arbeidsoperasjoner enn for vanlig arbeid i støysoner i samme støynivå. </value>
   </data>
   <data name="FooterContact" xml:space="preserve">
     <value>&lt;b&gt;Kontakt yrkeshygieniker:&lt;/b&gt;&lt;br/&gt;- dersom det er usikkerhet rundt beregningene&lt;br/&gt;- dersom ønsket arbeidsoppgave ikke finnes i listen&lt;br/&gt;- ved spørsmål om støydemping&lt;br/&gt;- dersom områdestøy overskrider 110 dBA</value>
@@ -172,7 +172,7 @@ Ved vurdering av tillatt arbeidstid, når det er samtidig eksponering for støy 
     <value>Beregnet støyeksponering er ikke akseptabel og arbeidet kan ikke gjennomføres som planlagt. Reduser støynivå og/eller eksponeringstid. Dersom arbeidet allerede er utført må det meldes som «Tilløp til ARS» til bedriftslegen.</value>
   </data>
   <data name="NoiseLevelStatusTextMaximumAllowedDosage" xml:space="preserve">
-    <value>Beregnet støydose er akseptabel. Ved 100% skal arbeidstaker oppholde seg i områder med støy under 80 dBA resten av dagen og skal ikke utføre arbeid som gir støy over 80 dBA. Arbeidstaker kan heller ikke oppholde seg i områder med impulsstøy, eller utføre arbeid som gir impulsstøy.</value>
+    <value>Beregnet støydose er akseptabel. Dersom tillatt eksponeringstid for en ansatt er brukt opp for en dag, skal vedkommende kun arbeide videre i støy som er lavere enn 80 dB(A).    Ved dosevarsel i QuietPro ved utførelse av arbeid er tillatt eksponeringstid brukt opp, og vedkommende skal kun arbeide videre i støy som er lavere enn 80 dB(A).</value>
   </data>
   <data name="NoiseLevelStatusTextNormal" xml:space="preserve">
     <value>Beregnet støydose er akseptabel.</value>

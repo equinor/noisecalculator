@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin.css" />
+    <Content Include="Content\Equinor_PRIMARY_logo_RGB_RED.png" />
     <Content Include="Content\help.png" />
     <Content Include="Content\jquery.maxlength.css" />
     <Content Include="Content\printer2.png" />

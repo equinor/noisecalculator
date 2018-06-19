@@ -6,7 +6,7 @@
 <head>
     <title>@ViewBag.Title</title>
     <title>@ViewBag.username</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
     @RenderSection("Stylesheets", required: false)
@@ -20,13 +20,13 @@
 <body ng-controller="IndexController">
     <div class="header">
         <div style="position: relative;">
-            <img id="headerLogo" style="height: 40px" />
+            <img id="headerLogo" style="height: 100px" src="@Url.Content("~/Content/Equinor_PRIMARY_logo_RGB_RED.png")"/>
             <span id="applicationTitle">
-                @TaskResources.ApplicationTitle 
-                <span id="helpButton"> <img src="@Url.Content("~/Content/help.png")" style="display: inline-block; height: 18px; width: 18px; vertical-align: middle; " /><a id="helpLink" style="color: white; text-decoration: none;" href="@TaskResources.IndexHelpLink">  @TaskResources.IndexHelpTitle</a></span> 
-            </span>
+                <label style="max-width: 1000px; padding-left: 60px;padding-bottom: 20px"> @TaskResources.ApplicationTitle </label>
+    <span id="helpButton"> <img src="@Url.Content("~/Content/help.png")" style="display: inline-block; height: 18px; width: 18px; vertical-align: middle;" /><a id="helpLink" style="color: black; text-decoration: none;" href="@TaskResources.IndexHelpLink">  @TaskResources.IndexHelpTitle</a></span>
+</span>
             
-            <div style="color: White; text-align: right; position: absolute; right: 10px; top: 0px;" >
+            <div style="color: black; text-align: right; position: absolute; right: 10px; top: 0px;" >
                 <span style="display: block;" >
                     @RenderSection("AdminLink", required: false)
                     @TaskResources.LayoutUserLabel: <strong>@UserHelper.CreateUsernameWithoutDomain(@ViewBag.UserName)</strong>
