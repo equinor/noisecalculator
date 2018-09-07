@@ -3,9 +3,7 @@ using System.Globalization;
 using System.Web;
 using System.Web.Mvc;
 using NoiseCalculator.Domain.Entities;
-using NoiseCalculator.Domain.Enums;
 using NoiseCalculator.Infrastructure.DataAccess.Interfaces;
-using NoiseCalculator.UI.Web.Areas.Admin.ViewModels.HelicopterTask;
 using NoiseCalculator.UI.Web.Resources;
 using NoiseCalculator.UI.Web.Support;
 using NoiseCalculator.UI.Web.ViewModels;
@@ -66,8 +64,16 @@ namespace NoiseCalculator.UI.Web.Controllers
 
                 if (task.Role.RoleType.ToString() == "AreaNoise")
                     if (!selectListItem.Selected)
-                        if (noiseProtection.NoiseProtectionDefinition.Id != 3) // Quietpro
-                            continue;
+                        if (task.Title.Contains("80") || task.Title.Contains("85") || task.Title.Contains("90"))
+                        {
+                            if (noiseProtection.NoiseProtectionDefinition.Id != 3) // Quietpro
+                                continue;
+                        }
+                        else
+                        {
+                            if (noiseProtection.NoiseProtectionDefinition.Id != 3 && noiseProtection.NoiseProtectionDefinition.Id != 2) // Quietpro and double hearing
+                                continue;
+                        }
 
                 if (task.TaskDefinition.Id != 1070 && //"Ultra-High Pressure (UHP) water jetting"
                     task.TaskDefinition.Id != 1071 && //"Sponging"
@@ -147,8 +153,23 @@ namespace NoiseCalculator.UI.Web.Controllers
                 }
                 if (selectedTask.Task.Role.RoleType.ToString() == "AreaNoise")
                     if (!selectListItem.Selected)
-                        if (noiseProtection.NoiseProtectionDefinition.Id != 3 && selectedTask.Task.NoiseProtection.Id != noiseProtection.Id)
-                            continue;
+                    {
+                        if (selectedTask.Task.Title.Contains("80") || selectedTask.Task.Title.Contains("85") ||
+                            selectedTask.Task.Title.Contains("90"))
+                        {
+                            if (noiseProtection.NoiseProtectionDefinition.Id != 3 &&
+                                selectedTask.Task.NoiseProtection.Id != noiseProtection.Id) // Quietpro
+                                continue;
+                        }
+                        else
+                        {
+                            if (noiseProtection.NoiseProtectionDefinition.Id != 3 &&
+                                noiseProtection.NoiseProtectionDefinition.Id != 2 &&
+                                selectedTask.Task.NoiseProtection.Id != noiseProtection.Id)
+                                // Quietpro and double hearing
+                                continue;
+                        }
+                    }
                 viewModel.NoiseProtection.Add(selectListItem);
             }
 

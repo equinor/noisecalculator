@@ -114,17 +114,17 @@ namespace NoiseCalculator.Domain.Entities
             if (roleType == RoleTypeEnum.AreaNoise.ToString() && noiseProtection.NoiseProtectionDefinition.Id == 3)
             {
                 if (actualNoiseLevel > 110)
-                    return TimeSpan.FromMinutes(percentage / 0.438596);
+                    return TimeSpan.FromMinutes(percentage / 0.438596).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.438596);
                 if (actualNoiseLevel > 105)
-                    return TimeSpan.FromMinutes(percentage / 0.138888);
+                    return TimeSpan.FromMinutes(percentage / 0.138888).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.138888);
                 if (actualNoiseLevel > 100)
-                    return TimeSpan.FromMinutes(percentage / 0.043750);
+                    return TimeSpan.FromMinutes(percentage / 0.043750).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.043750);
                 if (actualNoiseLevel > 95)
-                    return TimeSpan.FromMinutes(percentage / 0.013541);
+                    return TimeSpan.FromMinutes(percentage / 0.013541).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.013541);
                 if (actualNoiseLevel > 90)
-                    return TimeSpan.FromMinutes(percentage / 0.004167);
+                    return TimeSpan.FromMinutes(percentage / 0.004167).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.004167);
                 if (actualNoiseLevel > 85)
-                    return TimeSpan.FromMinutes(percentage / 0.001042);
+                    return TimeSpan.FromMinutes(percentage / 0.001042).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.001042);
                 return new TimeSpan(0, 0, 960, 0);
             }
             // Special handling for areanoise
@@ -135,13 +135,13 @@ namespace NoiseCalculator.Domain.Entities
                 if (actualNoiseLevel > 105)
                     return TimeSpan.FromMinutes(percentage / 3.333333);
                 if (actualNoiseLevel > 100)
-                    return TimeSpan.FromMinutes(percentage / 0.833333);
+                    return TimeSpan.FromMinutes(percentage / 0.833333).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.833333);
                 if (actualNoiseLevel > 95)
-                    return TimeSpan.FromMinutes(percentage / 0.277777);
+                    return TimeSpan.FromMinutes(percentage / 0.277777).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.277777);
                 if (actualNoiseLevel > 90)
-                    return TimeSpan.FromMinutes(percentage / 0.277777);
+                    return TimeSpan.FromMinutes(percentage / 0.277777).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.277777);
                 if (actualNoiseLevel > 85) 
-                    return TimeSpan.FromMinutes(percentage/0.138888);
+                    return TimeSpan.FromMinutes(percentage/0.138888).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage / 0.138888);
                 return TimeSpan.FromMinutes(percentage / 0.104166).Days > 0 ? new TimeSpan(0, 16, 0, 0) : TimeSpan.FromMinutes(percentage/0.104166);
             }
 
