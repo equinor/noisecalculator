@@ -11,5 +11,3 @@ The Noise calculator is based on documented risk assessments for the relevant no
 
 It is possible to take a printout of the evaluation in pdf format, for planning of jobs, as documentation of exposure after work has been carried out, and as documentation in case of a developing work related illness
 
-
-When using noisy equipment also involves exposure to vibration: When evaluating permitted working hours, when there is simultaneous exposure to noise and vibration, the exposure allowing the shortest working hours is determinative. See more details in ”Information”.
