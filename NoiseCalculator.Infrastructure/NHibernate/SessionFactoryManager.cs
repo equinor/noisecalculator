@@ -1,6 +1,10 @@
 using System.Configuration;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Microsoft.Azure.KeyVault;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using NoiseCalculator.Infrastructure.Mapping;
@@ -14,9 +18,11 @@ namespace NoiseCalculator.Infrastructure.NHibernate
         private readonly ISessionFactory _sessionFactory;
 
 
-        public SessionFactoryManager()
+        public  SessionFactoryManager()
         {
-            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            var result = ConfigurationManager.ConnectionStrings["ConnectionString"];
+
+            var connectionString = result.ToString();
             
             _configuration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
@@ -25,7 +31,7 @@ namespace NoiseCalculator.Infrastructure.NHibernate
             
             _sessionFactory = _configuration.BuildSessionFactory();
         }
-
+        
         public ISession OpenSession()
         {
             return _sessionFactory.OpenSession();
