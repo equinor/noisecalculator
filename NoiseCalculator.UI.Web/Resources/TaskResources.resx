@@ -253,6 +253,10 @@ Kontakt yrkeshygieniker dersom støynivå fortsatt er for høyt.</comment>
     <value>Add tasks to calculate your noise exposure</value>
     <comment>Legg til arbeidsoppgaver for å beregne din støyeksponering</comment>
   </data>
+  <data name="IndexSubtitle2" xml:space="preserve">
+    <value>Noise calculator presumes that the user has passed earplug fit-test when double hearing protection is used.</value>
+    <comment>Støykalkulatoren forutsetter at bruker har godkjent tettetest av øreproppene når dobbelt hørselvern brukes.</comment>
+  </data>
   <data name="IndexStartTitle" xml:space="preserve">
     <value>Calculate noise exposure</value>
   </data>

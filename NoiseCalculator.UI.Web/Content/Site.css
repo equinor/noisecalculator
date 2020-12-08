@@ -419,16 +419,24 @@ p
 #subTitle {
     position: absolute; 
     left: 60px;
-    bottom: 3px;
+    bottom: 50px;
 
     margin-top: 0px;
     margin-bottom: 0px;
+}
+#subTitle2 {
+    position: absolute;
+    left: 60px;
+    bottom: 3px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: rgb(255, 18, 67);
 }
 
 #printAsPdf {
     position: absolute; 
     right: 22px;
-    bottom: 3px;
+    bottom: 50px;
 
     height: auto;
     vertical-align: text-bottom;
