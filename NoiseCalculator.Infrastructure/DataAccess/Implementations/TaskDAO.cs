@@ -16,8 +16,8 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
             IEnumerable<Task> entities = _session.QueryOver<Task>()
                 .Where(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
-                .Fetch(x => x.Role).Eager
-                .Fetch(x => x.TaskDefinition).Eager
+                .Fetch(SelectMode.Fetch, x => x.Role)
+                .Fetch(SelectMode.Fetch, x => x.TaskDefinition)
                 .OrderBy(x => x.SortOrder).Desc
                 .ThenBy(x => x.Title).Asc
                 .List<Task>();
@@ -30,7 +30,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             IEnumerable<Task> entities = _session.QueryOver<Task>()
                 .Where(x => x.CultureName == Thread.CurrentThread.CurrentCulture.Name)
                 .And(x => x.TaskDefinition.Id == id)
-                .Fetch(x => x.Role).Eager
+                .Fetch(SelectMode.Fetch, x => x.Role)
                 .OrderBy(x => x.SortOrder).Asc
                 .ThenBy(x => x.Title).Asc
                 .List<Task>();
@@ -42,7 +42,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         {
             IEnumerable<Task> entities = _session.QueryOver<Task>()
                 .Where(x => x.TaskDefinition.Id == id)
-                .Fetch(x => x.Role).Eager
+                .Fetch(SelectMode.Fetch, x => x.Role)
                 .OrderBy(x => x.SortOrder).Desc
                 .ThenBy(x => x.Title).Asc
                 .List<Task>();

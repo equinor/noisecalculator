@@ -17,7 +17,7 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             IEnumerable<SelectedTask> selectedTasks = _session.QueryOver<SelectedTask>()
                 .Where(x => x.CreatedBy == createdByUsername)
                 .And(x => x.CreatedDate == createdDate.Date)
-                .Fetch(x => x.Role).Eager
+                .Fetch(SelectMode.Fetch, x => x.Role)
                 .OrderBy(x => x.Id).Asc
                 .JoinQueryOver(x => x.Task)
                 .List<SelectedTask>();

@@ -3,8 +3,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using Microsoft.Azure.KeyVault;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using NoiseCalculator.Infrastructure.Mapping;

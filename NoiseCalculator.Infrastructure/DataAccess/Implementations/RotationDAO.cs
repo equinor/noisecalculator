@@ -21,11 +21,11 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
         public IList<Rotation> GetAllByTaskDefinitionIdOrderedByTaskTitle(int taskDefinitionId)
         {
             return _session.QueryOver<Rotation>()
-                .Fetch(x => x.Task).Eager
-                .Fetch(x => x.OperatorTask).Eager
-                .Fetch(x => x.OperatorTask.Role).Eager
-                .Fetch(x => x.AssistantTask).Eager
-                .Fetch(x => x.AssistantTask.Role).Eager
+                .Fetch(SelectMode.Fetch, x => x.Task)
+                .Fetch(SelectMode.Fetch, x => x.OperatorTask)
+                .Fetch(SelectMode.Fetch, x => x.OperatorTask.Role)
+                .Fetch(SelectMode.Fetch, x => x.AssistantTask)
+                .Fetch(SelectMode.Fetch, x => x.AssistantTask.Role)
                 .JoinQueryOver(x => x.Task)
                     .Where(x => x.TaskDefinition.Id == taskDefinitionId)
                     .OrderBy(x => x.Title).Asc

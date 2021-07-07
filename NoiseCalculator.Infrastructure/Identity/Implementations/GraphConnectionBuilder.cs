@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Globalization;
 using System.Security.Claims;
 using Microsoft.Azure.ActiveDirectory.GraphClient;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 namespace NoiseCalculator.Infrastructure.Identity.Implementations
 {

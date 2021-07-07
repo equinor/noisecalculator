@@ -16,9 +16,9 @@ namespace NoiseCalculator.Infrastructure.DataAccess.Implementations
             HelicopterTask helicopterTask = _session.QueryOver<HelicopterTask>()
                 .Where(x => x.HelicopterType.Id == helicopterId)
                 .And(x => x.Task.Id == taskId)
-                .Fetch(x => x.HelicopterType).Eager
-                .Fetch(x => x.NoiseLevel).Eager
-                .Fetch(x=> x.Task).Eager
+                .Fetch(SelectMode.Fetch, x => x.HelicopterType)
+                .Fetch(SelectMode.Fetch, x => x.NoiseLevel)
+                .Fetch(SelectMode.Fetch, x => x.Task)
                 .SingleOrDefault<HelicopterTask>();
 
             return helicopterTask;
